@@ -40,26 +40,42 @@ class 名稱編碼的是「這個元素的 inline style 帶有這個值」，所
 style 是**靠慣例耦合、而非機制保證**：改了 inline 的值，要一併改 class 名稱，
 否則覆蓋規則會停留在舊值上。好處是這層耦合現在看得見也 grep 得到。
 
-這批 class 是從原本的 `[style*="..."]` 屬性選擇器機械式遷移過來的，
-遷移時刻意複製了當時的命中結果（包含下面那些非預期命中），
-所以四個頁面三種寬度的版面完全沒有變化 —— 由 `test/layout-check.js` 驗證。
+這批 class 是從原本的 `[style*="..."]` 屬性選擇器機械式遷移過來的。
+遷移時刻意複製了當時的命中結果（包含 substring 比對造成的非預期命中），
+所以版面完全沒有變化 —— 由 `test/layout-check.js` 驗證。那些非預期命中
+之後才逐一處理掉，同樣是零視覺變化。
 
-#### 非預期命中
+#### class 名稱與元素實際值一致
 
-原本的 substring 比對會命中比預期更長的值，遷移時原樣保留了這些行為。
-逐一量測之後，只有一個造成實際問題，已修掉：
+每個 class 現在只掛在 inline 值真的等於它名稱的元素上。這是可稽核的性質，
+不是慣例 —— 下面這段會列出任何「一個 class 涵蓋多種 inline 值」的情況，
+正常應該印出空的：
 
-| class | 意外命中 | 量測結果 |
-| --- | --- | --- |
-| `r-pad-44px` | `padding: 44px 56px` | **曾是問題，已修。** shorthand `padding:30px` 連水平一起蓋掉，把容器慣例的 24px 變成 30px。現在改掛 `r-pad-44px-56px`，只調垂直 |
-| `r-pad-104px-56px` | `padding: 104px 56px 116px` | 不是問題。規則用的是 longhand `padding-top`/`padding-bottom`，水平不受影響，第三個值變成 64px 正是規則本意 |
-| `r-pad-96px-56px` | `padding: 96px 56px 100px` | 同上 |
-| `r-gtc-1fr-1fr` | `grid-template-columns: 1fr 1fr 1fr` | 不是問題。900px 以下兩者都塌成單欄，結果相同 |
+```sh
+python3 - <<'EOF'
+import re, pathlib, collections
+PROP = {"gtc":"grid-template-columns","fs":"font-size","pad":"padding","gap":"gap",
+        "mw":"max-width","brr":"border-right","brl":"border-left","display":"display"}
+cover = collections.defaultdict(set)
+for f in ["index.html","mosatalk.html","mosaminutes.html","mosascore.html"]:
+    for m in re.finditer(r'class="([^"]*)"\s+style="([^"]*)"',
+                         pathlib.Path(f).read_text(encoding="utf-8")):
+        for c in m.group(1).split():
+            p = PROP.get(c[2:].split("-")[0])
+            v = p and re.search(re.escape(p) + r":([^;\"]*)", m.group(2))
+            if v: cover[c].add(v.group(1).strip())
+print({c: v for c, v in cover.items() if len(v) > 1})
+EOF
+```
 
-> 判斷這四項時，光看「選擇器過度命中」會得出錯誤結論 ——
-> 必須一併讀規則的宣告內容（shorthand 還是 longhand）與同一個中斷點裡
-> 其他規則的先後順序。前三項我一開始都判斷錯，是實際量測 computed style
-> 才看清楚的。
+修正的過程留了兩點經驗：
+
+- 光看「選擇器過度命中」會得出錯誤結論。`r-pad-44px` 確實是 bug ——
+  它用 shorthand `padding:30px`，連水平一起蓋掉容器慣例的 24px；
+  但同樣被過度命中的 `r-pad-104px-56px` 不是，因為它的規則是 longhand
+  `padding-top`/`padding-bottom`，碰不到水平。**要讀宣告內容才判斷得出來。**
+- `r-pad-96px-56px` 過去沒有任何元素的值真的是 `96px 56px`，
+  它命中的兩種值全都是意外 —— class 名稱在描述一個不存在的東西。
 
 ### 渲染失敗的兜底
 
