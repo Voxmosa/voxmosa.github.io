@@ -44,17 +44,22 @@ style 是**靠慣例耦合、而非機制保證**：改了 inline 的值，要�
 遷移時刻意複製了當時的命中結果（包含下面那些非預期命中），
 所以四個頁面三種寬度的版面完全沒有變化 —— 由 `test/layout-check.js` 驗證。
 
-#### 已知的非預期命中
+#### 非預期命中
 
-原本的 substring 比對會命中比預期更長的值，這些行為被原樣保留了下來，
-現在則是明擺在元素的 class 上，要修就是刪掉那個 class：
+原本的 substring 比對會命中比預期更長的值，遷移時原樣保留了這些行為。
+逐一量測之後，只有一個造成實際問題，已修掉：
 
-| class | 意外命中 | 效果 |
+| class | 意外命中 | 量測結果 |
 | --- | --- | --- |
-| `r-pad-44px` | `padding: 44px 56px` | 窄螢幕變成四邊 `30px`，水平內距從 56px 縮到 30px |
-| `r-pad-104px-56px` | `padding: 104px 56px 116px` | 覆蓋成兩值寫法，底部的 116px 消失 |
+| `r-pad-44px` | `padding: 44px 56px` | **曾是問題，已修。** shorthand `padding:30px` 連水平一起蓋掉，把容器慣例的 24px 變成 30px。現在改掛 `r-pad-44px-56px`，只調垂直 |
+| `r-pad-104px-56px` | `padding: 104px 56px 116px` | 不是問題。規則用的是 longhand `padding-top`/`padding-bottom`，水平不受影響，第三個值變成 64px 正是規則本意 |
 | `r-pad-96px-56px` | `padding: 96px 56px 100px` | 同上 |
-| `r-gtc-1fr-1fr` | `grid-template-columns: 1fr 1fr 1fr` | 三欄被兩欄的規則掃到（在 900px 以下兩者都塌成單欄，結果剛好相同）|
+| `r-gtc-1fr-1fr` | `grid-template-columns: 1fr 1fr 1fr` | 不是問題。900px 以下兩者都塌成單欄，結果相同 |
+
+> 判斷這四項時，光看「選擇器過度命中」會得出錯誤結論 ——
+> 必須一併讀規則的宣告內容（shorthand 還是 longhand）與同一個中斷點裡
+> 其他規則的先後順序。前三項我一開始都判斷錯，是實際量測 computed style
+> 才看清楚的。
 
 ### 渲染失敗的兜底
 

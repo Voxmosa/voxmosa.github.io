@@ -84,6 +84,9 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
   .r-pad-17px-24px{padding:14px 14px!important}
   .r-pad-18px-20px{padding:13px 13px!important}
   .r-pad-44px{padding:30px!important}
+  /* 只調垂直，水平交給 .r-mw-1280px 的容器慣例決定；
+     用 shorthand 會連水平一起蓋掉，那不是本意。 */
+  .r-pad-44px-56px{padding-top:30px!important;padding-bottom:30px!important}
   .r-pad-40px{padding:28px!important}
   .r-pad-38px-40px{padding:26px 24px!important}
   .r-pad-34px-36px{padding:26px 24px!important}
@@ -425,7 +428,7 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
   </div>
 
   <div style="border-top:1px solid #26251f">
-    <div class="r-mw-1280px r-pad-44px r-gap-40px" style="max-width:1280px;margin:0 auto;padding:44px 56px;display:flex;justify-content:space-between;align-items:center;gap:40px;flex-wrap:wrap">
+    <div class="r-mw-1280px r-pad-44px-56px r-gap-40px" style="max-width:1280px;margin:0 auto;padding:44px 56px;display:flex;justify-content:space-between;align-items:center;gap:40px;flex-wrap:wrap">
       <a href="index.html" style="display:flex;align-items:baseline;font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:300;letter-spacing:0.05em;line-height:1;color:#6f6c64">
         <span>V</span>
         <svg viewBox="0 0 200 120" preserveAspectRatio="xMinYMid slice" style="height:0.53em;width:0.8em;transform:translateY(0.0205em);overflow:visible;display:block;flex:none" fill="none" stroke="currentColor" stroke-linecap="round">
