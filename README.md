@@ -115,6 +115,30 @@ Chrome DevTools Protocol 驅動 headless Chrome，對四個頁面各跑四個情
 判定指標是 `document.body.innerText` 的長度，因為它排除 `display:none`
 的內容，恰好等於「使用者實際看得到多少字」—— 全白頁在這個指標下是 0。
 
+### 版面
+
+```sh
+node test/layout-check.js          # 與基準比對
+node test/layout-check.js --save   # 重新產生基準
+```
+
+在 375 / 768 / 1440 三種寬度下走訪整個 DOM，記錄每個元素的 bounding rect
+與 `display`、`grid-template-columns`、`gap`、`font-size`、`padding`、`max-width`。
+元素以「DOM 位置路徑」識別而非選擇器 —— 改動 `style` 屬性或加 class 都不影響對齊，
+只有真的動了 DOM 結構才會對不上（那會被明確報成結構差異）。
+
+基準是 `test/baseline/*.txt`，純文字所以 `git diff` 直接看得出哪個元素在哪個
+寬度下跑掉了。同目錄的 `.png` 全頁截圖供人眼比對，不進版控（見 `.gitignore`）。
+
+hero 有一組 JS 驅動的聲波動畫，CSS 停不掉。量測器的做法是在同一次載入內間隔
+取兩張快照，凡是自己就會變的欄位一律標成 `*`，比對時視為萬用字元 ——
+讓它自己找出雜訊，不必人工維護「請忽略這些元素」的清單。
+
+> 這張安全網驗證過兩件事：連續兩次比對完全一致（可重現），
+> 以及故意把 `[style*="grid-template-columns: 1fr 1fr"]` 改成對不上的字串後，
+> 375 與 768 立刻報出 `grid-template-columns 339px → 159.5px 159.5px`
+> 而 1440 保持通過（抓得到真實跑版）。
+
 ## 仍然依賴的外部資源
 
 Google Fonts（`fonts.googleapis.com` / `fonts.gstatic.com`）尚未自架。
