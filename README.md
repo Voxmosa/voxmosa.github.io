@@ -87,6 +87,34 @@ grep -n "REACT_SRI =\|REACT_DOM_SRI =" support.js
 
 版本需與 `support.js` 內的 `REACT_URL` 一致，否則 dc-runtime 可能對不上 API。
 
+### unpkg 仍是備援路徑
+
+自架之後正常運作已不會碰任何公開 CDN，但 `support.js` 內建的 `REACT_URL`
+常數還在：萬一 `vendor/` 的檔案取不到（例如部署漏檔），它仍會回頭去抓 unpkg。
+這是刻意保留的降級行為 —— 抓得到就正常顯示，抓不到就落到上面的兜底。
+若哪天要完全封死，得改 dc-runtime 或加 CSP `script-src 'self'`
+（注意 runtime 用到 `new Function`，需一併評估 `unsafe-eval`）。
+
+## 測試
+
+```sh
+node test/render-check.js          # 全部情境
+node test/render-check.js blocked  # 只跑單一情境
+```
+
+零依賴，需 Node 22+ 與本機的 Chrome。它會自己起 HTTP server 並以
+Chrome DevTools Protocol 驅動 headless Chrome，對四個頁面各跑四個情境：
+
+| 情境 | 驗證的事 |
+| --- | --- |
+| `normal` | React 渲染成功，且完全沒有向公開 CDN 取件 |
+| `blocked` | 拿不到 React 時，兜底把原始模板顯示回來（沒有兜底這裡是 0 字） |
+| `nojs` | 關閉 JavaScript 仍看得到內容 |
+| `slow` | 30KB/s 下看門狗不會過早開燈，最終仍正常渲染 |
+
+判定指標是 `document.body.innerText` 的長度，因為它排除 `display:none`
+的內容，恰好等於「使用者實際看得到多少字」—— 全白頁在這個指標下是 0。
+
 ## 仍然依賴的外部資源
 
 Google Fonts（`fonts.googleapis.com` / `fonts.gstatic.com`）尚未自架。
