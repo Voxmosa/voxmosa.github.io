@@ -20,6 +20,23 @@ Voxmosa 官方網站（靜態頁面，無需建置流程）。
 `support.js` 由 `dc-runtime/src/*.ts` 產生，屬於 vendored 產物，
 **不要直接編輯**；要改請回 dc-runtime 專案重新 build 後覆蓋。
 
+### 渲染失敗的兜底
+
+`support.js` 一執行就注入 `x-dc{display:none!important}` 把原始模板藏起來，
+之後才非同步載入 React 渲染。問題是它的失敗路徑只有 `console.error` 後 rethrow，
+**不會把模板顯示回來** — 所以只要渲染沒發生，使用者看到的就是全白頁。
+
+因此每個頁面在 `support.js` 之後有一段看門狗：`load` 事件後再等 2.5 秒，
+若 `#dc-root` 仍然沒有內容而 `<x-dc>` 還在，就注入
+`html body x-dc{display:block!important}` 把原始模板顯示出來。
+選這個選擇器是因為特異性 (0,0,3) 勝過 support.js 的 (0,0,1)，
+不必依賴 `<style>` 的先後順序。
+
+這個退化畫面是可讀的：`<x-dc>` 裡是純 HTML 加 inline style，沒有任何插值或
+樣板指令，而排版所需的 CSS 就在 `<helmet>` 的 `<style>` 內。
+只有靠 JS 產生的內容（例如首頁 hero 的示範動畫）會缺席 —
+首頁可見文字從 8199 字降到 4055 字，但導覽、標題、產品說明、CTA 都在。
+
 ## 為什麼自架 React
 
 React 與 ReactDOM 的 UMD 檔放在 `vendor/`，隨 repo 一起部署，
