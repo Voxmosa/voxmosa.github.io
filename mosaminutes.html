@@ -55,119 +55,70 @@ body { margin:0; background:#141413; }
 a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
 
 @media (max-width:1080px){
-  [style*="grid-template-columns: repeat(4, 1fr)"],
-  [style*="grid-template-columns:repeat(4, 1fr)"]{grid-template-columns:1fr 1fr!important}
-  [style*="gap: 72px"],
-  [style*="gap:72px"]{gap:44px!important}
+  .r-gtc-repeat-4-1fr{grid-template-columns:1fr 1fr!important}
+  .r-gap-72px{gap:44px!important}
 }
 @media (max-width:900px){
-  [style*="max-width: 1280px"],
-  [style*="max-width:1280px"]{padding-left:24px!important;padding-right:24px!important}
-  [style*="grid-template-columns: 1fr 1fr"],
-  [style*="grid-template-columns:1fr 1fr"],
-  [style*="grid-template-columns: repeat(3, 1fr)"],
-  [style*="grid-template-columns:repeat(3, 1fr)"],
-  [style*="grid-template-columns: repeat(4, 1fr)"],
-  [style*="grid-template-columns:repeat(4, 1fr)"],
-  [style*="grid-template-columns: 1.35fr 1fr"],
-  [style*="grid-template-columns:1.35fr 1fr"],
-  [style*="grid-template-columns: 1.1fr 1fr"],
-  [style*="grid-template-columns:1.1fr 1fr"],
-  [style*="grid-template-columns: 1.05fr 1fr"],
-  [style*="grid-template-columns:1.05fr 1fr"],
-  [style*="grid-template-columns: 1fr 1.25fr"],
-  [style*="grid-template-columns:1fr 1.25fr"],
-  [style*="grid-template-columns: 1fr 1.35fr"],
-  [style*="grid-template-columns:1fr 1.35fr"],
-  [style*="grid-template-columns: auto 1fr"],
-  [style*="grid-template-columns:auto 1fr"],
-  [style*="grid-template-columns: 180px 1fr"],
-  [style*="grid-template-columns:180px 1fr"]{grid-template-columns:1fr!important}
-  [style*="border-right: 1px solid rgb(234, 231, 224)"],
-  [style*="border-right:1px solid rgb(234, 231, 224)"]{border-right:none!important;border-bottom:1px solid #eae7e0!important}
-  [style*="border-left: 1px solid rgb(38, 37, 31)"],
-  [style*="border-left:1px solid rgb(38, 37, 31)"]{border-left:none!important;padding-left:0!important;border-top:1px solid #26251f!important;padding-top:24px!important}
-  [style*="gap: 64px"],
-  [style*="gap:64px"]{gap:40px!important}
-  [style*="font-size: 52px"],
-  [style*="font-size:52px"]{font-size:36px!important}
-  [style*="font-size: 46px"],
-  [style*="font-size:46px"]{font-size:34px!important}
-  [style*="font-size: 42px"],
-  [style*="font-size:42px"]{font-size:31px!important}
-  [style*="font-size: 40px"],
-  [style*="font-size:40px"]{font-size:30px!important}
-  [style*="font-size: 34px"],
-  [style*="font-size:34px"]{font-size:26px!important}
-  [style*="font-size: 28px"],
-  [style*="font-size:28px"]{font-size:24px!important}
-  [style*="font-size: 27px"],
-  [style*="font-size:27px"]{font-size:23px!important}
-  [style*="font-size: 26px"],
-  [style*="font-size:26px"]{font-size:22px!important}
-  [style*="font-size: 25px"],
-  [style*="font-size:25px"]{font-size:21px!important}
-  [style*="padding: 17px 24px"],
-  [style*="padding:17px 24px"]{padding:14px 14px!important}
-  [style*="padding: 18px 20px"],
-  [style*="padding:18px 20px"]{padding:13px 13px!important}
-  [style*="padding: 44px"],
-  [style*="padding:44px"]{padding:30px!important}
-  [style*="padding: 40px"],
-  [style*="padding:40px"]{padding:28px!important}
-  [style*="padding: 38px 40px"],
-  [style*="padding:38px 40px"]{padding:26px 24px!important}
-  [style*="padding: 34px 36px"],
-  [style*="padding:34px 36px"]{padding:26px 24px!important}
-  [style*="gap: 30px"],
-  [style*="gap:30px"],
-  [style*="gap: 28px"],
-  [style*="gap:28px"]{gap:14px!important;flex-wrap:wrap!important}
-  [style*="gap: 40px"],
-  [style*="gap:40px"]{gap:20px!important;flex-wrap:wrap!important}
+  .r-mw-1280px{padding-left:24px!important;padding-right:24px!important}
+  .r-gtc-1fr-1fr,
+  .r-gtc-repeat-3-1fr,
+  .r-gtc-repeat-4-1fr,
+  .r-gtc-1-35fr-1fr,
+  .r-gtc-1-1fr-1fr,
+  .r-gtc-1-05fr-1fr,
+  .r-gtc-1fr-1-25fr,
+  .r-gtc-1fr-1-35fr,
+  .r-gtc-auto-1fr,
+  .r-gtc-180px-1fr{grid-template-columns:1fr!important}
+  .r-brr-1px-solid-rgb-234-231-224{border-right:none!important;border-bottom:1px solid #eae7e0!important}
+  .r-brl-1px-solid-rgb-38-37-31{border-left:none!important;padding-left:0!important;border-top:1px solid #26251f!important;padding-top:24px!important}
+  .r-gap-64px{gap:40px!important}
+  .r-fs-52px{font-size:36px!important}
+  .r-fs-46px{font-size:34px!important}
+  .r-fs-42px{font-size:31px!important}
+  .r-fs-40px{font-size:30px!important}
+  .r-fs-34px{font-size:26px!important}
+  .r-fs-28px{font-size:24px!important}
+  .r-fs-27px{font-size:23px!important}
+  .r-fs-26px{font-size:22px!important}
+  .r-fs-25px{font-size:21px!important}
+  .r-pad-17px-24px{padding:14px 14px!important}
+  .r-pad-18px-20px{padding:13px 13px!important}
+  .r-pad-44px{padding:30px!important}
+  .r-pad-40px{padding:28px!important}
+  .r-pad-38px-40px{padding:26px 24px!important}
+  .r-pad-34px-36px{padding:26px 24px!important}
+  .r-gap-30px,
+  .r-gap-28px{gap:14px!important;flex-wrap:wrap!important}
+  .r-gap-40px{gap:20px!important;flex-wrap:wrap!important}
 }
 @media (max-width:620px){
-  [style*="max-width: 1280px"],
-  [style*="max-width:1280px"]{padding-left:18px!important;padding-right:18px!important}
-  [style*="grid-template-columns: 1.4fr 1fr 1fr"],
-  [style*="grid-template-columns:1.4fr 1fr 1fr"],
-  [style*="grid-template-columns: 1.2fr 1fr 1fr"],
-  [style*="grid-template-columns:1.2fr 1fr 1fr"],
-  [style*="grid-template-columns: 0.7fr 1fr 1fr"],
-  [style*="grid-template-columns:0.7fr 1fr 1fr"]{grid-template-columns:1fr!important}
-  [style*="grid-template-columns: 56px 1fr"],
-  [style*="grid-template-columns:56px 1fr"],
-  [style*="grid-template-columns: 76px 1fr"],
-  [style*="grid-template-columns:76px 1fr"],
-  [style*="grid-template-columns: 58px 108px 1fr"],
-  [style*="grid-template-columns:58px 108px 1fr"]{grid-template-columns:1fr!important;gap:6px!important}
-  [style*="font-size: 52px"],
-  [style*="font-size:52px"]{font-size:30px!important}
-  [style*="font-size: 42px"],
-  [style*="font-size:42px"]{font-size:26px!important}
-  [style*="font-size: 40px"],
-  [style*="font-size:40px"]{font-size:26px!important}
-  [style*="font-size: 34px"],
-  [style*="font-size:34px"]{font-size:23px!important}
-  [style*="padding: 112px 56px"],
-  [style*="padding:112px 56px"],
-  [style*="padding: 104px 56px"],
-  [style*="padding:104px 56px"],
-  [style*="padding: 96px 56px"],
-  [style*="padding:96px 56px"]{padding-top:64px!important;padding-bottom:64px!important}
+  .r-mw-1280px{padding-left:18px!important;padding-right:18px!important}
+  .r-gtc-1-4fr-1fr-1fr,
+  .r-gtc-1-2fr-1fr-1fr,
+  .r-gtc-0-7fr-1fr-1fr{grid-template-columns:1fr!important}
+  .r-gtc-56px-1fr,
+  .r-gtc-76px-1fr,
+  .r-gtc-58px-108px-1fr{grid-template-columns:1fr!important;gap:6px!important}
+  .r-fs-52px{font-size:30px!important}
+  .r-fs-42px{font-size:26px!important}
+  .r-fs-40px{font-size:26px!important}
+  .r-fs-34px{font-size:23px!important}
+  .r-pad-112px-56px,
+  .r-pad-104px-56px,
+  .r-pad-96px-56px{padding-top:64px!important;padding-bottom:64px!important}
 }
 
 @media (max-width:900px){
-  [style*="display: grid"] > *,
-  [style*="display:grid"] > *{min-width:0!important}
+  .r-display-grid > *{min-width:0!important}
 }
 </style>
 </helmet>
 <div style="width:100%;background:#141413;color:#f4f3f0;font-family:'Noto Sans TC','Space Grotesk',sans-serif;overflow-x:hidden">
 
   <div style="position:sticky;top:0;z-index:20;background:rgba(20,20,19,0.92);backdrop-filter:blur(14px);border-bottom:1px solid #26251f">
-    <div style="max-width:1280px;margin:0 auto;padding:20px 56px;display:flex;align-items:center;justify-content:space-between;gap:40px">
-      <a href="index.html" style="display:flex;align-items:baseline;font-family:'Space Grotesk',sans-serif;font-size:25px;font-weight:400;letter-spacing:0.05em;line-height:1;color:#f4f3f0;flex:none">
+    <div class="r-mw-1280px r-gap-40px" style="max-width:1280px;margin:0 auto;padding:20px 56px;display:flex;align-items:center;justify-content:space-between;gap:40px">
+      <a href="index.html" class="r-fs-25px" style="display:flex;align-items:baseline;font-family:'Space Grotesk',sans-serif;font-size:25px;font-weight:400;letter-spacing:0.05em;line-height:1;color:#f4f3f0;flex:none">
         <span>V</span>
         <svg viewBox="0 0 200 120" preserveAspectRatio="xMinYMid slice" style="height:0.53em;width:0.8em;transform:translateY(0.0205em);overflow:visible;display:block;flex:none" fill="none" stroke="currentColor" stroke-linecap="round">
           <circle cx="60" cy="60" r="51" stroke-width="18" />
@@ -176,7 +127,7 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
         </svg>
         <span>x</span><span style="display:inline-block;width:0.06em;flex:none"></span><span>mosa</span>
       </a>
-      <div style="display:flex;align-items:center;gap:30px;font-size:14px;font-weight:300;color:#b5b2aa">
+      <div class="r-gap-30px" style="display:flex;align-items:center;gap:30px;font-size:14px;font-weight:300;color:#b5b2aa">
         <a href="mosatalk.html">MosaTalk</a>
         <a href="mosaminutes.html" style="color:#ED9A4A">MosaMinutes</a>
         <a href="mosascore.html">MosaScore</a>
@@ -187,14 +138,14 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
     </div>
   </div>
 
-  <div style="max-width:1280px;margin:0 auto;padding:96px 56px 100px;display:grid;grid-template-columns:1.1fr 1fr;gap:72px;align-items:center">
-    <div style="display:flex;flex-direction:column;gap:28px">
+  <div class="r-gap-72px r-mw-1280px r-gtc-1-1fr-1fr r-pad-96px-56px r-display-grid" style="max-width:1280px;margin:0 auto;padding:96px 56px 100px;display:grid;grid-template-columns:1.1fr 1fr;gap:72px;align-items:center">
+    <div class="r-gap-28px" style="display:flex;flex-direction:column;gap:28px">
       <div style="display:flex;align-items:center;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#ED9A4A">
         <span style="width:22px;height:1px;background:#ED9A4A;display:block"></span>
         <span>Product 02 · On-Premise</span>
       </div>
-      <div style="font-family:'Space Grotesk',sans-serif;font-size:52px;font-weight:400;color:#ED9A4A;letter-spacing:0.01em;line-height:1.1">MosaMinutes</div>
-      <div style="font-size:34px;font-weight:200;line-height:1.42;letter-spacing:-0.01em;text-wrap:pretty">會議結束，紀錄已經<br />改到能直接發出去。</div>
+      <div class="r-fs-52px" style="font-family:'Space Grotesk',sans-serif;font-size:52px;font-weight:400;color:#ED9A4A;letter-spacing:0.01em;line-height:1.1">MosaMinutes</div>
+      <div class="r-fs-34px" style="font-size:34px;font-weight:200;line-height:1.42;letter-spacing:-0.01em;text-wrap:pretty">會議結束，紀錄已經<br />改到能直接發出去。</div>
       <div style="font-size:16px;font-weight:300;color:#a8a59d;line-height:1.95;max-width:540px;text-wrap:pretty">錄音或上傳檔案，系統自動產出逐字稿、分辨誰在說話、寫出摘要與待辦，並讓你在同一個畫面裡邊聽邊改——而且錄音、逐字稿、摘要全程不離開貴單位的網路。</div>
       <div style="display:flex;gap:12px;flex-wrap:wrap">
         <a href="#contact" style="background:#ED9A4A;color:#141413;padding:15px 30px;border-radius:4px;font-size:15px;font-weight:500">申請 PoC</a>
@@ -237,10 +188,10 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
   </div>
 
   <div id="problems" style="background:#F4F3F0;color:#141413">
-    <div style="max-width:1280px;margin:0 auto;padding:104px 56px 112px;display:flex;flex-direction:column;gap:48px">
+    <div class="r-mw-1280px r-pad-104px-56px" style="max-width:1280px;margin:0 auto;padding:104px 56px 112px;display:flex;flex-direction:column;gap:48px">
       <div style="display:flex;flex-direction:column;gap:16px">
         <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
-          <div style="font-size:34px;font-weight:300;letter-spacing:-0.01em">你遇到的麻煩，我們怎麼解</div>
+          <div class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">你遇到的麻煩，我們怎麼解</div>
           <div style="border:1px solid #ED9A4A;color:#c47a20;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:5px 11px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">On-Premise</div>
         </div>
         <div style="font-size:15px;font-weight:300;color:#6b6960;line-height:1.9;max-width:660px">會議記錄的痛點很少在「轉錄」，而在轉錄之後。</div>
@@ -248,13 +199,13 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
 
       <div style="display:flex;flex-direction:column;gap:20px">
 
-        <div style="border:1px solid #dedbd4;border-radius:8px;background:#fbfaf8;overflow:hidden;display:grid;grid-template-columns:1fr 1.25fr">
-          <div style="padding:38px 40px;display:flex;flex-direction:column;gap:14px;border-right:1px solid #eae7e0">
+        <div class="r-gtc-1fr-1-25fr r-display-grid" style="border:1px solid #dedbd4;border-radius:8px;background:#fbfaf8;overflow:hidden;display:grid;grid-template-columns:1fr 1.25fr">
+          <div class="r-brr-1px-solid-rgb-234-231-224 r-pad-38px-40px" style="padding:38px 40px;display:flex;flex-direction:column;gap:14px;border-right:1px solid #eae7e0">
             <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:#c47a20">麻煩 01</div>
             <div style="font-size:22px;font-weight:400;line-height:1.5;text-wrap:pretty">會議錄音不能上傳到別人的伺服器</div>
             <div style="font-size:13.5px;font-weight:300;color:#6b6960;line-height:1.9">法規或內部規範讓雲端會議工具在評估的第一關就出局。台語能力再好也沒用。</div>
           </div>
-          <div style="padding:38px 40px;display:flex;flex-direction:column;gap:16px;background:#f4f3f0">
+          <div class="r-pad-38px-40px" style="padding:38px 40px;display:flex;flex-direction:column;gap:16px;background:#f4f3f0">
             <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:#8c8a84">我們的解法</div>
             <div style="font-size:16px;font-weight:400;line-height:1.7">辨識、語者分離、聲紋比對、摘要——所有模型都在你的伺服器上，不呼叫任何雲端 AI 服務。</div>
             <div style="display:flex;flex-direction:column;gap:9px">
@@ -265,13 +216,13 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
           </div>
         </div>
 
-        <div style="border:1px solid #dedbd4;border-radius:8px;background:#fbfaf8;overflow:hidden;display:grid;grid-template-columns:1fr 1.25fr">
-          <div style="padding:38px 40px;display:flex;flex-direction:column;gap:14px;border-right:1px solid #eae7e0">
+        <div class="r-gtc-1fr-1-25fr r-display-grid" style="border:1px solid #dedbd4;border-radius:8px;background:#fbfaf8;overflow:hidden;display:grid;grid-template-columns:1fr 1.25fr">
+          <div class="r-brr-1px-solid-rgb-234-231-224 r-pad-38px-40px" style="padding:38px 40px;display:flex;flex-direction:column;gap:14px;border-right:1px solid #eae7e0">
             <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:#c47a20">麻煩 02</div>
             <div style="font-size:22px;font-weight:400;line-height:1.5;text-wrap:pretty">校對比重打逐字稿還累，改到一半還會被蓋掉</div>
             <div style="font-size:13.5px;font-weight:300;color:#6b6960;line-height:1.9">多數工具在「兩邊同時改」時是後蓋前，一整個下午的修改就這樣消失。</div>
           </div>
-          <div style="padding:38px 40px;display:flex;flex-direction:column;gap:16px;background:#f4f3f0">
+          <div class="r-pad-38px-40px" style="padding:38px 40px;display:flex;flex-direction:column;gap:16px;background:#f4f3f0">
             <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:#8c8a84">我們的解法</div>
             <div style="font-size:16px;font-weight:400;line-height:1.7">文字修改、段落結構、語者指派、語者命名是四條互不干擾的獨立通道——這是這個平台的設計底線，不是盡力而為。</div>
             <div style="display:flex;flex-direction:column;gap:9px">
@@ -282,13 +233,13 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
           </div>
         </div>
 
-        <div style="border:1px solid #dedbd4;border-radius:8px;background:#fbfaf8;overflow:hidden;display:grid;grid-template-columns:1fr 1.25fr">
-          <div style="padding:38px 40px;display:flex;flex-direction:column;gap:14px;border-right:1px solid #eae7e0">
+        <div class="r-gtc-1fr-1-25fr r-display-grid" style="border:1px solid #dedbd4;border-radius:8px;background:#fbfaf8;overflow:hidden;display:grid;grid-template-columns:1fr 1.25fr">
+          <div class="r-brr-1px-solid-rgb-234-231-224 r-pad-38px-40px" style="padding:38px 40px;display:flex;flex-direction:column;gap:14px;border-right:1px solid #eae7e0">
             <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:#c47a20">麻煩 03</div>
             <div style="font-size:22px;font-weight:400;line-height:1.5;text-wrap:pretty">會議裡大家講國台語夾雜，工具只聽得懂一種</div>
             <div style="font-size:13.5px;font-weight:300;color:#6b6960;line-height:1.9">這是臺灣會議的實際語音型態，不是教科書式的單一語言。能處理台語的工具並非沒有，但都在雲端。</div>
           </div>
-          <div style="padding:38px 40px;display:flex;flex-direction:column;gap:16px;background:#f4f3f0">
+          <div class="r-pad-38px-40px" style="padding:38px 40px;display:flex;flex-direction:column;gap:16px;background:#f4f3f0">
             <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:#8c8a84">我們的解法</div>
             <div style="font-size:16px;font-weight:400;line-height:1.7">國語、台語、客語、原住民族語、英語，一律轉為繁體中文逐字稿；國台語模型由團隊自行微調，已在生產環境服役、處理真實會議。</div>
             <div style="display:flex;flex-direction:column;gap:9px">
@@ -300,13 +251,13 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
           </div>
         </div>
 
-        <div style="border:1px solid #dedbd4;border-radius:8px;background:#fbfaf8;overflow:hidden;display:grid;grid-template-columns:1fr 1.25fr">
-          <div style="padding:38px 40px;display:flex;flex-direction:column;gap:14px;border-right:1px solid #eae7e0">
+        <div class="r-gtc-1fr-1-25fr r-display-grid" style="border:1px solid #dedbd4;border-radius:8px;background:#fbfaf8;overflow:hidden;display:grid;grid-template-columns:1fr 1.25fr">
+          <div class="r-brr-1px-solid-rgb-234-231-224 r-pad-38px-40px" style="padding:38px 40px;display:flex;flex-direction:column;gap:14px;border-right:1px solid #eae7e0">
             <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:#c47a20">麻煩 04</div>
             <div style="font-size:22px;font-weight:400;line-height:1.5;text-wrap:pretty">每場會議都要重新標註誰是誰</div>
             <div style="font-size:13.5px;font-weight:300;color:#6b6960;line-height:1.9">固定班底的例會，每週都在做同一件無聊的事。</div>
           </div>
-          <div style="padding:38px 40px;display:flex;flex-direction:column;gap:16px;background:#f4f3f0">
+          <div class="r-pad-38px-40px" style="padding:38px 40px;display:flex;flex-direction:column;gap:16px;background:#f4f3f0">
             <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:#8c8a84">我們的解法</div>
             <div style="font-size:16px;font-weight:400;line-height:1.7">聲紋註冊與自動比對：為某位發言者命名一次，之後的會議會自動認出同一個人。會議開得越多，標註工作越少。</div>
             <div style="display:flex;flex-direction:column;gap:9px">
@@ -316,13 +267,13 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
           </div>
         </div>
 
-        <div style="border:1px solid #dedbd4;border-radius:8px;background:#fbfaf8;overflow:hidden;display:grid;grid-template-columns:1fr 1.25fr">
-          <div style="padding:38px 40px;display:flex;flex-direction:column;gap:14px;border-right:1px solid #eae7e0">
+        <div class="r-gtc-1fr-1-25fr r-display-grid" style="border:1px solid #dedbd4;border-radius:8px;background:#fbfaf8;overflow:hidden;display:grid;grid-template-columns:1fr 1.25fr">
+          <div class="r-brr-1px-solid-rgb-234-231-224 r-pad-38px-40px" style="padding:38px 40px;display:flex;flex-direction:column;gap:14px;border-right:1px solid #eae7e0">
             <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:#c47a20">麻煩 05</div>
             <div style="font-size:22px;font-weight:400;line-height:1.5;text-wrap:pretty">辨識引擎憑空生出會議裡沒說過的話</div>
             <div style="font-size:13.5px;font-weight:300;color:#6b6960;line-height:1.9">最讓人不安的失效不是「聽錯」，而是無中生有。這類問題只有在真實會議上才會現形。</div>
           </div>
-          <div style="padding:38px 40px;display:flex;flex-direction:column;gap:16px;background:#f4f3f0">
+          <div class="r-pad-38px-40px" style="padding:38px 40px;display:flex;flex-direction:column;gap:16px;background:#f4f3f0">
             <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:#8c8a84">我們的解法</div>
             <div style="font-size:16px;font-weight:400;line-height:1.7">我們的模型已在實際環境處理真實會議，以下三項都是<span style="color:#c47a20">上線後實測發現並修正</span>的問題，不是規格書上的宣稱。</div>
             <div style="display:flex;flex-direction:column;gap:9px">
@@ -337,13 +288,13 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
     </div>
   </div>
 
-  <div style="max-width:1280px;margin:0 auto;padding:104px 56px">
+  <div class="r-mw-1280px r-pad-104px-56px" style="max-width:1280px;margin:0 auto;padding:104px 56px">
     <div style="display:flex;flex-direction:column;gap:44px">
       <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
-        <div style="font-size:34px;font-weight:300;letter-spacing:-0.01em">還有這些</div>
+        <div class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">還有這些</div>
         <div style="border:1px solid #3a3833;color:#7a776e;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:5px 11px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">現有功能</div>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#26251f;border:1px solid #26251f;border-radius:8px;overflow:hidden">
+      <div class="r-gtc-repeat-3-1fr r-display-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#26251f;border:1px solid #26251f;border-radius:8px;overflow:hidden">
         <div style="background:#0F0F0E;padding:32px 30px;display:flex;flex-direction:column;gap:11px;min-height:158px">
           <div style="font-size:16.5px;font-weight:400">即時錄音</div>
           <div style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.85">開網頁按下錄製，逐字稿與語者標籤即時出現，會議還在進行就能看到內容成形。</div>
@@ -383,7 +334,7 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
       </div>
       <div style="border:1px solid #26251f;border-radius:8px;padding:32px 34px;display:flex;flex-direction:column;gap:14px;background:#0F0F0E">
         <div style="font-size:17px;font-weight:400">不會半路壞掉的處理流程</div>
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
+        <div class="r-gtc-repeat-3-1fr r-display-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
           <div style="font-size:13px;font-weight:300;color:#8c8a84;line-height:1.85">每份錄音進入系統前先完成驗證，能不能處理當場就知道，不會排到最後才失敗</div>
           <div style="font-size:13px;font-weight:300;color:#8c8a84;line-height:1.85">收下的那一刻即記錄雜湊值與位元組數，原始錄音的完整性有據可查</div>
           <div style="font-size:13px;font-weight:300;color:#8c8a84;line-height:1.85">重複送出的請求只會被執行一次，不會產生重複的會議與重複計費</div>
@@ -393,15 +344,15 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
   </div>
 
   <div style="background:#F4F3F0;color:#141413">
-    <div style="max-width:1280px;margin:0 auto;padding:104px 56px 112px;display:flex;flex-direction:column;gap:40px">
+    <div class="r-mw-1280px r-gap-40px r-pad-104px-56px" style="max-width:1280px;margin:0 auto;padding:104px 56px 112px;display:flex;flex-direction:column;gap:40px">
       <div style="display:flex;flex-direction:column;gap:16px">
         <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
-          <div style="font-size:34px;font-weight:300;letter-spacing:-0.01em">讓紀錄自己走到該去的地方</div>
+          <div class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">讓紀錄自己走到該去的地方</div>
           <div style="border:1px solid #c9c5bb;color:#8c8a84;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:5px 11px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">開發規劃中</div>
         </div>
         <div style="font-size:15px;font-weight:300;color:#6b6960;line-height:1.9;max-width:680px">以下為下一階段的發展方向，仍在開發規劃中，非現有可交付功能。</div>
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+      <div class="r-gtc-1fr-1fr r-display-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
         <div style="border:1px solid #dedbd4;border-radius:6px;background:#fbfaf8;padding:26px 28px;display:flex;flex-direction:column;gap:9px"><div style="font-size:15.5px;font-weight:400">會議紀錄自動送達</div><div style="font-size:13px;font-weight:300;color:#6b6960;line-height:1.85">完成後自動寄 Email、推送 Teams／Mattermost／LINE，或以 Webhook 通知內部系統</div></div>
         <div style="border:1px solid #dedbd4;border-radius:6px;background:#fbfaf8;padding:26px 28px;display:flex;flex-direction:column;gap:9px"><div style="font-size:15.5px;font-weight:400">敏感資料自動遮罩</div><div style="font-size:13px;font-weight:300;color:#6b6960;line-height:1.85">姓名、身分證號、病歷號、金額自動偵測遮罩，並記錄誰檢視了原始內容</div></div>
         <div style="border:1px solid #dedbd4;border-radius:6px;background:#fbfaf8;padding:26px 28px;display:flex;flex-direction:column;gap:9px"><div style="font-size:15.5px;font-weight:400">專有名詞辨識強化</div><div style="font-size:13px;font-weight:300;color:#6b6960;line-height:1.85">由貴單位維護人名、單位、產品與術語對照表，產出時自動修正為正確寫法</div></div>
@@ -415,26 +366,26 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
     </div>
   </div>
 
-  <div style="max-width:1280px;margin:0 auto;padding:104px 56px">
-    <div style="display:flex;flex-direction:column;gap:40px">
+  <div class="r-mw-1280px r-pad-104px-56px" style="max-width:1280px;margin:0 auto;padding:104px 56px">
+    <div class="r-gap-40px" style="display:flex;flex-direction:column;gap:40px">
       <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
-        <div style="font-size:34px;font-weight:300;letter-spacing:-0.01em">系統需求</div>
+        <div class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">系統需求</div>
         <div style="border:1px solid #3a3833;color:#7a776e;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:5px 11px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">摘要</div>
       </div>
       <div style="display:flex;flex-direction:column;gap:1px;background:#26251f;border:1px solid #26251f;border-radius:8px;overflow:hidden">
-        <div style="display:grid;grid-template-columns:180px 1fr;gap:1px;background:#26251f">
+        <div class="r-gtc-180px-1fr r-display-grid" style="display:grid;grid-template-columns:180px 1fr;gap:1px;background:#26251f">
           <div style="background:#0F0F0E;padding:22px 26px;font-size:13.5px;font-weight:400;color:#8c8a84">伺服器</div>
           <div style="background:#0F0F0E;padding:22px 26px;font-size:13.5px;font-weight:300;color:#cfccc4;line-height:1.8">Ubuntu Linux x86_64，一張 NVIDIA GPU（24 GB 顯存等級，如 RTX 4090／A5000）</div>
         </div>
-        <div style="display:grid;grid-template-columns:180px 1fr;gap:1px;background:#26251f">
+        <div class="r-gtc-180px-1fr r-display-grid" style="display:grid;grid-template-columns:180px 1fr;gap:1px;background:#26251f">
           <div style="background:#0F0F0E;padding:22px 26px;font-size:13.5px;font-weight:400;color:#8c8a84">處理容量</div>
           <div style="background:#0F0F0E;padding:22px 26px;font-size:13.5px;font-weight:300;color:#cfccc4;line-height:1.8">單台 RTX 4090 可支援即時 10 線同時轉錄；離線上傳以批次佇列處理，不受線數限制</div>
         </div>
-        <div style="display:grid;grid-template-columns:180px 1fr;gap:1px;background:#26251f">
+        <div class="r-gtc-180px-1fr r-display-grid" style="display:grid;grid-template-columns:180px 1fr;gap:1px;background:#26251f">
           <div style="background:#0F0F0E;padding:22px 26px;font-size:13.5px;font-weight:400;color:#8c8a84">部署形態</div>
           <div style="background:#0F0F0E;padding:22px 26px;font-size:13.5px;font-weight:300;color:#cfccc4;line-height:1.8">容器化部署，單機即可運行；封閉網路友善，不需連外</div>
         </div>
-        <div style="display:grid;grid-template-columns:180px 1fr;gap:1px;background:#26251f">
+        <div class="r-gtc-180px-1fr r-display-grid" style="display:grid;grid-template-columns:180px 1fr;gap:1px;background:#26251f">
           <div style="background:#0F0F0E;padding:22px 26px;font-size:13.5px;font-weight:400;color:#8c8a84">使用者端</div>
           <div style="background:#0F0F0E;padding:22px 26px;font-size:13.5px;font-weight:300;color:#cfccc4;line-height:1.8">任何現代瀏覽器，無需安裝軟體；電腦與行動裝置皆可</div>
         </div>
@@ -444,15 +395,15 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
   </div>
 
   <div style="border-top:1px solid #26251f">
-    <div style="max-width:1280px;margin:0 auto;padding:104px 56px;display:flex;flex-direction:column;gap:40px">
+    <div class="r-mw-1280px r-gap-40px r-pad-104px-56px" style="max-width:1280px;margin:0 auto;padding:104px 56px;display:flex;flex-direction:column;gap:40px">
       <div style="display:flex;flex-direction:column;gap:16px">
         <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
-          <div style="font-size:34px;font-weight:300;letter-spacing:-0.01em">不只是一套軟體</div>
+          <div class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">不只是一套軟體</div>
           <div style="border:1px solid #3a3833;color:#7a776e;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:5px 11px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">導入與維運</div>
         </div>
         <div style="font-size:15px;font-weight:300;color:#8c8a84;line-height:1.9;max-width:680px">地端 AI 最實際的門檻往往不在軟體，而在硬體選型、環境建置與後續維護。這些我們一起承擔。</div>
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#26251f;border:1px solid #26251f;border-radius:8px;overflow:hidden">
+      <div class="r-gtc-1fr-1fr r-display-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#26251f;border:1px solid #26251f;border-radius:8px;overflow:hidden">
         <div style="background:#0F0F0E;padding:30px 32px;display:flex;flex-direction:column;gap:10px"><div style="font-size:16px;font-weight:400">主機供應與到場安裝</div><div style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.85">可提供完整主機硬體，經測試驗證後協助完成安裝部署，貴單位不需自行摸索硬體選型與環境建置。</div></div>
         <div style="background:#0F0F0E;padding:30px 32px;display:flex;flex-direction:column;gap:10px"><div style="font-size:16px;font-weight:400">辨識模型持續改進</div><div style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.85">模型由團隊自行訓練，可依貴單位的實際語音情境與領域用語持續優化——採用通用雲端服務時做不到。</div></div>
         <div style="background:#0F0F0E;padding:30px 32px;display:flex;flex-direction:column;gap:10px"><div style="font-size:16px;font-weight:400">可重現的評測報告</div><div style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.85">以貴單位指定的公開基準或自備的實際會議音檔評測，提供方法論明確、可重現的正式報告，而不是行銷數字。</div></div>
@@ -464,8 +415,8 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
   </div>
 
   <div id="contact" style="background:#ED9A4A;color:#141413">
-    <div style="max-width:1280px;margin:0 auto;padding:96px 56px 100px;display:flex;flex-direction:column;gap:32px;align-items:flex-start">
-      <div style="font-size:40px;font-weight:200;line-height:1.35;letter-spacing:-0.015em;max-width:760px;text-wrap:pretty">用你自己的會議錄音，驗證一次。</div>
+    <div class="r-mw-1280px r-pad-96px-56px" style="max-width:1280px;margin:0 auto;padding:96px 56px 100px;display:flex;flex-direction:column;gap:32px;align-items:flex-start">
+      <div class="r-fs-40px" style="font-size:40px;font-weight:200;line-height:1.35;letter-spacing:-0.015em;max-width:760px;text-wrap:pretty">用你自己的會議錄音，驗證一次。</div>
       <div style="font-size:15.5px;font-weight:300;color:#5c3f16;line-height:1.95;max-width:560px;text-wrap:pretty">我們可以用貴單位實際的會議音檔做一次概念驗證，並提供方法論明確、可重現的評測報告，作為採購與技術審查的技術佐證。</div>
       <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
         <a href="mailto:hazel@voxmosa.com" style="background:#141413;color:#ED9A4A;padding:15px 30px;border-radius:4px;font-size:15px;font-weight:500">申請 PoC</a>
@@ -475,7 +426,7 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
   </div>
 
   <div style="border-top:1px solid #26251f">
-    <div style="max-width:1280px;margin:0 auto;padding:44px 56px;display:flex;justify-content:space-between;align-items:center;gap:40px;flex-wrap:wrap">
+    <div class="r-mw-1280px r-pad-44px r-gap-40px" style="max-width:1280px;margin:0 auto;padding:44px 56px;display:flex;justify-content:space-between;align-items:center;gap:40px;flex-wrap:wrap">
       <a href="index.html" style="display:flex;align-items:baseline;font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:300;letter-spacing:0.05em;line-height:1;color:#6f6c64">
         <span>V</span>
         <svg viewBox="0 0 200 120" preserveAspectRatio="xMinYMid slice" style="height:0.53em;width:0.8em;transform:translateY(0.0205em);overflow:visible;display:block;flex:none" fill="none" stroke="currentColor" stroke-linecap="round">

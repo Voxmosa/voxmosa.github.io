@@ -20,6 +20,42 @@ Voxmosa 官方網站（靜態頁面，無需建置流程）。
 `support.js` 由 `dc-runtime/src/*.ts` 產生，屬於 vendored 產物，
 **不要直接編輯**；要改請回 dc-runtime 專案重新 build 後覆蓋。
 
+### 響應式：`r-*` class
+
+版面是 inline style 寫的，響應式覆蓋則集中在 `<helmet>` 的 `<style>` 內，
+以 `r-<屬性>-<值>` 命名的 class 掛勾：
+
+```html
+<div class="r-gtc-repeat-4-1fr r-gap-72px" style="display:grid;grid-template-columns:repeat(4, 1fr);gap:72px">
+```
+
+```css
+@media (max-width:1080px){
+  .r-gtc-repeat-4-1fr{grid-template-columns:1fr 1fr!important}
+  .r-gap-72px{gap:44px!important}
+}
+```
+
+class 名稱編碼的是「這個元素的 inline style 帶有這個值」，所以它與 inline
+style 是**靠慣例耦合、而非機制保證**：改了 inline 的值，要一併改 class 名稱，
+否則覆蓋規則會停留在舊值上。好處是這層耦合現在看得見也 grep 得到。
+
+這批 class 是從原本的 `[style*="..."]` 屬性選擇器機械式遷移過來的，
+遷移時刻意複製了當時的命中結果（包含下面那些非預期命中），
+所以四個頁面三種寬度的版面完全沒有變化 —— 由 `test/layout-check.js` 驗證。
+
+#### 已知的非預期命中
+
+原本的 substring 比對會命中比預期更長的值，這些行為被原樣保留了下來，
+現在則是明擺在元素的 class 上，要修就是刪掉那個 class：
+
+| class | 意外命中 | 效果 |
+| --- | --- | --- |
+| `r-pad-44px` | `padding: 44px 56px` | 窄螢幕變成四邊 `30px`，水平內距從 56px 縮到 30px |
+| `r-pad-104px-56px` | `padding: 104px 56px 116px` | 覆蓋成兩值寫法，底部的 116px 消失 |
+| `r-pad-96px-56px` | `padding: 96px 56px 100px` | 同上 |
+| `r-gtc-1fr-1fr` | `grid-template-columns: 1fr 1fr 1fr` | 三欄被兩欄的規則掃到（在 900px 以下兩者都塌成單欄，結果剛好相同）|
+
 ### 渲染失敗的兜底
 
 `support.js` 一執行就注入 `x-dc{display:none!important}` 把原始模板藏起來，

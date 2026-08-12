@@ -55,120 +55,71 @@ body { margin:0; background:#141413; }
 a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
 
 @media (max-width:1080px){
-  [style*="grid-template-columns: repeat(4, 1fr)"],
-  [style*="grid-template-columns:repeat(4, 1fr)"]{grid-template-columns:1fr 1fr!important}
-  [style*="gap: 72px"],
-  [style*="gap:72px"]{gap:44px!important}
+  .r-gtc-repeat-4-1fr{grid-template-columns:1fr 1fr!important}
+  .r-gap-72px{gap:44px!important}
 }
 @media (max-width:900px){
-  [style*="max-width: 1280px"],
-  [style*="max-width:1280px"]{padding-left:24px!important;padding-right:24px!important}
-  [style*="grid-template-columns: 1fr 1fr"],
-  [style*="grid-template-columns:1fr 1fr"],
-  [style*="grid-template-columns: repeat(3, 1fr)"],
-  [style*="grid-template-columns:repeat(3, 1fr)"],
-  [style*="grid-template-columns: repeat(4, 1fr)"],
-  [style*="grid-template-columns:repeat(4, 1fr)"],
-  [style*="grid-template-columns: 1.35fr 1fr"],
-  [style*="grid-template-columns:1.35fr 1fr"],
-  [style*="grid-template-columns: 1.1fr 1fr"],
-  [style*="grid-template-columns:1.1fr 1fr"],
-  [style*="grid-template-columns: 1.05fr 1fr"],
-  [style*="grid-template-columns:1.05fr 1fr"],
-  [style*="grid-template-columns: 1fr 1.25fr"],
-  [style*="grid-template-columns:1fr 1.25fr"],
-  [style*="grid-template-columns: 1fr 1.35fr"],
-  [style*="grid-template-columns:1fr 1.35fr"],
-  [style*="grid-template-columns: auto 1fr"],
-  [style*="grid-template-columns:auto 1fr"],
-  [style*="grid-template-columns: 180px 1fr"],
-  [style*="grid-template-columns:180px 1fr"]{grid-template-columns:1fr!important}
-  [style*="border-right: 1px solid rgb(234, 231, 224)"],
-  [style*="border-right:1px solid rgb(234, 231, 224)"]{border-right:none!important;border-bottom:1px solid #eae7e0!important}
-  [style*="border-left: 1px solid rgb(38, 37, 31)"],
-  [style*="border-left:1px solid rgb(38, 37, 31)"]{border-left:none!important;padding-left:0!important;border-top:1px solid #26251f!important;padding-top:24px!important}
-  [style*="gap: 64px"],
-  [style*="gap:64px"]{gap:40px!important}
-  [style*="font-size: 52px"],
-  [style*="font-size:52px"]{font-size:36px!important}
-  [style*="font-size: 46px"],
-  [style*="font-size:46px"]{font-size:34px!important}
-  [style*="font-size: 42px"],
-  [style*="font-size:42px"]{font-size:31px!important}
-  [style*="font-size: 40px"],
-  [style*="font-size:40px"]{font-size:30px!important}
-  [style*="font-size: 34px"],
-  [style*="font-size:34px"]{font-size:26px!important}
-  [style*="font-size: 28px"],
-  [style*="font-size:28px"]{font-size:24px!important}
-  [style*="font-size: 27px"],
-  [style*="font-size:27px"]{font-size:23px!important}
-  [style*="font-size: 26px"],
-  [style*="font-size:26px"]{font-size:22px!important}
-  [style*="font-size: 25px"],
-  [style*="font-size:25px"]{font-size:21px!important}
-  [style*="padding: 17px 24px"],
-  [style*="padding:17px 24px"]{padding:14px 14px!important}
-  [style*="padding: 18px 20px"],
-  [style*="padding:18px 20px"]{padding:13px 13px!important}
-  [style*="padding: 44px"],
-  [style*="padding:44px"]{padding:30px!important}
-  [style*="padding: 40px"],
-  [style*="padding:40px"]{padding:28px!important}
-  [style*="padding: 38px 40px"],
-  [style*="padding:38px 40px"]{padding:26px 24px!important}
-  [style*="padding: 34px 36px"],
-  [style*="padding:34px 36px"]{padding:26px 24px!important}
-  [style*="gap: 30px"],
-  [style*="gap:30px"],
-  [style*="gap: 28px"],
-  [style*="gap:28px"]{gap:14px!important;flex-wrap:wrap!important}
-  [style*="gap: 40px"],
-  [style*="gap:40px"]{gap:20px!important;flex-wrap:wrap!important}
+  .r-mw-1280px{padding-left:24px!important;padding-right:24px!important}
+  .r-gtc-1fr-1fr,
+  .r-gtc-repeat-3-1fr,
+  .r-gtc-repeat-4-1fr,
+  .r-gtc-1-35fr-1fr,
+  .r-gtc-1-1fr-1fr,
+  .r-gtc-1-05fr-1fr,
+  .r-gtc-1fr-1-25fr,
+  .r-gtc-1fr-1-35fr,
+  .r-gtc-auto-1fr,
+  .r-gtc-180px-1fr{grid-template-columns:1fr!important}
+  .r-brr-1px-solid-rgb-234-231-224{border-right:none!important;border-bottom:1px solid #eae7e0!important}
+  .r-brl-1px-solid-rgb-38-37-31{border-left:none!important;padding-left:0!important;border-top:1px solid #26251f!important;padding-top:24px!important}
+  .r-gap-64px{gap:40px!important}
+  .r-fs-52px{font-size:36px!important}
+  .r-fs-46px{font-size:34px!important}
+  .r-fs-42px{font-size:31px!important}
+  .r-fs-40px{font-size:30px!important}
+  .r-fs-34px{font-size:26px!important}
+  .r-fs-28px{font-size:24px!important}
+  .r-fs-27px{font-size:23px!important}
+  .r-fs-26px{font-size:22px!important}
+  .r-fs-25px{font-size:21px!important}
+  .r-pad-17px-24px{padding:14px 14px!important}
+  .r-pad-18px-20px{padding:13px 13px!important}
+  .r-pad-44px{padding:30px!important}
+  .r-pad-40px{padding:28px!important}
+  .r-pad-38px-40px{padding:26px 24px!important}
+  .r-pad-34px-36px{padding:26px 24px!important}
+  .r-gap-30px,
+  .r-gap-28px{gap:14px!important;flex-wrap:wrap!important}
+  .r-gap-40px{gap:20px!important;flex-wrap:wrap!important}
 }
 @media (max-width:620px){
-  [style*="max-width: 1280px"],
-  [style*="max-width:1280px"]{padding-left:18px!important;padding-right:18px!important}
-  [style*="grid-template-columns: 1.4fr 1fr 1fr"],
-  [style*="grid-template-columns:1.4fr 1fr 1fr"],
-  [style*="grid-template-columns: 1.2fr 1fr 1fr"],
-  [style*="grid-template-columns:1.2fr 1fr 1fr"],
-  [style*="grid-template-columns: 0.7fr 1fr 1fr"],
-  [style*="grid-template-columns:0.7fr 1fr 1fr"]{grid-template-columns:1fr!important}
-  [style*="grid-template-columns: 56px 1fr"],
-  [style*="grid-template-columns:56px 1fr"],
-  [style*="grid-template-columns: 76px 1fr"],
-  [style*="grid-template-columns:76px 1fr"],
-  [style*="grid-template-columns: 58px 108px 1fr"],
-  [style*="grid-template-columns:58px 108px 1fr"]{grid-template-columns:1fr!important;gap:6px!important}
-  [style*="font-size: 52px"],
-  [style*="font-size:52px"]{font-size:30px!important}
-  [style*="font-size: 42px"],
-  [style*="font-size:42px"]{font-size:26px!important}
-  [style*="font-size: 40px"],
-  [style*="font-size:40px"]{font-size:26px!important}
-  [style*="font-size: 34px"],
-  [style*="font-size:34px"]{font-size:23px!important}
-  [style*="padding: 112px 56px"],
-  [style*="padding:112px 56px"],
-  [style*="padding: 104px 56px"],
-  [style*="padding:104px 56px"],
-  [style*="padding: 96px 56px"],
-  [style*="padding:96px 56px"]{padding-top:64px!important;padding-bottom:64px!important}
+  .r-mw-1280px{padding-left:18px!important;padding-right:18px!important}
+  .r-gtc-1-4fr-1fr-1fr,
+  .r-gtc-1-2fr-1fr-1fr,
+  .r-gtc-0-7fr-1fr-1fr{grid-template-columns:1fr!important}
+  .r-gtc-56px-1fr,
+  .r-gtc-76px-1fr,
+  .r-gtc-58px-108px-1fr{grid-template-columns:1fr!important;gap:6px!important}
+  .r-fs-52px{font-size:30px!important}
+  .r-fs-42px{font-size:26px!important}
+  .r-fs-40px{font-size:26px!important}
+  .r-fs-34px{font-size:23px!important}
+  .r-pad-112px-56px,
+  .r-pad-104px-56px,
+  .r-pad-96px-56px{padding-top:64px!important;padding-bottom:64px!important}
 }
 
 
 @media (max-width:900px){
-  [style*="display: grid"] > *,
-  [style*="display:grid"] > *{min-width:0!important}
+  .r-display-grid > *{min-width:0!important}
 }
 </style>
 </helmet>
 <div style="width:100%;background:#141413;color:#f4f3f0;font-family:'Noto Sans TC','Space Grotesk',sans-serif;overflow-x:hidden">
 
   <div style="position:sticky;top:0;z-index:20;background:rgba(20,20,19,0.92);backdrop-filter:blur(14px);border-bottom:1px solid #26251f">
-    <div style="max-width:1280px;margin:0 auto;padding:20px 56px;display:flex;align-items:center;justify-content:space-between;gap:40px">
-      <a href="index.html" style="display:flex;align-items:baseline;font-family:'Space Grotesk',sans-serif;font-size:25px;font-weight:400;letter-spacing:0.05em;line-height:1;color:#f4f3f0;flex:none">
+    <div class="r-mw-1280px r-gap-40px" style="max-width:1280px;margin:0 auto;padding:20px 56px;display:flex;align-items:center;justify-content:space-between;gap:40px">
+      <a href="index.html" class="r-fs-25px" style="display:flex;align-items:baseline;font-family:'Space Grotesk',sans-serif;font-size:25px;font-weight:400;letter-spacing:0.05em;line-height:1;color:#f4f3f0;flex:none">
         <span>V</span>
         <svg viewBox="0 0 200 120" preserveAspectRatio="xMinYMid slice" style="height:0.53em;width:0.8em;transform:translateY(0.0205em);overflow:visible;display:block;flex:none" fill="none" stroke="currentColor" stroke-linecap="round">
           <circle cx="60" cy="60" r="51" stroke-width="18" />
@@ -177,7 +128,7 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
         </svg>
         <span>x</span><span style="display:inline-block;width:0.06em;flex:none"></span><span>mosa</span>
       </a>
-      <div style="display:flex;align-items:center;gap:28px;font-size:14px;font-weight:300;color:#b5b2aa">
+      <div class="r-gap-28px" style="display:flex;align-items:center;gap:28px;font-size:14px;font-weight:300;color:#b5b2aa">
         <a href="mosatalk.html">MosaTalk</a>
         <a href="mosaminutes.html">MosaMinutes</a>
         <a href="mosascore.html" style="color:#ED9A4A">MosaScore</a>
@@ -187,14 +138,14 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
     </div>
   </div>
 
-  <div style="max-width:1280px;margin:0 auto;padding:96px 56px 88px;display:grid;grid-template-columns:1.05fr 1fr;gap:72px;align-items:center">
-    <div style="display:flex;flex-direction:column;gap:28px">
+  <div class="r-gap-72px r-mw-1280px r-gtc-1-05fr-1fr r-pad-96px-56px r-display-grid" style="max-width:1280px;margin:0 auto;padding:96px 56px 88px;display:grid;grid-template-columns:1.05fr 1fr;gap:72px;align-items:center">
+    <div class="r-gap-28px" style="display:flex;flex-direction:column;gap:28px">
       <div style="display:flex;align-items:center;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#ED9A4A">
         <span style="width:22px;height:1px;background:#ED9A4A;display:block"></span>
         <span>Product 03 · On-Premise</span>
       </div>
-      <div style="font-family:'Space Grotesk',sans-serif;font-size:52px;font-weight:400;color:#ED9A4A;letter-spacing:0.01em;line-height:1.1">MosaScore</div>
-      <div style="font-size:34px;font-weight:200;line-height:1.42;letter-spacing:-0.01em;text-wrap:pretty">通話錄音一直都在，<br />只是沒有人有時間聽。</div>
+      <div class="r-fs-52px" style="font-family:'Space Grotesk',sans-serif;font-size:52px;font-weight:400;color:#ED9A4A;letter-spacing:0.01em;line-height:1.1">MosaScore</div>
+      <div class="r-fs-34px" style="font-size:34px;font-weight:200;line-height:1.42;letter-spacing:-0.01em;text-wrap:pretty">通話錄音一直都在，<br />只是沒有人有時間聽。</div>
       <div style="font-size:16px;font-weight:300;color:#a8a59d;line-height:1.95;max-width:540px;text-wrap:pretty">地端通話質檢與購買意圖分析。把過去只能抽查 1~3% 的客服與電銷錄音，變成每一通都被完整聽過、逐句轉成文字、標上情緒與意圖分數的可查資料——錄音、逐字稿、分析結果全程不離開貴單位的網路。</div>
       <div style="display:flex;gap:12px;flex-wrap:wrap">
         <a href="#contact" style="background:#ED9A4A;color:#141413;padding:15px 30px;border-radius:4px;font-size:15px;font-weight:500">申請 PoC</a>
@@ -241,27 +192,27 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
   </div>
 
   <div style="border-top:1px solid #26251f;border-bottom:1px solid #26251f;background:#0F0F0E">
-    <div style="max-width:1280px;margin:0 auto;padding:34px 56px;display:flex;gap:22px;align-items:flex-start">
+    <div class="r-mw-1280px" style="max-width:1280px;margin:0 auto;padding:34px 56px;display:flex;gap:22px;align-items:flex-start">
       <div style="border:1px solid #4a3a24;color:#ED9A4A;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:6px 12px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">現況說明</div>
       <div style="font-size:14px;font-weight:300;color:#a8a59d;line-height:1.9;max-width:900px;text-wrap:pretty">MosaScore 已可部署於<span style="color:#f4f3f0">標準 Linux GPU 伺服器</span>（亦支援 Apple Silicon 單機展示），但<span style="color:#f4f3f0">尚未於客戶環境正式上線</span>；購買傾向分數<span style="color:#f4f3f0">尚未經真實成交資料驗證</span>。本頁不提供任何準確率數字——原因與我們的驗證做法寫在<a href="#validity" style="color:#ED9A4A">「關於分數的效度」</a>。</div>
     </div>
   </div>
 
-  <div style="max-width:1280px;margin:0 auto;padding:104px 56px">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center">
+  <div class="r-mw-1280px r-pad-104px-56px" style="max-width:1280px;margin:0 auto;padding:104px 56px">
+    <div class="r-gtc-1fr-1fr r-gap-64px r-display-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center">
       <div style="display:flex;flex-direction:column;gap:22px">
-        <div style="font-size:34px;font-weight:300;letter-spacing:-0.01em;line-height:1.4;text-wrap:pretty">從抽查 1~3%<br />到全部聽過</div>
+        <div class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em;line-height:1.4;text-wrap:pretty">從抽查 1~3%<br />到全部聽過</div>
         <div style="font-size:15px;font-weight:300;color:#8c8a84;line-height:1.95;max-width:520px;text-wrap:pretty">人工品質檢核的覆蓋率受限於人力，實務上通常只能抽查個位數百分比。真正出問題的那一通、以及成交關鍵在哪一句的那一通，出現在樣本裡是機率問題。自動化分析改變的不是「聽得多仔細」，而是「聽了幾通」——這是覆蓋率的量級差異，不是效率的百分比改善。</div>
       </div>
       <div style="display:flex;flex-direction:column;gap:1px;background:#26251f;border:1px solid #26251f;border-radius:8px;overflow:hidden">
         <div style="background:#0F0F0E;padding:30px 34px;display:flex;flex-direction:column;gap:8px">
           <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.1em;text-transform:uppercase">人工抽查</div>
-          <div style="display:flex;align-items:baseline;gap:10px"><div style="font-family:'Space Grotesk',sans-serif;font-size:40px;font-weight:300;color:#6f6c64">1~3%</div><div style="font-size:13px;font-weight:300;color:#5e5b54">的通話被聽過</div></div>
+          <div style="display:flex;align-items:baseline;gap:10px"><div class="r-fs-40px" style="font-family:'Space Grotesk',sans-serif;font-size:40px;font-weight:300;color:#6f6c64">1~3%</div><div style="font-size:13px;font-weight:300;color:#5e5b54">的通話被聽過</div></div>
           <div style="height:5px;background:#26251f;border-radius:3px;overflow:hidden;margin-top:6px"><div style="width:3%;height:100%;background:#6f6c64"></div></div>
         </div>
         <div style="background:#0F0F0E;padding:30px 34px;display:flex;flex-direction:column;gap:8px">
           <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#ED9A4A;letter-spacing:0.1em;text-transform:uppercase">MosaScore</div>
-          <div style="display:flex;align-items:baseline;gap:10px"><div style="font-family:'Space Grotesk',sans-serif;font-size:40px;font-weight:300;color:#ED9A4A">100%</div><div style="font-size:13px;font-weight:300;color:#8c8a84">逐句轉錄、標記與存證</div></div>
+          <div style="display:flex;align-items:baseline;gap:10px"><div class="r-fs-40px" style="font-family:'Space Grotesk',sans-serif;font-size:40px;font-weight:300;color:#ED9A4A">100%</div><div style="font-size:13px;font-weight:300;color:#8c8a84">逐句轉錄、標記與存證</div></div>
           <div style="height:5px;background:#26251f;border-radius:3px;overflow:hidden;margin-top:6px"><div style="width:100%;height:100%;background:#ED9A4A"></div></div>
         </div>
       </div>
@@ -269,16 +220,16 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
   </div>
 
   <div id="features" style="border-top:1px solid #26251f">
-    <div style="max-width:1280px;margin:0 auto;padding:104px 56px;display:flex;flex-direction:column;gap:40px">
+    <div class="r-mw-1280px r-gap-40px r-pad-104px-56px" style="max-width:1280px;margin:0 auto;padding:104px 56px;display:flex;flex-direction:column;gap:40px">
       <div style="display:flex;flex-direction:column;gap:16px">
         <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
-          <div style="font-size:34px;font-weight:300;letter-spacing:-0.01em">現有核心功能</div>
+          <div class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">現有核心功能</div>
           <div style="border:1px solid #3a3833;color:#7a776e;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:5px 11px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">已可展示</div>
         </div>
         <div style="font-size:15px;font-weight:300;color:#8c8a84;line-height:1.9;max-width:700px">以下皆為系統現已具備、可當場操作的能力。</div>
       </div>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:#26251f;border:1px solid #26251f;border-radius:8px;overflow:hidden">
+      <div class="r-gtc-1fr-1fr r-display-grid" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:#26251f;border:1px solid #26251f;border-radius:8px;overflow:hidden">
         <div style="background:#0F0F0E;padding:34px 32px;display:flex;flex-direction:column;gap:12px">
           <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#ED9A4A;letter-spacing:0.12em">01</div>
           <div style="font-size:16.5px;font-weight:400;line-height:1.5">雙軌分離，客戶與客服各自成篇</div>
@@ -311,7 +262,7 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
         </div>
       </div>
 
-      <div style="border:1px solid #26251f;border-radius:8px;background:#0F0F0E;padding:38px 40px;display:grid;grid-template-columns:auto 1fr;gap:34px;align-items:center">
+      <div class="r-gtc-auto-1fr r-pad-38px-40px r-display-grid" style="border:1px solid #26251f;border-radius:8px;background:#0F0F0E;padding:38px 40px;display:grid;grid-template-columns:auto 1fr;gap:34px;align-items:center">
         <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#ED9A4A;letter-spacing:0.12em;flex:none">07</div>
         <div style="display:flex;flex-direction:column;gap:11px">
           <div style="font-size:18px;font-weight:400">完全地端，且真的可以離線展示</div>
@@ -322,23 +273,23 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
   </div>
 
   <div id="validity" style="border-top:1px solid #26251f;background:#0F0F0E">
-    <div style="max-width:1280px;margin:0 auto;padding:104px 56px;display:flex;flex-direction:column;gap:40px">
+    <div class="r-mw-1280px r-gap-40px r-pad-104px-56px" style="max-width:1280px;margin:0 auto;padding:104px 56px;display:flex;flex-direction:column;gap:40px">
       <div style="display:flex;flex-direction:column;gap:18px">
         <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
-          <div style="font-size:34px;font-weight:300;letter-spacing:-0.01em">關於分數的效度</div>
+          <div class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">關於分數的效度</div>
           <div style="border:1px solid #4a3a24;color:#ED9A4A;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:5px 11px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">把話講清楚</div>
         </div>
-        <div style="font-size:26px;font-weight:200;line-height:1.65;max-width:820px;text-wrap:pretty">目前這套系統證明的是<span style="color:#ED9A4A">「流程跑得通」</span>，還沒有證明<span style="color:#ED9A4A">「分數預測得準」</span>。</div>
+        <div class="r-fs-26px" style="font-size:26px;font-weight:200;line-height:1.65;max-width:820px;text-wrap:pretty">目前這套系統證明的是<span style="color:#ED9A4A">「流程跑得通」</span>，還沒有證明<span style="color:#ED9A4A">「分數預測得準」</span>。</div>
       </div>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
-        <div style="border:1px solid #26251f;border-radius:8px;padding:34px 36px;display:flex;flex-direction:column;gap:16px">
+      <div class="r-gtc-1fr-1fr r-display-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+        <div class="r-pad-34px-36px" style="border:1px solid #26251f;border-radius:8px;padding:34px 36px;display:flex;flex-direction:column;gap:16px">
           <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#7a776e;letter-spacing:0.12em;text-transform:uppercase">現況</div>
           <div style="display:flex;gap:11px;align-items:baseline"><span style="color:#ED9A4A;font-size:12px;flex:none">—</span><span style="font-size:14px;font-weight:300;color:#a8a59d;line-height:1.9">系統確實能穩定產出逐句分數，且分數會依語氣與用詞落在合理的級距上</span></div>
           <div style="display:flex;gap:11px;align-items:baseline"><span style="color:#ED9A4A;font-size:12px;flex:none">—</span><span style="font-size:14px;font-weight:300;color:#a8a59d;line-height:1.9">但要證明「分數高的客戶真的比較會成交」，需要的是該通電話實際有沒有成交的資料——這份資料在貴單位的訂單系統裡，不在我們手上</span></div>
           <div style="display:flex;gap:11px;align-items:baseline"><span style="color:#ED9A4A;font-size:12px;flex:none">—</span><span style="font-size:14px;font-weight:300;color:#a8a59d;line-height:1.9">因此我們不提供任何準確率數字。市面上任何未說明樣本來源與標籤定義的準確率宣稱，都應該被追問這兩件事</span></div>
         </div>
-        <div style="border:1px solid #4a3a24;border-radius:8px;padding:34px 36px;display:flex;flex-direction:column;gap:16px;background:#141413">
+        <div class="r-pad-34px-36px" style="border:1px solid #4a3a24;border-radius:8px;padding:34px 36px;display:flex;flex-direction:column;gap:16px;background:#141413">
           <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#ED9A4A;letter-spacing:0.12em;text-transform:uppercase">我們的做法：把驗證變成導入的第一階段</div>
           <div style="font-size:14px;font-weight:300;color:#a8a59d;line-height:1.9;text-wrap:pretty">以貴單位自己的歷史錄音與<span style="color:#f4f3f0">真實成交結果</span>做一次封閉驗證，產出方法論明確、可重現的評測報告——包含分數的排序能力、校準程度，以及<span style="color:#f4f3f0">提前量</span>（系統平均在通話進行到幾成時就穩定判斷正確）。</div>
           <div style="font-size:14px;font-weight:300;color:#a8a59d;line-height:1.9;text-wrap:pretty">這份報告的結論若是正面的，它比任何行銷數字都有說服力；若是負面的，貴單位也在投入前就知道了。</div>
@@ -350,15 +301,15 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
   </div>
 
   <div style="border-top:1px solid #26251f">
-    <div style="max-width:1280px;margin:0 auto;padding:104px 56px;display:flex;flex-direction:column;gap:38px">
+    <div class="r-mw-1280px r-pad-104px-56px" style="max-width:1280px;margin:0 auto;padding:104px 56px;display:flex;flex-direction:column;gap:38px">
       <div style="display:flex;flex-direction:column;gap:16px">
         <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
-          <div style="font-size:34px;font-weight:300;letter-spacing:-0.01em">每一個預設值都有實測依據</div>
+          <div class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">每一個預設值都有實測依據</div>
           <div style="border:1px solid #3a3833;color:#7a776e;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:5px 11px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">含被推翻的假設</div>
         </div>
         <div style="font-size:15px;font-weight:300;color:#8c8a84;line-height:1.9;max-width:760px;text-wrap:pretty">多數設計決定都來自實測後的修正，而非規格書上的想像。一套質檢系統的可信度，來自於它自己的開發過程也經得起質檢。</div>
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1.35fr;gap:1px;background:#26251f;border:1px solid #26251f;border-radius:8px;overflow:hidden">
+      <div class="r-gtc-1fr-1-35fr r-display-grid" style="display:grid;grid-template-columns:1fr 1.35fr;gap:1px;background:#26251f;border:1px solid #26251f;border-radius:8px;overflow:hidden">
         <div style="background:#1c1b18;padding:15px 26px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#7a776e;letter-spacing:0.1em;text-transform:uppercase">決定</div>
         <div style="background:#1c1b18;padding:15px 26px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#7a776e;letter-spacing:0.1em;text-transform:uppercase">依據</div>
         <div style="background:#0F0F0E;padding:20px 26px;font-size:14px;font-weight:400;line-height:1.7">更換預設辨識引擎</div>
@@ -376,58 +327,58 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
   </div>
 
   <div id="onprem" style="border-top:1px solid #26251f;background:#0F0F0E">
-    <div style="max-width:1280px;margin:0 auto;padding:104px 56px;display:flex;flex-direction:column;gap:38px">
+    <div class="r-mw-1280px r-pad-104px-56px" style="max-width:1280px;margin:0 auto;padding:104px 56px;display:flex;flex-direction:column;gap:38px">
       <div style="display:flex;flex-direction:column;gap:16px">
-        <div style="font-size:34px;font-weight:300;letter-spacing:-0.01em">與雲端通話分析服務的差異</div>
+        <div class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">與雲端通話分析服務的差異</div>
         <div style="font-size:15px;font-weight:300;color:#8c8a84;line-height:1.9;max-width:760px;text-wrap:pretty">我們不主張 MosaScore 適合所有人。若貴單位對錄音外流沒有顧慮、也沒有法規限制，雲端訂閱服務的導入門檻確實更低，功能完整度目前也領先。MosaScore 是為<span style="color:#f4f3f0">不能把錄音交出去</span>、且需要<span style="color:#f4f3f0">針對自己的領域用語調整</span>的單位而設計的。</div>
       </div>
-      <div style="display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:1px;background:#26251f;border:1px solid #26251f;border-radius:8px;overflow:hidden">
+      <div class="r-gtc-1-2fr-1fr-1fr r-display-grid" style="display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:1px;background:#26251f;border:1px solid #26251f;border-radius:8px;overflow:hidden">
         <div style="background:#1c1b18;padding:16px 24px"></div>
         <div style="background:#1c1b18;padding:16px 24px;font-size:13px;font-weight:400;color:#8c8a84">雲端通話分析服務</div>
         <div style="background:#1c1b18;padding:16px 24px;font-size:13px;font-weight:500;color:#ED9A4A">MosaScore</div>
 
-        <div style="background:#141413;padding:17px 24px;font-size:13.5px;font-weight:400">錄音與逐字稿位置</div>
-        <div style="background:#141413;padding:17px 24px;font-size:13.5px;font-weight:300;color:#8c8a84">上傳至服務商伺服器</div>
-        <div style="background:#0F0F0E;padding:17px 24px;font-size:13.5px;font-weight:300;color:#f4f3f0">完全留在貴單位機房</div>
+        <div class="r-pad-17px-24px" style="background:#141413;padding:17px 24px;font-size:13.5px;font-weight:400">錄音與逐字稿位置</div>
+        <div class="r-pad-17px-24px" style="background:#141413;padding:17px 24px;font-size:13.5px;font-weight:300;color:#8c8a84">上傳至服務商伺服器</div>
+        <div class="r-pad-17px-24px" style="background:#0F0F0E;padding:17px 24px;font-size:13.5px;font-weight:300;color:#f4f3f0">完全留在貴單位機房</div>
 
-        <div style="background:#141413;padding:17px 24px;font-size:13.5px;font-weight:400">封閉網路可否使用</div>
-        <div style="background:#141413;padding:17px 24px;font-size:13.5px;font-weight:300;color:#8c8a84">不可，必須連外</div>
-        <div style="background:#0F0F0E;padding:17px 24px;font-size:13.5px;font-weight:300;color:#f4f3f0">可，不需連外</div>
+        <div class="r-pad-17px-24px" style="background:#141413;padding:17px 24px;font-size:13.5px;font-weight:400">封閉網路可否使用</div>
+        <div class="r-pad-17px-24px" style="background:#141413;padding:17px 24px;font-size:13.5px;font-weight:300;color:#8c8a84">不可，必須連外</div>
+        <div class="r-pad-17px-24px" style="background:#0F0F0E;padding:17px 24px;font-size:13.5px;font-weight:300;color:#f4f3f0">可，不需連外</div>
 
-        <div style="background:#141413;padding:17px 24px;font-size:13.5px;font-weight:400">計費方式</div>
-        <div style="background:#141413;padding:17px 24px;font-size:13.5px;font-weight:300;color:#8c8a84">按時數或通話量訂閱</div>
-        <div style="background:#0F0F0E;padding:17px 24px;font-size:13.5px;font-weight:300;color:#f4f3f0">一次建置，無按次 API 費用</div>
+        <div class="r-pad-17px-24px" style="background:#141413;padding:17px 24px;font-size:13.5px;font-weight:400">計費方式</div>
+        <div class="r-pad-17px-24px" style="background:#141413;padding:17px 24px;font-size:13.5px;font-weight:300;color:#8c8a84">按時數或通話量訂閱</div>
+        <div class="r-pad-17px-24px" style="background:#0F0F0E;padding:17px 24px;font-size:13.5px;font-weight:300;color:#f4f3f0">一次建置，無按次 API 費用</div>
 
-        <div style="background:#141413;padding:17px 24px;font-size:13.5px;font-weight:400">領域用語可否調整</div>
-        <div style="background:#141413;padding:17px 24px;font-size:13.5px;font-weight:300;color:#8c8a84">多為共用通用模型</div>
-        <div style="background:#0F0F0E;padding:17px 24px;font-size:13.5px;font-weight:300;color:#f4f3f0">每個客戶一份專屬字典</div>
+        <div class="r-pad-17px-24px" style="background:#141413;padding:17px 24px;font-size:13.5px;font-weight:400">領域用語可否調整</div>
+        <div class="r-pad-17px-24px" style="background:#141413;padding:17px 24px;font-size:13.5px;font-weight:300;color:#8c8a84">多為共用通用模型</div>
+        <div class="r-pad-17px-24px" style="background:#0F0F0E;padding:17px 24px;font-size:13.5px;font-weight:300;color:#f4f3f0">每個客戶一份專屬字典</div>
 
-        <div style="background:#141413;padding:17px 24px;font-size:13.5px;font-weight:400">判讀可否逐句核對</div>
-        <div style="background:#141413;padding:17px 24px;font-size:13.5px;font-weight:300;color:#8c8a84">視服務商而定</div>
-        <div style="background:#0F0F0E;padding:17px 24px;font-size:13.5px;font-weight:300;color:#f4f3f0">逐句回放 ＋ 逐軌字幕 ＋ 完整記錄</div>
+        <div class="r-pad-17px-24px" style="background:#141413;padding:17px 24px;font-size:13.5px;font-weight:400">判讀可否逐句核對</div>
+        <div class="r-pad-17px-24px" style="background:#141413;padding:17px 24px;font-size:13.5px;font-weight:300;color:#8c8a84">視服務商而定</div>
+        <div class="r-pad-17px-24px" style="background:#0F0F0E;padding:17px 24px;font-size:13.5px;font-weight:300;color:#f4f3f0">逐句回放 ＋ 逐軌字幕 ＋ 完整記錄</div>
 
-        <div style="background:#141413;padding:17px 24px;font-size:13.5px;font-weight:400">供應鏈來源要求</div>
-        <div style="background:#141413;padding:17px 24px;font-size:13.5px;font-weight:300;color:#8c8a84">難以掌握服務商的模型來源</div>
-        <div style="background:#0F0F0E;padding:17px 24px;font-size:13.5px;font-weight:300;color:#f4f3f0">可依採購規範指定模型來源</div>
+        <div class="r-pad-17px-24px" style="background:#141413;padding:17px 24px;font-size:13.5px;font-weight:400">供應鏈來源要求</div>
+        <div class="r-pad-17px-24px" style="background:#141413;padding:17px 24px;font-size:13.5px;font-weight:300;color:#8c8a84">難以掌握服務商的模型來源</div>
+        <div class="r-pad-17px-24px" style="background:#0F0F0E;padding:17px 24px;font-size:13.5px;font-weight:300;color:#f4f3f0">可依採購規範指定模型來源</div>
 
-        <div style="background:#141413;padding:17px 24px;font-size:13.5px;font-weight:400">導入成本</div>
-        <div style="background:#141413;padding:17px 24px;font-size:13.5px;font-weight:300;color:#8c8a84">低，開帳號即用</div>
-        <div style="background:#0F0F0E;padding:17px 24px;font-size:13.5px;font-weight:300;color:#a8a59d">需伺服器與建置，可提供硬體與到場安裝</div>
+        <div class="r-pad-17px-24px" style="background:#141413;padding:17px 24px;font-size:13.5px;font-weight:400">導入成本</div>
+        <div class="r-pad-17px-24px" style="background:#141413;padding:17px 24px;font-size:13.5px;font-weight:300;color:#8c8a84">低，開帳號即用</div>
+        <div class="r-pad-17px-24px" style="background:#0F0F0E;padding:17px 24px;font-size:13.5px;font-weight:300;color:#a8a59d">需伺服器與建置，可提供硬體與到場安裝</div>
 
-        <div style="background:#141413;padding:17px 24px;font-size:13.5px;font-weight:400">成熟度</div>
-        <div style="background:#141413;padding:17px 24px;font-size:13.5px;font-weight:300;color:#8c8a84">商業服務，功能完整</div>
-        <div style="background:#0F0F0E;padding:17px 24px;font-size:13.5px;font-weight:300;color:#a8a59d">核心分析流程已完備，企業管理功能見「即將推出」</div>
+        <div class="r-pad-17px-24px" style="background:#141413;padding:17px 24px;font-size:13.5px;font-weight:400">成熟度</div>
+        <div class="r-pad-17px-24px" style="background:#141413;padding:17px 24px;font-size:13.5px;font-weight:300;color:#8c8a84">商業服務，功能完整</div>
+        <div class="r-pad-17px-24px" style="background:#0F0F0E;padding:17px 24px;font-size:13.5px;font-weight:300;color:#a8a59d">核心分析流程已完備，企業管理功能見「即將推出」</div>
       </div>
     </div>
   </div>
 
   <div style="border-top:1px solid #26251f">
-    <div style="max-width:1280px;margin:0 auto;padding:104px 56px;display:flex;flex-direction:column;gap:38px">
+    <div class="r-mw-1280px r-pad-104px-56px" style="max-width:1280px;margin:0 auto;padding:104px 56px;display:flex;flex-direction:column;gap:38px">
       <div style="display:flex;flex-direction:column;gap:16px">
-        <div style="font-size:34px;font-weight:300;letter-spacing:-0.01em">適用場景</div>
+        <div class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">適用場景</div>
         <div style="font-size:15px;font-weight:300;color:#8c8a84;line-height:1.9;max-width:700px">有大量通話錄音、且因法規或內部規範無法使用雲端分析服務的單位。</div>
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#26251f;border:1px solid #26251f;border-radius:8px;overflow:hidden">
+      <div class="r-gtc-1fr-1fr r-display-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#26251f;border:1px solid #26251f;border-radius:8px;overflow:hidden">
         <div style="background:#0F0F0E;padding:32px 34px;display:flex;flex-direction:column;gap:10px"><div style="font-size:16px;font-weight:400">保健食品與消費品電話行銷</div><div style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.85">成效分析、話術對照、廣告用語的合規檢核。現有情境已完整調校。</div></div>
         <div style="background:#0F0F0E;padding:32px 34px;display:flex;flex-direction:column;gap:10px"><div style="font-size:16px;font-weight:400">金融與保險電話招攬</div><div style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.85">本來就被要求全程錄音並長期保存，法遵稽核的需求最明確。</div></div>
         <div style="background:#0F0F0E;padding:32px 34px;display:flex;flex-direction:column;gap:10px"><div style="font-size:16px;font-weight:400">客服中心品質檢核</div><div style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.85">從抽查改為全量，同時成為客訴預防與教育訓練素材的來源。</div></div>
@@ -439,15 +390,15 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
 
   <sc-if value="{{ showRoadmap }}" hint-placeholder-val="{{ true }}">
   <div style="border-top:1px solid #26251f;background:#0F0F0E">
-    <div style="max-width:1280px;margin:0 auto;padding:104px 56px;display:flex;flex-direction:column;gap:38px">
+    <div class="r-mw-1280px r-pad-104px-56px" style="max-width:1280px;margin:0 auto;padding:104px 56px;display:flex;flex-direction:column;gap:38px">
       <div style="display:flex;flex-direction:column;gap:16px">
         <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
-          <div style="font-size:34px;font-weight:300;letter-spacing:-0.01em">即將推出</div>
+          <div class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">即將推出</div>
           <div style="border:1px solid #3a3833;color:#7a776e;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:5px 11px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">開發規劃中</div>
         </div>
         <div style="font-size:15px;font-weight:300;color:#8c8a84;line-height:1.9;max-width:760px">系統本身已可部署於客戶機房的 Linux GPU 伺服器，下一階段聚焦在把它變成完整的產品。以下項目尚未可交付。</div>
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#26251f;border:1px solid #26251f;border-radius:8px;overflow:hidden">
+      <div class="r-gtc-1fr-1fr r-display-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#26251f;border:1px solid #26251f;border-radius:8px;overflow:hidden">
         <div style="grid-column:1/-1;background:#141413;padding:32px 34px;display:flex;flex-direction:column;gap:10px"><div style="font-size:17px;font-weight:400;color:#ED9A4A">法遵稽核記分卡</div><div style="font-size:13.5px;font-weight:300;color:#a8a59d;line-height:1.85;max-width:900px">以規則檢核每一通電話有沒有講到該講的、有沒有踩到不該講的——七日解除權告知、誇大療效用語、必說事項與禁語清單，命中時附上逐字稿位置與可回放的音訊片段作為證據。對於本來就被強制全程錄音的產業，這是可稽核的證據鏈與抽樣僥倖之間的差別。</div></div>
         <div style="background:#0F0F0E;padding:28px 32px;display:flex;flex-direction:column;gap:9px"><div style="font-size:15.5px;font-weight:400">單聲道／混音錄音支援</div><div style="font-size:13px;font-weight:300;color:#8c8a84;line-height:1.85">導入語者分離技術，讓一般錄音系統輸出的混音檔也能使用</div></div>
         <div style="background:#0F0F0E;padding:28px 32px;display:flex;flex-direction:column;gap:9px"><div style="font-size:15.5px;font-weight:400">批次全量質檢</div><div style="font-size:13px;font-weight:300;color:#8c8a84;line-height:1.85">歷史錄音一次性大批回填，含佇列管理、進度回報與彙總報表</div></div>
@@ -464,40 +415,40 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
   </sc-if>
 
   <div style="border-top:1px solid #26251f">
-    <div style="max-width:1280px;margin:0 auto;padding:104px 56px;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start">
+    <div class="r-mw-1280px r-gtc-1fr-1fr r-gap-64px r-pad-104px-56px r-display-grid" style="max-width:1280px;margin:0 auto;padding:104px 56px;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start">
 
-      <div style="display:flex;flex-direction:column;gap:30px">
+      <div class="r-gap-30px" style="display:flex;flex-direction:column;gap:30px">
         <div style="display:flex;flex-direction:column;gap:14px">
-          <div style="font-size:27px;font-weight:300;letter-spacing:-0.01em">一條我們主動劃下的界線</div>
+          <div class="r-fs-27px" style="font-size:27px;font-weight:300;letter-spacing:-0.01em">一條我們主動劃下的界線</div>
           <div style="font-size:14px;font-weight:300;color:#8c8a84;line-height:1.95;text-wrap:pretty">對客服人員的評分屬於勞動監控，其中又以「情緒推斷」的爭議最大（歐盟已將工作場所的情緒推斷列為禁止用途）。我們的產品原則是：<span style="color:#f4f3f0">情緒推斷只用於客戶端；對客服的評分以可稽核的客觀行為為準，且不作為員工考核的單一依據。</span>這條線我們在設計階段就劃好，不等客戶問起才補。</div>
         </div>
         <div style="display:flex;flex-direction:column;gap:14px">
-          <div style="font-size:27px;font-weight:300;letter-spacing:-0.01em">標準開放技術，不被綁定</div>
+          <div class="r-fs-27px" style="font-size:27px;font-weight:300;letter-spacing:-0.01em">標準開放技術，不被綁定</div>
           <div style="font-size:14px;font-weight:300;color:#8c8a84;line-height:1.95;text-wrap:pretty">系統建構於開源模型與標準相容介面，模型可依需求抽換升級。若貴單位（尤其是政府機關與金融業）需要符合非紅色供應鏈規範的模型組合，我們可依規範評估並替換為其他來源的開放權重模型後重新驗證品質。</div>
         </div>
       </div>
 
       <div style="display:flex;flex-direction:column;gap:22px">
         <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
-          <div style="font-size:27px;font-weight:300;letter-spacing:-0.01em">系統需求</div>
+          <div class="r-fs-27px" style="font-size:27px;font-weight:300;letter-spacing:-0.01em">系統需求</div>
           <div style="border:1px solid #3a3833;color:#7a776e;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:5px 11px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">摘要</div>
         </div>
-        <div style="display:grid;grid-template-columns:0.7fr 1fr 1fr;gap:1px;background:#26251f;border:1px solid #26251f;border-radius:8px;overflow:hidden">
+        <div class="r-gtc-0-7fr-1fr-1fr r-display-grid" style="display:grid;grid-template-columns:0.7fr 1fr 1fr;gap:1px;background:#26251f;border:1px solid #26251f;border-radius:8px;overflow:hidden">
           <div style="background:#1c1b18;padding:14px 20px"></div>
           <div style="background:#1c1b18;padding:14px 20px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#ED9A4A;letter-spacing:0.1em;text-transform:uppercase">機房部署</div>
           <div style="background:#1c1b18;padding:14px 20px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#7a776e;letter-spacing:0.1em;text-transform:uppercase">單機展示</div>
-          <div style="background:#0F0F0E;padding:18px 20px;font-size:13px;font-weight:400">伺服器</div>
-          <div style="background:#0F0F0E;padding:18px 20px;font-size:12.5px;font-weight:300;color:#8c8a84;line-height:1.8">Ubuntu Linux x86_64 ＋ NVIDIA GPU</div>
-          <div style="background:#0F0F0E;padding:18px 20px;font-size:12.5px;font-weight:300;color:#8c8a84;line-height:1.8">Apple Silicon M 系列，統一記憶體 16GB 以上，建議 24GB</div>
-          <div style="background:#0F0F0E;padding:18px 20px;font-size:13px;font-weight:400">使用者端</div>
-          <div style="background:#0F0F0E;padding:18px 20px;font-size:12.5px;font-weight:300;color:#8c8a84;line-height:1.8">任何現代瀏覽器，無需安裝軟體</div>
-          <div style="background:#0F0F0E;padding:18px 20px;font-size:12.5px;font-weight:300;color:#8c8a84;line-height:1.8">同左</div>
-          <div style="background:#0F0F0E;padding:18px 20px;font-size:13px;font-weight:400">網路</div>
-          <div style="background:#0F0F0E;padding:18px 20px;font-size:12.5px;font-weight:300;color:#8c8a84;line-height:1.8">內網即可完整運作</div>
-          <div style="background:#0F0F0E;padding:18px 20px;font-size:12.5px;font-weight:300;color:#8c8a84;line-height:1.8">模型權重首次下載需連外，之後快取於本機；分析全程可離線</div>
-          <div style="background:#0F0F0E;padding:18px 20px;font-size:13px;font-weight:400">音檔格式</div>
-          <div style="background:#0F0F0E;padding:18px 20px;font-size:12.5px;font-weight:300;color:#8c8a84;line-height:1.8">雙聲道 .mp3 / .wav（單聲道／混音支援見「即將推出」）</div>
-          <div style="background:#0F0F0E;padding:18px 20px;font-size:12.5px;font-weight:300;color:#8c8a84;line-height:1.8">同左</div>
+          <div class="r-pad-18px-20px" style="background:#0F0F0E;padding:18px 20px;font-size:13px;font-weight:400">伺服器</div>
+          <div class="r-pad-18px-20px" style="background:#0F0F0E;padding:18px 20px;font-size:12.5px;font-weight:300;color:#8c8a84;line-height:1.8">Ubuntu Linux x86_64 ＋ NVIDIA GPU</div>
+          <div class="r-pad-18px-20px" style="background:#0F0F0E;padding:18px 20px;font-size:12.5px;font-weight:300;color:#8c8a84;line-height:1.8">Apple Silicon M 系列，統一記憶體 16GB 以上，建議 24GB</div>
+          <div class="r-pad-18px-20px" style="background:#0F0F0E;padding:18px 20px;font-size:13px;font-weight:400">使用者端</div>
+          <div class="r-pad-18px-20px" style="background:#0F0F0E;padding:18px 20px;font-size:12.5px;font-weight:300;color:#8c8a84;line-height:1.8">任何現代瀏覽器，無需安裝軟體</div>
+          <div class="r-pad-18px-20px" style="background:#0F0F0E;padding:18px 20px;font-size:12.5px;font-weight:300;color:#8c8a84;line-height:1.8">同左</div>
+          <div class="r-pad-18px-20px" style="background:#0F0F0E;padding:18px 20px;font-size:13px;font-weight:400">網路</div>
+          <div class="r-pad-18px-20px" style="background:#0F0F0E;padding:18px 20px;font-size:12.5px;font-weight:300;color:#8c8a84;line-height:1.8">內網即可完整運作</div>
+          <div class="r-pad-18px-20px" style="background:#0F0F0E;padding:18px 20px;font-size:12.5px;font-weight:300;color:#8c8a84;line-height:1.8">模型權重首次下載需連外，之後快取於本機；分析全程可離線</div>
+          <div class="r-pad-18px-20px" style="background:#0F0F0E;padding:18px 20px;font-size:13px;font-weight:400">音檔格式</div>
+          <div class="r-pad-18px-20px" style="background:#0F0F0E;padding:18px 20px;font-size:12.5px;font-weight:300;color:#8c8a84;line-height:1.8">雙聲道 .mp3 / .wav（單聲道／混音支援見「即將推出」）</div>
+          <div class="r-pad-18px-20px" style="background:#0F0F0E;padding:18px 20px;font-size:12.5px;font-weight:300;color:#8c8a84;line-height:1.8">同左</div>
         </div>
         <div style="border-left:2px solid #3a3833;padding:4px 0 4px 20px;font-size:12.5px;font-weight:300;color:#7a776e;line-height:1.85;text-wrap:pretty">關於處理速度：目前每一句發言都完整執行一次辨識、情緒與評分推理，因此長通話的處理時間會超過音檔本身長度。這對批次質檢沒有影響（掃描是背景作業），但通話中的即時輔助需要不同的架構。實際處理量與硬體配置建議，依貴單位的通話量評估後提供。</div>
       </div>
@@ -506,14 +457,14 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
   </div>
 
   <div style="border-top:1px solid #26251f;background:#0F0F0E">
-    <div style="max-width:1280px;margin:0 auto;padding:104px 56px;display:flex;flex-direction:column;gap:40px">
+    <div class="r-mw-1280px r-gap-40px r-pad-104px-56px" style="max-width:1280px;margin:0 auto;padding:104px 56px;display:flex;flex-direction:column;gap:40px">
       <div style="display:flex;flex-direction:column;gap:16px">
         <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
-          <div style="font-size:34px;font-weight:300;letter-spacing:-0.01em">客製化導入與維運服務</div>
+          <div class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">客製化導入與維運服務</div>
           <div style="border:1px solid #3a3833;color:#7a776e;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:5px 11px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">導入</div>
         </div>
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#26251f;border:1px solid #26251f;border-radius:8px;overflow:hidden">
+      <div class="r-gtc-1fr-1fr r-display-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#26251f;border:1px solid #26251f;border-radius:8px;overflow:hidden">
         <div style="grid-column:1/-1;background:#141413;padding:32px 34px;display:flex;flex-direction:column;gap:10px"><div style="font-size:17px;font-weight:400;color:#ED9A4A">效度驗證作為導入第一階段</div><div style="font-size:13.5px;font-weight:300;color:#a8a59d;line-height:1.85;max-width:900px">以貴單位自己的錄音與真實成交結果做封閉驗證，產出方法論明確、可重現的評測報告，作為採購與技術審查的技術佐證——在擴大投入之前，先確認它對貴單位有效。</div></div>
         <div style="background:#0F0F0E;padding:28px 32px;display:flex;flex-direction:column;gap:9px"><div style="font-size:15.5px;font-weight:400">領域字典建置</div><div style="font-size:13px;font-weight:300;color:#8c8a84;line-height:1.85">協助整理品牌名、產品名、常見同音錯字與量詞習慣——這是辨識品質的關鍵資產</div></div>
         <div style="background:#0F0F0E;padding:28px 32px;display:flex;flex-direction:column;gap:9px"><div style="font-size:15.5px;font-weight:400">稽核規則設計</div><div style="font-size:13px;font-weight:300;color:#8c8a84;line-height:1.85">依貴單位的話術規範與適用法規，訂出必說事項、禁語與檢核順序</div></div>
@@ -525,8 +476,8 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
   </div>
 
   <div id="contact" style="background:#ED9A4A;color:#141413">
-    <div style="max-width:1280px;margin:0 auto;padding:96px 56px 100px;display:flex;flex-direction:column;gap:32px;align-items:flex-start">
-      <div style="font-size:40px;font-weight:200;line-height:1.35;letter-spacing:-0.015em;max-width:760px;text-wrap:pretty">先用你自己的錄音與成交結果，驗證一次。</div>
+    <div class="r-mw-1280px r-pad-96px-56px" style="max-width:1280px;margin:0 auto;padding:96px 56px 100px;display:flex;flex-direction:column;gap:32px;align-items:flex-start">
+      <div class="r-fs-40px" style="font-size:40px;font-weight:200;line-height:1.35;letter-spacing:-0.015em;max-width:760px;text-wrap:pretty">先用你自己的錄音與成交結果，驗證一次。</div>
       <div style="font-size:15.5px;font-weight:300;color:#5c3f16;line-height:1.95;max-width:560px;text-wrap:pretty">導入的第一階段就是效度驗證：以貴單位的歷史通話與真實成交資料做一次封閉評測，報告的結論若是負面的，貴單位也在投入前就知道了。</div>
       <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
         <a href="mailto:hazel@voxmosa.com" style="background:#141413;color:#ED9A4A;padding:15px 30px;border-radius:4px;font-size:15px;font-weight:500">申請 PoC</a>
@@ -536,7 +487,7 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
   </div>
 
   <div style="border-top:1px solid #26251f">
-    <div style="max-width:1280px;margin:0 auto;padding:44px 56px;display:flex;justify-content:space-between;align-items:center;gap:40px;flex-wrap:wrap">
+    <div class="r-mw-1280px r-pad-44px r-gap-40px" style="max-width:1280px;margin:0 auto;padding:44px 56px;display:flex;justify-content:space-between;align-items:center;gap:40px;flex-wrap:wrap">
       <a href="index.html" style="display:flex;align-items:baseline;font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:300;letter-spacing:0.05em;line-height:1;color:#6f6c64">
         <span>V</span>
         <svg viewBox="0 0 200 120" preserveAspectRatio="xMinYMid slice" style="height:0.53em;width:0.8em;transform:translateY(0.0205em);overflow:visible;display:block;flex:none" fill="none" stroke="currentColor" stroke-linecap="round">

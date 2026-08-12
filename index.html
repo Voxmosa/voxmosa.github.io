@@ -55,119 +55,70 @@ body { margin:0; background:#141413; }
 a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
 
 @media (max-width:1080px){
-  [style*="grid-template-columns: repeat(4, 1fr)"],
-  [style*="grid-template-columns:repeat(4, 1fr)"]{grid-template-columns:1fr 1fr!important}
-  [style*="gap: 72px"],
-  [style*="gap:72px"]{gap:44px!important}
+  .r-gtc-repeat-4-1fr{grid-template-columns:1fr 1fr!important}
+  .r-gap-72px{gap:44px!important}
 }
 @media (max-width:900px){
-  [style*="max-width: 1280px"],
-  [style*="max-width:1280px"]{padding-left:24px!important;padding-right:24px!important}
-  [style*="grid-template-columns: 1fr 1fr"],
-  [style*="grid-template-columns:1fr 1fr"],
-  [style*="grid-template-columns: repeat(3, 1fr)"],
-  [style*="grid-template-columns:repeat(3, 1fr)"],
-  [style*="grid-template-columns: repeat(4, 1fr)"],
-  [style*="grid-template-columns:repeat(4, 1fr)"],
-  [style*="grid-template-columns: 1.35fr 1fr"],
-  [style*="grid-template-columns:1.35fr 1fr"],
-  [style*="grid-template-columns: 1.1fr 1fr"],
-  [style*="grid-template-columns:1.1fr 1fr"],
-  [style*="grid-template-columns: 1.05fr 1fr"],
-  [style*="grid-template-columns:1.05fr 1fr"],
-  [style*="grid-template-columns: 1fr 1.25fr"],
-  [style*="grid-template-columns:1fr 1.25fr"],
-  [style*="grid-template-columns: 1fr 1.35fr"],
-  [style*="grid-template-columns:1fr 1.35fr"],
-  [style*="grid-template-columns: auto 1fr"],
-  [style*="grid-template-columns:auto 1fr"],
-  [style*="grid-template-columns: 180px 1fr"],
-  [style*="grid-template-columns:180px 1fr"]{grid-template-columns:1fr!important}
-  [style*="border-right: 1px solid rgb(234, 231, 224)"],
-  [style*="border-right:1px solid rgb(234, 231, 224)"]{border-right:none!important;border-bottom:1px solid #eae7e0!important}
-  [style*="border-left: 1px solid rgb(38, 37, 31)"],
-  [style*="border-left:1px solid rgb(38, 37, 31)"]{border-left:none!important;padding-left:0!important;border-top:1px solid #26251f!important;padding-top:24px!important}
-  [style*="gap: 64px"],
-  [style*="gap:64px"]{gap:40px!important}
-  [style*="font-size: 52px"],
-  [style*="font-size:52px"]{font-size:36px!important}
-  [style*="font-size: 46px"],
-  [style*="font-size:46px"]{font-size:34px!important}
-  [style*="font-size: 42px"],
-  [style*="font-size:42px"]{font-size:31px!important}
-  [style*="font-size: 40px"],
-  [style*="font-size:40px"]{font-size:30px!important}
-  [style*="font-size: 34px"],
-  [style*="font-size:34px"]{font-size:26px!important}
-  [style*="font-size: 28px"],
-  [style*="font-size:28px"]{font-size:24px!important}
-  [style*="font-size: 27px"],
-  [style*="font-size:27px"]{font-size:23px!important}
-  [style*="font-size: 26px"],
-  [style*="font-size:26px"]{font-size:22px!important}
-  [style*="font-size: 25px"],
-  [style*="font-size:25px"]{font-size:21px!important}
-  [style*="padding: 17px 24px"],
-  [style*="padding:17px 24px"]{padding:14px 14px!important}
-  [style*="padding: 18px 20px"],
-  [style*="padding:18px 20px"]{padding:13px 13px!important}
-  [style*="padding: 44px"],
-  [style*="padding:44px"]{padding:30px!important}
-  [style*="padding: 40px"],
-  [style*="padding:40px"]{padding:28px!important}
-  [style*="padding: 38px 40px"],
-  [style*="padding:38px 40px"]{padding:26px 24px!important}
-  [style*="padding: 34px 36px"],
-  [style*="padding:34px 36px"]{padding:26px 24px!important}
-  [style*="gap: 30px"],
-  [style*="gap:30px"],
-  [style*="gap: 28px"],
-  [style*="gap:28px"]{gap:14px!important;flex-wrap:wrap!important}
-  [style*="gap: 40px"],
-  [style*="gap:40px"]{gap:20px!important;flex-wrap:wrap!important}
+  .r-mw-1280px{padding-left:24px!important;padding-right:24px!important}
+  .r-gtc-1fr-1fr,
+  .r-gtc-repeat-3-1fr,
+  .r-gtc-repeat-4-1fr,
+  .r-gtc-1-35fr-1fr,
+  .r-gtc-1-1fr-1fr,
+  .r-gtc-1-05fr-1fr,
+  .r-gtc-1fr-1-25fr,
+  .r-gtc-1fr-1-35fr,
+  .r-gtc-auto-1fr,
+  .r-gtc-180px-1fr{grid-template-columns:1fr!important}
+  .r-brr-1px-solid-rgb-234-231-224{border-right:none!important;border-bottom:1px solid #eae7e0!important}
+  .r-brl-1px-solid-rgb-38-37-31{border-left:none!important;padding-left:0!important;border-top:1px solid #26251f!important;padding-top:24px!important}
+  .r-gap-64px{gap:40px!important}
+  .r-fs-52px{font-size:36px!important}
+  .r-fs-46px{font-size:34px!important}
+  .r-fs-42px{font-size:31px!important}
+  .r-fs-40px{font-size:30px!important}
+  .r-fs-34px{font-size:26px!important}
+  .r-fs-28px{font-size:24px!important}
+  .r-fs-27px{font-size:23px!important}
+  .r-fs-26px{font-size:22px!important}
+  .r-fs-25px{font-size:21px!important}
+  .r-pad-17px-24px{padding:14px 14px!important}
+  .r-pad-18px-20px{padding:13px 13px!important}
+  .r-pad-44px{padding:30px!important}
+  .r-pad-40px{padding:28px!important}
+  .r-pad-38px-40px{padding:26px 24px!important}
+  .r-pad-34px-36px{padding:26px 24px!important}
+  .r-gap-30px,
+  .r-gap-28px{gap:14px!important;flex-wrap:wrap!important}
+  .r-gap-40px{gap:20px!important;flex-wrap:wrap!important}
 }
 @media (max-width:620px){
-  [style*="max-width: 1280px"],
-  [style*="max-width:1280px"]{padding-left:18px!important;padding-right:18px!important}
-  [style*="grid-template-columns: 1.4fr 1fr 1fr"],
-  [style*="grid-template-columns:1.4fr 1fr 1fr"],
-  [style*="grid-template-columns: 1.2fr 1fr 1fr"],
-  [style*="grid-template-columns:1.2fr 1fr 1fr"],
-  [style*="grid-template-columns: 0.7fr 1fr 1fr"],
-  [style*="grid-template-columns:0.7fr 1fr 1fr"]{grid-template-columns:1fr!important}
-  [style*="grid-template-columns: 56px 1fr"],
-  [style*="grid-template-columns:56px 1fr"],
-  [style*="grid-template-columns: 76px 1fr"],
-  [style*="grid-template-columns:76px 1fr"],
-  [style*="grid-template-columns: 58px 108px 1fr"],
-  [style*="grid-template-columns:58px 108px 1fr"]{grid-template-columns:1fr!important;gap:6px!important}
-  [style*="font-size: 52px"],
-  [style*="font-size:52px"]{font-size:30px!important}
-  [style*="font-size: 42px"],
-  [style*="font-size:42px"]{font-size:26px!important}
-  [style*="font-size: 40px"],
-  [style*="font-size:40px"]{font-size:26px!important}
-  [style*="font-size: 34px"],
-  [style*="font-size:34px"]{font-size:23px!important}
-  [style*="padding: 112px 56px"],
-  [style*="padding:112px 56px"],
-  [style*="padding: 104px 56px"],
-  [style*="padding:104px 56px"],
-  [style*="padding: 96px 56px"],
-  [style*="padding:96px 56px"]{padding-top:64px!important;padding-bottom:64px!important}
+  .r-mw-1280px{padding-left:18px!important;padding-right:18px!important}
+  .r-gtc-1-4fr-1fr-1fr,
+  .r-gtc-1-2fr-1fr-1fr,
+  .r-gtc-0-7fr-1fr-1fr{grid-template-columns:1fr!important}
+  .r-gtc-56px-1fr,
+  .r-gtc-76px-1fr,
+  .r-gtc-58px-108px-1fr{grid-template-columns:1fr!important;gap:6px!important}
+  .r-fs-52px{font-size:30px!important}
+  .r-fs-42px{font-size:26px!important}
+  .r-fs-40px{font-size:26px!important}
+  .r-fs-34px{font-size:23px!important}
+  .r-pad-112px-56px,
+  .r-pad-104px-56px,
+  .r-pad-96px-56px{padding-top:64px!important;padding-bottom:64px!important}
 }
 
 @media (max-width:900px){
-  [style*="display: grid"] > *,
-  [style*="display:grid"] > *{min-width:0!important}
+  .r-display-grid > *{min-width:0!important}
 }
 </style>
 </helmet>
 <div style="width:100%;background:#141413;color:#f4f3f0;font-family:'Noto Sans TC','Space Grotesk',sans-serif;overflow-x:hidden">
 
   <div style="position:sticky;top:0;z-index:20;background:rgba(20,20,19,0.92);backdrop-filter:blur(14px);border-bottom:1px solid #26251f">
-    <div style="max-width:1280px;margin:0 auto;padding:20px 56px;display:flex;align-items:center;justify-content:space-between;gap:40px">
-      <a href="#top" style="display:flex;align-items:baseline;font-family:'Space Grotesk',sans-serif;font-size:25px;font-weight:400;letter-spacing:0.05em;line-height:1;color:#f4f3f0;flex:none">
+    <div class="r-mw-1280px r-gap-40px" style="max-width:1280px;margin:0 auto;padding:20px 56px;display:flex;align-items:center;justify-content:space-between;gap:40px">
+      <a href="#top" class="r-fs-25px" style="display:flex;align-items:baseline;font-family:'Space Grotesk',sans-serif;font-size:25px;font-weight:400;letter-spacing:0.05em;line-height:1;color:#f4f3f0;flex:none">
         <span>V</span>
         <svg viewBox="0 0 200 120" preserveAspectRatio="xMinYMid slice" style="height:0.53em;width:0.8em;transform:translateY(0.0205em);overflow:visible;display:block;flex:none" fill="none" stroke="currentColor" stroke-linecap="round">
           <circle cx="60" cy="60" r="51" stroke-width="18" />
@@ -176,7 +127,7 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
         </svg>
         <span>x</span><span style="display:inline-block;width:0.06em;flex:none"></span><span>mosa</span>
       </a>
-      <div style="display:flex;align-items:center;gap:30px;font-size:14px;font-weight:300;color:#b5b2aa">
+      <div class="r-gap-30px" style="display:flex;align-items:center;gap:30px;font-size:14px;font-weight:300;color:#b5b2aa">
         <a href="mosatalk.html">MosaTalk</a>
         <a href="mosaminutes.html">MosaMinutes</a>
         <a href="mosascore.html">MosaScore</a>
@@ -188,8 +139,8 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
     </div>
   </div>
 
-  <div id="top" style="max-width:1280px;margin:0 auto;padding:104px 56px 116px;display:grid;grid-template-columns:1.05fr 1fr;gap:72px;align-items:center">
-    <div style="display:flex;flex-direction:column;gap:30px">
+  <div id="top" class="r-gap-72px r-mw-1280px r-gtc-1-05fr-1fr r-pad-104px-56px r-display-grid" style="max-width:1280px;margin:0 auto;padding:104px 56px 116px;display:grid;grid-template-columns:1.05fr 1fr;gap:72px;align-items:center">
+    <div class="r-gap-30px" style="display:flex;flex-direction:column;gap:30px">
       <div style="display:flex;align-items:center;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#ED9A4A">
         <span style="width:22px;height:1px;background:#ED9A4A;display:block"></span>
         <span>On-Premise Voice AI</span>
@@ -254,22 +205,22 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
   </div>
 
   <div id="products" style="background:#F4F3F0;color:#141413">
-    <div style="max-width:1280px;margin:0 auto;padding:104px 56px 112px;display:flex;flex-direction:column;gap:44px">
+    <div class="r-mw-1280px r-pad-104px-56px" style="max-width:1280px;margin:0 auto;padding:104px 56px 112px;display:flex;flex-direction:column;gap:44px">
       <div style="display:flex;align-items:baseline;justify-content:space-between;gap:32px;flex-wrap:wrap">
         <div style="display:flex;flex-direction:column;gap:14px">
           <div style="display:flex;align-items:center;gap:11px">
-            <div style="font-size:34px;font-weight:300;letter-spacing:-0.01em">三項產品，同一個原則</div>
+            <div class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">三項產品，同一個原則</div>
             <div style="border:1px solid #ED9A4A;color:#c47a20;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:5px 11px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">On-Premise</div>
           </div>
           <div style="font-size:15px;font-weight:300;color:#6b6960;line-height:1.9;max-width:620px">一個負責「即時對話」，一個負責「事後記錄」，一個負責「把錄音變成可查的資料」。三者都在你的機房裡跑完整條流程。</div>
         </div>
       </div>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
-        <a href="mosatalk.html" style="background:#141413;color:#f4f3f0;border-radius:10px;padding:40px;display:flex;flex-direction:column;gap:22px;min-height:420px">
+      <div class="r-gtc-1fr-1fr r-display-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+        <a href="mosatalk.html" class="r-pad-40px" style="background:#141413;color:#f4f3f0;border-radius:10px;padding:40px;display:flex;flex-direction:column;gap:22px;min-height:420px">
           <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:20px">
             <div style="display:flex;flex-direction:column;gap:9px">
-              <div style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:400;color:#ED9A4A;letter-spacing:0.01em">MosaTalk</div>
+              <div class="r-fs-28px" style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:400;color:#ED9A4A;letter-spacing:0.01em">MosaTalk</div>
               <div style="font-size:17px;font-weight:300">即時語音 AI 對話系統</div>
             </div>
             <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#5e5b54;letter-spacing:0.1em;text-transform:uppercase;flex:none;padding-top:8px">01</div>
@@ -287,10 +238,10 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
           </div>
         </a>
 
-        <a href="mosaminutes.html" style="background:#141413;color:#f4f3f0;border-radius:10px;padding:40px;display:flex;flex-direction:column;gap:22px;min-height:420px">
+        <a href="mosaminutes.html" class="r-pad-40px" style="background:#141413;color:#f4f3f0;border-radius:10px;padding:40px;display:flex;flex-direction:column;gap:22px;min-height:420px">
           <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:20px">
             <div style="display:flex;flex-direction:column;gap:9px">
-              <div style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:400;color:#ED9A4A;letter-spacing:0.01em">MosaMinutes</div>
+              <div class="r-fs-28px" style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:400;color:#ED9A4A;letter-spacing:0.01em">MosaMinutes</div>
               <div style="font-size:17px;font-weight:300">地端 AI 會議記錄平台</div>
             </div>
             <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#5e5b54;letter-spacing:0.1em;text-transform:uppercase;flex:none;padding-top:8px">02</div>
@@ -308,12 +259,12 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
           </div>
         </a>
 
-        <a href="mosascore.html" style="grid-column:1/-1;background:#141413;color:#f4f3f0;border-radius:10px;padding:40px;display:grid;grid-template-columns:1fr 1fr;gap:40px">
+        <a href="mosascore.html" class="r-gtc-1fr-1fr r-pad-40px r-gap-40px r-display-grid" style="grid-column:1/-1;background:#141413;color:#f4f3f0;border-radius:10px;padding:40px;display:grid;grid-template-columns:1fr 1fr;gap:40px">
           <div style="display:flex;flex-direction:column;gap:22px">
             <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:20px">
               <div style="display:flex;flex-direction:column;gap:9px">
                 <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
-                  <div style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:400;color:#ED9A4A;letter-spacing:0.01em">MosaScore</div>
+                  <div class="r-fs-28px" style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:400;color:#ED9A4A;letter-spacing:0.01em">MosaScore</div>
                   <div style="border:1px solid #4a3a24;color:#ED9A4A;font-family:'IBM Plex Mono',monospace;font-size:9.5px;padding:4px 10px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase">效度驗證中</div>
                 </div>
                 <div style="font-size:17px;font-weight:300">地端通話質檢與購買意圖分析</div>
@@ -326,7 +277,7 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
               <svg viewBox="0 0 24 24" style="width:14px;flex:none" fill="none" stroke="#ED9A4A" stroke-width="2" stroke-linecap="round"><path d="M5 12 H18 M13 7 L18 12 L13 17" /></svg>
             </div>
           </div>
-          <div style="display:flex;flex-direction:column;gap:11px;border-left:1px solid #26251f;padding-left:40px">
+          <div class="r-brl-1px-solid-rgb-38-37-31" style="display:flex;flex-direction:column;gap:11px;border-left:1px solid #26251f;padding-left:40px">
             <div style="display:flex;gap:12px;align-items:baseline"><span style="color:#ED9A4A;font-family:'IBM Plex Mono',monospace;font-size:10px;flex:none;width:16px">01</span><span style="font-size:13.5px;font-weight:300;color:#cfccc4">雙軌分離，語者標籤天然 100% 正確</span></div>
             <div style="display:flex;gap:12px;align-items:baseline"><span style="color:#ED9A4A;font-family:'IBM Plex Mono',monospace;font-size:10px;flex:none;width:16px">02</span><span style="font-size:13.5px;font-weight:300;color:#cfccc4">每個產業一份領域字典，不需要改程式</span></div>
             <div style="display:flex;gap:12px;align-items:baseline"><span style="color:#ED9A4A;font-family:'IBM Plex Mono',monospace;font-size:10px;flex:none;width:16px">03</span><span style="font-size:13.5px;font-weight:300;color:#cfccc4">逐句情緒與 0–100 購買傾向分數，附變動原因</span></div>
@@ -338,33 +289,33 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
     </div>
   </div>
 
-  <div id="tech" style="max-width:1280px;margin:0 auto;padding:112px 56px">
+  <div id="tech" class="r-mw-1280px r-pad-112px-56px" style="max-width:1280px;margin:0 auto;padding:112px 56px">
     <div style="display:flex;flex-direction:column;gap:44px">
       <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
-        <div style="font-size:34px;font-weight:300;letter-spacing:-0.01em">技術實力</div>
+        <div class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">技術實力</div>
         <div style="border:1px solid #3a3833;color:#7a776e;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:5px 11px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">Single GPU</div>
       </div>
 
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#26251f;border:1px solid #26251f;border-radius:8px;overflow:hidden">
+      <div class="r-gtc-repeat-4-1fr r-display-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#26251f;border:1px solid #26251f;border-radius:8px;overflow:hidden">
         <div style="background:#0F0F0E;padding:36px 30px;display:flex;flex-direction:column;gap:12px">
-          <div style="font-family:'Space Grotesk',sans-serif;font-size:46px;font-weight:200;color:#ED9A4A;line-height:1">≈1<span style="font-size:24px">s</span></div>
+          <div class="r-fs-46px" style="font-family:'Space Grotesk',sans-serif;font-size:46px;font-weight:200;color:#ED9A4A;line-height:1">≈1<span style="font-size:24px">s</span></div>
           <div style="font-size:13px;font-weight:300;color:#8c8a84;line-height:1.75">使用者說完話，到 AI 開口回答</div>
         </div>
         <div style="background:#0F0F0E;padding:36px 30px;display:flex;flex-direction:column;gap:12px">
-          <div style="font-family:'Space Grotesk',sans-serif;font-size:46px;font-weight:200;color:#ED9A4A;line-height:1">10</div>
+          <div class="r-fs-46px" style="font-family:'Space Grotesk',sans-serif;font-size:46px;font-weight:200;color:#ED9A4A;line-height:1">10</div>
           <div style="font-size:13px;font-weight:300;color:#8c8a84;line-height:1.75">單張 RTX 4090 即時轉錄線數</div>
         </div>
         <div style="background:#0F0F0E;padding:36px 30px;display:flex;flex-direction:column;gap:12px">
-          <div style="font-family:'Space Grotesk',sans-serif;font-size:46px;font-weight:200;color:#ED9A4A;line-height:1">5</div>
+          <div class="r-fs-46px" style="font-family:'Space Grotesk',sans-serif;font-size:46px;font-weight:200;color:#ED9A4A;line-height:1">5</div>
           <div style="font-size:13px;font-weight:300;color:#8c8a84;line-height:1.75">支援語言，一律轉繁體中文</div>
         </div>
         <div style="background:#0F0F0E;padding:36px 30px;display:flex;flex-direction:column;gap:12px">
-          <div style="font-family:'Space Grotesk',sans-serif;font-size:46px;font-weight:200;color:#ED9A4A;line-height:1">1</div>
+          <div class="r-fs-46px" style="font-family:'Space Grotesk',sans-serif;font-size:46px;font-weight:200;color:#ED9A4A;line-height:1">1</div>
           <div style="font-size:13px;font-weight:300;color:#8c8a84;line-height:1.75">張 GPU 跑完整系統，含辨識與摘要</div>
         </div>
       </div>
 
-      <div style="border:1px dashed #3a3833;border-radius:8px;padding:38px 40px;display:flex;justify-content:space-between;align-items:center;gap:40px;flex-wrap:wrap">
+      <div class="r-pad-38px-40px r-gap-40px" style="border:1px dashed #3a3833;border-radius:8px;padding:38px 40px;display:flex;justify-content:space-between;align-items:center;gap:40px;flex-wrap:wrap">
         <div style="display:flex;flex-direction:column;gap:13px;flex:1;min-width:min(420px,100%)">
           <div style="display:flex;align-items:center;gap:11px">
             <div style="font-size:21px;font-weight:400">可重現的評測報告</div>
@@ -383,55 +334,55 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
   </div>
 
   <div id="onprem" style="background:#F4F3F0;color:#141413">
-    <div style="max-width:1280px;margin:0 auto;padding:104px 56px 112px;display:flex;flex-direction:column;gap:44px">
+    <div class="r-mw-1280px r-pad-104px-56px" style="max-width:1280px;margin:0 auto;padding:104px 56px 112px;display:flex;flex-direction:column;gap:44px">
       <div style="display:flex;flex-direction:column;gap:16px">
         <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
-          <div style="font-size:34px;font-weight:300;letter-spacing:-0.01em">為什麼一定要地端</div>
+          <div class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">為什麼一定要地端</div>
           <div style="border:1px solid #ED9A4A;color:#c47a20;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:5px 11px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">資料不出網</div>
         </div>
         <div style="font-size:15px;font-weight:300;color:#6b6960;line-height:1.9;max-width:700px;text-wrap:pretty">臺灣已經有能處理台語的語音服務，但它們全是雲端形態。能把臺灣的語言做好、又能整套跑在你自己機房裡的，這才是我們的位置。</div>
       </div>
 
       <div style="display:flex;flex-direction:column;gap:1px;background:#dedbd4;border:1px solid #dedbd4;border-radius:8px;overflow:hidden">
-        <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:1px;background:#dedbd4">
-          <div style="background:#e9e7e2;padding:17px 24px"></div>
-          <div style="background:#e9e7e2;padding:17px 24px;font-size:13px;font-weight:400;color:#6b6960">雲端會議／語音服務</div>
-          <div style="background:#141413;padding:17px 24px;font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:500;color:#ED9A4A;letter-spacing:0.02em">Voxmosa</div>
+        <div class="r-gtc-1-4fr-1fr-1fr r-display-grid" style="display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:1px;background:#dedbd4">
+          <div class="r-pad-17px-24px" style="background:#e9e7e2;padding:17px 24px"></div>
+          <div class="r-pad-17px-24px" style="background:#e9e7e2;padding:17px 24px;font-size:13px;font-weight:400;color:#6b6960">雲端會議／語音服務</div>
+          <div class="r-pad-17px-24px" style="background:#141413;padding:17px 24px;font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:500;color:#ED9A4A;letter-spacing:0.02em">Voxmosa</div>
         </div>
-        <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:1px;background:#dedbd4">
-          <div style="background:#fbfaf8;padding:17px 24px;font-size:13.5px;font-weight:400">錄音與逐字稿存放位置</div>
-          <div style="background:#fbfaf8;padding:17px 24px;font-size:13.5px;font-weight:300;color:#6b6960">上傳至服務商伺服器</div>
-          <div style="background:#141413;padding:17px 24px;font-size:13.5px;font-weight:300;color:#f4f3f0">完全留在貴單位機房</div>
+        <div class="r-gtc-1-4fr-1fr-1fr r-display-grid" style="display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:1px;background:#dedbd4">
+          <div class="r-pad-17px-24px" style="background:#fbfaf8;padding:17px 24px;font-size:13.5px;font-weight:400">錄音與逐字稿存放位置</div>
+          <div class="r-pad-17px-24px" style="background:#fbfaf8;padding:17px 24px;font-size:13.5px;font-weight:300;color:#6b6960">上傳至服務商伺服器</div>
+          <div class="r-pad-17px-24px" style="background:#141413;padding:17px 24px;font-size:13.5px;font-weight:300;color:#f4f3f0">完全留在貴單位機房</div>
         </div>
-        <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:1px;background:#dedbd4">
-          <div style="background:#fbfaf8;padding:17px 24px;font-size:13.5px;font-weight:400">封閉網路可否使用</div>
-          <div style="background:#fbfaf8;padding:17px 24px;font-size:13.5px;font-weight:300;color:#6b6960">不可，必須連外</div>
-          <div style="background:#141413;padding:17px 24px;font-size:13.5px;font-weight:300;color:#f4f3f0">可，不需連外</div>
+        <div class="r-gtc-1-4fr-1fr-1fr r-display-grid" style="display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:1px;background:#dedbd4">
+          <div class="r-pad-17px-24px" style="background:#fbfaf8;padding:17px 24px;font-size:13.5px;font-weight:400">封閉網路可否使用</div>
+          <div class="r-pad-17px-24px" style="background:#fbfaf8;padding:17px 24px;font-size:13.5px;font-weight:300;color:#6b6960">不可，必須連外</div>
+          <div class="r-pad-17px-24px" style="background:#141413;padding:17px 24px;font-size:13.5px;font-weight:300;color:#f4f3f0">可，不需連外</div>
         </div>
-        <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:1px;background:#dedbd4">
-          <div style="background:#fbfaf8;padding:17px 24px;font-size:13.5px;font-weight:400">台語／客語／族語</div>
-          <div style="background:#fbfaf8;padding:17px 24px;font-size:13.5px;font-weight:300;color:#6b6960">本土服務有，但皆為雲端</div>
-          <div style="background:#141413;padding:17px 24px;font-size:13.5px;font-weight:300;color:#f4f3f0">支援，且在地端執行</div>
+        <div class="r-gtc-1-4fr-1fr-1fr r-display-grid" style="display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:1px;background:#dedbd4">
+          <div class="r-pad-17px-24px" style="background:#fbfaf8;padding:17px 24px;font-size:13.5px;font-weight:400">台語／客語／族語</div>
+          <div class="r-pad-17px-24px" style="background:#fbfaf8;padding:17px 24px;font-size:13.5px;font-weight:300;color:#6b6960">本土服務有，但皆為雲端</div>
+          <div class="r-pad-17px-24px" style="background:#141413;padding:17px 24px;font-size:13.5px;font-weight:300;color:#f4f3f0">支援，且在地端執行</div>
         </div>
-        <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:1px;background:#dedbd4">
-          <div style="background:#fbfaf8;padding:17px 24px;font-size:13.5px;font-weight:400">計費方式</div>
-          <div style="background:#fbfaf8;padding:17px 24px;font-size:13.5px;font-weight:300;color:#6b6960">按人數或時數訂閱，用越多越貴</div>
-          <div style="background:#141413;padding:17px 24px;font-size:13.5px;font-weight:300;color:#f4f3f0">一次建置，無按次 API 費用</div>
+        <div class="r-gtc-1-4fr-1fr-1fr r-display-grid" style="display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:1px;background:#dedbd4">
+          <div class="r-pad-17px-24px" style="background:#fbfaf8;padding:17px 24px;font-size:13.5px;font-weight:400">計費方式</div>
+          <div class="r-pad-17px-24px" style="background:#fbfaf8;padding:17px 24px;font-size:13.5px;font-weight:300;color:#6b6960">按人數或時數訂閱，用越多越貴</div>
+          <div class="r-pad-17px-24px" style="background:#141413;padding:17px 24px;font-size:13.5px;font-weight:300;color:#f4f3f0">一次建置，無按次 API 費用</div>
         </div>
-        <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:1px;background:#dedbd4">
-          <div style="background:#fbfaf8;padding:17px 24px;font-size:13.5px;font-weight:400">模型可否為貴單位調整</div>
-          <div style="background:#fbfaf8;padding:17px 24px;font-size:13.5px;font-weight:300;color:#6b6960">不可，共用通用模型</div>
-          <div style="background:#141413;padding:17px 24px;font-size:13.5px;font-weight:300;color:#f4f3f0">可，模型由團隊自行訓練</div>
+        <div class="r-gtc-1-4fr-1fr-1fr r-display-grid" style="display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:1px;background:#dedbd4">
+          <div class="r-pad-17px-24px" style="background:#fbfaf8;padding:17px 24px;font-size:13.5px;font-weight:400">模型可否為貴單位調整</div>
+          <div class="r-pad-17px-24px" style="background:#fbfaf8;padding:17px 24px;font-size:13.5px;font-weight:300;color:#6b6960">不可，共用通用模型</div>
+          <div class="r-pad-17px-24px" style="background:#141413;padding:17px 24px;font-size:13.5px;font-weight:300;color:#f4f3f0">可，模型由團隊自行訓練</div>
         </div>
-        <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:1px;background:#dedbd4">
-          <div style="background:#fbfaf8;padding:17px 24px;font-size:13.5px;font-weight:400">供應鏈來源要求</div>
-          <div style="background:#fbfaf8;padding:17px 24px;font-size:13.5px;font-weight:300;color:#6b6960">難以掌握服務商的模型來源</div>
-          <div style="background:#141413;padding:17px 24px;font-size:13.5px;font-weight:300;color:#f4f3f0">可依採購規範指定模型來源</div>
+        <div class="r-gtc-1-4fr-1fr-1fr r-display-grid" style="display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:1px;background:#dedbd4">
+          <div class="r-pad-17px-24px" style="background:#fbfaf8;padding:17px 24px;font-size:13.5px;font-weight:400">供應鏈來源要求</div>
+          <div class="r-pad-17px-24px" style="background:#fbfaf8;padding:17px 24px;font-size:13.5px;font-weight:300;color:#6b6960">難以掌握服務商的模型來源</div>
+          <div class="r-pad-17px-24px" style="background:#141413;padding:17px 24px;font-size:13.5px;font-weight:300;color:#f4f3f0">可依採購規範指定模型來源</div>
         </div>
-        <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:1px;background:#dedbd4">
-          <div style="background:#fbfaf8;padding:17px 24px;font-size:13.5px;font-weight:400">導入成本</div>
-          <div style="background:#fbfaf8;padding:17px 24px;font-size:13.5px;font-weight:300;color:#6b6960">低，開帳號即用</div>
-          <div style="background:#141413;padding:17px 24px;font-size:13.5px;font-weight:300;color:#a8a59d">需伺服器與建置，我們可供應硬體並到場安裝</div>
+        <div class="r-gtc-1-4fr-1fr-1fr r-display-grid" style="display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:1px;background:#dedbd4">
+          <div class="r-pad-17px-24px" style="background:#fbfaf8;padding:17px 24px;font-size:13.5px;font-weight:400">導入成本</div>
+          <div class="r-pad-17px-24px" style="background:#fbfaf8;padding:17px 24px;font-size:13.5px;font-weight:300;color:#6b6960">低，開帳號即用</div>
+          <div class="r-pad-17px-24px" style="background:#141413;padding:17px 24px;font-size:13.5px;font-weight:300;color:#a8a59d">需伺服器與建置，我們可供應硬體並到場安裝</div>
         </div>
       </div>
 
@@ -441,17 +392,17 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
     </div>
   </div>
 
-  <div id="industries" style="max-width:1280px;margin:0 auto;padding:112px 56px">
+  <div id="industries" class="r-mw-1280px r-pad-112px-56px" style="max-width:1280px;margin:0 auto;padding:112px 56px">
     <div style="display:flex;flex-direction:column;gap:44px">
       <div style="display:flex;flex-direction:column;gap:16px">
         <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
-          <div style="font-size:34px;font-weight:300;letter-spacing:-0.01em">產業情境與合規</div>
+          <div class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">產業情境與合規</div>
           <div style="border:1px solid #3a3833;color:#7a776e;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:5px 11px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">Compliance</div>
         </div>
         <div style="font-size:15px;font-weight:300;color:#8c8a84;line-height:1.9;max-width:700px;text-wrap:pretty">對這些單位而言，情境就是合規。我們依產業的實際法規與內控要求，客製化存取控制、稽核紀錄與資料保存機制，而不是套用單一制式方案。</div>
       </div>
 
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#26251f;border:1px solid #26251f;border-radius:8px;overflow:hidden">
+      <div class="r-gtc-repeat-3-1fr r-display-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#26251f;border:1px solid #26251f;border-radius:8px;overflow:hidden">
         <div style="background:#0F0F0E;padding:32px 30px;display:flex;flex-direction:column;gap:12px;min-height:170px">
           <div style="font-size:17px;font-weight:400;color:#f4f3f0">政府機關</div>
           <div style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.85">公務會議、公聽會、委員會記錄。地端運行同時滿足資安規範與資料落地要求。</div>
@@ -499,16 +450,16 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
 
   <sc-if value="{{ showRoadmap }}" hint-placeholder-val="{{ true }}">
   <div id="roadmap" style="background:#F4F3F0;color:#141413">
-    <div style="max-width:1280px;margin:0 auto;padding:104px 56px 112px;display:flex;flex-direction:column;gap:44px">
+    <div class="r-mw-1280px r-pad-104px-56px" style="max-width:1280px;margin:0 auto;padding:104px 56px 112px;display:flex;flex-direction:column;gap:44px">
       <div style="display:flex;flex-direction:column;gap:16px">
         <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
-          <div style="font-size:34px;font-weight:300;letter-spacing:-0.01em">發展路線</div>
+          <div class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">發展路線</div>
           <div style="border:1px solid #c9c5bb;color:#8c8a84;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:5px 11px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">開發規劃中</div>
         </div>
         <div style="font-size:15px;font-weight:300;color:#6b6960;line-height:1.9;max-width:700px">以下項目仍在開發規劃中，非現有可交付功能。我們選擇公開，因為方向本身就是說明我們在想什麼。</div>
       </div>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+      <div class="r-gtc-1fr-1fr r-display-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
         <div style="border:1px solid #dedbd4;border-radius:8px;background:#fbfaf8;padding:36px;display:flex;flex-direction:column;gap:24px">
           <div style="display:flex;flex-direction:column;gap:8px">
             <div style="font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:400;color:#141413">MosaTalk</div>
@@ -544,16 +495,16 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
 
   </sc-if>
 
-  <div id="team" style="max-width:1280px;margin:0 auto;padding:112px 56px">
+  <div id="team" class="r-mw-1280px r-pad-112px-56px" style="max-width:1280px;margin:0 auto;padding:112px 56px">
     <div style="display:flex;flex-direction:column;gap:44px">
       <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
-        <div style="font-size:34px;font-weight:300;letter-spacing:-0.01em">團隊與研究</div>
+        <div class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">團隊與研究</div>
         <div style="border:1px solid #3a3833;color:#7a776e;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:5px 11px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">Research-led</div>
       </div>
 
-      <div style="display:grid;grid-template-columns:1.35fr 1fr;gap:20px">
-        <div style="background:#0F0F0E;border:1px solid #26251f;border-radius:8px;padding:44px;display:flex;flex-direction:column;gap:26px">
-          <div style="font-size:25px;font-weight:200;line-height:1.7;text-wrap:pretty;max-width:640px">核心研發團隊具有深厚的學術與開源社群血統，長期專注於臺灣多語言（台語、客語、族語、中英混合等）語音辨識技術。</div>
+      <div class="r-gtc-1-35fr-1fr r-display-grid" style="display:grid;grid-template-columns:1.35fr 1fr;gap:20px">
+        <div class="r-pad-44px" style="background:#0F0F0E;border:1px solid #26251f;border-radius:8px;padding:44px;display:flex;flex-direction:column;gap:26px">
+          <div class="r-fs-25px" style="font-size:25px;font-weight:200;line-height:1.7;text-wrap:pretty;max-width:640px">核心研發團隊具有深厚的學術與開源社群血統，長期專注於臺灣多語言（台語、客語、族語、中英混合等）語音辨識技術。</div>
           <div style="font-size:14.5px;font-weight:300;color:#8c8a84;line-height:1.95;max-width:640px;text-wrap:pretty">團隊主導之開源語音專案 FormoSpeech（公開於 Hugging Face）已累積豐富的社群調用與技術驗證實績。我們的語音辨識模型採全自主架構訓練，非僅調整市面通用模型之參數——這代表我們能針對貴單位的特定領域用語、特殊收音環境與專業聲學情境進行深度客製與持續優化，是採用標準通用雲端 API 所無法達到的精準度與資料安全性。</div>
           <div style="display:flex;gap:10px;flex-wrap:wrap;padding-top:4px">
             <a href="https://huggingface.co/formospeech" style="border:1px solid #3a3833;border-radius:4px;padding:11px 18px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#cfccc4;letter-spacing:0.04em">Hugging Face / formospeech</a>
@@ -578,33 +529,33 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
   </div>
 
   <div style="border-top:1px solid #26251f">
-    <div style="max-width:1280px;margin:0 auto;padding:104px 56px;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start">
+    <div class="r-mw-1280px r-gtc-1fr-1fr r-gap-64px r-pad-104px-56px r-display-grid" style="max-width:1280px;margin:0 auto;padding:104px 56px;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start">
 
-      <div style="display:flex;flex-direction:column;gap:30px">
+      <div class="r-gap-30px" style="display:flex;flex-direction:column;gap:30px">
         <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
-          <div style="font-size:27px;font-weight:300;letter-spacing:-0.01em">獲獎與榮譽</div>
+          <div class="r-fs-27px" style="font-size:27px;font-weight:300;letter-spacing:-0.01em">獲獎與榮譽</div>
           <div style="border:1px solid #3a3833;color:#7a776e;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:5px 11px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">Awards</div>
         </div>
         <div style="display:flex;flex-direction:column;gap:1px;background:#26251f;border:1px solid #26251f;border-radius:8px;overflow:hidden">
-          <div style="background:#0F0F0E;padding:22px 26px;display:grid;grid-template-columns:56px 1fr;gap:18px;align-items:baseline"><div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#ED9A4A">2025</div><div style="display:flex;flex-direction:column;gap:6px"><div style="font-size:14.5px;font-weight:400;line-height:1.6">技術類最佳論文獎</div><div style="font-size:12.5px;font-weight:300;color:#7a776e;line-height:1.75">O-COCOSDA 2025，印尼日惹</div></div></div>
-          <div style="background:#0F0F0E;padding:22px 26px;display:grid;grid-template-columns:56px 1fr;gap:18px;align-items:baseline"><div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#ED9A4A">2022</div><div style="display:flex;flex-direction:column;gap:6px"><div style="font-size:14.5px;font-weight:400;line-height:1.6">臺灣客語語音辨識競賽 FSR 2022　一般組第一名</div><div style="font-size:12.5px;font-weight:300;color:#7a776e;line-height:1.75">Formosa Speech Recognition Challenge</div></div></div>
-          <div style="background:#0F0F0E;padding:22px 26px;display:grid;grid-template-columns:56px 1fr;gap:18px;align-items:baseline"><div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#ED9A4A">2020</div><div style="display:flex;flex-direction:column;gap:6px"><div style="font-size:14.5px;font-weight:400;line-height:1.6">臺灣台語語音辨識競賽 FSR 2020　產業組第一名</div><div style="font-size:12.5px;font-weight:300;color:#7a776e;line-height:1.75">Formosa Speech Recognition Challenge</div></div></div>
-          <div style="background:#0F0F0E;padding:22px 26px;display:grid;grid-template-columns:56px 1fr;gap:18px;align-items:baseline"><div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#ED9A4A">2018</div><div style="display:flex;flex-direction:column;gap:6px"><div style="font-size:14.5px;font-weight:400;line-height:1.6">國語語音辨識競賽 FSR 2018　產業組第二名</div><div style="font-size:12.5px;font-weight:300;color:#7a776e;line-height:1.75">Formosa Speech Recognition Challenge</div></div></div>
-          <div style="background:#0F0F0E;padding:22px 26px;display:grid;grid-template-columns:56px 1fr;gap:18px;align-items:baseline"><div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#ED9A4A">2008</div><div style="display:flex;flex-direction:column;gap:6px"><div style="font-size:14.5px;font-weight:400;line-height:1.6">最佳學生論文獎</div><div style="font-size:12.5px;font-weight:300;color:#7a776e;line-height:1.75">ISCSLP 2008，中國昆明</div></div></div>
+          <div class="r-gtc-56px-1fr r-display-grid" style="background:#0F0F0E;padding:22px 26px;display:grid;grid-template-columns:56px 1fr;gap:18px;align-items:baseline"><div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#ED9A4A">2025</div><div style="display:flex;flex-direction:column;gap:6px"><div style="font-size:14.5px;font-weight:400;line-height:1.6">技術類最佳論文獎</div><div style="font-size:12.5px;font-weight:300;color:#7a776e;line-height:1.75">O-COCOSDA 2025，印尼日惹</div></div></div>
+          <div class="r-gtc-56px-1fr r-display-grid" style="background:#0F0F0E;padding:22px 26px;display:grid;grid-template-columns:56px 1fr;gap:18px;align-items:baseline"><div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#ED9A4A">2022</div><div style="display:flex;flex-direction:column;gap:6px"><div style="font-size:14.5px;font-weight:400;line-height:1.6">臺灣客語語音辨識競賽 FSR 2022　一般組第一名</div><div style="font-size:12.5px;font-weight:300;color:#7a776e;line-height:1.75">Formosa Speech Recognition Challenge</div></div></div>
+          <div class="r-gtc-56px-1fr r-display-grid" style="background:#0F0F0E;padding:22px 26px;display:grid;grid-template-columns:56px 1fr;gap:18px;align-items:baseline"><div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#ED9A4A">2020</div><div style="display:flex;flex-direction:column;gap:6px"><div style="font-size:14.5px;font-weight:400;line-height:1.6">臺灣台語語音辨識競賽 FSR 2020　產業組第一名</div><div style="font-size:12.5px;font-weight:300;color:#7a776e;line-height:1.75">Formosa Speech Recognition Challenge</div></div></div>
+          <div class="r-gtc-56px-1fr r-display-grid" style="background:#0F0F0E;padding:22px 26px;display:grid;grid-template-columns:56px 1fr;gap:18px;align-items:baseline"><div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#ED9A4A">2018</div><div style="display:flex;flex-direction:column;gap:6px"><div style="font-size:14.5px;font-weight:400;line-height:1.6">國語語音辨識競賽 FSR 2018　產業組第二名</div><div style="font-size:12.5px;font-weight:300;color:#7a776e;line-height:1.75">Formosa Speech Recognition Challenge</div></div></div>
+          <div class="r-gtc-56px-1fr r-display-grid" style="background:#0F0F0E;padding:22px 26px;display:grid;grid-template-columns:56px 1fr;gap:18px;align-items:baseline"><div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#ED9A4A">2008</div><div style="display:flex;flex-direction:column;gap:6px"><div style="font-size:14.5px;font-weight:400;line-height:1.6">最佳學生論文獎</div><div style="font-size:12.5px;font-weight:300;color:#7a776e;line-height:1.75">ISCSLP 2008，中國昆明</div></div></div>
         </div>
       </div>
 
-      <div style="display:flex;flex-direction:column;gap:30px">
+      <div class="r-gap-30px" style="display:flex;flex-direction:column;gap:30px">
         <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
-          <div style="font-size:27px;font-weight:300;letter-spacing:-0.01em">媒體報導</div>
+          <div class="r-fs-27px" style="font-size:27px;font-weight:300;letter-spacing:-0.01em">媒體報導</div>
           <div style="border:1px solid #3a3833;color:#7a776e;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:5px 11px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">Press</div>
         </div>
         <div style="display:flex;flex-direction:column;gap:1px;background:#26251f;border:1px solid #26251f;border-radius:8px;overflow:hidden">
-          <a href="https://hakkanews.tw/2026/07/29/294068/" style="background:#0F0F0E;padding:22px 26px;display:grid;grid-template-columns:76px 1fr;gap:18px;align-items:baseline;color:#f4f3f0" style-hover="background:#16150F"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e">2026.07</div><div style="display:flex;flex-direction:column;gap:6px"><div style="font-size:14px;font-weight:400;line-height:1.65">一秒生成客語童話與雙人 Podcast！「客家 GPT」超神功能曝光</div><div style="font-size:12px;font-weight:300;color:#7a776e">客新聞</div></div></a>
-          <a href="https://udn.com/news/story/7240/8962411" style="background:#0F0F0E;padding:22px 26px;display:grid;grid-template-columns:76px 1fr;gap:18px;align-items:baseline;color:#f4f3f0" style-hover="background:#16150F"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e">2025.08</div><div style="display:flex;flex-direction:column;gap:6px"><div style="font-size:14px;font-weight:400;line-height:1.65">攻克 AI 語音技術兩大挑戰</div><div style="font-size:12px;font-weight:300;color:#7a776e">經濟日報</div></div></a>
-          <a href="https://www.ctee.com.tw/news/20250219701857-430502" style="background:#0F0F0E;padding:22px 26px;display:grid;grid-template-columns:76px 1fr;gap:18px;align-items:baseline;color:#f4f3f0" style-hover="background:#16150F"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e">2025.02</div><div style="display:flex;flex-direction:column;gap:6px"><div style="font-size:14px;font-weight:400;line-height:1.65">即時語音增強系統鎖定串流產業語音處理需求</div><div style="font-size:12px;font-weight:300;color:#7a776e">工商時報</div></div></a>
-          <a href="https://www.sinotrade.com.tw/richclub/news/670e2f1332ba0c9331e17cd6" style="background:#0F0F0E;padding:22px 26px;display:grid;grid-template-columns:76px 1fr;gap:18px;align-items:baseline;color:#f4f3f0" style-hover="background:#16150F"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e">2024.10</div><div style="display:flex;flex-direction:column;gap:6px"><div style="font-size:14px;font-weight:400;line-height:1.65">首款客語文字轉語音系統 VoxHakka 問市</div><div style="font-size:12px;font-weight:300;color:#7a776e">經濟日報</div></div></a>
-          <a href="https://www.sinotrade.com.tw/richclub/news/66e29f8332ba0c933165c586" style="background:#0F0F0E;padding:22px 26px;display:grid;grid-template-columns:76px 1fr;gap:18px;align-items:baseline;color:#f4f3f0" style-hover="background:#16150F"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e">2024.09</div><div style="display:flex;flex-direction:column;gap:6px"><div style="font-size:14px;font-weight:400;line-height:1.65">跨域語音增強技術，展現 AI 創新實力</div><div style="font-size:12px;font-weight:300;color:#7a776e">經濟日報</div></div></a>
+          <a href="https://hakkanews.tw/2026/07/29/294068/" class="r-gtc-76px-1fr r-display-grid" style="background:#0F0F0E;padding:22px 26px;display:grid;grid-template-columns:76px 1fr;gap:18px;align-items:baseline;color:#f4f3f0" style-hover="background:#16150F"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e">2026.07</div><div style="display:flex;flex-direction:column;gap:6px"><div style="font-size:14px;font-weight:400;line-height:1.65">一秒生成客語童話與雙人 Podcast！「客家 GPT」超神功能曝光</div><div style="font-size:12px;font-weight:300;color:#7a776e">客新聞</div></div></a>
+          <a href="https://udn.com/news/story/7240/8962411" class="r-gtc-76px-1fr r-display-grid" style="background:#0F0F0E;padding:22px 26px;display:grid;grid-template-columns:76px 1fr;gap:18px;align-items:baseline;color:#f4f3f0" style-hover="background:#16150F"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e">2025.08</div><div style="display:flex;flex-direction:column;gap:6px"><div style="font-size:14px;font-weight:400;line-height:1.65">攻克 AI 語音技術兩大挑戰</div><div style="font-size:12px;font-weight:300;color:#7a776e">經濟日報</div></div></a>
+          <a href="https://www.ctee.com.tw/news/20250219701857-430502" class="r-gtc-76px-1fr r-display-grid" style="background:#0F0F0E;padding:22px 26px;display:grid;grid-template-columns:76px 1fr;gap:18px;align-items:baseline;color:#f4f3f0" style-hover="background:#16150F"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e">2025.02</div><div style="display:flex;flex-direction:column;gap:6px"><div style="font-size:14px;font-weight:400;line-height:1.65">即時語音增強系統鎖定串流產業語音處理需求</div><div style="font-size:12px;font-weight:300;color:#7a776e">工商時報</div></div></a>
+          <a href="https://www.sinotrade.com.tw/richclub/news/670e2f1332ba0c9331e17cd6" class="r-gtc-76px-1fr r-display-grid" style="background:#0F0F0E;padding:22px 26px;display:grid;grid-template-columns:76px 1fr;gap:18px;align-items:baseline;color:#f4f3f0" style-hover="background:#16150F"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e">2024.10</div><div style="display:flex;flex-direction:column;gap:6px"><div style="font-size:14px;font-weight:400;line-height:1.65">首款客語文字轉語音系統 VoxHakka 問市</div><div style="font-size:12px;font-weight:300;color:#7a776e">經濟日報</div></div></a>
+          <a href="https://www.sinotrade.com.tw/richclub/news/66e29f8332ba0c933165c586" class="r-gtc-76px-1fr r-display-grid" style="background:#0F0F0E;padding:22px 26px;display:grid;grid-template-columns:76px 1fr;gap:18px;align-items:baseline;color:#f4f3f0" style-hover="background:#16150F"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e">2024.09</div><div style="display:flex;flex-direction:column;gap:6px"><div style="font-size:14px;font-weight:400;line-height:1.65">跨域語音增強技術，展現 AI 創新實力</div><div style="font-size:12px;font-weight:300;color:#7a776e">經濟日報</div></div></a>
         </div>
         <div style="font-size:12.5px;font-weight:300;color:#5e5b54;line-height:1.85">以上為核心團隊成員於過往任職單位主導之技術所獲報導。</div>
       </div>
@@ -613,10 +564,10 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
   </div>
 
   <div id="publications" style="border-top:1px solid #26251f">
-    <div style="max-width:1280px;margin:0 auto;padding:104px 56px 112px;display:flex;flex-direction:column;gap:36px">
+    <div class="r-mw-1280px r-pad-104px-56px" style="max-width:1280px;margin:0 auto;padding:104px 56px 112px;display:flex;flex-direction:column;gap:36px">
       <div style="display:flex;flex-direction:column;gap:16px">
         <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
-          <div style="font-size:34px;font-weight:300;letter-spacing:-0.01em">研究發表</div>
+          <div class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">研究發表</div>
           <div style="border:1px solid #3a3833;color:#7a776e;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:5px 11px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">Publications</div>
         </div>
         <div style="font-size:15px;font-weight:300;color:#8c8a84;line-height:1.9;max-width:720px;text-wrap:pretty">核心團隊成員與語音相關之同儕審查發表，涵蓋 Interspeech、ICASSP、IEEE ASRU、SLT、TASLP 等領域主要會議與期刊。這裡列出的是與語音技術直接相關的部分。</div>
@@ -632,7 +583,7 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
 
       <div style="display:flex;flex-direction:column;gap:1px;background:#26251f;border:1px solid #26251f;border-radius:8px;overflow:hidden">
         <sc-for list="{{ pubs }}" as="p" hint-placeholder-count="8">
-          <div style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
+          <div class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
             <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">{{ p.year }}</div>
             <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">{{ p.venue }}</div>
             <sc-if value="{{ p.hasUrl }}" hint-placeholder-val="{{ true }}">
@@ -651,9 +602,9 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
   </div>
 
   <div id="contact" style="background:#ED9A4A;color:#141413">
-    <div style="max-width:1280px;margin:0 auto;padding:104px 56px 112px;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start">
+    <div class="r-gap-72px r-mw-1280px r-gtc-1fr-1fr r-pad-104px-56px r-display-grid" style="max-width:1280px;margin:0 auto;padding:104px 56px 112px;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start">
       <div style="display:flex;flex-direction:column;gap:24px">
-        <div style="font-size:42px;font-weight:200;line-height:1.32;letter-spacing:-0.015em;text-wrap:pretty">先用你自己的音檔<br />驗證一次，再談導入。</div>
+        <div class="r-fs-42px" style="font-size:42px;font-weight:200;line-height:1.32;letter-spacing:-0.015em;text-wrap:pretty">先用你自己的音檔<br />驗證一次，再談導入。</div>
         <div style="font-size:15.5px;font-weight:300;color:#5c3f16;line-height:1.95;max-width:480px;text-wrap:pretty">我們可以用貴單位實際的會議錄音或客服對話做一次概念驗證，並提供方法論明確、可重現的評測報告，作為採購與技術審查的佐證。</div>
         <div style="display:flex;flex-direction:column;gap:11px;font-family:'IBM Plex Mono',monospace;font-size:13.5px;letter-spacing:0.02em;padding-top:8px">
           <a href="mailto:hazel@voxmosa.com" style="color:#141413;font-weight:500">hazel@voxmosa.com</a>
@@ -661,12 +612,12 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
         </div>
       </div>
 
-      <div style="background:#141413;border-radius:10px;padding:40px;display:flex;flex-direction:column;gap:22px">
+      <div class="r-pad-40px" style="background:#141413;border-radius:10px;padding:40px;display:flex;flex-direction:column;gap:22px">
         <div style="display:flex;flex-direction:column;gap:8px">
           <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#ED9A4A">申請 PoC</div>
           <div style="font-size:14px;font-weight:300;color:#8c8a84;line-height:1.8">兩個工作日內回覆</div>
         </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+        <div class="r-gtc-1fr-1fr r-display-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
           <div style="display:flex;flex-direction:column;gap:8px"><div style="font-size:12.5px;font-weight:300;color:#8c8a84">單位名稱</div><div style="border:1px solid #2e2d27;border-radius:4px;padding:13px 15px;background:#0F0F0E;font-size:13.5px;color:#4f4d47">例：某某銀行</div></div>
           <div style="display:flex;flex-direction:column;gap:8px"><div style="font-size:12.5px;font-weight:300;color:#8c8a84">聯絡人</div><div style="border:1px solid #2e2d27;border-radius:4px;padding:13px 15px;background:#0F0F0E;font-size:13.5px;color:#4f4d47">姓名</div></div>
         </div>
@@ -687,7 +638,7 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
   </div>
 
   <div style="border-top:1px solid #26251f">
-    <div style="max-width:1280px;margin:0 auto;padding:44px 56px;display:flex;justify-content:space-between;align-items:center;gap:40px;flex-wrap:wrap">
+    <div class="r-mw-1280px r-pad-44px r-gap-40px" style="max-width:1280px;margin:0 auto;padding:44px 56px;display:flex;justify-content:space-between;align-items:center;gap:40px;flex-wrap:wrap">
       <div style="display:flex;align-items:baseline;font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:300;letter-spacing:0.05em;line-height:1;color:#6f6c64">
         <span>V</span>
         <svg viewBox="0 0 200 120" preserveAspectRatio="xMinYMid slice" style="height:0.53em;width:0.8em;transform:translateY(0.0205em);overflow:visible;display:block;flex:none" fill="none" stroke="currentColor" stroke-linecap="round">
