@@ -175,11 +175,38 @@ hero 有一組 JS 驅動的聲波動畫，CSS 停不掉。量測器的做法是�
 > 375 與 768 立刻報出 `grid-template-columns 339px → 159.5px 159.5px`
 > 而 1440 保持通過（抓得到真實跑版）。
 
-## 仍然依賴的外部資源
+## 字型
 
-Google Fonts（`fonts.googleapis.com` / `fonts.gstatic.com`）尚未自架。
-首頁載入約 20 個 woff2 分割檔，多數來自 Noto Sans TC。
-若要一併自架，建議先做字型子集化，否則完整檔太大反而更慢。
+字型也是自架的，所以整個網站**沒有任何外部請求**（`test/render-check.js`
+的 `normal` 情境會驗證這件事）。
+
+```sh
+python3 -m venv .venv && .venv/bin/pip install fonttools brotli
+.venv/bin/python tools/build-fonts.py
+```
+
+腳本會抓 Google Fonts 的原始 TTF，子集化成站上實際用到的字元，輸出
+`vendor/fonts/*.woff2` 與 `vendor/fonts/fonts.css`，頁面只 link 後者。
+
+必須子集化的理由是 Noto Sans TC：完整檔每個字重好幾 MB，直接自架會比
+Google Fonts 慢。取站上實際用到的約 1000 個字元（978 個是中日韓字）之後，
+九個字重合計約 600KB。
+
+> ⚠️ **改過頁面文案後要重跑這支腳本**，否則新增的字會變成豆腐格。
+> 字元集是從四個 HTML 的原始碼取聯集，所以連 hero 動畫那些寫在
+> `data-dc-script` 裡的字串也涵蓋在內。
+
+### 自架後有 4 個符號改變了外觀
+
+`–` `—` `…` `≈` 這四個符號不在 Google 實際送出的 latin 子集範圍內，
+過去是掉到系統字型去畫的；自架之後改由品牌字型自己畫。
+
+這是刻意接受的變化，因為它比較好看：品牌字型的破折號與刪節號會跟隨
+字重（頁面多處用 300），系統字型畫出來明顯偏粗偏寬，與周圍細體文字不搭。
+代價是版面有 1–4px 的位移，所以 `test/baseline/` 已隨之更新。
+若想回到原本的外觀，在 `tools/build-fonts.py` 的字元集裡排除這四個碼位即可。
+
+字型授權見 `vendor/fonts/LICENSE.md`（三套皆為 SIL OFL 1.1，允許子集化與散布）。
 
 ## 部署
 

@@ -1,0 +1,11 @@
+/* 由 tools/build-fonts.py 產生 —— 不要手動編輯。
+   改過頁面文案後請重跑，否則新字會缺字。 */
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url('./ibm-plex-mono-400.woff2') format('woff2')}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-display:swap;src:url('./ibm-plex-mono-500.woff2') format('woff2')}
+@font-face{font-family:'Noto Sans TC';font-style:normal;font-weight:200;font-display:swap;src:url('./noto-sans-tc-200.woff2') format('woff2')}
+@font-face{font-family:'Noto Sans TC';font-style:normal;font-weight:300;font-display:swap;src:url('./noto-sans-tc-300.woff2') format('woff2')}
+@font-face{font-family:'Noto Sans TC';font-style:normal;font-weight:400;font-display:swap;src:url('./noto-sans-tc-400.woff2') format('woff2')}
+@font-face{font-family:'Noto Sans TC';font-style:normal;font-weight:500;font-display:swap;src:url('./noto-sans-tc-500.woff2') format('woff2')}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:300;font-display:swap;src:url('./space-grotesk-300.woff2') format('woff2')}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:400;font-display:swap;src:url('./space-grotesk-400.woff2') format('woff2')}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:500;font-display:swap;src:url('./space-grotesk-500.woff2') format('woff2')}

@@ -23,6 +23,7 @@ const { spawn } = require("child_process");
 
 const ROOT = path.resolve(__dirname, "..");
 const BASELINE = path.join(__dirname, "baseline");
+const CURRENT = path.join(__dirname, "current");
 const PAGES = ["index.html", "mosatalk.html", "mosaminutes.html", "mosascore.html"];
 
 // 手機 / 平板 / 桌機 —— 對齊頁面 media query 的斷點（480/900/1080）
@@ -37,7 +38,8 @@ const CHROME_CANDIDATES = [
   "/usr/bin/chromium",
 ];
 const MIME = { ".html": "text/html", ".js": "text/javascript", ".css": "text/css",
-               ".png": "image/png", ".svg": "image/svg+xml" };
+               ".png": "image/png", ".svg": "image/svg+xml",
+               ".woff2": "font/woff2" };
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
 function findChrome() {
@@ -192,7 +194,7 @@ function compare(name, before, after) {
     for (const width of WIDTHS) {
       const key = `${page.replace(".html", "")}-${width}`;
       const txt = path.join(BASELINE, `${key}.txt`);
-      const png = path.join(BASELINE, `${key}.png`);
+      const png = path.join(BASELINE, `${key}.png`);  // 只有 --save 會寫這個
       const { layout, png: shot } = await capture(chromePath, base, page, width, port++);
 
       if (save) {
@@ -204,8 +206,10 @@ function compare(name, before, after) {
       if (!fs.existsSync(txt)) { console.log(`⚠️  ${key} 沒有基準，請先跑 --save`); continue; }
       checked++;
       const diffs = compare(key, fs.readFileSync(txt, "utf8"), layout);
-      // 截圖一律更新成當前狀態，方便用眼睛比對；基準截圖在 git 裡看得到舊版
-      fs.writeFileSync(png, shot);
+      // 比對模式的截圖寫到 current/，絕不覆寫基準 ——
+      // 覆寫等於毀掉「前後對照」這件事本身
+      fs.mkdirSync(CURRENT, { recursive: true });
+      fs.writeFileSync(path.join(CURRENT, `${key}.png`), shot);
       if (!diffs.length) { console.log(`✅ ${key.padEnd(22)} 版面一致`); continue; }
       failures++;
       console.log(`❌ ${key.padEnd(22)} ${diffs.length} 處差異`);

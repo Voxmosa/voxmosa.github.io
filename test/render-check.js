@@ -30,7 +30,8 @@ const CHROME_CANDIDATES = [
 ];
 
 const MIME = { ".html": "text/html", ".js": "text/javascript", ".css": "text/css",
-               ".png": "image/png", ".svg": "image/svg+xml" };
+               ".png": "image/png", ".svg": "image/svg+xml",
+               ".woff2": "font/woff2" };
 
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
@@ -156,9 +157,12 @@ async function runOne(chromePath, base, page, scenario, debugPort) {
       // 自架 React 之後，正常運作時唯一該出現的外部網域只剩 Google Fonts。
       // 只在本地 React 可用的情境檢查 —— 一旦本地檔案被擋掉，support.js 會
       // 依設計回頭去抓 unpkg 當備援，那些請求出現在這裡是正常的。
-      if (sc.checkNoCdn) {
-        const badCdn = i.external.filter(u => /unpkg|jsdelivr|cdnjs|esm\.sh/.test(u));
-        if (badCdn.length) { failures++; console.log(`   └ ❌ 仍在向公開 CDN 取件：${badCdn[0]}`); }
+      // React 與字型都自架之後，正常運作時應該完全沒有對外請求。
+      // 只在本地資源可用的情境檢查 —— 一旦本地檔案被擋掉，support.js 會
+      // 依設計回頭去抓 unpkg 當備援，那些請求出現在這裡是正常的。
+      if (sc.checkNoCdn && i.external.length) {
+        failures++;
+        console.log(`   └ ❌ 出現 ${i.external.length} 個外部請求：${i.external[0]}`);
       }
       if (i.errors.length) console.log(`   └ ⚠️  console 例外：${i.errors[0].split("\n")[0]}`);
     }
