@@ -59,7 +59,8 @@ def main():
     text = charset()
     text_file = OUT / ".charset.txt"
     text_file.write_text(text, encoding="utf-8")
-    print(f"字元集：{len(text)} 個")
+    cjk = sum(1 for c in text if ord(c) > 0x2E80)
+    print(f"字元集：{len(text)} 個，其中 {cjk} 個中日韓與全形符號")
 
     css = fetch(CSS_URL).decode("utf-8")
     faces = re.findall(

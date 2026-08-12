@@ -1,24 +1,38 @@
 # voxmosa.github.io
 
-Voxmosa 官方網站（靜態頁面，無需建置流程）。
+Voxmosa 官方網站。靜態頁面，**沒有建置流程** —— 改完 HTML 直接 push 就上線。
+所有資源都在 repo 內，正常運作時不對外發出任何請求。
 
-| 檔案 | 內容 |
+| 路徑 | 內容 |
 | --- | --- |
 | `index.html` | 首頁 |
 | `mosatalk.html` | MosaTalk：即時語音 AI 對話系統 |
 | `mosaminutes.html` | MosaMinutes：地端 AI 會議記錄平台 |
 | `mosascore.html` | MosaScore：地端通話質檢與購買意圖分析 |
-| `support.js` | dc-runtime：解析 `<x-dc>` 模板並以 React 渲染 |
-| `vendor/` | 自架的 React 18.3.1 UMD 檔（見下方） |
+| `support.js` | dc-runtime：解析 `<x-dc>` 模板並以 React 渲染。**產生物，勿手改** |
+| `vendor/` | 自架的 React 18.3.1 UMD 檔 |
+| `vendor/fonts/` | 子集化後自架的字型（含授權說明）|
+| `test/` | 渲染與版面的回歸測試，`test/baseline/` 為版面基準 |
+| `tools/build-fonts.py` | 重新產生字型子集 |
+| `og.png` | 社群分享縮圖，四頁共用 |
+| `CNAME` / `.nojekyll` | GitHub Pages 的自訂網域與停用 Jekyll |
+
+改動之後有兩件事要記得，兩者都有測試把關（見[測試](#測試)）：
+
+- **改過文案** → 重跑 `tools/build-fonts.py`，否則新字缺字
+- **改過 inline style 的值** → 一併更新對應的 `r-*` class 名稱
 
 ## 頁面結構
 
 每個 HTML 的版面寫在 `<body>` 的 `<x-dc>` 模板裡，由 `support.js`
-在瀏覽器端解析、掛載成 React 元件。因此頁面是**用戶端渲染**的：
-關掉 JavaScript 或腳本載入失敗時，畫面會是空白。
+在瀏覽器端解析、掛載成 React 元件 —— 也就是說頁面是**用戶端渲染**的。
+
+渲染沒發生時（JS 關閉、腳本載入失敗）不會變成空白頁：`<x-dc>` 裡本來就是
+可讀的 HTML，有一層[兜底](#渲染失敗的兜底)會把它顯示出來。
 
 `support.js` 由 `dc-runtime/src/*.ts` 產生，屬於 vendored 產物，
 **不要直接編輯**；要改請回 dc-runtime 專案重新 build 後覆蓋。
+本專案所有調整都刻意繞開它，因此重新 build 覆蓋不會弄丟任何設定。
 
 ### 響應式：`r-*` class
 
@@ -89,10 +103,13 @@ EOF
 選這個選擇器是因為特異性 (0,0,3) 勝過 support.js 的 (0,0,1)，
 不必依賴 `<style>` 的先後順序。
 
-這個退化畫面是可讀的：`<x-dc>` 裡是純 HTML 加 inline style，沒有任何插值或
-樣板指令，而排版所需的 CSS 就在 `<helmet>` 的 `<style>` 內。
-只有靠 JS 產生的內容（例如首頁 hero 的示範動畫）會缺席 —
-首頁可見文字從 8199 字降到 4055 字，但導覽、標題、產品說明、CTA 都在。
+這個退化畫面是可讀的：`<x-dc>` 裡是純 HTML 加 inline style，排版所需的 CSS
+就在 `<helmet>` 的 `<style>` 內。首頁可見文字從 8199 字降到 3515 字，
+但導覽、標題、產品說明、CTA 都在。
+
+模板另外用了 `{{ … }}` 插值與 `<sc-for>` / `<sc-if>`，這些要有執行期資料
+才有意義。看門狗顯示模板時會一併把 `sc-for` / `sc-if` 整塊藏起來，
+並抹掉散落的 `{{ … }}` —— 否則畫面上會出現一整排 `{{ p.year }}` 之類的佔位符。
 
 ## 為什麼自架 React
 
@@ -154,6 +171,38 @@ grep -n "REACT_SRI =\|REACT_DOM_SRI =" support.js
 
 ## 測試
 
+推 code 之前跑這三支。連結檢查不到一秒，另外兩支合計約 5 分 40 秒
+（實測：內容 4:28、版面 1:14）：
+
+```sh
+node test/link-check.js     # 連結會不會 404、導覽列各頁是否一致
+node test/render-check.js   # 內容有沒有渲染出來（含各種失敗情境）
+node test/layout-check.js   # 版面有沒有跑掉
+```
+
+大半時間花在內容測試的「極慢網路」情境上，它刻意等滿 45 秒 ——
+趕時間可以先跑版面測試，或用 `node test/render-check.js normal` 快速確認。
+
+兩支都以離開碼回報結果，失敗會列出是哪一頁、哪個元素、差在哪裡。
+版面若是**刻意**改動，用 `node test/layout-check.js --save` 更新基準，
+並把基準的 diff 一起提交 —— 那份 diff 就是這次視覺改動的紀錄。
+
+### 連結
+
+```sh
+node test/link-check.js
+```
+
+檢查每個站內連結的目標檔案與錨點 id 是否真的存在，並確認四頁的導覽列
+項目一致。站外連結只計數、不連線驗證，以免測試依賴外部網路。
+
+> 這支測試是補寫的：子頁的「技術實力」「為什麼地端」曾指向
+> `Voxmosa Home.dc.html#tech` —— 編輯器留下的檔名，repo 裡沒有這個檔案，
+> 點下去就是 404；同時 mosascore 的導覽列漏了「技術實力」。
+> 兩者渲染都正常，所以另外兩支測試完全看不到，只有實際點下去才會發現。
+
+### 內容
+
 ```sh
 node test/render-check.js          # 全部情境
 node test/render-check.js blocked  # 只跑單一情境
@@ -164,7 +213,7 @@ Chrome DevTools Protocol 驅動 headless Chrome，對四個頁面各跑四個情
 
 | 情境 | 驗證的事 |
 | --- | --- |
-| `normal` | React 渲染成功，且完全沒有向公開 CDN 取件 |
+| `normal` | React 渲染成功，且**完全沒有任何外部請求**（含字型）|
 | `blocked` | 拿不到 React 時，兜底把原始模板顯示回來（沒有兜底這裡是 0 字） |
 | `nojs` | 關閉 JavaScript 仍看得到內容 |
 | `slow` | 30KB/s 下看門狗不會過早開燈，最終仍正常渲染 |
@@ -185,7 +234,10 @@ node test/layout-check.js --save   # 重新產生基準
 只有真的動了 DOM 結構才會對不上（那會被明確報成結構差異）。
 
 基準是 `test/baseline/*.txt`，純文字所以 `git diff` 直接看得出哪個元素在哪個
-寬度下跑掉了。同目錄的 `.png` 全頁截圖供人眼比對，不進版控（見 `.gitignore`）。
+寬度下跑掉了。全頁截圖供人眼比對，兩者都不進版控（見 `.gitignore`）：
+
+- `--save` 寫入 `test/baseline/*.png` —— 基準當下的樣子
+- 比對模式寫入 `test/current/*.png` —— **不會覆寫基準**，前後才能並排比對
 
 hero 有一組 JS 驅動的聲波動畫，CSS 停不掉。量測器的做法是在同一次載入內間隔
 取兩張快照，凡是自己就會變的欄位一律標成 `*`，比對時視為萬用字元 ——
@@ -210,12 +262,20 @@ python3 -m venv .venv && .venv/bin/pip install fonttools brotli
 `vendor/fonts/*.woff2` 與 `vendor/fonts/fonts.css`，頁面只 link 後者。
 
 必須子集化的理由是 Noto Sans TC：完整檔每個字重好幾 MB，直接自架會比
-Google Fonts 慢。取站上實際用到的約 1000 個字元（978 個是中日韓字）之後，
-九個字重合計約 600KB。
+Google Fonts 慢。取站上實際用到的字元之後，九個字重合計 617KB
+（Noto Sans TC 四個字重各約 145KB，其餘五個都在 10KB 以下）。
+
+字元集會隨文案增減，目前是 1037 個字元、其中 935 個中日韓與全形符號。
+這兩個數字不必手動維護 —— 執行 `tools/build-fonts.py` 時會印出當下的值。
 
 > ⚠️ **改過頁面文案後要重跑這支腳本**，否則新增的字會變成豆腐格。
-> 字元集是從四個 HTML 的原始碼取聯集，所以連 hero 動畫那些寫在
-> `data-dc-script` 裡的字串也涵蓋在內。
+
+字元集是從四個 HTML 的**原始碼**取聯集，不是從渲染結果 —— 這樣連 hero 動畫
+那些寫在 `data-dc-script` 裡、只有執行期才出現的字串也一定涵蓋得到。
+
+代價是原始碼裡的中文註解與 class 名稱也會貢獻字元，讓子集略大於實際所需
+（目前多出來的部分不到 1KB）。這個取捨是刻意的：漏字是使用者看得到的缺陷，
+多幾 KB 不是。所以請勿為了省空間改成只掃描可見文字。
 
 ### 自架後有 4 個符號改變了外觀
 
@@ -246,3 +306,12 @@ python3 -m http.server 8000
 ```
 
 React 與字型都自架之後，頁面在完全離線的環境也能正常渲染。
+
+## 授權
+
+網站本身採 Unlicense（見 `LICENSE`），釋出至公眾領域。
+
+`vendor/` 內的第三方資源各自沿用原授權，不受上述影響：
+
+- React / ReactDOM —— MIT，Meta Platforms, Inc.
+- 三套字型 —— SIL OFL 1.1，詳見 `vendor/fonts/LICENSE.md`
