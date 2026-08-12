@@ -18,8 +18,22 @@
     if (!document.querySelector("x-dc")) return;   // 模板已被取走，救不回來
     var s = document.createElement("style");
     // 特異性 (0,0,3)，勝過 support.js 的 x-dc{display:none!important} (0,0,1)
-    s.textContent = "html body x-dc{display:block!important}";
+    // sc-for / sc-if 的內容要有執行期資料才有意義，退化時整塊藏起來，
+    // 否則畫面上會出現一整排 {{ p.year }} 之類的佔位符。
+    s.textContent = "html body x-dc{display:block!important}" +
+                    "html body x-dc sc-for,html body x-dc sc-if{display:none!important}";
     document.head.appendChild(s);
+    scrubPlaceholders();
+  }
+  // 清掉散落在一般元素裡、不被上面規則涵蓋的 {{ … }}
+  function scrubPlaceholders() {
+    var dc = document.querySelector("x-dc");
+    if (!dc || !document.createTreeWalker) return;
+    var walk = document.createTreeWalker(dc, NodeFilter.SHOW_TEXT, null, false);
+    var hits = [], n;
+    while ((n = walk.nextNode())) if (n.nodeValue.indexOf("{{") !== -1) hits.push(n);
+    for (var i = 0; i < hits.length; i++)
+      hits[i].nodeValue = hits[i].nodeValue.replace(/\{\{[^}]*\}\}/g, "");
   }
   window.addEventListener("load", function () { setTimeout(reveal, GRACE_MS); });
 })();
@@ -103,8 +117,8 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
         <a href="mosatalk.html">MosaTalk</a>
         <a href="mosaminutes.html" style="color:#ED9A4A">MosaMinutes</a>
         <a href="mosascore.html">MosaScore</a>
-        <a href="Voxmosa Home.dc.html#tech">技術實力</a>
-        <a href="Voxmosa Home.dc.html#onprem">為什麼地端</a>
+        <a href="index.html#tech">技術實力</a>
+        <a href="index.html#onprem">為什麼地端</a>
         <a href="#contact" style="background:#ED9A4A;color:#141413;padding:10px 19px;border-radius:4px;font-size:13.5px;font-weight:500">申請 PoC</a>
       </div>
     </div>

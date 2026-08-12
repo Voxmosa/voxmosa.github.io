@@ -149,6 +149,18 @@ function maskUnstable(a, b) {
   }).join("\n");
 }
 
+// 沿用舊基準已標記的 "*"，讓遮罩只增不減。DOM 結構變動時直接採用新的，
+// 因為行與行的對應關係已經不成立了。
+function mergeMasks(oldTxt, newTxt) {
+  const a = oldTxt.split("\n"), b = newTxt.split("\n");
+  if (a.length !== b.length) return newTxt;
+  return b.map((line, i) => {
+    const fo = a[i].split("|"), fn = line.split("|");
+    if (fo[0] !== fn[0]) return line;          // 路徑對不上，不合併
+    return fn.map((v, k) => (fo[k] === "*" ? "*" : v)).join("|");
+  }).join("\n");
+}
+
 function compare(name, before, after) {
   const a = before.split("\n"), b = after.split("\n");
   const diffs = [];
@@ -198,7 +210,13 @@ function compare(name, before, after) {
       const { layout, png: shot } = await capture(chromePath, base, page, width, port++);
 
       if (save) {
-        fs.writeFileSync(txt, layout);
+        // 遮罩單調累積：一旦某欄位被觀察到會自己變動，就永遠視為不穩定。
+        // 否則某根聲波柱剛好在兩次快照間靜止，就會被記成具體數值，
+        // 造成基準每次重產都不一樣，日後還可能被誤報成跑版。
+        const merged = fs.existsSync(txt)
+          ? mergeMasks(fs.readFileSync(txt, "utf8"), layout)
+          : layout;
+        fs.writeFileSync(txt, merged);
         fs.writeFileSync(png, shot);
         console.log(`✅ ${key.padEnd(22)} ${layout.split("\n").length} 個元素  截圖 ${Math.round(shot.length / 1024)}KB`);
         continue;
