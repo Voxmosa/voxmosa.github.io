@@ -8,13 +8,88 @@ Voxmosa 官方網站（靜態頁面，無需建置流程）。
 | `mosatalk.html` | MosaTalk：即時語音 AI 對話系統 |
 | `mosaminutes.html` | MosaMinutes：地端 AI 會議記錄平台 |
 | `mosascore.html` | MosaScore：地端通話質檢與購買意圖分析 |
+| `support.js` | dc-runtime：解析 `<x-dc>` 模板並以 React 渲染 |
+| `vendor/` | 自架的 React 18.3.1 UMD 檔（見下方） |
+
+## 頁面結構
+
+每個 HTML 的版面寫在 `<body>` 的 `<x-dc>` 模板裡，由 `support.js`
+在瀏覽器端解析、掛載成 React 元件。因此頁面是**用戶端渲染**的：
+關掉 JavaScript 或腳本載入失敗時，畫面會是空白。
+
+`support.js` 由 `dc-runtime/src/*.ts` 產生，屬於 vendored 產物，
+**不要直接編輯**；要改請回 dc-runtime 專案重新 build 後覆蓋。
+
+## 為什麼自架 React
+
+React 與 ReactDOM 的 UMD 檔放在 `vendor/`，隨 repo 一起部署，
+不從 unpkg 或任何公開 CDN 取得。兩個理由：
+
+1. **消除單點故障。** 外部 CDN 一旦無法連線，整個網站就是空白頁。
+2. **企業內網。** 目標客戶多半是會談地端部署的公司，這類內網常擋外部 CDN。
+   官網在客戶辦公室打不開，是最不該發生的失敗情境；產品主打「跑在自己的機房」，
+   官網卻依賴外部 CDN，論述上也不一致。
+
+### 做法
+
+`support.js` 的 `loadReactUmd()` 開頭是：
+
+```js
+if (w.React && w.ReactDOM) return Promise.resolve();
+```
+
+只要 `window.React` 與 `window.ReactDOM` 在它執行前就存在，它就不會去抓 CDN。
+所以四個頁面的 `<head>` 都是這個順序，**React 必須排在 `support.js` 前面**：
+
+```html
+<script src="./vendor/react.production.min.js"></script>
+<script src="./vendor/react-dom.production.min.js"></script>
+<script src="./support.js"></script>
+```
+
+這樣就不必修改 `support.js` — 它裡面的 `REACT_URL` / `BABEL_URL` 常數原封不動，
+之後從 dc-runtime 重新 build 覆蓋時，這個設定也不會被蓋掉。
+
+### 升級 React 版本
+
+```sh
+V=18.3.1
+curl -sfL -o vendor/react.production.min.js \
+  https://unpkg.com/react@$V/umd/react.production.min.js
+curl -sfL -o vendor/react-dom.production.min.js \
+  https://unpkg.com/react-dom@$V/umd/react-dom.production.min.js
+```
+
+下載後建議比對雜湊，確認抓到的檔案正確 —
+`support.js` 裡的 `REACT_SRI` / `REACT_DOM_SRI` 存著對應版本的 SRI 值：
+
+```sh
+openssl dgst -sha384 -binary vendor/react.production.min.js | openssl base64 -A
+grep -n "REACT_SRI =\|REACT_DOM_SRI =" support.js
+```
+
+版本需與 `support.js` 內的 `REACT_URL` 一致，否則 dc-runtime 可能對不上 API。
+
+## 仍然依賴的外部資源
+
+Google Fonts（`fonts.googleapis.com` / `fonts.gstatic.com`）尚未自架。
+首頁載入約 20 個 woff2 分割檔，多數來自 Noto Sans TC。
+若要一併自架，建議先做字型子集化，否則完整檔太大反而更慢。
 
 ## 部署
 
-將本資料夾內所有檔案（含 `.nojekyll`）放到 repository 根目錄，push 到 `main`，
-在 Settings → Pages 選擇 Deploy from a branch → `main` / `/ (root)`。
-
-每個 HTML 皆為單一自含檔案（字型、腳本、樣式全部內嵌），可離線開啟，
-彼此以相對路徑互連，不依賴任何外部資源或 CDN。
+將本資料夾內所有檔案（含 `.nojekyll` 與 `vendor/`）放到 repository 根目錄，
+push 到 `main`，在 Settings → Pages 選擇 Deploy from a branch → `main` / `/ (root)`。
 
 > `.nojekyll` 用於停用 Jekyll 處理，避免底線開頭的檔名被忽略。
+
+## 本機預覽
+
+直接用瀏覽器點開 HTML（`file://`）即可，`support.js` 與 `vendor/` 都是相對路徑，
+不受 CORS 限制。若要模擬正式環境：
+
+```sh
+python3 -m http.server 8000
+```
+
+自架 React 之後，除了 Google Fonts 之外，頁面在完全離線的環境也能正常渲染。
