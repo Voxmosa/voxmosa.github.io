@@ -229,4 +229,4 @@ push 到 `main`，在 Settings → Pages 選擇 Deploy from a branch → `main` 
 python3 -m http.server 8000
 ```
 
-自架 React 之後，除了 Google Fonts 之外，頁面在完全離線的環境也能正常渲染。
+React 與字型都自架之後，頁面在完全離線的環境也能正常渲染。
