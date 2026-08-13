@@ -8,8 +8,8 @@ Google Fonts 慢。這裡只保留站上實際用到的字元（目前約 1000 �
 是中日韓字），四個字重加起來壓到可以接受的大小。
 
 ⚠️  改過任何頁面文案之後要重跑這支腳本，否則新字會變成豆腐格。
-    字元集是從四個 HTML 的原始碼取聯集，所以連 hero 動畫那些寫在
-    data-dc-script 裡的字串也會被涵蓋。
+    字元集是從四個 HTML 的原始碼取聯集，所以連只在 JavaScript 執行後才
+    出現的字串（例如動畫裡的文字）也會被涵蓋。
 
 需要 fonttools 與 brotli：
     python3 -m venv .venv && .venv/bin/pip install fonttools brotli
