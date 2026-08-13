@@ -1,19 +1,18 @@
 # voxmosa.github.io
 
-Voxmosa 官方網站。靜態頁面，**沒有建置流程** —— 改完 HTML 直接 push 就上線。
-所有資源都在 repo 內，正常運作時不對外發出任何請求。
+Voxmosa 官方網站。**純靜態 HTML，沒有建置流程** —— 改完直接 push 就上線。
+所有資源都在 repo 內，頁面完全不對外發出請求，關掉 JavaScript 內容也照樣完整。
 
 | 路徑 | 內容 |
 | --- | --- |
-| `index.html` | 首頁 |
+| `index.html` | 首頁（含 hero 聲波動畫與論文分類篩選）|
 | `mosatalk.html` | MosaTalk：即時語音 AI 對話系統 |
 | `mosaminutes.html` | MosaMinutes：地端 AI 會議記錄平台 |
-| `mosascore.html` | MosaScore：地端通話質檢與購買意圖分析 |
-| `support.js` | dc-runtime：解析 `<x-dc>` 模板並以 React 渲染。**產生物，勿手改** |
-| `vendor/` | 自架的 React 18.3.1 UMD 檔 |
+| `mosascore.html` | MosaScore：地端通話質檢與購買意圖分析（含通話分析動畫）|
 | `vendor/fonts/` | 子集化後自架的字型（含授權說明）|
-| `test/` | 渲染與版面的回歸測試，`test/baseline/` 為版面基準 |
+| `test/` | 回歸測試，`test/baseline/` 為版面基準 |
 | `tools/build-fonts.py` | 重新產生字型子集 |
+| `tools/bake.js` | 把 `<x-dc>` 模板頁烘焙成靜態 HTML（已無頁面需要，保留備查）|
 | `og.png` | 社群分享縮圖，四頁共用 |
 | `CNAME` / `.nojekyll` | GitHub Pages 的自訂網域與停用 Jekyll |
 
@@ -24,36 +23,44 @@ Voxmosa 官方網站。靜態頁面，**沒有建置流程** —— 改完 HTML 
 
 ## 頁面結構
 
-每個 HTML 的版面寫在 `<body>` 的 `<x-dc>` 模板裡，由 `support.js`
-在瀏覽器端解析、掛載成 React 元件 —— 也就是說頁面是**用戶端渲染**的。
+版面直接寫在 HTML 裡，用 inline style。整站只有兩段 JavaScript，
+都是頁面自己的原生程式碼，沒有任何框架：
 
-渲染沒發生時（JS 關閉、腳本載入失敗）不會變成空白頁：`<x-dc>` 裡本來就是
-可讀的 HTML，有一層[兜底](#渲染失敗的兜底)會把它顯示出來。
+| 位置 | 作用 |
+| --- | --- |
+| `index.html` 末尾 | hero 的 44 根聲波柱動畫、逐字稿分段揭露、論文分類篩選 |
+| `mosascore.html` 末尾 | 通話分析示範：每 1.5 秒揭露一句對話，並畫出分數折線 |
 
-`support.js` 由 `dc-runtime/src/*.ts` 產生，屬於 vendored 產物，
-**不要直接編輯**；要改請回 dc-runtime 專案重新 build 後覆蓋。
-本專案所有調整都刻意繞開它，因此重新 build 覆蓋不會弄丟任何設定
-（例如自架 React 是用「在它之前先掛好 `window.React`」達成的，見下方）。
+兩者的**靜態標記都是「動畫跑完」的狀態**，腳本只是把它倒帶重播。
+因此關掉 JavaScript 時看到的是完整內容，而不是空殼 ——
+`test/render-check.js` 會斷言有無 JavaScript 的可見文字量完全相同。
+
+兩段動畫都遵守 `prefers-reduced-motion`（停在完整狀態不播放），
+並在分頁切到背景時暫停。
 
 ### 這些頁面的來歷
 
 頁面原本是用 **Claude Design** 這個視覺編輯器產出的，之後改由直接編輯 HTML 維護。
-知道這件事才看得懂 repo 裡幾樣東西為什麼長這樣：
+編輯器退場後，那套用戶端渲染架構就成了為一個不存在的工作流程付的成本，
+因此四個頁面都已烘焙成靜態 HTML，`support.js`（69KB）與 React（142KB）隨之移除。
 
-| 東西 | 來歷 |
-| --- | --- |
-| `<x-dc>` 模板、`{{ }}` 插值、`<sc-for>` / `<sc-if>` | 編輯器的模板格式 |
-| `style-hover` 屬性 | 編輯器的懸停樣式，由 runtime 在執行期轉成真正的樣式 |
-| `<script type="text/x-dc" data-props>` | 編輯器的可調參數面板定義 |
-| `support.js` 裡的 `__dcAnnotatedTemplate`、postMessage | 編輯器與頁面之間的橋接，正式站上用不到 |
+知道這段來歷，才看得懂 repo 裡幾樣東西為什麼長這樣：
 
-編輯器已不再使用，所以上述機制目前只剩「讓頁面能被渲染出來」這一個用途。
-換句話說，整套用戶端渲染是為了一個已經不存在的工作流程而付的成本 ——
-若要簡化，方向是把頁面烘焙成純靜態 HTML（見[後續可做的事](#後續可做的事)）。
+| 曾經有的東西 | 來歷 | 現況 |
+| --- | --- | --- |
+| `<x-dc>` 模板、`{{ }}` 插值、`<sc-for>` / `<sc-if>` | 編輯器的模板格式 | 已展開成靜態標記 |
+| `style-hover` 屬性 | 編輯器的懸停樣式，runtime 會轉成 `.scpN:hover` 規則 | 已改寫成 `.hover-panel` / `.hover-accent` 的 CSS |
+| `<script type="text/x-dc" data-props>` | 編輯器的可調參數面板定義 | 已移除，預設值直接寫進標記 |
+| `support.js`、`vendor/react*.js` | dc-runtime 與 React | 已移除 |
+| `#dc-root` / `.sc-host` 兩層 `<div>` | runtime 的掛載點 | **刻意保留**，見下 |
+
+`#dc-root > .sc-host` 是 runtime 的殘留物，看起來很想刪。保留它們是因為
+烘焙時 DOM 結構不變，`test/layout-check.js` 才能逐像素證明烘焙前後等價；
+真要清掉是獨立的一步，清完需要重新產生版面基準。
 
 ### 響應式：`r-*` class
 
-版面是 inline style 寫的，響應式覆蓋則集中在 `<helmet>` 的 `<style>` 內，
+版面是 inline style 寫的，響應式覆蓋則集中在 `<head>` 的 `<style>` 內，
 以 `r-<屬性>-<值>` 命名的 class 掛勾：
 
 ```html
@@ -108,84 +115,6 @@ EOF
 - `r-pad-96px-56px` 過去沒有任何元素的值真的是 `96px 56px`，
   它命中的兩種值全都是意外 —— class 名稱在描述一個不存在的東西。
 
-### 渲染失敗的兜底
-
-`support.js` 一執行就注入 `x-dc{display:none!important}` 把原始模板藏起來，
-之後才非同步載入 React 渲染。問題是它的失敗路徑只有 `console.error` 後 rethrow，
-**不會把模板顯示回來** — 所以只要渲染沒發生，使用者看到的就是全白頁。
-
-因此每個頁面在 `support.js` 之後有一段看門狗：`load` 事件後再等 2.5 秒，
-若 `#dc-root` 仍然沒有內容而 `<x-dc>` 還在，就注入
-`html body x-dc{display:block!important}` 把原始模板顯示出來。
-選這個選擇器是因為特異性 (0,0,3) 勝過 support.js 的 (0,0,1)，
-不必依賴 `<style>` 的先後順序。
-
-這個退化畫面是可讀的：`<x-dc>` 裡是純 HTML 加 inline style，排版所需的 CSS
-就在 `<helmet>` 的 `<style>` 內。首頁可見文字從 8199 字降到 3515 字，
-但導覽、標題、產品說明、CTA 都在。
-
-模板另外用了 `{{ … }}` 插值與 `<sc-for>` / `<sc-if>`，這些要有執行期資料
-才有意義。看門狗顯示模板時會一併把 `sc-for` / `sc-if` 整塊藏起來，
-並抹掉散落的 `{{ … }}` —— 否則畫面上會出現一整排 `{{ p.year }}` 之類的佔位符。
-
-## 為什麼自架 React
-
-React 與 ReactDOM 的 UMD 檔放在 `vendor/`，隨 repo 一起部署，
-不從 unpkg 或任何公開 CDN 取得。兩個理由：
-
-1. **消除單點故障。** 外部 CDN 一旦無法連線，整個網站就是空白頁。
-2. **企業內網。** 目標客戶多半是會談地端部署的公司，這類內網常擋外部 CDN。
-   官網在客戶辦公室打不開，是最不該發生的失敗情境；產品主打「跑在自己的機房」，
-   官網卻依賴外部 CDN，論述上也不一致。
-
-### 做法
-
-`support.js` 的 `loadReactUmd()` 開頭是：
-
-```js
-if (w.React && w.ReactDOM) return Promise.resolve();
-```
-
-只要 `window.React` 與 `window.ReactDOM` 在它執行前就存在，它就不會去抓 CDN。
-所以四個頁面的 `<head>` 都是這個順序，**React 必須排在 `support.js` 前面**：
-
-```html
-<script src="./vendor/react.production.min.js"></script>
-<script src="./vendor/react-dom.production.min.js"></script>
-<script src="./support.js"></script>
-```
-
-這樣就不必修改 `support.js` — 它裡面的 `REACT_URL` / `BABEL_URL` 常數原封不動，
-之後從 dc-runtime 重新 build 覆蓋時，這個設定也不會被蓋掉。
-
-### 升級 React 版本
-
-```sh
-V=18.3.1
-curl -sfL -o vendor/react.production.min.js \
-  https://unpkg.com/react@$V/umd/react.production.min.js
-curl -sfL -o vendor/react-dom.production.min.js \
-  https://unpkg.com/react-dom@$V/umd/react-dom.production.min.js
-```
-
-下載後建議比對雜湊，確認抓到的檔案正確 —
-`support.js` 裡的 `REACT_SRI` / `REACT_DOM_SRI` 存著對應版本的 SRI 值：
-
-```sh
-openssl dgst -sha384 -binary vendor/react.production.min.js | openssl base64 -A
-grep -n "REACT_SRI =\|REACT_DOM_SRI =" support.js
-```
-
-版本需與 `support.js` 內的 `REACT_URL` 一致，否則 dc-runtime 可能對不上 API。
-
-### unpkg 仍是備援路徑
-
-自架之後正常運作已不會碰任何公開 CDN，但 `support.js` 內建的 `REACT_URL`
-常數還在：萬一 `vendor/` 的檔案取不到（例如部署漏檔），它仍會回頭去抓 unpkg。
-這是刻意保留的降級行為 —— 抓得到就正常顯示，抓不到就落到上面的兜底。
-若哪天要完全封死，得改 dc-runtime 或加 CSP `script-src 'self'`
-（注意 runtime 用到 `new Function`，需一併評估 `unsafe-eval`）。
-
 ## 測試
 
 推 code 之前跑這三支。連結檢查不到一秒，另外兩支合計約 5 分 40 秒
@@ -200,7 +129,7 @@ node test/layout-check.js   # 版面有沒有跑掉
 大半時間花在內容測試的「極慢網路」情境上，它刻意等滿 45 秒 ——
 趕時間可以先跑版面測試，或用 `node test/render-check.js normal` 快速確認。
 
-兩支都以離開碼回報結果，失敗會列出是哪一頁、哪個元素、差在哪裡。
+三支都以離開碼回報結果，失敗會列出是哪一頁、哪個元素、差在哪裡。
 版面若是**刻意**改動，用 `node test/layout-check.js --save` 更新基準，
 並把基準的 diff 一起提交 —— 那份 diff 就是這次視覺改動的紀錄。
 
@@ -221,19 +150,24 @@ node test/link-check.js
 ### 內容
 
 ```sh
-node test/render-check.js          # 全部情境
-node test/render-check.js blocked  # 只跑單一情境
+node test/render-check.js         # 全部情境
+node test/render-check.js nojs    # 只跑單一情境
 ```
 
 零依賴，需 Node 22+ 與本機的 Chrome。它會自己起 HTTP server 並以
-Chrome DevTools Protocol 驅動 headless Chrome，對四個頁面各跑四個情境：
+Chrome DevTools Protocol 驅動 headless Chrome，對四個頁面各跑三個情境：
 
 | 情境 | 驗證的事 |
 | --- | --- |
-| `normal` | React 渲染成功，且**完全沒有任何外部請求**（含字型）|
-| `blocked` | 拿不到 React 時，兜底把原始模板顯示回來（沒有兜底這裡是 0 字） |
-| `nojs` | 關閉 JavaScript 仍看得到內容 |
-| `slow` | 30KB/s 下看門狗不會過早開燈，最終仍正常渲染 |
+| `normal` | 內容顯示正常，且**完全沒有任何外部請求**（含字型）|
+| `nojs` | 關閉 JavaScript 內容照樣完整 |
+| `slow` | 30KB/s 慢速連線下仍然完整顯示 |
+
+最後還有一項跨情境斷言：**每頁在有無 JavaScript 之下的可見文字量必須完全相同**。
+這是整個靜態化的核心性質，也是最容易在改動中悄悄退步的一項。
+
+正常與慢速情境下若出現任何 JS 例外即判定失敗 —— 移植動畫時踩過兩次
+「頁面看起來正常、功能其實已死」，兩者都只在 console 留下一行例外。
 
 判定指標是 `document.body.innerText` 的長度，因為它排除 `display:none`
 的內容，恰好等於「使用者實際看得到多少字」—— 全白頁在這個指標下是 0。
@@ -256,9 +190,12 @@ node test/layout-check.js --save   # 重新產生基準
 - `--save` 寫入 `test/baseline/*.png` —— 基準當下的樣子
 - 比對模式寫入 `test/current/*.png` —— **不會覆寫基準**，前後才能並排比對
 
-hero 有一組 JS 驅動的聲波動畫，CSS 停不掉。量測器的做法是在同一次載入內間隔
-取兩張快照，凡是自己就會變的欄位一律標成 `*`，比對時視為萬用字元 ——
-讓它自己找出雜訊，不必人工維護「請忽略這些元素」的清單。
+量測前會用 `prefers-reduced-motion: reduce` 把兩段動畫凍結在完整狀態，
+所以每次量到的都是同一幀。這也是動畫本身支援的行為，不是測試專用的後門。
+
+另外保險一層：同一次載入內間隔取兩張快照，凡是自己就會變的欄位一律標成 `*`，
+比對時視為萬用字元 —— 讓量測器自己找出雜訊，不必人工維護忽略清單。
+遮罩只增不減，因此連續兩次 `--save` 產生的基準完全相同。
 
 > 這張安全網驗證過兩件事：連續兩次比對完全一致（可重現），
 > 以及故意把 `[style*="grid-template-columns: 1fr 1fr"]` 改成對不上的字串後，
@@ -287,8 +224,8 @@ Google Fonts 慢。取站上實際用到的字元之後，九個字重合計 617
 
 > ⚠️ **改過頁面文案後要重跑這支腳本**，否則新增的字會變成豆腐格。
 
-字元集是從四個 HTML 的**原始碼**取聯集，不是從渲染結果 —— 這樣連 hero 動畫
-那些寫在 `data-dc-script` 裡、只有執行期才出現的字串也一定涵蓋得到。
+字元集是從四個 HTML 的**原始碼**取聯集，不是從渲染結果 —— 這樣連只在
+JavaScript 執行後才出現的字串（例如動畫裡的文字）也一定涵蓋得到。
 
 代價是原始碼裡的中文註解與 class 名稱也會貢獻字元，讓子集略大於實際所需
 （目前多出來的部分不到 1KB）。這個取捨是刻意的：漏字是使用者看得到的缺陷，
@@ -315,32 +252,23 @@ push 到 `main`，在 Settings → Pages 選擇 Deploy from a branch → `main` 
 
 ## 本機預覽
 
-直接用瀏覽器點開 HTML（`file://`）即可，`support.js` 與 `vendor/` 都是相對路徑，
-不受 CORS 限制。若要模擬正式環境：
+直接用瀏覽器點開 HTML（`file://`）即可，字型與腳本都走相對路徑，不受 CORS 限制。
+若要模擬正式環境：
 
 ```sh
 python3 -m http.server 8000
 ```
 
-React 與字型都自架之後，頁面在完全離線的環境也能正常渲染。
+頁面在完全離線的環境也能正常顯示。
 
 ## 後續可做的事
 
-**把頁面烘焙成純靜態 HTML。** 用戶端渲染的存在理由是那個已不再使用的視覺編輯器，
-拿掉之後可省下 `support.js` 69KB 與 React 142KB，首屏不必等 JS，
-白畫面風險與兜底看門狗都可以一併移除。已盤點的工作量：
-
-| 要處理的 | 數量 | 做法 |
-| --- | --- | --- |
-| `{{ }}` 插值、`<sc-for>`、`<sc-if>` | 53 / 4 / 4 | 取渲染後的 DOM 當輸出即可 |
-| `style-hover` | 6 | 改寫成真正的 CSS `:hover` |
-| `data-dc-script` 元件邏輯 | 8659 字元 | 主要是 hero 示範動畫，需改寫成原生 JS 或捨棄 |
-
-> ⚠️ 這是**單向門**：烘焙之後就回不去 Claude Design 編輯了。
-> 已確認不再使用該編輯器，但動手前仍值得再確認一次。
-
-`test/layout-check.js` 的基準正好是這件事的安全網 ——
-烘焙前後版面若一致，就代表輸出等價。
+- **清掉 `#dc-root` / `.sc-host` 兩層包裝**與對應的 `html,body{height:100%}` 規則。
+  它們是 runtime 的殘留物，現在沒有作用。清掉會改變 DOM 結構，
+  所以要一併重新產生版面基準，並用截圖比對確認外觀未變。
+- **`r-*` class 與 inline style 的耦合**目前靠慣例維持（改值要改名）。
+  若要根治，方向是把 inline style 的值搬進 class，元素上不再留 inline style。
+  這是比烘焙更大的改動，會動到版面的組織方式。
 
 ## 授權
 

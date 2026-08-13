@@ -2,11 +2,10 @@
 //
 // 渲染回歸測試 —— node test/render-check.js
 //
-// 頁面目前有兩種形態：尚未烘焙的仍是用戶端渲染（版面寫在 <x-dc> 模板裡，
-// 由 support.js 載入 React 後才渲染），已烘焙的則是純靜態 HTML。
-// 兩者最需要防的失敗都是「整頁全白」而非「畫面跑版」，所以這裡量的是
-// document.body.innerText 的長度 —— innerText 天生排除 display:none 的內容，
-// 等於「使用者實際看得到多少字」。靜態頁另外多一項斷言：JS 開關不影響內容。
+// 四個頁面都是純靜態 HTML（見 tools/bake.js）。最該防的退步是「內容其實
+// 依賴 JavaScript 才看得到」，所以這裡量 document.body.innerText 的長度 ——
+// innerText 天生排除 display:none 的內容，等於「使用者實際看得到多少字」——
+// 並斷言關掉 JavaScript 之後這個數字完全不變。
 //
 // 零依賴：自己起 HTTP server，用 Chrome DevTools Protocol 驅動 headless Chrome。
 // 需要 Node 22+（用到內建的 fetch 與 WebSocket）。
@@ -19,8 +18,7 @@ const { spawn } = require("child_process");
 const ROOT = path.resolve(__dirname, "..");
 const PAGES = ["index.html", "mosatalk.html", "mosaminutes.html", "mosascore.html"];
 
-// 已烘焙成靜態 HTML 的頁面沒有 <x-dc>，也不需要 React。
-// 對它們斷言的性質不同 —— 而且更強：不管 JS 有沒有跑，內容都必須一樣。
+// 靜態頁不該留下任何 <x-dc> 模板殘跡
 const isBaked = (page) =>
   !fs.readFileSync(path.join(ROOT, page), "utf8").includes("<x-dc>");
 
@@ -100,27 +98,20 @@ const PROBE = `JSON.stringify({
 
 const SCENARIOS = [
   { key: "normal", label: "正常載入", wait: 4000, checkNoCdn: true,
-    expect: i => i.visibleText >= MIN_VISIBLE && i.hasDcRoot && !i.hasXdc,
-    note: "React 渲染成功，x-dc 已被 #dc-root 取代" },
+    expect: i => i.visibleText >= MIN_VISIBLE && !i.hasXdc,
+    note: "內容直接來自 HTML，沒有模板殘跡" },
 
-  { key: "blocked", label: "React 檔案抓不到", wait: 7000,
-    setup: s => s.send("Network.setBlockedURLs", { urls: ["*react*.js"] }),
-    // 烘焙過的頁面根本不載入 React，擋掉它不該有任何影響
-    expect: (i, baked) => baked
-      ? i.visibleText >= MIN_VISIBLE && !i.hasXdc
-      : i.visibleText >= MIN_VISIBLE && i.hasXdc,
-    note: "本地與 unpkg 都拿不到 React，兜底看門狗把原始模板顯示回來（沒有它就是全白頁）" },
 
   { key: "nojs", label: "JavaScript 關閉", wait: 5000,
     setup: s => s.send("Emulation.setScriptExecutionDisabled", { value: true }),
     expect: i => i.visibleText >= MIN_VISIBLE,
-    note: "support.js 不執行，模板本來就可見" },
+    note: "靜態 HTML，關掉 JavaScript 內容照樣完整" },
 
   { key: "slow", label: "極慢網路 30KB/s", wait: 45000, checkNoCdn: true,
     setup: s => s.send("Network.emulateNetworkConditions", {
       offline: false, latency: 600, downloadThroughput: 30 * 1024, uploadThroughput: 30 * 1024 }),
-    expect: i => i.visibleText >= MIN_VISIBLE && i.hasDcRoot && !i.hasXdc,
-    note: "看門狗不會在 React 還在路上時就過早開燈" },
+    expect: i => i.visibleText >= MIN_VISIBLE && !i.hasXdc,
+    note: "慢速連線下仍然完整顯示" },
 ];
 
 async function runOne(chromePath, base, page, scenario, debugPort) {
@@ -166,9 +157,7 @@ async function runOne(chromePath, base, page, scenario, debugPort) {
       console.log(`${pass ? "✅" : "❌"} ${page.padEnd(17)} 可見文字 ${String(i.visibleText).padStart(5)} 字  ` +
                   `x-dc=${i.hasXdc ? "在" : "無"}  dc-root=${i.hasDcRoot ? "在" : "無"}  React=${i.react}`);
       if (!pass) console.log(`   └ 實際畫面：${i.head || "（空白）"}`);
-      // React 與字型都自架之後，正常運作時應該完全沒有對外請求。
-      // 只在本地資源可用的情境檢查 —— 一旦本地檔案被擋掉，support.js 會
-      // 依設計回頭去抓 unpkg 當備援，那些請求出現在這裡是正常的。
+      // 字型自架、runtime 移除之後，頁面完全不該對外發出請求。
       if (sc.checkNoCdn && i.external.length) {
         failures++;
         console.log(`   └ ❌ 出現 ${i.external.length} 個外部請求：${i.external[0]}`);

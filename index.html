@@ -1,46 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-Hant">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./vendor/react.production.min.js"></script>
-<script src="./vendor/react-dom.production.min.js"></script>
-<script src="./support.js"></script>
-<!-- 兜底：support.js 會先注入 x-dc{display:none} 把原始模板藏起來，之後才非同步
-     載入 React 渲染。若渲染始終沒發生（腳本 404、JS 例外、瀏覽器太舊），
-     沒有這段的話使用者看到的會是全白頁。 -->
-<script>
-(function () {
-  var GRACE_MS = 2500;
-  function reveal() {
-    var root = document.getElementById("dc-root");
-    if (root && root.textContent.trim()) return;   // 已經渲染成功
-    if (!document.querySelector("x-dc")) return;   // 模板已被取走，救不回來
-    var s = document.createElement("style");
-    // 特異性 (0,0,3)，勝過 support.js 的 x-dc{display:none!important} (0,0,1)
-    // sc-for / sc-if 的內容要有執行期資料才有意義，退化時整塊藏起來，
-    // 否則畫面上會出現一整排 {{ p.year }} 之類的佔位符。
-    s.textContent = "html body x-dc{display:block!important}" +
-                    "html body x-dc sc-for,html body x-dc sc-if{display:none!important}";
-    document.head.appendChild(s);
-    scrubPlaceholders();
-  }
-  // 清掉散落在一般元素裡、不被上面規則涵蓋的 {{ … }}
-  function scrubPlaceholders() {
-    var dc = document.querySelector("x-dc");
-    if (!dc || !document.createTreeWalker) return;
-    var walk = document.createTreeWalker(dc, NodeFilter.SHOW_TEXT, null, false);
-    var hits = [], n;
-    while ((n = walk.nextNode())) if (n.nodeValue.indexOf("{{") !== -1) hits.push(n);
-    for (var i = 0; i < hits.length; i++)
-      hits[i].nodeValue = hits[i].nodeValue.replace(/\{\{[^}]*\}\}/g, "");
-  }
-  window.addEventListener("load", function () { setTimeout(reveal, GRACE_MS); });
-})();
-</script>
-<!-- JS 關閉時 support.js 不會執行，模板本來就是可見的；這行只是把未知元素
-     的預設 display:inline 修正成 block。 -->
-<noscript><style>x-dc{display:block}</style></noscript>
   <title>Voxmosa｜地端語音 AI</title>
   <meta name="description" content="把每一通對話變成可用的資料。MosaTalk 即時語音對話、MosaMinutes 會議記錄、MosaScore 通話品質分析，全部可部署在自己的機房。">
   <link rel="canonical" href="https://voxmosa.com/">
@@ -57,15 +19,13 @@
   <meta name="twitter:title" content="Voxmosa｜地端語音 AI">
   <meta name="twitter:description" content="把每一通對話變成可用的資料。MosaTalk 即時語音對話、MosaMinutes 會議記錄、MosaScore 通話品質分析，全部可部署在自己的機房。">
   <meta name="twitter:image" content="https://voxmosa.com/og.png">
-</head>
-<body>
-<x-dc>
-<helmet>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="./vendor/fonts/fonts.css" rel="stylesheet" />
 <style>
 body { margin:0; background:#141413; }
 a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
+/* 原本由 runtime 依 style-hover 屬性動態產生，烘焙後寫成靜態規則 */
+.hover-panel:hover { background:#16150F !important; }
+.hover-accent:hover { color:#ED9A4A !important; }
 
 @media (max-width:1080px){.r-gtc-repeat-4-1fr{grid-template-columns:1fr 1fr!important}.r-gap-72px{gap:44px!important}
 }
@@ -99,7 +59,11 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
 @media (max-width:900px){.r-display-grid > *{min-width:0!important}
 }
 </style>
-</helmet>
+<style>html,body{height:100%;margin:0}#dc-root,#dc-root>.sc-host{height:100%}</style>
+</head>
+<body>
+<div id="dc-root"><div class="sc-host">
+
 <div style="width:100%;background:#141413;color:#f4f3f0;font-family:'Noto Sans TC','Space Grotesk',sans-serif;overflow-x:hidden">
 
   <div style="position:sticky;top:0;z-index:20;background:rgba(20,20,19,0.92);backdrop-filter:blur(14px);border-bottom:1px solid #26251f">
@@ -153,25 +117,66 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
       </div>
 
       <div style="display:flex;align-items:flex-end;gap:3px;height:56px;padding:0 2px">
-        <sc-for list="{{ bars }}" as="bar" hint-placeholder-count="44">
-          <div style="flex:1;border-radius:1px;min-width:2px;background:{{ bar.color }};height:{{ bar.h }}"></div>
-        </sc-for>
+        <div data-bar style="flex:1;border-radius:1px;min-width:2px;background:#ED9A4A;height:3px"></div>
+          <div data-bar style="flex:1;border-radius:1px;min-width:2px;background:#ED9A4A;height:12px"></div>
+          <div data-bar style="flex:1;border-radius:1px;min-width:2px;background:#ED9A4A;height:19px"></div>
+          <div data-bar style="flex:1;border-radius:1px;min-width:2px;background:#ED9A4A;height:22px"></div>
+          <div data-bar style="flex:1;border-radius:1px;min-width:2px;background:#ED9A4A;height:26px"></div>
+          <div data-bar style="flex:1;border-radius:1px;min-width:2px;background:#ED9A4A;height:7px"></div>
+          <div data-bar style="flex:1;border-radius:1px;min-width:2px;background:#ED9A4A;height:35px"></div>
+          <div data-bar style="flex:1;border-radius:1px;min-width:2px;background:#ED9A4A;height:37px"></div>
+          <div data-bar style="flex:1;border-radius:1px;min-width:2px;background:#ED9A4A;height:25px"></div>
+          <div data-bar style="flex:1;border-radius:1px;min-width:2px;background:#ED9A4A;height:18px"></div>
+          <div data-bar style="flex:1;border-radius:1px;min-width:2px;background:#ED9A4A;height:10px"></div>
+          <div data-bar style="flex:1;border-radius:1px;min-width:2px;background:#ED9A4A;height:37px"></div>
+          <div data-bar style="flex:1;border-radius:1px;min-width:2px;background:#ED9A4A;height:29px"></div>
+          <div data-bar style="flex:1;border-radius:1px;min-width:2px;background:#ED9A4A;height:12px"></div>
+          <div data-bar style="flex:1;border-radius:1px;min-width:2px;background:#ED9A4A;height:6px"></div>
+          <div data-bar style="flex:1;border-radius:1px;min-width:2px;background:#ED9A4A;height:6px"></div>
+          <div data-bar style="flex:1;border-radius:1px;min-width:2px;background:#ED9A4A;height:21px"></div>
+          <div data-bar style="flex:1;border-radius:1px;min-width:2px;background:#ED9A4A;height:21px"></div>
+          <div data-bar style="flex:1;border-radius:1px;min-width:2px;background:#ED9A4A;height:8px"></div>
+          <div data-bar style="flex:1;border-radius:1px;min-width:2px;background:#ED9A4A;height:23px"></div>
+          <div data-bar style="flex:1;border-radius:1px;min-width:2px;background:#ED9A4A;height:18px"></div>
+          <div data-bar style="flex:1;border-radius:1px;min-width:2px;background:#ED9A4A;height:40px"></div>
+          <div data-bar style="flex:1;border-radius:1px;min-width:2px;background:#ED9A4A;height:28px"></div>
+          <div data-bar style="flex:1;border-radius:1px;min-width:2px;background:#ED9A4A;height:9px"></div>
+          <div data-bar style="flex:1;border-radius:1px;min-width:2px;background:#ED9A4A;height:39px"></div>
+          <div data-bar style="flex:1;border-radius:1px;min-width:2px;background:#ED9A4A;height:22px"></div>
+          <div data-bar style="flex:1;border-radius:1px;min-width:2px;background:#ED9A4A;height:29px"></div>
+          <div data-bar style="flex:1;border-radius:1px;min-width:2px;background:#ED9A4A;height:12px"></div>
+          <div data-bar style="flex:1;border-radius:1px;min-width:2px;background:#ED9A4A;height:8px"></div>
+          <div data-bar style="flex:1;border-radius:1px;min-width:2px;background:#ED9A4A;height:24px"></div>
+          <div data-bar style="flex:1;border-radius:1px;min-width:2px;background:#ED9A4A;height:10px"></div>
+          <div data-bar style="flex:1;border-radius:1px;min-width:2px;background:#ED9A4A;height:12px"></div>
+          <div data-bar style="flex:1;border-radius:1px;min-width:2px;background:#ED9A4A;height:8px"></div>
+          <div data-bar style="flex:1;border-radius:1px;min-width:2px;background:#ED9A4A;height:9px"></div>
+          <div data-bar style="flex:1;border-radius:1px;min-width:2px;background:#ED9A4A;height:42px"></div>
+          <div data-bar style="flex:1;border-radius:1px;min-width:2px;background:#ED9A4A;height:23px"></div>
+          <div data-bar style="flex:1;border-radius:1px;min-width:2px;background:#ED9A4A;height:13px"></div>
+          <div data-bar style="flex:1;border-radius:1px;min-width:2px;background:#ED9A4A;height:27px"></div>
+          <div data-bar style="flex:1;border-radius:1px;min-width:2px;background:#ED9A4A;height:10px"></div>
+          <div data-bar style="flex:1;border-radius:1px;min-width:2px;background:#ED9A4A;height:47px"></div>
+          <div data-bar style="flex:1;border-radius:1px;min-width:2px;background:#ED9A4A;height:19px"></div>
+          <div data-bar style="flex:1;border-radius:1px;min-width:2px;background:#ED9A4A;height:10px"></div>
+          <div data-bar style="flex:1;border-radius:1px;min-width:2px;background:#ED9A4A;height:29px"></div>
+          <div data-bar style="flex:1;border-radius:1px;min-width:2px;background:#2a2924;height:6px"></div>
       </div>
 
       <div style="display:flex;flex-direction:column;gap:15px;flex:1">
-        <div style="display:flex;gap:13px;align-items:baseline;transition:opacity 0.5s ease;opacity:{{ op1 }}">
+        <div style="display:flex;gap:13px;align-items:baseline;transition:opacity 0.5s ease;opacity:1" data-step="1">
           <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#ED9A4A;flex:none;width:34px;padding-top:3px">S1</div>
           <div style="font-size:14.5px;font-weight:300;color:#f4f3f0;line-height:1.85">彼个案子的預算，咱敢有確定落來？</div>
         </div>
-        <div style="display:flex;gap:13px;align-items:baseline;transition:opacity 0.5s ease;opacity:{{ op2 }}">
+        <div style="display:flex;gap:13px;align-items:baseline;transition:opacity 0.5s ease;opacity:1" data-step="2">
           <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8c8a84;flex:none;width:34px;padding-top:3px">S2</div>
           <div style="font-size:14.5px;font-weight:300;color:#cfccc4;line-height:1.85">上禮拜董事會通過了，我等一下把會議紀錄寄給你。</div>
         </div>
-        <div style="display:flex;gap:13px;align-items:baseline;transition:opacity 0.5s ease;opacity:{{ op3 }}">
+        <div style="display:flex;gap:13px;align-items:baseline;transition:opacity 0.5s ease;opacity:1" data-step="3">
           <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#ED9A4A;flex:none;width:34px;padding-top:3px">S1</div>
           <div style="font-size:14.5px;font-weight:300;color:#f4f3f0;line-height:1.85">好，數字若有 update 你直接 tag 我就好。</div>
         </div>
-        <div style="display:flex;gap:13px;align-items:baseline;transition:opacity 0.5s ease;opacity:{{ op4 }}">
+        <div style="display:flex;gap:13px;align-items:baseline;transition:opacity 0.5s ease;opacity:1" data-step="4">
           <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8c8a84;flex:none;width:34px;padding-top:3px">S2</div>
           <div style="font-size:14.5px;font-weight:300;color:#cfccc4;line-height:1.85">沒問題，摘要跟待辦我一起附上去。</div>
         </div>
@@ -182,9 +187,9 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
           <svg viewBox="0 0 24 24" style="width:11px;display:block" fill="#141413"><path d="M8 5 L19 12 L8 19 Z" /></svg>
         </div>
         <div style="flex:1;height:3px;background:#2a2924;border-radius:2px;overflow:hidden">
-          <div style="height:100%;background:#ED9A4A;border-radius:2px;width:{{ progress }}"></div>
+          <div style="height:100%;background:#ED9A4A;border-radius:2px;width:98%" data-live-progress></div>
         </div>
-        <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#6f6c64;flex:none">{{ clock }}</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#6f6c64;flex:none" data-live-clock>0:17</div>
       </div>
       <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#4f4d47;letter-spacing:0.06em;line-height:1.7">示意畫面 · 實際語音樣本即將上線</div>
     </div>
@@ -434,7 +439,7 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
     </div>
   </div>
 
-  <sc-if value="{{ showRoadmap }}" hint-placeholder-val="{{ true }}">
+  
   <div id="roadmap" style="background:#F4F3F0;color:#141413">
     <div class="r-mw-1280px r-pad-104px-56px-112px" style="max-width:1280px;margin:0 auto;padding:104px 56px 112px;display:flex;flex-direction:column;gap:44px">
       <div style="display:flex;flex-direction:column;gap:16px">
@@ -479,7 +484,7 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
     </div>
   </div>
 
-  </sc-if>
+  
 
   <div id="team" class="r-mw-1280px r-pad-112px-56px" style="max-width:1280px;margin:0 auto;padding:112px 56px">
     <div style="display:flex;flex-direction:column;gap:44px">
@@ -537,11 +542,11 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
           <div style="border:1px solid #3a3833;color:#7a776e;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:5px 11px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">Press</div>
         </div>
         <div style="display:flex;flex-direction:column;gap:1px;background:#26251f;border:1px solid #26251f;border-radius:8px;overflow:hidden">
-          <a href="https://hakkanews.tw/2026/07/29/294068/" class="r-gtc-76px-1fr r-display-grid" style="background:#0F0F0E;padding:22px 26px;display:grid;grid-template-columns:76px 1fr;gap:18px;align-items:baseline;color:#f4f3f0" style-hover="background:#16150F"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e">2026.07</div><div style="display:flex;flex-direction:column;gap:6px"><div style="font-size:14px;font-weight:400;line-height:1.65">一秒生成客語童話與雙人 Podcast！「客家 GPT」超神功能曝光</div><div style="font-size:12px;font-weight:300;color:#7a776e">客新聞</div></div></a>
-          <a href="https://udn.com/news/story/7240/8962411" class="r-gtc-76px-1fr r-display-grid" style="background:#0F0F0E;padding:22px 26px;display:grid;grid-template-columns:76px 1fr;gap:18px;align-items:baseline;color:#f4f3f0" style-hover="background:#16150F"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e">2025.08</div><div style="display:flex;flex-direction:column;gap:6px"><div style="font-size:14px;font-weight:400;line-height:1.65">攻克 AI 語音技術兩大挑戰</div><div style="font-size:12px;font-weight:300;color:#7a776e">經濟日報</div></div></a>
-          <a href="https://www.ctee.com.tw/news/20250219701857-430502" class="r-gtc-76px-1fr r-display-grid" style="background:#0F0F0E;padding:22px 26px;display:grid;grid-template-columns:76px 1fr;gap:18px;align-items:baseline;color:#f4f3f0" style-hover="background:#16150F"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e">2025.02</div><div style="display:flex;flex-direction:column;gap:6px"><div style="font-size:14px;font-weight:400;line-height:1.65">即時語音增強系統鎖定串流產業語音處理需求</div><div style="font-size:12px;font-weight:300;color:#7a776e">工商時報</div></div></a>
-          <a href="https://www.sinotrade.com.tw/richclub/news/670e2f1332ba0c9331e17cd6" class="r-gtc-76px-1fr r-display-grid" style="background:#0F0F0E;padding:22px 26px;display:grid;grid-template-columns:76px 1fr;gap:18px;align-items:baseline;color:#f4f3f0" style-hover="background:#16150F"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e">2024.10</div><div style="display:flex;flex-direction:column;gap:6px"><div style="font-size:14px;font-weight:400;line-height:1.65">首款客語文字轉語音系統 VoxHakka 問市</div><div style="font-size:12px;font-weight:300;color:#7a776e">經濟日報</div></div></a>
-          <a href="https://www.sinotrade.com.tw/richclub/news/66e29f8332ba0c933165c586" class="r-gtc-76px-1fr r-display-grid" style="background:#0F0F0E;padding:22px 26px;display:grid;grid-template-columns:76px 1fr;gap:18px;align-items:baseline;color:#f4f3f0" style-hover="background:#16150F"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e">2024.09</div><div style="display:flex;flex-direction:column;gap:6px"><div style="font-size:14px;font-weight:400;line-height:1.65">跨域語音增強技術，展現 AI 創新實力</div><div style="font-size:12px;font-weight:300;color:#7a776e">經濟日報</div></div></a>
+          <a href="https://hakkanews.tw/2026/07/29/294068/" class="r-gtc-76px-1fr r-display-grid hover-panel" style="background:#0F0F0E;padding:22px 26px;display:grid;grid-template-columns:76px 1fr;gap:18px;align-items:baseline;color:#f4f3f0"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e">2026.07</div><div style="display:flex;flex-direction:column;gap:6px"><div style="font-size:14px;font-weight:400;line-height:1.65">一秒生成客語童話與雙人 Podcast！「客家 GPT」超神功能曝光</div><div style="font-size:12px;font-weight:300;color:#7a776e">客新聞</div></div></a>
+          <a href="https://udn.com/news/story/7240/8962411" class="r-gtc-76px-1fr r-display-grid hover-panel" style="background:#0F0F0E;padding:22px 26px;display:grid;grid-template-columns:76px 1fr;gap:18px;align-items:baseline;color:#f4f3f0"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e">2025.08</div><div style="display:flex;flex-direction:column;gap:6px"><div style="font-size:14px;font-weight:400;line-height:1.65">攻克 AI 語音技術兩大挑戰</div><div style="font-size:12px;font-weight:300;color:#7a776e">經濟日報</div></div></a>
+          <a href="https://www.ctee.com.tw/news/20250219701857-430502" class="r-gtc-76px-1fr r-display-grid hover-panel" style="background:#0F0F0E;padding:22px 26px;display:grid;grid-template-columns:76px 1fr;gap:18px;align-items:baseline;color:#f4f3f0"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e">2025.02</div><div style="display:flex;flex-direction:column;gap:6px"><div style="font-size:14px;font-weight:400;line-height:1.65">即時語音增強系統鎖定串流產業語音處理需求</div><div style="font-size:12px;font-weight:300;color:#7a776e">工商時報</div></div></a>
+          <a href="https://www.sinotrade.com.tw/richclub/news/670e2f1332ba0c9331e17cd6" class="r-gtc-76px-1fr r-display-grid hover-panel" style="background:#0F0F0E;padding:22px 26px;display:grid;grid-template-columns:76px 1fr;gap:18px;align-items:baseline;color:#f4f3f0"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e">2024.10</div><div style="display:flex;flex-direction:column;gap:6px"><div style="font-size:14px;font-weight:400;line-height:1.65">首款客語文字轉語音系統 VoxHakka 問市</div><div style="font-size:12px;font-weight:300;color:#7a776e">經濟日報</div></div></a>
+          <a href="https://www.sinotrade.com.tw/richclub/news/66e29f8332ba0c933165c586" class="r-gtc-76px-1fr r-display-grid hover-panel" style="background:#0F0F0E;padding:22px 26px;display:grid;grid-template-columns:76px 1fr;gap:18px;align-items:baseline;color:#f4f3f0"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e">2024.09</div><div style="display:flex;flex-direction:column;gap:6px"><div style="font-size:14px;font-weight:400;line-height:1.65">跨域語音增強技術，展現 AI 創新實力</div><div style="font-size:12px;font-weight:300;color:#7a776e">經濟日報</div></div></a>
         </div>
         <div style="font-size:12.5px;font-weight:300;color:#5e5b54;line-height:1.85">以上為核心團隊成員於過往任職單位主導之技術所獲報導。</div>
       </div>
@@ -560,29 +565,298 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
       </div>
 
       <div style="display:flex;gap:9px;flex-wrap:wrap">
-        <sc-for list="{{ cats }}" as="c" hint-placeholder-count="5">
-          <button onClick="{{ c.onSelect }}" style="border:1px solid {{ c.bd }};background:{{ c.bg }};color:{{ c.fg }};border-radius:4px;padding:10px 16px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.04em;cursor:pointer;display:flex;align-items:center;gap:8px">
-            <span>{{ c.name }}</span><span style="opacity:0.55">{{ c.count }}</span>
+        <button type="button" data-cat="全部" style="border:1px solid #ED9A4A;background:#ED9A4A;color:#141413;border-radius:4px;padding:10px 16px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.04em;cursor:pointer;display:flex;align-items:center;gap:8px">
+            <span>全部</span><span style="opacity:0.55">41</span>
           </button>
-        </sc-for>
+          <button type="button" data-cat="臺灣多語言" style="border:1px solid #3a3833;background:transparent;color:#a8a59d;border-radius:4px;padding:10px 16px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.04em;cursor:pointer;display:flex;align-items:center;gap:8px">
+            <span>臺灣多語言</span><span style="opacity:0.55">6</span>
+          </button>
+          <button type="button" data-cat="強健辨識與增強" style="border:1px solid #3a3833;background:transparent;color:#a8a59d;border-radius:4px;padding:10px 16px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.04em;cursor:pointer;display:flex;align-items:center;gap:8px">
+            <span>強健辨識與增強</span><span style="opacity:0.55">15</span>
+          </button>
+          <button type="button" data-cat="語者與語言辨識" style="border:1px solid #3a3833;background:transparent;color:#a8a59d;border-radius:4px;padding:10px 16px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.04em;cursor:pointer;display:flex;align-items:center;gap:8px">
+            <span>語者與語言辨識</span><span style="opacity:0.55">13</span>
+          </button>
+          <button type="button" data-cat="語音品質與評測" style="border:1px solid #3a3833;background:transparent;color:#a8a59d;border-radius:4px;padding:10px 16px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.04em;cursor:pointer;display:flex;align-items:center;gap:8px">
+            <span>語音品質與評測</span><span style="opacity:0.55">7</span>
+          </button>
       </div>
 
       <div style="display:flex;flex-direction:column;gap:1px;background:#26251f;border:1px solid #26251f;border-radius:8px;overflow:hidden">
-        <sc-for list="{{ pubs }}" as="p" hint-placeholder-count="8">
-          <div class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
-            <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">{{ p.year }}</div>
-            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">{{ p.venue }}</div>
-            <sc-if value="{{ p.hasUrl }}" hint-placeholder-val="{{ true }}">
-              <a href="{{ p.url }}" style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty;display:inline-flex;gap:10px;align-items:baseline" style-hover="color:#ED9A4A">
-                <span>{{ p.title }}</span>
-                <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:#5e5b54;flex:none">arXiv</span>
-              </a>
-            </sc-if>
-            <sc-if value="{{ p.noUrl }}" hint-placeholder-val="{{ false }}">
-              <div style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">{{ p.title }}</div>
-            </sc-if>
+        <div data-paper data-topic="臺灣多語言" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2026</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">LREC</div>
+            <a href="https://arxiv.org/abs/2602.22039" class="hover-accent" style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty;display:inline-flex;gap:10px;align-items:baseline">
+              <span>TG-ASR: Translation-guided learning with parallel gated cross attention for low-resource automatic speech recognition</span>
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:#5e5b54;flex:none">arXiv</span>
+            </a>
           </div>
-        </sc-for>
+          <div data-paper data-topic="臺灣多語言" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2026</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">LREC</div>
+            <a href="https://arxiv.org/abs/2602.22522" class="hover-accent" style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty;display:inline-flex;gap:10px;align-items:baseline">
+              <span>Efficient dialect-aware and conditioning for low-resource Taiwanese Hakka speech processing</span>
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:#5e5b54;flex:none">arXiv</span>
+            </a>
+          </div>
+          <div data-paper data-topic="臺灣多語言" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2025</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">O-COCOSDA</div>
+            <a href="https://arxiv.org/abs/2409.08872" class="hover-accent" style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty;display:inline-flex;gap:10px;align-items:baseline">
+              <span>Exploring the impact of data quantity on ASR in extremely low-resource languages</span>
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:#5e5b54;flex:none">arXiv</span>
+            </a>
+          </div>
+          <div data-paper data-topic="臺灣多語言" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2024</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">O-COCOSDA</div>
+            <a href="https://arxiv.org/abs/2409.01548" class="hover-accent" style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty;display:inline-flex;gap:10px;align-items:baseline">
+              <span>VoxHakka: A dialectally diverse multi-speaker text-to-speech system for Taiwanese Hakka</span>
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:#5e5b54;flex:none">arXiv</span>
+            </a>
+          </div>
+          <div data-paper data-topic="臺灣多語言" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2021</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">Interspeech</div>
+            <a href="https://arxiv.org/abs/2105.00171" class="hover-accent" style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty;display:inline-flex;gap:10px;align-items:baseline">
+              <span>AlloST: Low-resource speech translation without source transcription</span>
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:#5e5b54;flex:none">arXiv</span>
+            </a>
+          </div>
+          <div data-paper data-topic="臺灣多語言" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2020</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">O-COCOSDA</div>
+            <div style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">Using Taigi dramas with Mandarin Chinese subtitles to improve Taigi speech recognition</div>
+          </div>
+          <div data-paper data-topic="強健辨識與增強" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2026</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">TASLP</div>
+            <a href="https://arxiv.org/abs/2602.04307" class="hover-accent" style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty;display:inline-flex;gap:10px;align-items:baseline">
+              <span>Universal robust speech adaptation for cross-domain speech recognition and enhancement</span>
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:#5e5b54;flex:none">arXiv</span>
+            </a>
+          </div>
+          <div data-paper data-topic="強健辨識與增強" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2026</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">ICASSP</div>
+            <a href="https://arxiv.org/abs/2601.22189" class="hover-accent" style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty;display:inline-flex;gap:10px;align-items:baseline">
+              <span>SCENE: Semantic-aware codec enhancement with neural embeddings</span>
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:#5e5b54;flex:none">arXiv</span>
+            </a>
+          </div>
+          <div data-paper data-topic="強健辨識與增強" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2025</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">IEEE ASRU</div>
+            <a href="https://arxiv.org/abs/2508.08967" class="hover-accent" style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty;display:inline-flex;gap:10px;align-items:baseline">
+              <span>Revealing the role of audio channels in ASR performance degradation</span>
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:#5e5b54;flex:none">arXiv</span>
+            </a>
+          </div>
+          <div data-paper data-topic="強健辨識與增強" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2025</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">ICASSP</div>
+            <a href="https://arxiv.org/abs/2409.12386" class="hover-accent" style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty;display:inline-flex;gap:10px;align-items:baseline">
+              <span>Channel-aware domain-adaptive generative adversarial network for robust speech recognition</span>
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:#5e5b54;flex:none">arXiv</span>
+            </a>
+          </div>
+          <div data-paper data-topic="強健辨識與增強" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2024</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">IEEE SLT</div>
+            <a href="https://arxiv.org/abs/2409.01545" class="hover-accent" style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty;display:inline-flex;gap:10px;align-items:baseline">
+              <span>Effective noise-aware data simulation for domain-adaptive speech enhancement leveraging dynamic stochastic perturbation</span>
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:#5e5b54;flex:none">arXiv</span>
+            </a>
+          </div>
+          <div data-paper data-topic="強健辨識與增強" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2023</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">Interspeech</div>
+            <a href="https://arxiv.org/abs/2210.15368" class="hover-accent" style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty;display:inline-flex;gap:10px;align-items:baseline">
+              <span>A training and inference strategy using noisy and enhanced speech as target for speech enhancement without clean speech</span>
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:#5e5b54;flex:none">arXiv</span>
+            </a>
+          </div>
+          <div data-paper data-topic="強健辨識與增強" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2022</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">Interspeech</div>
+            <a href="https://arxiv.org/abs/2203.13687" class="hover-accent" style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty;display:inline-flex;gap:10px;align-items:baseline">
+              <span>Chain-based discriminative autoencoders for speech recognition</span>
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:#5e5b54;flex:none">arXiv</span>
+            </a>
+          </div>
+          <div data-paper data-topic="強健辨識與增強" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2022</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">ISCSLP</div>
+            <a href="https://arxiv.org/abs/2203.13696" class="hover-accent" style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty;display:inline-flex;gap:10px;align-items:baseline">
+              <span>Speech-enhanced and noise-aware acoustic modeling for robust speech recognition</span>
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:#5e5b54;flex:none">arXiv</span>
+            </a>
+          </div>
+          <div data-paper data-topic="強健辨識與增強" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2022</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">EUSIPCO</div>
+            <a href="https://arxiv.org/abs/2204.00164" class="hover-accent" style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty;display:inline-flex;gap:10px;align-items:baseline">
+              <span>Filter-based discriminative autoencoders for children speech recognition</span>
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:#5e5b54;flex:none">arXiv</span>
+            </a>
+          </div>
+          <div data-paper data-topic="強健辨識與增強" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2021</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">CSRC</div>
+            <div style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">The Academia Sinica system for the SLT 2021 children speech recognition challenge</div>
+          </div>
+          <div data-paper data-topic="強健辨識與增強" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2020</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">CHiME</div>
+            <div style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">The Academia Sinica systems of speech recognition and speaker diarization for the CHiME-6 challenge</div>
+          </div>
+          <div data-paper data-topic="強健辨識與增強" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2019</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">Interspeech</div>
+            <div style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">Exploring the encoder layers of discriminative autoencoders for LVCSR</div>
+          </div>
+          <div data-paper data-topic="強健辨識與增強" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2017</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">Interspeech</div>
+            <div style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">Discriminative autoencoders for acoustic modeling</div>
+          </div>
+          <div data-paper data-topic="強健辨識與增強" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2009</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">IEEE ASRU</div>
+            <div style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">Generalized likelihood ratio discriminant analysis</div>
+          </div>
+          <div data-paper data-topic="強健辨識與增強" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2007</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">IEEE ASRU</div>
+            <div style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">Training data selection for improving discriminative training of acoustic models</div>
+          </div>
+          <div data-paper data-topic="語者與語言辨識" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2026</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">Interspeech</div>
+            <a href="https://arxiv.org/abs/2606.20106" class="hover-accent" style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty;display:inline-flex;gap:10px;align-items:baseline">
+              <span>Personalized keyword spotting for user-defined keywords leveraging text-independent speaker verification</span>
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:#5e5b54;flex:none">arXiv</span>
+            </a>
+          </div>
+          <div data-paper data-topic="語者與語言辨識" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2023</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">IEEE SPL</div>
+            <a href="https://arxiv.org/abs/2203.16007" class="hover-accent" style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty;display:inline-flex;gap:10px;align-items:baseline">
+              <span>Multi-target filter and detector for unknown-number speaker diarization</span>
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:#5e5b54;flex:none">arXiv</span>
+            </a>
+          </div>
+          <div data-paper data-topic="語者與語言辨識" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2022</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">Interspeech</div>
+            <a href="https://arxiv.org/abs/2203.16040" class="hover-accent" style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty;display:inline-flex;gap:10px;align-items:baseline">
+              <span>Disentangling the impacts of language and channel variability on speech separation networks</span>
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:#5e5b54;flex:none">arXiv</span>
+            </a>
+          </div>
+          <div data-paper data-topic="語者與語言辨識" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2021</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">Interspeech</div>
+            <a href="https://arxiv.org/abs/2106.07579" class="hover-accent" style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty;display:inline-flex;gap:10px;align-items:baseline">
+              <span>Dual-path filter network: Speaker-aware modeling for speech separation</span>
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:#5e5b54;flex:none">arXiv</span>
+            </a>
+          </div>
+          <div data-paper data-topic="語者與語言辨識" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2021</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">APSIPA ASC</div>
+            <a href="https://arxiv.org/abs/2203.16646" class="hover-accent" style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty;display:inline-flex;gap:10px;align-items:baseline">
+              <span>Generation of speaker representations using heterogeneous training batch assembly</span>
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:#5e5b54;flex:none">arXiv</span>
+            </a>
+          </div>
+          <div data-paper data-topic="語者與語言辨識" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2020</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">TASLP</div>
+            <a href="https://arxiv.org/abs/2203.15576" class="hover-accent" style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty;display:inline-flex;gap:10px;align-items:baseline">
+              <span>Subspace-based representation and learning for phonotactic spoken language recognition</span>
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:#5e5b54;flex:none">arXiv</span>
+            </a>
+          </div>
+          <div data-paper data-topic="語者與語言辨識" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2017</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">IJCLCLP</div>
+            <div style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">A replay spoofing detection system based on discriminative autoencoders</div>
+          </div>
+          <div data-paper data-topic="語者與語言辨識" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2017</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">ICASSP</div>
+            <div style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">Discriminative autoencoders for speaker verification</div>
+          </div>
+          <div data-paper data-topic="語者與語言辨識" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2017</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">ROCLING</div>
+            <div style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">Speaker diarization based on i-vector PLDA scoring and using GMM-HMM forced alignment</div>
+          </div>
+          <div data-paper data-topic="語者與語言辨識" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2014</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">Interspeech</div>
+            <div style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">Clustering-based i-vector formulation for speaker recognition</div>
+          </div>
+          <div data-paper data-topic="語者與語言辨識" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2014</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">ICASSP</div>
+            <div style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">Speaker verification using kernel-based binary classifiers with binary operation derived features</div>
+          </div>
+          <div data-paper data-topic="語者與語言辨識" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2013</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">ICASSP</div>
+            <div style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">Subspace-based phonotactic language recognition using multivariate dynamic linear models</div>
+          </div>
+          <div data-paper data-topic="語者與語言辨識" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2012</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">Interspeech</div>
+            <div style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">Subspace-based feature representation and learning for language recognition</div>
+          </div>
+          <div data-paper data-topic="語音品質與評測" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2026</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">IEEE ICME</div>
+            <a href="https://arxiv.org/abs/2603.16201" class="hover-accent" style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty;display:inline-flex;gap:10px;align-items:baseline">
+              <span>Robust generative audio quality assessment: Disentangling quality from spurious correlations</span>
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:#5e5b54;flex:none">arXiv</span>
+            </a>
+          </div>
+          <div data-paper data-topic="語音品質與評測" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2025</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">IEEE ASRU</div>
+            <a href="https://arxiv.org/abs/2508.08957" class="hover-accent" style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty;display:inline-flex;gap:10px;align-items:baseline">
+              <span>QAMRO: Quality-aware adaptive margin ranking optimization for human-aligned assessment of audio generation systems</span>
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:#5e5b54;flex:none">arXiv</span>
+            </a>
+          </div>
+          <div data-paper data-topic="語音品質與評測" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2025</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">APSIPA ASC</div>
+            <a href="https://arxiv.org/abs/2508.21407" class="hover-accent" style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty;display:inline-flex;gap:10px;align-items:baseline">
+              <span>DRASP: A dual-resolution attentive statistics pooling framework for automatic MOS prediction</span>
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:#5e5b54;flex:none">arXiv</span>
+            </a>
+          </div>
+          <div data-paper data-topic="語音品質與評測" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2019</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">O-COCOSDA</div>
+            <div style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">Mandarin mispronunciation detection and diagnosis feedback using articulatory attributes based multi-task learning</div>
+          </div>
+          <div data-paper data-topic="語音品質與評測" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2019</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">APSIPA ASC</div>
+            <div style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">Multi-task learning for acoustic modeling using articulatory attributes</div>
+          </div>
+          <div data-paper data-topic="語音品質與評測" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2016</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">Interspeech</div>
+            <div style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">Minimization of regression and ranking losses with shallow neural networks on automatic sincerity evaluation</div>
+          </div>
+          <div data-paper data-topic="語音品質與評測" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2014</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">Interspeech</div>
+            <div style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">Ensemble of machine learning algorithms for cognitive and physical speaker load detection</div>
+          </div>
       </div>
     </div>
   </div>
@@ -645,107 +919,62 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
   </div>
 
 </div>
-</x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440},&quot;demoAutoplay&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Hero Demo&quot;},&quot;demoSpeed&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:340,&quot;min&quot;:150,&quot;max&quot;:700,&quot;step&quot;:10,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Hero Demo&quot;},&quot;showRoadmap&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;區塊&quot;}}">
-class Component extends DCLogic {
-  state = { step: 0, t: 0, cat: "全部" };
+</div></div>
+<script>
+// 首頁的兩段執行期行為，從 dc-runtime 元件移植成原生 JS。
+// 靜態標記已經是「動畫跑完、分類為全部」的狀態，所以沒有 JavaScript 時
+// 內容是完整的；這支腳本負責讓聲波動起來，並讓分類篩選可用。
+(function () {
+  var bars = Array.prototype.slice.call(document.querySelectorAll("[data-bar]"));
+  var steps = Array.prototype.slice.call(document.querySelectorAll("[data-step]"));
+  var prog = document.querySelector("[data-live-progress]");
+  var clock = document.querySelector("[data-live-clock]");
 
-  papers = [
-    ["臺灣多語言", 2026, "LREC", "TG-ASR: Translation-guided learning with parallel gated cross attention for low-resource automatic speech recognition", "https://arxiv.org/abs/2602.22039"],
-    ["臺灣多語言", 2026, "LREC", "Efficient dialect-aware and conditioning for low-resource Taiwanese Hakka speech processing", "https://arxiv.org/abs/2602.22522"],
-    ["臺灣多語言", 2025, "O-COCOSDA", "Exploring the impact of data quantity on ASR in extremely low-resource languages", "https://arxiv.org/abs/2409.08872"],
-    ["臺灣多語言", 2024, "O-COCOSDA", "VoxHakka: A dialectally diverse multi-speaker text-to-speech system for Taiwanese Hakka", "https://arxiv.org/abs/2409.01548"],
-    ["臺灣多語言", 2021, "Interspeech", "AlloST: Low-resource speech translation without source transcription", "https://arxiv.org/abs/2105.00171"],
-    ["臺灣多語言", 2020, "O-COCOSDA", "Using Taigi dramas with Mandarin Chinese subtitles to improve Taigi speech recognition", ""],
-    ["強健辨識與增強", 2026, "TASLP", "Universal robust speech adaptation for cross-domain speech recognition and enhancement", "https://arxiv.org/abs/2602.04307"],
-    ["強健辨識與增強", 2026, "ICASSP", "SCENE: Semantic-aware codec enhancement with neural embeddings", "https://arxiv.org/abs/2601.22189"],
-    ["強健辨識與增強", 2025, "IEEE ASRU", "Revealing the role of audio channels in ASR performance degradation", "https://arxiv.org/abs/2508.08967"],
-    ["強健辨識與增強", 2025, "ICASSP", "Channel-aware domain-adaptive generative adversarial network for robust speech recognition", "https://arxiv.org/abs/2409.12386"],
-    ["強健辨識與增強", 2024, "IEEE SLT", "Effective noise-aware data simulation for domain-adaptive speech enhancement leveraging dynamic stochastic perturbation", "https://arxiv.org/abs/2409.01545"],
-    ["強健辨識與增強", 2023, "Interspeech", "A training and inference strategy using noisy and enhanced speech as target for speech enhancement without clean speech", "https://arxiv.org/abs/2210.15368"],
-    ["強健辨識與增強", 2022, "Interspeech", "Chain-based discriminative autoencoders for speech recognition", "https://arxiv.org/abs/2203.13687"],
-    ["強健辨識與增強", 2022, "ISCSLP", "Speech-enhanced and noise-aware acoustic modeling for robust speech recognition", "https://arxiv.org/abs/2203.13696"],
-    ["強健辨識與增強", 2022, "EUSIPCO", "Filter-based discriminative autoencoders for children speech recognition", "https://arxiv.org/abs/2204.00164"],
-    ["強健辨識與增強", 2021, "CSRC", "The Academia Sinica system for the SLT 2021 children speech recognition challenge", ""],
-    ["強健辨識與增強", 2020, "CHiME", "The Academia Sinica systems of speech recognition and speaker diarization for the CHiME-6 challenge", ""],
-    ["強健辨識與增強", 2019, "Interspeech", "Exploring the encoder layers of discriminative autoencoders for LVCSR", ""],
-    ["強健辨識與增強", 2017, "Interspeech", "Discriminative autoencoders for acoustic modeling", ""],
-    ["強健辨識與增強", 2009, "IEEE ASRU", "Generalized likelihood ratio discriminant analysis", ""],
-    ["強健辨識與增強", 2007, "IEEE ASRU", "Training data selection for improving discriminative training of acoustic models", ""],
-    ["語者與語言辨識", 2026, "Interspeech", "Personalized keyword spotting for user-defined keywords leveraging text-independent speaker verification", "https://arxiv.org/abs/2606.20106"],
-    ["語者與語言辨識", 2023, "IEEE SPL", "Multi-target filter and detector for unknown-number speaker diarization", "https://arxiv.org/abs/2203.16007"],
-    ["語者與語言辨識", 2022, "Interspeech", "Disentangling the impacts of language and channel variability on speech separation networks", "https://arxiv.org/abs/2203.16040"],
-    ["語者與語言辨識", 2021, "Interspeech", "Dual-path filter network: Speaker-aware modeling for speech separation", "https://arxiv.org/abs/2106.07579"],
-    ["語者與語言辨識", 2021, "APSIPA ASC", "Generation of speaker representations using heterogeneous training batch assembly", "https://arxiv.org/abs/2203.16646"],
-    ["語者與語言辨識", 2020, "TASLP", "Subspace-based representation and learning for phonotactic spoken language recognition", "https://arxiv.org/abs/2203.15576"],
-    ["語者與語言辨識", 2017, "IJCLCLP", "A replay spoofing detection system based on discriminative autoencoders", ""],
-    ["語者與語言辨識", 2017, "ICASSP", "Discriminative autoencoders for speaker verification", ""],
-    ["語者與語言辨識", 2017, "ROCLING", "Speaker diarization based on i-vector PLDA scoring and using GMM-HMM forced alignment", ""],
-    ["語者與語言辨識", 2014, "Interspeech", "Clustering-based i-vector formulation for speaker recognition", ""],
-    ["語者與語言辨識", 2014, "ICASSP", "Speaker verification using kernel-based binary classifiers with binary operation derived features", ""],
-    ["語者與語言辨識", 2013, "ICASSP", "Subspace-based phonotactic language recognition using multivariate dynamic linear models", ""],
-    ["語者與語言辨識", 2012, "Interspeech", "Subspace-based feature representation and learning for language recognition", ""],
-    ["語音品質與評測", 2026, "IEEE ICME", "Robust generative audio quality assessment: Disentangling quality from spurious correlations", "https://arxiv.org/abs/2603.16201"],
-    ["語音品質與評測", 2025, "IEEE ASRU", "QAMRO: Quality-aware adaptive margin ranking optimization for human-aligned assessment of audio generation systems", "https://arxiv.org/abs/2508.08957"],
-    ["語音品質與評測", 2025, "APSIPA ASC", "DRASP: A dual-resolution attentive statistics pooling framework for automatic MOS prediction", "https://arxiv.org/abs/2508.21407"],
-    ["語音品質與評測", 2019, "O-COCOSDA", "Mandarin mispronunciation detection and diagnosis feedback using articulatory attributes based multi-task learning", ""],
-    ["語音品質與評測", 2019, "APSIPA ASC", "Multi-task learning for acoustic modeling using articulatory attributes", ""],
-    ["語音品質與評測", 2016, "Interspeech", "Minimization of regression and ranking losses with shallow neural networks on automatic sincerity evaluation", ""],
-    ["語音品質與評測", 2014, "Interspeech", "Ensemble of machine learning algorithms for cognitive and physical speaker load detection", ""],
-  ];
-
-  componentDidMount() {
-    if (this.props.demoAutoplay === false) { this.setState({ t: 39, step: 4 }); return; }
-    const ms = this.props.demoSpeed ?? 340;
-    this.timer = setInterval(() => {
-      this.setState(s => {
-        const t = (s.t + 1) % 40;
-        return { t, step: Math.min(4, Math.floor(t / 6)) };
-      });
-    }, ms);
-  }
-
-  componentWillUnmount() { clearInterval(this.timer); }
-
-  renderVals() {
-    const { step, t } = this.state;
-    const n = 44;
-    const bars = [];
-    for (let i = 0; i < n; i++) {
-      const seed = Math.sin(i * 1.9) * Math.cos(i * 0.7 + 1.3);
-      const env = 0.35 + 0.65 * Math.abs(Math.sin(i * 0.21 + t * 0.16));
-      const h = Math.max(3, Math.round((8 + Math.abs(seed) * 44) * env));
-      const active = i / n <= t / 40;
-      bars.push({ h: h + "px", color: active ? "#ED9A4A" : "#2a2924" });
+  function paint(t) {
+    var n = bars.length;
+    for (var i = 0; i < n; i++) {
+      var seed = Math.sin(i * 1.9) * Math.cos(i * 0.7 + 1.3);
+      var env = 0.35 + 0.65 * Math.abs(Math.sin(i * 0.21 + t * 0.16));
+      bars[i].style.height = Math.max(3, Math.round((8 + Math.abs(seed) * 44) * env)) + "px";
+      bars[i].style.background = i / n <= t / 40 ? "#ED9A4A" : "#2a2924";
     }
-    const cat = this.state.cat;
-    const names = ["全部", "臺灣多語言", "強健辨識與增強", "語者與語言辨識", "語音品質與評測"];
-    const cats = names.map(name => ({
-      name,
-      count: name === "全部" ? this.papers.length : this.papers.filter(p => p[0] === name).length,
-      bg: name === cat ? "#ED9A4A" : "transparent",
-      fg: name === cat ? "#141413" : "#a8a59d",
-      bd: name === cat ? "#ED9A4A" : "#3a3833",
-      onSelect: () => this.setState({ cat: name }),
-    }));
-    const pubs = this.papers
-      .filter(p => cat === "全部" || p[0] === cat)
-      .map(p => ({ topic: p[0], year: String(p[1]), venue: p[2], title: p[3], url: p[4], hasUrl: !!p[4], noUrl: !p[4] }));
-
-    return {
-      cats, pubs,
-      pubCount: String(this.papers.length),
-      showRoadmap: this.props.showRoadmap ?? true,
-      bars,
-      op1: step >= 1 ? 1 : 0.12,
-      op2: step >= 2 ? 1 : 0.12,
-      op3: step >= 3 ? 1 : 0.12,
-      op4: step >= 4 ? 1 : 0.12,
-      progress: Math.round((t / 40) * 100) + "%",
-      clock: "0:" + String(Math.floor((t / 40) * 18)).padStart(2, "0"),
-    };
+    var step = Math.min(4, Math.floor(t / 6));
+    steps.forEach(function (el) {
+      el.style.opacity = step >= Number(el.getAttribute("data-step")) ? 1 : 0.12;
+    });
+    prog.style.width = Math.round((t / 40) * 100) + "%";
+    clock.textContent = "0:" + String(Math.floor((t / 40) * 18)).padStart(2, "0");
   }
-}
+
+  if (bars.length && !(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches)) {
+    var t = 39, timer = null;
+    function tick() { t = (t + 1) % 40; paint(t); }
+    function start() { if (!timer) timer = setInterval(tick, 340); }
+    function stop() { clearInterval(timer); timer = null; }
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) { stop(); } else { start(); }   // 背景分頁不空轉
+    });
+    start();
+  }
+
+  // 研究發表的分類篩選。沒有 JavaScript 時全部顯示，是合理的預設。
+  var cats = Array.prototype.slice.call(document.querySelectorAll("[data-cat]"));
+  var papers = Array.prototype.slice.call(document.querySelectorAll("[data-paper]"));
+  cats.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var name = btn.getAttribute("data-cat");
+      cats.forEach(function (b) {
+        var on = b === btn;
+        b.style.background = on ? "#ED9A4A" : "transparent";
+        b.style.color = on ? "#141413" : "#a8a59d";
+        b.style.borderColor = on ? "#ED9A4A" : "#3a3833";
+      });
+      papers.forEach(function (p) {
+        p.style.display = name === "全部" || p.getAttribute("data-topic") === name ? "" : "none";
+      });
+    });
+  });
+})();
 </script>
 </body>
 </html>
