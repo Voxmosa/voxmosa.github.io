@@ -112,6 +112,23 @@ const SNAPSHOT = `(function () {
   return out.join("\\n");
 })()`;
 
+// 導覽列「存在」不等於「看得見」：連結可能被容器裁掉或推出畫面，
+// link-check 只讀原始碼看不到這件事。這裡用實際的 bounding rect 判斷。
+const NAV_PROBE = `(function () {
+  var want = /^(MosaTalk|MosaMinutes|MosaScore|技術實力|為什麼地端|團隊)$/;
+  var bad = [];
+  [].slice.call(document.querySelectorAll("a")).forEach(function (a) {
+    var t = (a.textContent || "").trim();
+    if (!want.test(t)) return;
+    var r = a.getBoundingClientRect();
+    var onScreen = r.width > 0 && r.height > 0 &&
+                   r.left >= -0.5 && r.right <= window.innerWidth + 0.5;
+    if (!onScreen) bad.push(t + "(" + Math.round(r.left) + "~" + Math.round(r.right) +
+                            " of " + window.innerWidth + ")");
+  });
+  return bad.join("、");
+})()`;
+
 async function capture(chromePath, base, page, width, port) {
   const chrome = spawn(chromePath, ["--headless=new", `--remote-debugging-port=${port}`,
     "--no-first-run", "--no-default-browser-check", "--hide-scrollbars",
@@ -137,9 +154,10 @@ async function capture(chromePath, base, page, width, port) {
     const a = (await s.send("Runtime.evaluate", { expression: SNAPSHOT, returnByValue: true })).result.value;
     await sleep(900);
     const b = (await s.send("Runtime.evaluate", { expression: SNAPSHOT, returnByValue: true })).result.value;
+    const nav = (await s.send("Runtime.evaluate", { expression: NAV_PROBE, returnByValue: true })).result.value;
     const shot = await s.send("Page.captureScreenshot", { format: "png", captureBeyondViewport: true });
     s.close();
-    return { layout: maskUnstable(a, b), png: Buffer.from(shot.data, "base64") };
+    return { layout: maskUnstable(a, b), nav, png: Buffer.from(shot.data, "base64") };
   } finally { chrome.kill(); }
 }
 
@@ -211,8 +229,12 @@ function compare(name, before, after) {
       const key = `${page.replace(".html", "")}-${width}`;
       const txt = path.join(BASELINE, `${key}.txt`);
       const png = path.join(BASELINE, `${key}.png`);  // 只有 --save 會寫這個
-      const { layout, png: shot } = await capture(chromePath, base, page, width, port++);
+      const { layout, nav, png: shot } = await capture(chromePath, base, page, width, port++);
 
+      if (nav) {
+        failures++;
+        console.log(`❌ ${key.padEnd(22)} 導覽項目被裁切：${nav}`);
+      }
       if (save) {
         // 遮罩單調累積：一旦某欄位被觀察到會自己變動，就永遠視為不穩定。
         // 否則某根聲波柱剛好在兩次快照間靜止，就會被記成具體數值，
