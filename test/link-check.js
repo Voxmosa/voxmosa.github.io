@@ -68,17 +68,31 @@ for (const [page, { src }] of pages) {
   }
 }
 
-// 導覽列在各頁之間應該一致 —— mosascore 曾經漏掉「技術實力」
-const NAV = ["MosaTalk", "MosaMinutes", "MosaScore", "技術實力", "為什麼地端"];
-console.log("\n導覽列一致性：");
+// 導覽列在各頁之間應該一致。以首頁為準而不是寫死清單 —— 寫死等於把當下的
+// 不一致固化進測試：第一版列出五項，於是「團隊」只有首頁有這件事就沒被抓到。
+function navLabels(src) {
+  const start = src.indexOf('<a href="mosatalk.html"');
+  if (start < 0) return [];
+  const out = [];
+  for (const m of src.slice(start).matchAll(/<a\s[^>]*>([\s\S]*?)<\/a>/g)) {
+    const text = m[1].replace(/<[^>]+>/g, "").trim();
+    if (!text) continue;
+    out.push(text);
+    if (text.startsWith("申請")) break;   // CTA 是導覽列的最後一項
+  }
+  return out;
+}
+
+const expected = navLabels(pages.get("index.html").src);
+console.log(`\n導覽列一致性（以 index.html 的 ${expected.length} 項為準：${expected.join("、")}）：`);
 for (const [page, { src }] of pages) {
-  const header = src.slice(0, src.indexOf("</header>") + 1 || 30000);
-  const missing = NAV.filter((label) => !header.includes(`>${label}</a>`));
+  const has = new Set(navLabels(src));
+  const missing = expected.filter((label) => !has.has(label));
   if (missing.length) {
     failures += missing.length;
     console.log(`❌ ${page.padEnd(18)} 缺少：${missing.join("、")}`);
   } else {
-    console.log(`✅ ${page.padEnd(18)} 五個項目齊全`);
+    console.log(`✅ ${page.padEnd(18)} 齊全`);
   }
 }
 
