@@ -122,6 +122,10 @@ async function capture(chromePath, base, page, width, port) {
     await s.send("Runtime.enable");
     await s.send("Emulation.setDeviceMetricsOverride", {
       width, height: 900, deviceScaleFactor: 1, mobile: width < 500 });
+    // 已烘焙頁面的動畫尊重 prefers-reduced-motion，用它凍結成可重現的一幀。
+    // 尚未烘焙的頁面不看這個設定，仍由下方 SETTLE 的 __dcSetProps 停住。
+    await s.send("Emulation.setEmulatedMedia", {
+      features: [{ name: "prefers-reduced-motion", value: "reduce" }] });
     await s.send("Page.navigate", { url: base + page });
     await sleep(3500);
     await s.send("Runtime.evaluate", { expression: SETTLE, awaitPromise: true, returnByValue: true });

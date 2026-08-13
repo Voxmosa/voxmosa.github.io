@@ -74,13 +74,20 @@ for (const re of strip) head = head.replace(re, "");
 // helmet 也帶了一份 viewport，與 <head> 裡的重複
 const helmetLines = helmet.split("\n").filter((l) => !/<meta name="viewport"/.test(l));
 
+// </x-dc> 之後的 <script> 是頁面自己的原生 JS（例如移植過來的動畫），
+// 必須帶進烘焙結果 —— 漏掉的話動畫會靜悄悄地消失，頁面看起來仍然正常。
+const afterTemplate = src.slice(xdcClose + "</x-dc>".length, src.indexOf("</body>"));
+const trailing = (afterTemplate.match(/<script[\s\S]*?<\/script>/g) || [])
+  .filter((t) => !/type="text\/x-dc"/.test(t))
+  .join("\n");
+
 const out = `<!DOCTYPE html>
 <html lang="zh-Hant">
 <head>${head.replace(/\n+$/, "\n")}${helmetLines.join("\n")}
 <style>${FULL_PAGE_CSS}</style>
 </head>
 <body>
-<div id="dc-root"><div class="sc-host">${content.replace(/\n+$/, "\n")}</div></div>
+<div id="dc-root"><div class="sc-host">${content.replace(/\n+$/, "\n")}</div></div>${trailing ? "\n" + trailing : ""}
 </body>
 </html>
 `;
@@ -89,3 +96,4 @@ fs.writeFileSync(file, out);
 const before = Buffer.byteLength(src), after = Buffer.byteLength(out);
 console.log(`✅ ${path.basename(file)}：${Math.round(before / 1024)}KB → ${Math.round(after / 1024)}KB`);
 console.log("   已移除 React、support.js、兜底看門狗；請跑 test/layout-check.js 驗證等價");
+if (trailing) console.log(`   保留了 ${(trailing.match(/<script/g) || []).length} 段頁面自有的 JS`);

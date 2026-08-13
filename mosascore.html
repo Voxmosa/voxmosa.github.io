@@ -1,46 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-Hant">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./vendor/react.production.min.js"></script>
-<script src="./vendor/react-dom.production.min.js"></script>
-<script src="./support.js"></script>
-<!-- 兜底：support.js 會先注入 x-dc{display:none} 把原始模板藏起來，之後才非同步
-     載入 React 渲染。若渲染始終沒發生（腳本 404、JS 例外、瀏覽器太舊），
-     沒有這段的話使用者看到的會是全白頁。 -->
-<script>
-(function () {
-  var GRACE_MS = 2500;
-  function reveal() {
-    var root = document.getElementById("dc-root");
-    if (root && root.textContent.trim()) return;   // 已經渲染成功
-    if (!document.querySelector("x-dc")) return;   // 模板已被取走，救不回來
-    var s = document.createElement("style");
-    // 特異性 (0,0,3)，勝過 support.js 的 x-dc{display:none!important} (0,0,1)
-    // sc-for / sc-if 的內容要有執行期資料才有意義，退化時整塊藏起來，
-    // 否則畫面上會出現一整排 {{ p.year }} 之類的佔位符。
-    s.textContent = "html body x-dc{display:block!important}" +
-                    "html body x-dc sc-for,html body x-dc sc-if{display:none!important}";
-    document.head.appendChild(s);
-    scrubPlaceholders();
-  }
-  // 清掉散落在一般元素裡、不被上面規則涵蓋的 {{ … }}
-  function scrubPlaceholders() {
-    var dc = document.querySelector("x-dc");
-    if (!dc || !document.createTreeWalker) return;
-    var walk = document.createTreeWalker(dc, NodeFilter.SHOW_TEXT, null, false);
-    var hits = [], n;
-    while ((n = walk.nextNode())) if (n.nodeValue.indexOf("{{") !== -1) hits.push(n);
-    for (var i = 0; i < hits.length; i++)
-      hits[i].nodeValue = hits[i].nodeValue.replace(/\{\{[^}]*\}\}/g, "");
-  }
-  window.addEventListener("load", function () { setTimeout(reveal, GRACE_MS); });
-})();
-</script>
-<!-- JS 關閉時 support.js 不會執行，模板本來就是可見的；這行只是把未知元素
-     的預設 display:inline 修正成 block。 -->
-<noscript><style>x-dc{display:block}</style></noscript>
   <title>MosaScore｜通話品質分析 - Voxmosa</title>
   <meta name="description" content="把只能抽查 1~3% 的客服與電銷錄音，變成每一通都被完整聽過、逐句轉寫與評分。">
   <link rel="canonical" href="https://voxmosa.com/mosascore.html">
@@ -57,11 +19,6 @@
   <meta name="twitter:title" content="MosaScore｜通話品質分析">
   <meta name="twitter:description" content="把只能抽查 1~3% 的客服與電銷錄音，變成每一通都被完整聽過、逐句轉寫與評分。">
   <meta name="twitter:image" content="https://voxmosa.com/og.png">
-</head>
-<body>
-<x-dc>
-<helmet>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="./vendor/fonts/fonts.css" rel="stylesheet" />
 <style>
 body { margin:0; background:#141413; }
@@ -99,7 +56,11 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
 @media (max-width:900px){.r-display-grid > *{min-width:0!important}
 }
 </style>
-</helmet>
+<style>html,body{height:100%;margin:0}#dc-root,#dc-root>.sc-host{height:100%}</style>
+</head>
+<body>
+<div id="dc-root"><div class="sc-host">
+
 <div style="width:100%;background:#141413;color:#f4f3f0;font-family:'Noto Sans TC','Space Grotesk',sans-serif;overflow-x:hidden">
 
   <div style="position:sticky;top:0;z-index:20;background:rgba(20,20,19,0.92);backdrop-filter:blur(14px);border-bottom:1px solid #26251f">
@@ -141,7 +102,7 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
 
     <div style="background:#0F0F0E;border:1px solid #26251f;border-radius:10px;padding:26px;display:flex;flex-direction:column;gap:16px">
       <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
-        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#5e5b54;letter-spacing:0.12em;text-transform:uppercase">通話分析　{{ clock }}</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#5e5b54;letter-spacing:0.12em;text-transform:uppercase">通話分析　<span data-live-clock>01:02</span></div>
         <div style="display:flex;gap:6px">
           <div style="border:1px solid #2e2d27;color:#7a776e;font-family:'IBM Plex Mono',monospace;font-size:9px;padding:4px 8px;border-radius:3px;display:flex;align-items:center;gap:5px"><span style="width:5px;height:5px;border-radius:50%;background:#5fbf7f;display:block"></span>ASR</div>
           <div style="border:1px solid #2e2d27;color:#7a776e;font-family:'IBM Plex Mono',monospace;font-size:9px;padding:4px 8px;border-radius:3px;display:flex;align-items:center;gap:5px"><span style="width:5px;height:5px;border-radius:50%;background:#5fbf7f;display:block"></span>EMO</div>
@@ -150,29 +111,63 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
       </div>
 
       <div style="display:flex;flex-direction:column;gap:1px;background:#26251f;border-radius:6px;overflow:hidden">
-        <sc-for list="{{ turns }}" as="tn" hint-placeholder-count="5">
-          <div style="background:#141413;padding:13px 16px;display:flex;gap:12px;align-items:baseline;opacity:{{ tn.op }};border-left:2px solid {{ tn.edge }}">
-            <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#5e5b54;flex:none;width:34px;padding-top:3px">{{ tn.time }}</div>
-            <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:{{ tn.who }};flex:none;width:32px;padding-top:3px">{{ tn.role }}</div>
-            <div style="font-size:13px;font-weight:300;color:#cfccc4;line-height:1.8;flex:1">{{ tn.text }}</div>
-            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:{{ tn.scoreColor }};flex:none;padding-top:2px">{{ tn.score }}</div>
+        <div data-turn="0" style="background:#141413;padding:13px 16px;display:flex;gap:12px;align-items:baseline;opacity:1;border-left:2px solid transparent">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#5e5b54;flex:none;width:34px;padding-top:3px">00:03</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#8c8a84;flex:none;width:32px;padding-top:3px">客服</div>
+            <div style="font-size:13px;font-weight:300;color:#cfccc4;line-height:1.8;flex:1">您好，這裡是保健諮詢中心，想跟您介紹這次的體驗組</div>
+            <div data-score-cell style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#ED9A4A;flex:none;padding-top:2px"></div>
           </div>
-        </sc-for>
+          <div data-turn="1" data-score="22" data-reason="明確表達目前無需求，語氣平淡" style="background:#141413;padding:13px 16px;display:flex;gap:12px;align-items:baseline;opacity:1;border-left:2px solid transparent">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#5e5b54;flex:none;width:34px;padding-top:3px">00:11</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#ED9A4A;flex:none;width:32px;padding-top:3px">客戶</div>
+            <div style="font-size:13px;font-weight:300;color:#cfccc4;line-height:1.8;flex:1">喔……我現在沒有在吃這個啦</div>
+            <div data-score-cell style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#ED9A4A;flex:none;padding-top:2px">22</div>
+          </div>
+          <div data-turn="2" style="background:#141413;padding:13px 16px;display:flex;gap:12px;align-items:baseline;opacity:1;border-left:2px solid transparent">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#5e5b54;flex:none;width:34px;padding-top:3px">00:17</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#8c8a84;flex:none;width:32px;padding-top:3px">客服</div>
+            <div style="font-size:13px;font-weight:300;color:#cfccc4;line-height:1.8;flex:1">了解，那想請問您平常晚上睡得還好嗎？</div>
+            <div data-score-cell style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#ED9A4A;flex:none;padding-top:2px"></div>
+          </div>
+          <div data-turn="3" data-score="41" data-reason="揭露痛點並延續對話，抗拒程度下降" style="background:#141413;padding:13px 16px;display:flex;gap:12px;align-items:baseline;opacity:1;border-left:2px solid transparent">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#5e5b54;flex:none;width:34px;padding-top:3px">00:24</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#ED9A4A;flex:none;width:32px;padding-top:3px">客戶</div>
+            <div style="font-size:13px;font-weight:300;color:#cfccc4;line-height:1.8;flex:1">睡不太好，都嘛翻來翻去</div>
+            <div data-score-cell style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#ED9A4A;flex:none;padding-top:2px">41</div>
+          </div>
+          <div data-turn="4" style="background:#141413;padding:13px 16px;display:flex;gap:12px;align-items:baseline;opacity:1;border-left:2px solid transparent">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#5e5b54;flex:none;width:34px;padding-top:3px">00:33</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#8c8a84;flex:none;width:32px;padding-top:3px">客服</div>
+            <div style="font-size:13px;font-weight:300;color:#cfccc4;line-height:1.8;flex:1">很多客人跟您狀況一樣，芝麻明這款是針對……</div>
+            <div data-score-cell style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#ED9A4A;flex:none;padding-top:2px"></div>
+          </div>
+          <div data-turn="5" data-score="63" data-reason="主動詢問規格，進入評估階段" style="background:#141413;padding:13px 16px;display:flex;gap:12px;align-items:baseline;opacity:1;border-left:2px solid transparent">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#5e5b54;flex:none;width:34px;padding-top:3px">00:47</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#ED9A4A;flex:none;width:32px;padding-top:3px">客戶</div>
+            <div style="font-size:13px;font-weight:300;color:#cfccc4;line-height:1.8;flex:1">那這个一組是幾罐？</div>
+            <div data-score-cell style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#ED9A4A;flex:none;padding-top:2px">63</div>
+          </div>
+          <div data-turn="6" data-score="84" data-reason="詢問付款方式，命中最高級距錨點" style="background:#141413;padding:13px 16px;display:flex;gap:12px;align-items:baseline;opacity:1;border-left:2px solid #ED9A4A">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#5e5b54;flex:none;width:34px;padding-top:3px">01:02</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#ED9A4A;flex:none;width:32px;padding-top:3px">客戶</div>
+            <div style="font-size:13px;font-weight:300;color:#cfccc4;line-height:1.8;flex:1">如果我要買的話，是貨到付款嗎？</div>
+            <div data-score-cell style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#ED9A4A;flex:none;padding-top:2px">84</div>
+          </div>
       </div>
 
       <div style="border:1px solid #26251f;border-radius:6px;padding:16px 18px;display:flex;flex-direction:column;gap:10px">
         <div style="display:flex;justify-content:space-between;align-items:baseline">
           <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:#5e5b54;letter-spacing:0.1em;text-transform:uppercase">購買傾向分數</div>
-          <div style="font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:400;color:#ED9A4A;line-height:1">{{ current }}</div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:400;color:#ED9A4A;line-height:1" data-live-score>84</div>
         </div>
         <svg viewBox="0 0 300 72" style="width:100%;height:72px;display:block" fill="none">
           <line x1="0" y1="10" x2="300" y2="10" stroke="#26251f" stroke-width="1" />
           <line x1="0" y1="38" x2="300" y2="38" stroke="#26251f" stroke-width="1" />
           <line x1="0" y1="66" x2="300" y2="66" stroke="#26251f" stroke-width="1" />
-          <polyline points="{{ pts }}" stroke="#ED9A4A" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" />
-          <circle cx="{{ cx }}" cy="{{ cy }}" r="3.5" fill="#ED9A4A" />
+          <polyline data-live-line points="10.0,53.7 103.3,43.0 196.7,30.7 290.0,19.0" stroke="#ED9A4A" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" />
+          <circle data-live-marker cx="290.0" cy="19.0" r="3.5" fill="#ED9A4A" />
         </svg>
-        <div style="font-size:11.5px;font-weight:300;color:#7a776e;line-height:1.7">{{ reason }}</div>
+        <div style="font-size:11.5px;font-weight:300;color:#7a776e;line-height:1.7" data-live-reason>詢問付款方式，命中最高級距錨點</div>
       </div>
     </div>
   </div>
@@ -374,7 +369,7 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
     </div>
   </div>
 
-  <sc-if value="{{ showRoadmap }}" hint-placeholder-val="{{ true }}">
+  
   <div style="border-top:1px solid #26251f;background:#0F0F0E">
     <div class="r-mw-1280px r-pad-104px-56px" style="max-width:1280px;margin:0 auto;padding:104px 56px;display:flex;flex-direction:column;gap:38px">
       <div style="display:flex;flex-direction:column;gap:16px">
@@ -398,7 +393,7 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
       </div>
     </div>
   </div>
-  </sc-if>
+  
 
   <div style="border-top:1px solid #26251f">
     <div class="r-mw-1280px r-gtc-1fr-1fr r-gap-64px r-pad-104px-56px r-display-grid" style="max-width:1280px;margin:0 auto;padding:104px 56px;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start">
@@ -494,65 +489,59 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
   </div>
 
 </div>
-</x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440},&quot;demoAutoplay&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;示範&quot;},&quot;demoSpeed&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:1500,&quot;min&quot;:600,&quot;max&quot;:3000,&quot;step&quot;:100,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;示範&quot;},&quot;showRoadmap&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;內容&quot;}}">
-class Component extends DCLogic {
-  state = { i: 0 };
+</div></div>
+<script>
+// 通話分析示範動畫：每 1.5 秒揭露一句，同時把分數點連成折線。
+// 靜態標記本身就是「跑完」的狀態，所以沒有 JavaScript 時內容是完整的，
+// 這支腳本只是把它倒帶回去再重播。
+(function () {
+  var rows = Array.prototype.slice.call(document.querySelectorAll("[data-turn]"));
+  if (!rows.length) return;
+  var clock = document.querySelector("[data-live-clock]");
+  var current = document.querySelector("[data-live-score]");
+  var reason = document.querySelector("[data-live-reason]");
+  var line = document.querySelector("[data-live-line]");
+  var marker = document.querySelector("[data-live-marker]");
+  var scored = rows.filter(function (r) { return r.hasAttribute("data-score"); });
+  var step = 280 / Math.max(1, scored.length - 1);
 
-  script = [
-    ["00:03", "客服", "您好，這裡是保健諮詢中心，想跟您介紹這次的體驗組", null, null],
-    ["00:11", "客戶", "喔……我現在沒有在吃這個啦", 22, "明確表達目前無需求，語氣平淡"],
-    ["00:17", "客服", "了解，那想請問您平常晚上睡得還好嗎？", null, null],
-    ["00:24", "客戶", "睡不太好，都嘛翻來翻去", 41, "揭露痛點並延續對話，抗拒程度下降"],
-    ["00:33", "客服", "很多客人跟您狀況一樣，芝麻明這款是針對……", null, null],
-    ["00:47", "客戶", "那這个一組是幾罐？", 63, "主動詢問規格，進入評估階段"],
-    ["01:02", "客戶", "如果我要買的話，是貨到付款嗎？", 84, "詢問付款方式，命中最高級距錨點"],
-  ];
-
-  componentDidMount() {
-    if (this.props.demoAutoplay === false) { this.setState({ i: this.script.length }); return; }
-    const ms = this.props.demoSpeed ?? 1500;
-    this.timer = setInterval(() => {
-      this.setState(s => ({ i: s.i >= this.script.length ? 0 : s.i + 1 }));
-    }, ms);
-  }
-
-  componentWillUnmount() { clearInterval(this.timer); }
-
-  renderVals() {
-    const shown = this.state.i;
-    const turns = this.script.map((r, idx) => {
-      const on = idx < shown;
-      const isCust = r[1] === "客戶";
-      return {
-        time: r[0], role: r[1], text: r[2],
-        score: on && r[3] !== null ? String(r[3]) : "",
-        scoreColor: "#ED9A4A",
-        who: isCust ? "#ED9A4A" : "#8c8a84",
-        edge: on && idx === shown - 1 ? "#ED9A4A" : "transparent",
-        op: on ? 1 : 0.16,
-      };
+  function paint(i) {
+    rows.forEach(function (row, idx) {
+      var on = idx < i;
+      row.style.opacity = on ? 1 : 0.16;
+      row.style.borderLeftColor = on && idx === i - 1 ? "#ED9A4A" : "transparent";
+      row.querySelector("[data-score-cell]").textContent =
+        on && row.hasAttribute("data-score") ? row.getAttribute("data-score") : "";
     });
-
-    const all = this.script.filter(r => r[3] !== null);
-    const revealed = this.script.slice(0, shown).filter(r => r[3] !== null);
-    const step = 280 / Math.max(1, all.length - 1);
-    const xy = revealed.map((r, k) => [10 + k * step, 66 - (r[3] / 100) * 56]);
-    const last = xy[xy.length - 1] || [10, 66];
-    const lastRow = revealed[revealed.length - 1];
-
-    return {
-      turns,
-      showRoadmap: this.props.showRoadmap ?? true,
-      pts: xy.map(p => p[0].toFixed(1) + "," + p[1].toFixed(1)).join(" "),
-      cx: last[0].toFixed(1),
-      cy: last[1].toFixed(1),
-      current: lastRow ? String(lastRow[3]) : "—",
-      reason: lastRow ? lastRow[4] : "等待客戶第一句發言",
-      clock: shown ? this.script[Math.min(shown, this.script.length) - 1][0] : "00:00",
-    };
+    var seen = scored.filter(function (r) { return Number(r.getAttribute("data-turn")) < i; });
+    var xy = seen.map(function (r, k) {
+      return [10 + k * step, 66 - (Number(r.getAttribute("data-score")) / 100) * 56];
+    });
+    line.setAttribute("points", xy.map(function (p) {
+      return p[0].toFixed(1) + "," + p[1].toFixed(1);
+    }).join(" "));
+    var tip = xy[xy.length - 1] || [10, 66];
+    marker.setAttribute("cx", tip[0].toFixed(1));
+    marker.setAttribute("cy", tip[1].toFixed(1));
+    var lastSeen = seen[seen.length - 1];
+    clock.textContent = i ? rows[i - 1].firstElementChild.textContent : "00:00";
+    current.textContent = lastSeen ? lastSeen.getAttribute("data-score") : "—";
+    reason.textContent = lastSeen ? lastSeen.getAttribute("data-reason") : "等待客戶第一句發言";
   }
-}
+
+  // 使用者若要求減少動態效果就不播放，停在完整狀態。
+  // 測試也是用這個開關把畫面凍結成可重現的一幀。
+  if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  var i = rows.length, timer = null;
+  function tick() { i = i >= rows.length ? 0 : i + 1; paint(i); }
+  function start() { if (!timer) timer = setInterval(tick, 1500); }
+  function stop() { clearInterval(timer); timer = null; }
+  document.addEventListener("visibilitychange", function () {
+    if (document.hidden) { stop(); } else { start(); }   // 背景分頁不空轉
+  });
+  start();
+})();
 </script>
 </body>
 </html>

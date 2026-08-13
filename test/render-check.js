@@ -173,7 +173,14 @@ async function runOne(chromePath, base, page, scenario, debugPort) {
         failures++;
         console.log(`   └ ❌ 出現 ${i.external.length} 個外部請求：${i.external[0]}`);
       }
-      if (i.errors.length) console.log(`   └ ⚠️  console 例外：${i.errors[0].split("\n")[0]}`);
+      // 正常情境下的 JS 例外一律視為失敗。移植動畫時踩過兩次「頁面看起來
+      // 正常、功能其實已死」——腳本被烘焙工具丟掉、以及 data-* 掛鉤與資料
+      // 屬性撞名把整列內容清空。兩者都只在 console 留下一行例外。
+      if (i.errors.length) {
+        const fatal = sc.key === "normal" || sc.key === "slow";
+        if (fatal) failures++;
+        console.log(`   └ ${fatal ? "❌" : "⚠️ "} JS 例外：${i.errors[0].split("\n")[0]}`);
+      }
     }
     console.log("");
   }
