@@ -2,10 +2,11 @@
 //
 // 渲染回歸測試 —— node test/render-check.js
 //
-// 這個網站是用戶端渲染的：版面寫在 <x-dc> 模板裡，由 support.js 載入 React
-// 後才渲染出來。最需要防的失敗不是「畫面跑版」，而是「整頁全白」，
-// 所以這裡量的是 document.body.innerText 的長度 —— innerText 天生排除
-// display:none 的內容，等於「使用者實際看得到多少字」。
+// 頁面目前有兩種形態：尚未烘焙的仍是用戶端渲染（版面寫在 <x-dc> 模板裡，
+// 由 support.js 載入 React 後才渲染），已烘焙的則是純靜態 HTML。
+// 兩者最需要防的失敗都是「整頁全白」而非「畫面跑版」，所以這裡量的是
+// document.body.innerText 的長度 —— innerText 天生排除 display:none 的內容，
+// 等於「使用者實際看得到多少字」。靜態頁另外多一項斷言：JS 開關不影響內容。
 //
 // 零依賴：自己起 HTTP server，用 Chrome DevTools Protocol 驅動 headless Chrome。
 // 需要 Node 22+（用到內建的 fetch 與 WebSocket）。
@@ -17,6 +18,11 @@ const { spawn } = require("child_process");
 
 const ROOT = path.resolve(__dirname, "..");
 const PAGES = ["index.html", "mosatalk.html", "mosaminutes.html", "mosascore.html"];
+
+// 已烘焙成靜態 HTML 的頁面沒有 <x-dc>，也不需要 React。
+// 對它們斷言的性質不同 —— 而且更強：不管 JS 有沒有跑，內容都必須一樣。
+const isBaked = (page) =>
+  !fs.readFileSync(path.join(ROOT, page), "utf8").includes("<x-dc>");
 
 // 每頁至少要看得到這麼多字，才算沒有變成空白頁。
 // 最小的 mosatalk 靜態模板約 2000 字，抓 500 保留餘裕。
@@ -99,7 +105,10 @@ const SCENARIOS = [
 
   { key: "blocked", label: "React 檔案抓不到", wait: 7000,
     setup: s => s.send("Network.setBlockedURLs", { urls: ["*react*.js"] }),
-    expect: i => i.visibleText >= MIN_VISIBLE && i.hasXdc,
+    // 烘焙過的頁面根本不載入 React，擋掉它不該有任何影響
+    expect: (i, baked) => baked
+      ? i.visibleText >= MIN_VISIBLE && !i.hasXdc
+      : i.visibleText >= MIN_VISIBLE && i.hasXdc,
     note: "本地與 unpkg 都拿不到 React，兜底看門狗把原始模板顯示回來（沒有它就是全白頁）" },
 
   { key: "nojs", label: "JavaScript 關閉", wait: 5000,
@@ -143,20 +152,20 @@ async function runOne(chromePath, base, page, scenario, debugPort) {
   console.log(`站台根目錄 ${ROOT}\n瀏覽器     ${chromePath}\n`);
 
   let port = 9400, failures = 0;
+  const seen = {};
   for (const sc of SCENARIOS) {
     if (only && sc.key !== only) continue;
     console.log(`══════ ${sc.label} ══════`);
     console.log(`預期：${sc.note}`);
     for (const page of PAGES) {
       const i = await runOne(chromePath, base, page, sc, port++);
-      const pass = sc.expect(i);
+      const baked = isBaked(page);
+      const pass = sc.expect(i, baked);
+      if (baked) seen[sc.key + "|" + page] = i.visibleText;
       if (!pass) failures++;
       console.log(`${pass ? "✅" : "❌"} ${page.padEnd(17)} 可見文字 ${String(i.visibleText).padStart(5)} 字  ` +
                   `x-dc=${i.hasXdc ? "在" : "無"}  dc-root=${i.hasDcRoot ? "在" : "無"}  React=${i.react}`);
       if (!pass) console.log(`   └ 實際畫面：${i.head || "（空白）"}`);
-      // 自架 React 之後，正常運作時唯一該出現的外部網域只剩 Google Fonts。
-      // 只在本地 React 可用的情境檢查 —— 一旦本地檔案被擋掉，support.js 會
-      // 依設計回頭去抓 unpkg 當備援，那些請求出現在這裡是正常的。
       // React 與字型都自架之後，正常運作時應該完全沒有對外請求。
       // 只在本地資源可用的情境檢查 —— 一旦本地檔案被擋掉，support.js 會
       // 依設計回頭去抓 unpkg 當備援，那些請求出現在這裡是正常的。
@@ -168,6 +177,20 @@ async function runOne(chromePath, base, page, scenario, debugPort) {
     }
     console.log("");
   }
+  // 烘焙的重點就在這裡：靜態頁在有無 JavaScript 之下必須完全一樣
+  const bakedPages = PAGES.filter(isBaked);
+  if (bakedPages.length) {
+    console.log("══════ 靜態頁：JS 開關不影響內容 ══════");
+    for (const page of bakedPages) {
+      const on = seen["normal|" + page], off = seen["nojs|" + page];
+      const same = on !== undefined && on === off;
+      if (!same) failures++;
+      console.log((same ? "✅ " : "❌ ") + page.padEnd(17) +
+                  " 有 JS " + on + " 字 / 無 JS " + off + " 字");
+    }
+    console.log("");
+  }
+
   server.close();
   console.log(failures ? `❌ ${failures} 項失敗` : "✅ 全部通過");
   process.exit(failures ? 1 : 0);

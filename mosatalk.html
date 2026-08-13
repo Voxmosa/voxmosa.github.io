@@ -1,46 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-Hant">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./vendor/react.production.min.js"></script>
-<script src="./vendor/react-dom.production.min.js"></script>
-<script src="./support.js"></script>
-<!-- 兜底：support.js 會先注入 x-dc{display:none} 把原始模板藏起來，之後才非同步
-     載入 React 渲染。若渲染始終沒發生（腳本 404、JS 例外、瀏覽器太舊），
-     沒有這段的話使用者看到的會是全白頁。 -->
-<script>
-(function () {
-  var GRACE_MS = 2500;
-  function reveal() {
-    var root = document.getElementById("dc-root");
-    if (root && root.textContent.trim()) return;   // 已經渲染成功
-    if (!document.querySelector("x-dc")) return;   // 模板已被取走，救不回來
-    var s = document.createElement("style");
-    // 特異性 (0,0,3)，勝過 support.js 的 x-dc{display:none!important} (0,0,1)
-    // sc-for / sc-if 的內容要有執行期資料才有意義，退化時整塊藏起來，
-    // 否則畫面上會出現一整排 {{ p.year }} 之類的佔位符。
-    s.textContent = "html body x-dc{display:block!important}" +
-                    "html body x-dc sc-for,html body x-dc sc-if{display:none!important}";
-    document.head.appendChild(s);
-    scrubPlaceholders();
-  }
-  // 清掉散落在一般元素裡、不被上面規則涵蓋的 {{ … }}
-  function scrubPlaceholders() {
-    var dc = document.querySelector("x-dc");
-    if (!dc || !document.createTreeWalker) return;
-    var walk = document.createTreeWalker(dc, NodeFilter.SHOW_TEXT, null, false);
-    var hits = [], n;
-    while ((n = walk.nextNode())) if (n.nodeValue.indexOf("{{") !== -1) hits.push(n);
-    for (var i = 0; i < hits.length; i++)
-      hits[i].nodeValue = hits[i].nodeValue.replace(/\{\{[^}]*\}\}/g, "");
-  }
-  window.addEventListener("load", function () { setTimeout(reveal, GRACE_MS); });
-})();
-</script>
-<!-- JS 關閉時 support.js 不會執行，模板本來就是可見的；這行只是把未知元素
-     的預設 display:inline 修正成 block。 -->
-<noscript><style>x-dc{display:block}</style></noscript>
   <title>MosaTalk｜即時語音 AI 對話系統 - Voxmosa</title>
   <meta name="description" content="從「答得正確」到「應對得體」。低延遲的即時語音對話系統，可完整部署在地端。">
   <link rel="canonical" href="https://voxmosa.com/mosatalk.html">
@@ -57,11 +19,6 @@
   <meta name="twitter:title" content="MosaTalk｜即時語音 AI 對話系統">
   <meta name="twitter:description" content="從「答得正確」到「應對得體」。低延遲的即時語音對話系統，可完整部署在地端。">
   <meta name="twitter:image" content="https://voxmosa.com/og.png">
-</head>
-<body>
-<x-dc>
-<helmet>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="./vendor/fonts/fonts.css" rel="stylesheet" />
 <style>
 body { margin:0; background:#141413; }
@@ -99,7 +56,11 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
 @media (max-width:900px){.r-display-grid > *{min-width:0!important}
 }
 </style>
-</helmet>
+<style>html,body{height:100%;margin:0}#dc-root,#dc-root>.sc-host{height:100%}</style>
+</head>
+<body>
+<div id="dc-root"><div class="sc-host">
+
 <div style="width:100%;background:#141413;color:#f4f3f0;font-family:'Noto Sans TC','Space Grotesk',sans-serif;overflow-x:hidden">
 
   <div style="position:sticky;top:0;z-index:20;background:rgba(20,20,19,0.92);backdrop-filter:blur(14px);border-bottom:1px solid #26251f">
@@ -363,6 +324,6 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
   </div>
 
 </div>
-</x-dc>
+</div></div>
 </body>
 </html>
