@@ -224,10 +224,10 @@ python3 -m venv .venv && .venv/bin/pip install fonttools brotli
 `vendor/fonts/*.woff2` 與 `vendor/fonts/fonts.css`，頁面只 link 後者。
 
 必須子集化的理由是 Noto Sans TC：完整檔每個字重好幾 MB，直接自架會比
-Google Fonts 慢。取站上實際用到的字元之後，九個字重合計 617KB
-（Noto Sans TC 四個字重各約 145KB，其餘五個都在 10KB 以下）。
+Google Fonts 慢。取站上實際用到的字元之後，九個字重合計 628KB
+（Noto Sans TC 四個字重各約 150KB，其餘五個都在 10KB 以下）。
 
-字元集會隨文案增減，目前是 1037 個字元、其中 935 個中日韓與全形符號。
+字元集會隨文案增減，目前是 1053 個字元、其中 951 個中日韓與全形符號。
 這兩個數字不必手動維護 —— 執行 `tools/build-fonts.py` 時會印出當下的值。
 
 > ⚠️ **改過頁面文案後要重跑這支腳本**，否則新增的字會變成豆腐格。
@@ -271,6 +271,19 @@ python3 -m http.server 8000
 
 ## 後續可做的事
 
+內容面：
+
+- **客語六腔的音檔樣本**，放在首頁研究網絡的客語卡片底下。同一句話六種腔調，
+  各 10–15 秒。文字寫「六腔全數涵蓋」只是宣稱，聽到大埔腔與饒平腔的差別才是證據。
+  做法上要維持站上的兩條硬性質：`<audio controls>` 不需要 JavaScript（不破壞
+  有無 JS 內容相同），音檔自架於 repo 內（不對外發出請求）。六個檔案控制在 300KB 以內。
+- **hero 的能力標籤換一格**。現在是「封閉網路可運行／無按次 API 費用／模型自行訓練」，
+  而族語 42 語、客語六腔的涵蓋度比第三項更難被複製。
+- **客語卡片的合作單位名稱待補**。目前該卡片只寫能力與 Gohakka 連結，
+  單位名稱與對方的正式連結、用字，等對方提供後再補上。
+
+技術面：
+
 - **清掉 `#dc-root` / `.sc-host` 兩層包裝**與對應的 `html,body{height:100%}` 規則。
   它們是 runtime 的殘留物，現在沒有作用。清掉會改變 DOM 結構，
   所以要一併重新產生版面基準，並用截圖比對確認外觀未變。
@@ -284,5 +297,4 @@ python3 -m http.server 8000
 
 `vendor/` 內的第三方資源各自沿用原授權，不受上述影響：
 
-- React / ReactDOM —— MIT，Meta Platforms, Inc.
 - 三套字型 —— SIL OFL 1.1，詳見 `vendor/fonts/LICENSE.md`
