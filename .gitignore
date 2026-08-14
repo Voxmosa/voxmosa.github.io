@@ -1,2 +1,3 @@
 test/baseline/*.png
 test/current/
+.venv/
