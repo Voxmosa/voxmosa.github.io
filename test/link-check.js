@@ -59,6 +59,20 @@ for (const [page, { src }] of pages) {
     }
   }
 
+  // <link> hrefs (the font CSS, the favicon, the font preload) were never
+  // checked. These filenames are coupled to what tools/build-fonts.py emits --
+  // change the weight range and the name changes with it -- and a broken preload
+  // fails silently: the browser reports nothing, it just fetches a 404.
+  for (const m of src.matchAll(/<link\s[^>]*href="([^"]*)"/g)) {
+    const href = m[1];
+    if (!href || /^https?:\/\//.test(href)) continue;
+    internal++;
+    const file = decodeURIComponent(href.split("#")[0].replace(/^\.\//, ""));
+    if (!fs.existsSync(path.join(ROOT, file))) {
+      problems.push(`<link> ${href}  →  檔案不存在`);
+    }
+  }
+
   if (problems.length) {
     failures += problems.length;
     console.log(`❌ ${page}`);

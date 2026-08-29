@@ -31,6 +31,8 @@ const CHROME_CANDIDATES = [
   "/Applications/Chromium.app/Contents/MacOS/Chromium",
   "/usr/bin/google-chrome",
   "/usr/bin/chromium",
+  "/usr/bin/chromium-browser",   // Debian/Ubuntu package name; the snap build goes through here too
+  "/snap/bin/chromium",
 ];
 
 const MIME = { ".html": "text/html", ".js": "text/javascript", ".css": "text/css",

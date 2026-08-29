@@ -24,6 +24,12 @@ const { spawn } = require("child_process");
 
 const ROOT = path.resolve(__dirname, "..");
 const BASELINE = path.join(__dirname, "baseline");
+// The baseline is tied to the platform that produced it: macOS and Linux round
+// line-box heights differently, so the same HTML measures 1-2px shorter per text
+// element and those shifts accumulate into large y offsets down the page.
+// Without recording the environment, running on another platform reports
+// "thousands of elements moved" -- a number that means nothing.
+const ENV_FILE = path.join(__dirname, "baseline", ".env.txt");
 const CURRENT = path.join(__dirname, "current");
 const PAGES = ["index.html", "mosatalk.html", "mosaminutes.html", "mosascore.html"];
 
@@ -32,11 +38,32 @@ const WIDTHS = [375, 768, 1440];
 
 const TOLERANCE_PX = 1;  // 容許次像素與字型 hinting 造成的微小差異
 
+const envStamp = (product) => `${product}\n${process.platform} ${process.arch}\n`;
+
+function warnIfDifferentEnv(now) {
+  if (!fs.existsSync(ENV_FILE)) {
+    console.log("⚠️  基準沒有記錄產生環境（是舊版基準）。若接下來出現大量差異，"
+              + "先確認是不是換了作業系統或瀏覽器。\n");
+    return;
+  }
+  const was = fs.readFileSync(ENV_FILE, "utf8");
+  if (was === now) return;
+  const line = (t) => t.trim().split("\n").join(" / ");
+  console.log("⚠️  執行環境與基準不同 —— 底下的差異多半不是版面真的跑掉：\n"
+    + `      基準產生於  ${line(was)}\n`
+    + `      現在跑的是  ${line(now)}\n`
+    + "    跨平台的文字行高取整不同，會讓每個文字元素差 1–2px 並往下累積。\n"
+    + "    要判斷改動本身的影響，請回到產生基準的那個環境跑，"
+    + "或在這裡先用未改動的版本重新 --save 再比對。\n");
+}
+
 const CHROME_CANDIDATES = [
   "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
   "/Applications/Chromium.app/Contents/MacOS/Chromium",
   "/usr/bin/google-chrome",
   "/usr/bin/chromium",
+  "/usr/bin/chromium-browser",   // Debian/Ubuntu package name; the snap build goes through here too
+  "/snap/bin/chromium",
 ];
 const MIME = { ".html": "text/html", ".js": "text/javascript", ".css": "text/css",
                ".png": "image/png", ".svg": "image/svg+xml",
@@ -223,6 +250,20 @@ function compare(name, before, after) {
   const server = await serve();
   const base = `http://127.0.0.1:${server.address().port}/`;
   console.log(save ? "產生基準…\n" : "與基準比對…\n");
+
+  const ver = await (async () => {
+    const probe = spawn(chromePath, ["--headless=new", "--remote-debugging-port=9499",
+      "--no-first-run", "--user-data-dir=/tmp/voxmosa-layout-ver", "about:blank"],
+      { stdio: "ignore" });
+    try {
+      const s = await cdp(9499);
+      const v = await s.send("Browser.getVersion");
+      s.close();
+      return v.product || "unknown";
+    } finally { probe.kill(); }
+  })();
+  const stamp = envStamp(ver);
+  if (save) fs.writeFileSync(ENV_FILE, stamp); else warnIfDifferentEnv(stamp);
 
   let port = 9500, failures = 0, checked = 0;
   for (const page of PAGES) {

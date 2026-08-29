@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Voxmosa">
+  <rect width="64" height="64" rx="12" fill="#141413"/>
+  <g fill="none" stroke="#ED9A4A" stroke-width="7" stroke-linecap="round">
+    <circle cx="25" cy="32" r="14"/>
+    <path d="M43 15 A24 24 0 0 1 43 49" opacity="0.6"/>
+    <path d="M54 17 A31 31 0 0 1 54 47" opacity="0.3"/>
+  </g>
+</svg>
