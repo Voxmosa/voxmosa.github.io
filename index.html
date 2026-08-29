@@ -180,6 +180,76 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
       "about": {
         "@id": "https://voxmosa.com/#organization"
       }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://voxmosa.com/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "AI 語音會議記錄可以完全在自己的機房裡跑嗎？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "可以，而且這是 MosaMinutes 的預設形態，不是附加選項。錄音、逐字稿、語者分離、摘要與待辦全部在貴單位自己的伺服器上完成，不呼叫任何雲端 AI 服務。系統為容器化部署、單機即可運行，封閉網路不需連外也能使用。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "地端的 AI 語音客服，聽得懂臺灣的口音和台語嗎？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "MosaTalk 產品內建支援國語、台語、客語、原住民族語、英語五種語言，一律轉為繁體中文，國台語夾雜的對話也在設計範圍內。客戶可以在網頁上按下通話，也可以直撥貴單位既有的客服專線，經電話系統商介接後由 AI 接聽。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "一套地端語音 AI 要準備什麼硬體？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "一張大顯存的 NVIDIA GPU 就能跑完整系統，含辨識與摘要。MosaMinutes 以一台 NVIDIA DGX Spark GB10 可支援 10 線即時轉錄，離線上傳走批次佇列、不受線數限制；MosaTalk 已在 46 GB 顯存的單卡環境驗證過。需求超出單機容量時可以擴充為多機配置。硬體我們可以一併供應並到場安裝。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "AI 語音客服的回應有多快？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "使用者說完話到 AI 開口回答約一秒，而且可以隨時插話打斷。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "語音辨識的準確率是多少？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "這一題我們不給行銷數字。字元錯誤率、競品對照、測試方法論與原始音檔，將以符合學術規範的方式完整公開，並可依貴單位指定的公開基準或自備音檔另行評測。在那之前，對貴單位最有意義的數字，是拿自己的錄音做一次概念驗證測出來的那一個。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "跟雲端的語音會議或客服服務差在哪？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "最直接的差別是錄音與逐字稿的存放位置：雲端服務會上傳到服務商的伺服器，我們的方案完全留在貴單位機房，封閉網路可用，也沒有按次的 API 費用。但我們不主張全面優勢 —— 沒有數據合規壓力或資安顧慮的單位，雲端訂閱通常是更經濟彈性的選擇。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "支援哪些臺灣本土語言？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "產品內建五種語言。本土語言的完整涵蓋由團隊自行開發：原住民族語為 16 族、42 種語言，客語為四縣、海陸、大埔、饒平、詔安、南四縣六腔全數涵蓋。模型與資料集公開於 Hugging Face，任何人都可以下載檢驗。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "導入要怎麼開始？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "用貴單位實際的會議錄音或客服對話做一次概念驗證，我們會提供方法論明確、可重現的評測報告，作為採購與技術審查的佐證。來信後兩個工作日內回覆。"
+          }
+        }
+      ]
     }
   ]
 }
@@ -1014,6 +1084,53 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
             <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">Interspeech</div>
             <p style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">Ensemble of machine learning algorithms for cognitive and physical speaker load detection</p>
           </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" style="background:#F4F3F0;color:#141413">
+    <div class="r-mw-1280px r-pad-104px-56px-112px" style="max-width:1280px;margin:0 auto;padding:104px 56px 112px;display:flex;flex-direction:column;gap:44px">
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
+          <h2 class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">常見問題</h2>
+          <div style="border:1px solid #c9c5bb;color:#8c8a84;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:5px 11px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">FAQ</div>
+        </div>
+        <p style="font-size:15px;font-weight:300;color:#6b6960;line-height:1.9;max-width:700px;text-wrap:pretty">採購與技術審查時最常被問到的幾件事。答案裡沒有我們還沒驗證過的數字。</p>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:1px;background:#dedbd4;border:1px solid #dedbd4;border-radius:8px;overflow:hidden">
+      <div class="r-pad-34px-36px" style="background:#fbfaf8;padding:34px 36px;display:flex;flex-direction:column;gap:12px">
+        <h3 style="font-size:18px;font-weight:400;line-height:1.6;text-wrap:pretty">AI 語音會議記錄可以完全在自己的機房裡跑嗎？</h3>
+        <p style="font-size:14.5px;font-weight:300;color:#6b6960;line-height:1.95;text-wrap:pretty">可以，而且這是 MosaMinutes 的預設形態，不是附加選項。錄音、逐字稿、語者分離、摘要與待辦全部在貴單位自己的伺服器上完成，不呼叫任何雲端 AI 服務。系統為容器化部署、單機即可運行，封閉網路不需連外也能使用。</p>
+      </div>
+      <div class="r-pad-34px-36px" style="background:#fbfaf8;padding:34px 36px;display:flex;flex-direction:column;gap:12px">
+        <h3 style="font-size:18px;font-weight:400;line-height:1.6;text-wrap:pretty">地端的 AI 語音客服，聽得懂臺灣的口音和台語嗎？</h3>
+        <p style="font-size:14.5px;font-weight:300;color:#6b6960;line-height:1.95;text-wrap:pretty">MosaTalk 產品內建支援國語、台語、客語、原住民族語、英語五種語言，一律轉為繁體中文，國台語夾雜的對話也在設計範圍內。客戶可以在網頁上按下通話，也可以直撥貴單位既有的客服專線，經電話系統商介接後由 AI 接聽。</p>
+      </div>
+      <div class="r-pad-34px-36px" style="background:#fbfaf8;padding:34px 36px;display:flex;flex-direction:column;gap:12px">
+        <h3 style="font-size:18px;font-weight:400;line-height:1.6;text-wrap:pretty">一套地端語音 AI 要準備什麼硬體？</h3>
+        <p style="font-size:14.5px;font-weight:300;color:#6b6960;line-height:1.95;text-wrap:pretty">一張大顯存的 NVIDIA GPU 就能跑完整系統，含辨識與摘要。MosaMinutes 以一台 NVIDIA DGX Spark GB10 可支援 10 線即時轉錄，離線上傳走批次佇列、不受線數限制；MosaTalk 已在 46 GB 顯存的單卡環境驗證過。需求超出單機容量時可以擴充為多機配置。硬體我們可以一併供應並到場安裝。</p>
+      </div>
+      <div class="r-pad-34px-36px" style="background:#fbfaf8;padding:34px 36px;display:flex;flex-direction:column;gap:12px">
+        <h3 style="font-size:18px;font-weight:400;line-height:1.6;text-wrap:pretty">AI 語音客服的回應有多快？</h3>
+        <p style="font-size:14.5px;font-weight:300;color:#6b6960;line-height:1.95;text-wrap:pretty">使用者說完話到 AI 開口回答約一秒，而且可以隨時插話打斷。</p>
+      </div>
+      <div class="r-pad-34px-36px" style="background:#fbfaf8;padding:34px 36px;display:flex;flex-direction:column;gap:12px">
+        <h3 style="font-size:18px;font-weight:400;line-height:1.6;text-wrap:pretty">語音辨識的準確率是多少？</h3>
+        <p style="font-size:14.5px;font-weight:300;color:#6b6960;line-height:1.95;text-wrap:pretty">這一題我們不給行銷數字。字元錯誤率、競品對照、測試方法論與原始音檔，將以符合學術規範的方式完整公開，並可依貴單位指定的公開基準或自備音檔另行評測。在那之前，對貴單位最有意義的數字，是拿自己的錄音做一次概念驗證測出來的那一個。</p>
+      </div>
+      <div class="r-pad-34px-36px" style="background:#fbfaf8;padding:34px 36px;display:flex;flex-direction:column;gap:12px">
+        <h3 style="font-size:18px;font-weight:400;line-height:1.6;text-wrap:pretty">跟雲端的語音會議或客服服務差在哪？</h3>
+        <p style="font-size:14.5px;font-weight:300;color:#6b6960;line-height:1.95;text-wrap:pretty">最直接的差別是錄音與逐字稿的存放位置：雲端服務會上傳到服務商的伺服器，我們的方案完全留在貴單位機房，封閉網路可用，也沒有按次的 API 費用。但我們不主張全面優勢 —— 沒有數據合規壓力或資安顧慮的單位，雲端訂閱通常是更經濟彈性的選擇。</p>
+      </div>
+      <div class="r-pad-34px-36px" style="background:#fbfaf8;padding:34px 36px;display:flex;flex-direction:column;gap:12px">
+        <h3 style="font-size:18px;font-weight:400;line-height:1.6;text-wrap:pretty">支援哪些臺灣本土語言？</h3>
+        <p style="font-size:14.5px;font-weight:300;color:#6b6960;line-height:1.95;text-wrap:pretty">產品內建五種語言。本土語言的完整涵蓋由團隊自行開發：原住民族語為 16 族、42 種語言，客語為四縣、海陸、大埔、饒平、詔安、南四縣六腔全數涵蓋。模型與資料集公開於 Hugging Face，任何人都可以下載檢驗。</p>
+      </div>
+      <div class="r-pad-34px-36px" style="background:#fbfaf8;padding:34px 36px;display:flex;flex-direction:column;gap:12px">
+        <h3 style="font-size:18px;font-weight:400;line-height:1.6;text-wrap:pretty">導入要怎麼開始？</h3>
+        <p style="font-size:14.5px;font-weight:300;color:#6b6960;line-height:1.95;text-wrap:pretty">用貴單位實際的會議錄音或客服對話做一次概念驗證，我們會提供方法論明確、可重現的評測報告，作為採購與技術審查的佐證。來信後兩個工作日內回覆。</p>
+      </div>
       </div>
     </div>
   </section>
