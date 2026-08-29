@@ -14,6 +14,9 @@ Voxmosa 官方網站。**純靜態 HTML，沒有建置流程** —— 改完直�
 | `tools/build-fonts.py` | 重新產生字型子集 |
 | `tools/bake.js` | 把 `<x-dc>` 模板頁烘焙成靜態 HTML（已無頁面需要，保留備查）|
 | `og.png` | 社群分享縮圖，四頁共用 |
+| `favicon.svg` | 分頁圖示，取自 logo 的圓環標記 |
+| `robots.txt` / `sitemap.xml` | 爬蟲規則與網站地圖；`robots.txt` 明確放行生成式搜尋的爬蟲 |
+| `llms.txt` | 給 LLM 讀的網站摘要，內容全部取自站上既有文案 |
 | `CNAME` / `.nojekyll` | GitHub Pages 的自訂網域與停用 Jekyll |
 
 改動之後有兩件事要記得，兩者都有測試把關（見[測試](#測試)）：
@@ -23,8 +26,9 @@ Voxmosa 官方網站。**純靜態 HTML，沒有建置流程** —— 改完直�
 
 ## 頁面結構
 
-版面直接寫在 HTML 裡，用 inline style。整站只有兩段 JavaScript，
-都是頁面自己的原生程式碼，沒有任何框架：
+版面直接寫在 HTML 裡，用 inline style；文件結構則是語意標籤
+（`header` / `nav` / `main` / `section` / `h1`–`h4` / `p` / `footer`）。
+整站只有兩段 JavaScript，都是頁面自己的原生程式碼，沒有任何框架：
 
 | 位置 | 作用 |
 | --- | --- |
@@ -114,6 +118,36 @@ EOF
   `padding-top`/`padding-bottom`，碰不到水平。**要讀宣告內容才判斷得出來。**
 - `r-pad-96px-56px` 過去沒有任何元素的值真的是 `96px 56px`，
   它命中的兩種值全都是意外 —— class 名稱在描述一個不存在的東西。
+
+## SEO 與 AEO
+
+四個頁面原本是**完全沒有語意標籤**的 div 湯 —— 零個 `<h1>`、零個 `<p>`、
+零個地標元素。那是視覺編輯器的產物，烘焙成靜態 HTML 時沒有一併處理。
+搜尋引擎與 LLM 抓取器看不出哪句是標題、哪句是版權宣告。
+
+現在四頁都有 `header` / `nav` / `main` / `section` / `footer` 地標，
+每頁**恰好一個 `<h1>`**，內文段落是 `<p>`。置換是 block→block，
+配上 `<head>` 裡的 `h1,h2,h3,h4,h5,h6{margin:0}` 與 `p{margin:0}` 重置，
+版面零變化 —— 所有標題與段落的 `font-size`、`font-weight` 本來就寫在 inline style 上。
+
+結構化資料以 JSON-LD 放在每頁的 `<head>`：
+
+| 頁面 | `@graph` 內容 |
+| --- | --- |
+| `index.html` | `Organization`（含獲獎、`knowsAbout`、`sameAs`）、`ItemList`、`WebSite`、`WebPage` |
+| 三個子頁 | `SoftwareApplication`（含 `featureList`）、`WebSite`、`WebPage`、`BreadcrumbList` |
+
+`Organization` 的 `@id` 是全站共用的 `https://voxmosa.com/#organization`，
+子頁的產品節點用 `publisher` / `provider` 指回去，四頁因此串成同一張圖。
+
+`robots.txt` 除了一般規則，另外逐一列出生成式搜尋的爬蟲（GPTBot、ClaudeBot、
+PerplexityBot、Google-Extended 等）並明確 `Allow` —— 這個網站的內容就是要讓人
+和模型都查得到、引用得到。`llms.txt` 是給 LLM 讀的摘要，**內容全部取自站上既有文案**，
+沒有另外寫行銷詞；改文案時它要跟著改。
+
+> 還沒做：站上沒有問答形態的段落。AEO 的引用率很吃「一個問句配一段短答」
+> 的結構，而 `FAQPage` 結構化資料照 Google 的規範必須有對應的可見內容 ——
+> 所以這件事要先有文案，不能只加標記。
 
 ## 測試
 
@@ -277,13 +311,20 @@ python3 -m http.server 8000
   各 10–15 秒。文字寫「六腔全數涵蓋」只是宣稱，聽到大埔腔與饒平腔的差別才是證據。
   做法上要維持站上的兩條硬性質：`<audio controls>` 不需要 JavaScript（不破壞
   有無 JS 內容相同），音檔自架於 repo 內（不對外發出請求）。六個檔案控制在 300KB 以內。
-- **hero 的能力標籤換一格**（`index.html` 第 105 行那排小字，捲動前就會被讀到）。
+- **hero 的能力標籤換一格**（`index.html` 裡 `封閉網路可運行` 那排小字，捲動前就會被讀到）。
   現在是「封閉網路可運行／無按次 API 費用／模型自行訓練」。第三項幾乎人人都能說 ——
   微調開源模型也算自行訓練 —— 而族語 42 語、客語六腔是短期內拿不出第二家的東西。
   代價是三項現在全在講地端、很整齊，換掉一項會變成兩項講部署、一項講語言；
   也可以改成四項。要動之前先做幾版截圖比對再決定。
 - **客語卡片的合作單位名稱待補**。目前該卡片只寫能力與 Gohakka 連結，
   單位名稱與對方的正式連結、用字，等對方提供後再補上。
+- **首頁的 FAQ 區塊**。「Voxmosa 是什麼」「地端語音辨識要幾張 GPU」
+  「台語辨識準到什麼程度」這類問句，站上目前沒有可直接被引用的短答段落。
+  有了可見文案之後才能補 `FAQPage` 結構化資料。
+- **`#contact` 的表單是假的** —— 整段是 `<div>` 排出來的樣子，
+  「送出申請」按鈕沒有任何行為，真正能點的只有 mailto。
+  SEO 把人帶進來之後會卡在這一步。要嘛接一個不需要後端的表單服務，
+  要嘛把它改成誠實的 mailto 區塊。
 
 技術面：
 

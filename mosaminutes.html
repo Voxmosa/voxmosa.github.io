@@ -19,9 +19,14 @@
   <meta name="twitter:title" content="MosaMinutes | 地端 AI 會議記錄平台">
   <meta name="twitter:description" content="讓會議紀錄自己走到該去的地方。錄音、轉寫、摘要、待辦分派，資料不出機房。">
   <meta name="twitter:image" content="https://voxmosa.com/og.png">
+  <meta name="theme-color" content="#141413">
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
 <link href="./vendor/fonts/fonts.css" rel="stylesheet" />
 <style>
 body { margin:0; background:#141413; }
+h1,h2,h3,h4,h5,h6{margin:0;font-size:inherit;font-weight:inherit}
+p{margin:0}
+
 a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
 
 @media (max-width:1080px){.r-gtc-repeat-4-1fr{grid-template-columns:1fr 1fr!important}.r-gap-72px{gap:44px!important}
@@ -57,13 +62,82 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
 }
 </style>
 <style>html,body{height:100%;margin:0}#dc-root,#dc-root>.sc-host{height:100%}</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://voxmosa.com/mosaminutes.html#software",
+      "name": "MosaMinutes",
+      "applicationCategory": "BusinessApplication",
+      "applicationSubCategory": "地端 AI 會議記錄平台",
+      "operatingSystem": "Linux（地端 GPU 伺服器）",
+      "description": "讓會議紀錄自己走到該去的地方。錄音、轉寫、摘要、待辦分派，資料不出機房。",
+      "featureList": [
+        "五種語言全轉繁體中文，自動標點分段",
+        "聲紋註冊一次，之後自動認出同一個人",
+        "校對不會弄丟修改——四條獨立通道互不覆蓋",
+        "匯出 Word、純文字、字幕，待辦成勾選清單"
+      ],
+      "inLanguage": "zh-Hant",
+      "publisher": {
+        "@id": "https://voxmosa.com/#organization"
+      },
+      "provider": {
+        "@id": "https://voxmosa.com/#organization"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://voxmosa.com/#website",
+      "url": "https://voxmosa.com/",
+      "name": "Voxmosa",
+      "inLanguage": "zh-Hant",
+      "publisher": {
+        "@id": "https://voxmosa.com/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://voxmosa.com/mosaminutes.html#webpage",
+      "url": "https://voxmosa.com/mosaminutes.html",
+      "name": "MosaMinutes | 地端 AI 會議記錄平台",
+      "isPartOf": {
+        "@id": "https://voxmosa.com/#website"
+      },
+      "inLanguage": "zh-Hant",
+      "about": {
+        "@id": "https://voxmosa.com/#organization"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Voxmosa",
+          "item": "https://voxmosa.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "MosaMinutes",
+          "item": "https://voxmosa.com/mosaminutes.html"
+        }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <div id="dc-root"><div class="sc-host">
 
 <div style="width:100%;background:#141413;color:#f4f3f0;font-family:'Noto Sans TC','Space Grotesk',sans-serif;overflow-x:hidden">
 
-  <div style="position:sticky;top:0;z-index:20;background:rgba(20,20,19,0.92);backdrop-filter:blur(14px);border-bottom:1px solid #26251f">
+  <header style="position:sticky;top:0;z-index:20;background:rgba(20,20,19,0.92);backdrop-filter:blur(14px);border-bottom:1px solid #26251f">
     <div class="r-mw-1280px r-gap-40px" style="max-width:1280px;margin:0 auto;padding:20px 56px;display:flex;align-items:center;justify-content:space-between;gap:40px">
       <a href="index.html" class="r-fs-25px" style="display:flex;align-items:baseline;font-family:'Space Grotesk',sans-serif;font-size:25px;font-weight:400;letter-spacing:0.05em;line-height:1;color:#f4f3f0;flex:none">
         <span>V</span>
@@ -74,7 +148,7 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
         </svg>
         <span>x</span><span style="display:inline-block;width:0.06em;flex:none"></span><span>mosa</span>
       </a>
-      <div class="r-gap-30px" style="display:flex;align-items:center;gap:30px;font-size:14px;font-weight:300;color:#b5b2aa">
+      <nav class="r-gap-30px" style="display:flex;align-items:center;gap:30px;font-size:14px;font-weight:300;color:#b5b2aa">
         <a href="mosatalk.html">MosaTalk</a>
         <a href="mosaminutes.html" style="color:#ED9A4A">MosaMinutes</a>
         <a href="mosascore.html">MosaScore</a>
@@ -82,19 +156,21 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
         <a href="index.html#onprem">為什麼地端</a>
         <a href="index.html#team">團隊</a>
         <a href="#contact" style="background:#ED9A4A;color:#141413;padding:10px 19px;border-radius:4px;font-size:13.5px;font-weight:500">申請 PoC</a>
-      </div>
+      </nav>
     </div>
-  </div>
+  </header>
 
-  <div class="r-gap-72px r-mw-1280px r-gtc-1-1fr-1fr r-pad-96px-56px-100px r-display-grid" style="max-width:1280px;margin:0 auto;padding:96px 56px 100px;display:grid;grid-template-columns:1.1fr 1fr;gap:72px;align-items:center">
+  <main>
+
+  <section class="r-gap-72px r-mw-1280px r-gtc-1-1fr-1fr r-pad-96px-56px-100px r-display-grid" style="max-width:1280px;margin:0 auto;padding:96px 56px 100px;display:grid;grid-template-columns:1.1fr 1fr;gap:72px;align-items:center">
     <div class="r-gap-28px" style="display:flex;flex-direction:column;gap:28px">
       <div style="display:flex;align-items:center;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#ED9A4A">
         <span style="width:22px;height:1px;background:#ED9A4A;display:block"></span>
         <span>Product 02 · On-Premise</span>
       </div>
-      <div class="r-fs-52px" style="font-family:'Space Grotesk',sans-serif;font-size:52px;font-weight:400;color:#ED9A4A;letter-spacing:0.01em;line-height:1.1">MosaMinutes</div>
+      <h1 class="r-fs-52px" style="font-family:'Space Grotesk',sans-serif;font-size:52px;font-weight:400;color:#ED9A4A;letter-spacing:0.01em;line-height:1.1">MosaMinutes</h1>
       <div class="r-fs-34px" style="font-size:34px;font-weight:200;line-height:1.42;letter-spacing:-0.01em;text-wrap:pretty">會議結束，紀錄已經<br />改到能直接發出去。</div>
-      <div style="font-size:16px;font-weight:300;color:#a8a59d;line-height:1.95;max-width:540px;text-wrap:pretty">錄音或上傳檔案，系統自動產出逐字稿、分辨誰在說話、寫出摘要與待辦，並讓你在同一個畫面裡邊聽邊改——而且錄音、逐字稿、摘要全程不離開貴單位的網路。</div>
+      <p style="font-size:16px;font-weight:300;color:#a8a59d;line-height:1.95;max-width:540px;text-wrap:pretty">錄音或上傳檔案，系統自動產出逐字稿、分辨誰在說話、寫出摘要與待辦，並讓你在同一個畫面裡邊聽邊改——而且錄音、逐字稿、摘要全程不離開貴單位的網路。</p>
       <div style="display:flex;gap:12px;flex-wrap:wrap">
         <a href="#contact" style="background:#ED9A4A;color:#141413;padding:15px 30px;border-radius:4px;font-size:15px;font-weight:500">申請 PoC</a>
         <a href="#problems" style="border:1px solid #3a3833;color:#f4f3f0;padding:15px 30px;border-radius:4px;font-size:15px;font-weight:300">它解決什麼問題</a>
@@ -133,13 +209,13 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
       </div>
       <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#4f4d47;letter-spacing:0.06em;line-height:1.7">示意畫面 · 實際互動示範即將上線</div>
     </div>
-  </div>
+  </section>
 
-  <div id="problems" style="background:#F4F3F0;color:#141413">
+  <section id="problems" style="background:#F4F3F0;color:#141413">
     <div class="r-mw-1280px r-pad-104px-56px-112px" style="max-width:1280px;margin:0 auto;padding:104px 56px 112px;display:flex;flex-direction:column;gap:48px">
       <div style="display:flex;flex-direction:column;gap:16px">
         <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
-          <div class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">你遇到的麻煩，我們怎麼解</div>
+          <h2 class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">你遇到的麻煩，我們怎麼解</h2>
           <div style="border:1px solid #ED9A4A;color:#c47a20;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:5px 11px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">On-Premise</div>
         </div>
         <div style="font-size:15px;font-weight:300;color:#6b6960;line-height:1.9;max-width:660px">會議記錄的痛點很少在「轉錄」，而在轉錄之後。</div>
@@ -150,12 +226,12 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
         <div class="r-gtc-1fr-1-25fr r-display-grid" style="border:1px solid #dedbd4;border-radius:8px;background:#fbfaf8;overflow:hidden;display:grid;grid-template-columns:1fr 1.25fr">
           <div class="r-brr-1px-solid-rgb-234-231-224 r-pad-38px-40px" style="padding:38px 40px;display:flex;flex-direction:column;gap:14px;border-right:1px solid #eae7e0">
             <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:#c47a20">麻煩 01</div>
-            <div style="font-size:22px;font-weight:400;line-height:1.5;text-wrap:pretty">會議錄音不能上傳到別人的伺服器</div>
+            <h3 style="font-size:22px;font-weight:400;line-height:1.5;text-wrap:pretty">會議錄音不能上傳到別人的伺服器</h3>
             <div style="font-size:13.5px;font-weight:300;color:#6b6960;line-height:1.9">法規或內部規範讓雲端會議工具在評估的第一關就出局。台語能力再好也沒用。</div>
           </div>
           <div class="r-pad-38px-40px" style="padding:38px 40px;display:flex;flex-direction:column;gap:16px;background:#f4f3f0">
             <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:#8c8a84">我們的解法</div>
-            <div style="font-size:16px;font-weight:400;line-height:1.7">辨識、語者分離、聲紋比對、摘要——所有模型都在你的伺服器上，不呼叫任何雲端 AI 服務。</div>
+            <p style="font-size:16px;font-weight:400;line-height:1.7">辨識、語者分離、聲紋比對、摘要——所有模型都在你的伺服器上，不呼叫任何雲端 AI 服務。</p>
             <div style="display:flex;flex-direction:column;gap:9px">
               <div style="display:flex;gap:11px;align-items:baseline"><span style="color:#c47a20;font-size:12px;flex:none">—</span><span style="font-size:13.5px;font-weight:300;color:#54524b;line-height:1.85">容器化部署，不需連外即可運作</span></div>
               <div style="display:flex;gap:11px;align-items:baseline"><span style="color:#c47a20;font-size:12px;flex:none">—</span><span style="font-size:13.5px;font-weight:300;color:#54524b;line-height:1.85">身分驗證可用自架的身分提供者，適用封閉網路</span></div>
@@ -167,12 +243,12 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
         <div class="r-gtc-1fr-1-25fr r-display-grid" style="border:1px solid #dedbd4;border-radius:8px;background:#fbfaf8;overflow:hidden;display:grid;grid-template-columns:1fr 1.25fr">
           <div class="r-brr-1px-solid-rgb-234-231-224 r-pad-38px-40px" style="padding:38px 40px;display:flex;flex-direction:column;gap:14px;border-right:1px solid #eae7e0">
             <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:#c47a20">麻煩 02</div>
-            <div style="font-size:22px;font-weight:400;line-height:1.5;text-wrap:pretty">校對比重打逐字稿還累，改到一半還會被蓋掉</div>
+            <h3 style="font-size:22px;font-weight:400;line-height:1.5;text-wrap:pretty">校對比重打逐字稿還累，改到一半還會被蓋掉</h3>
             <div style="font-size:13.5px;font-weight:300;color:#6b6960;line-height:1.9">多數工具在「兩邊同時改」時是後蓋前，一整個下午的修改就這樣消失。</div>
           </div>
           <div class="r-pad-38px-40px" style="padding:38px 40px;display:flex;flex-direction:column;gap:16px;background:#f4f3f0">
             <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:#8c8a84">我們的解法</div>
-            <div style="font-size:16px;font-weight:400;line-height:1.7">文字修改、段落結構、語者指派、語者命名是四條互不干擾的獨立通道——這是這個平台的設計底線，不是盡力而為。</div>
+            <p style="font-size:16px;font-weight:400;line-height:1.7">文字修改、段落結構、語者指派、語者命名是四條互不干擾的獨立通道——這是這個平台的設計底線，不是盡力而為。</p>
             <div style="display:flex;flex-direction:column;gap:9px">
               <div style="display:flex;gap:11px;align-items:baseline"><span style="color:#c47a20;font-size:12px;flex:none">—</span><span style="font-size:13.5px;font-weight:300;color:#54524b;line-height:1.85">真的衝突時不自作主張選一邊，精確標示到那一句</span></div>
               <div style="display:flex;gap:11px;align-items:baseline"><span style="color:#c47a20;font-size:12px;flex:none">—</span><span style="font-size:13.5px;font-weight:300;color:#54524b;line-height:1.85">任何修改都不會在未經你明確同意的情況下被丟棄</span></div>
@@ -184,12 +260,12 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
         <div class="r-gtc-1fr-1-25fr r-display-grid" style="border:1px solid #dedbd4;border-radius:8px;background:#fbfaf8;overflow:hidden;display:grid;grid-template-columns:1fr 1.25fr">
           <div class="r-brr-1px-solid-rgb-234-231-224 r-pad-38px-40px" style="padding:38px 40px;display:flex;flex-direction:column;gap:14px;border-right:1px solid #eae7e0">
             <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:#c47a20">麻煩 03</div>
-            <div style="font-size:22px;font-weight:400;line-height:1.5;text-wrap:pretty">會議裡大家講國台語夾雜，工具只聽得懂一種</div>
-            <div style="font-size:13.5px;font-weight:300;color:#6b6960;line-height:1.9">這是臺灣會議的實際語音型態，不是教科書式的單一語言。能處理台語的工具並非沒有，但都在雲端。</div>
+            <h3 style="font-size:22px;font-weight:400;line-height:1.5;text-wrap:pretty">會議裡大家講國台語夾雜，工具只聽得懂一種</h3>
+            <p style="font-size:13.5px;font-weight:300;color:#6b6960;line-height:1.9">這是臺灣會議的實際語音型態，不是教科書式的單一語言。能處理台語的工具並非沒有，但都在雲端。</p>
           </div>
           <div class="r-pad-38px-40px" style="padding:38px 40px;display:flex;flex-direction:column;gap:16px;background:#f4f3f0">
             <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:#8c8a84">我們的解法</div>
-            <div style="font-size:16px;font-weight:400;line-height:1.7">國語、台語、客語、原住民族語、英語，一律轉為繁體中文逐字稿；國台語模型由團隊自行微調，已在生產環境服役、處理真實會議。</div>
+            <p style="font-size:16px;font-weight:400;line-height:1.7">國語、台語、客語、原住民族語、英語，一律轉為繁體中文逐字稿；國台語模型由團隊自行微調，已在生產環境服役、處理真實會議。</p>
             <div style="display:flex;flex-direction:column;gap:9px">
               <div style="display:flex;gap:11px;align-items:baseline"><span style="color:#c47a20;font-size:12px;flex:none">—</span><span style="font-size:13.5px;font-weight:300;color:#54524b;line-height:1.85">真正的差異在「地端」：本土台語服務皆為雲端形態</span></div>
               <div style="display:flex;gap:11px;align-items:baseline"><span style="color:#c47a20;font-size:12px;flex:none">—</span><span style="font-size:13.5px;font-weight:300;color:#54524b;line-height:1.85">介面上不出現任何模型代號或技術術語</span></div>
@@ -202,12 +278,12 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
         <div class="r-gtc-1fr-1-25fr r-display-grid" style="border:1px solid #dedbd4;border-radius:8px;background:#fbfaf8;overflow:hidden;display:grid;grid-template-columns:1fr 1.25fr">
           <div class="r-brr-1px-solid-rgb-234-231-224 r-pad-38px-40px" style="padding:38px 40px;display:flex;flex-direction:column;gap:14px;border-right:1px solid #eae7e0">
             <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:#c47a20">麻煩 04</div>
-            <div style="font-size:22px;font-weight:400;line-height:1.5;text-wrap:pretty">每場會議都要重新標註誰是誰</div>
+            <h3 style="font-size:22px;font-weight:400;line-height:1.5;text-wrap:pretty">每場會議都要重新標註誰是誰</h3>
             <div style="font-size:13.5px;font-weight:300;color:#6b6960;line-height:1.9">固定班底的例會，每週都在做同一件無聊的事。</div>
           </div>
           <div class="r-pad-38px-40px" style="padding:38px 40px;display:flex;flex-direction:column;gap:16px;background:#f4f3f0">
             <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:#8c8a84">我們的解法</div>
-            <div style="font-size:16px;font-weight:400;line-height:1.7">聲紋註冊與自動比對：為某位發言者命名一次，之後的會議會自動認出同一個人。會議開得越多，標註工作越少。</div>
+            <p style="font-size:16px;font-weight:400;line-height:1.7">聲紋註冊與自動比對：為某位發言者命名一次，之後的會議會自動認出同一個人。會議開得越多，標註工作越少。</p>
             <div style="display:flex;flex-direction:column;gap:9px">
               <div style="display:flex;gap:11px;align-items:baseline"><span style="color:#c47a20;font-size:12px;flex:none">—</span><span style="font-size:13.5px;font-weight:300;color:#54524b;line-height:1.85">上傳時可指定預期發言人數，讓分離更貼近實際</span></div>
               <div style="display:flex;gap:11px;align-items:baseline"><span style="color:#c47a20;font-size:12px;flex:none">—</span><span style="font-size:13.5px;font-weight:300;color:#54524b;line-height:1.85">語者辨識失敗不會讓整場會議失敗，仍產出完整逐字稿</span></div>
@@ -218,12 +294,12 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
         <div class="r-gtc-1fr-1-25fr r-display-grid" style="border:1px solid #dedbd4;border-radius:8px;background:#fbfaf8;overflow:hidden;display:grid;grid-template-columns:1fr 1.25fr">
           <div class="r-brr-1px-solid-rgb-234-231-224 r-pad-38px-40px" style="padding:38px 40px;display:flex;flex-direction:column;gap:14px;border-right:1px solid #eae7e0">
             <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:#c47a20">麻煩 05</div>
-            <div style="font-size:22px;font-weight:400;line-height:1.5;text-wrap:pretty">辨識引擎憑空生出會議裡沒說過的話</div>
+            <h3 style="font-size:22px;font-weight:400;line-height:1.5;text-wrap:pretty">辨識引擎憑空生出會議裡沒說過的話</h3>
             <div style="font-size:13.5px;font-weight:300;color:#6b6960;line-height:1.9">最讓人不安的失效不是「聽錯」，而是無中生有。這類問題只有在真實會議上才會現形。</div>
           </div>
           <div class="r-pad-38px-40px" style="padding:38px 40px;display:flex;flex-direction:column;gap:16px;background:#f4f3f0">
             <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:#8c8a84">我們的解法</div>
-            <div style="font-size:16px;font-weight:400;line-height:1.7">我們的模型已在實際環境處理真實會議，以下三項都是<span style="color:#c47a20">上線後實測發現並修正</span>的問題，不是規格書上的宣稱。</div>
+            <p style="font-size:16px;font-weight:400;line-height:1.7">我們的模型已在實際環境處理真實會議，以下三項都是<span style="color:#c47a20">上線後實測發現並修正</span>的問題，不是規格書上的宣稱。</p>
             <div style="display:flex;flex-direction:column;gap:9px">
               <div style="display:flex;gap:11px;align-items:baseline"><span style="color:#c47a20;font-size:12px;flex:none">—</span><span style="font-size:13.5px;font-weight:300;color:#54524b;line-height:1.85">太短的聲音不會被當成話：設有語音長度下限，兩百毫秒的環境雜音根本不會進入辨識，也不會計費</span></div>
               <div style="display:flex;gap:11px;align-items:baseline"><span style="color:#c47a20;font-size:12px;flex:none">—</span><span style="font-size:13.5px;font-weight:300;color:#54524b;line-height:1.85">不會陷入重複迴圈：找出成因並在系統層修掉，不是靠事後過濾遮掩</span></div>
@@ -234,12 +310,12 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
 
       </div>
     </div>
-  </div>
+  </section>
 
-  <div class="r-mw-1280px r-pad-104px-56px" style="max-width:1280px;margin:0 auto;padding:104px 56px">
+  <section class="r-mw-1280px r-pad-104px-56px" style="max-width:1280px;margin:0 auto;padding:104px 56px">
     <div style="display:flex;flex-direction:column;gap:44px">
       <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
-        <div class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">還有這些</div>
+        <h2 class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">還有這些</h2>
         <div style="border:1px solid #3a3833;color:#7a776e;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:5px 11px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">現有功能</div>
       </div>
       <div class="r-gtc-repeat-3-1fr r-display-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#26251f;border:1px solid #26251f;border-radius:8px;overflow:hidden">
@@ -269,15 +345,15 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
         </div>
         <div style="background:#0F0F0E;padding:32px 30px;display:flex;flex-direction:column;gap:11px;min-height:158px">
           <div style="font-size:16.5px;font-weight:400">單張 GPU 跑完整系統</div>
-          <div style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.85">辨識、語者分離、聲紋擷取與摘要模型共用一張 GPU，硬體門檻與機房空間需求都低。</div>
+          <p style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.85">辨識、語者分離、聲紋擷取與摘要模型共用一張 GPU，硬體門檻與機房空間需求都低。</p>
         </div>
         <div style="background:#0F0F0E;padding:32px 30px;display:flex;flex-direction:column;gap:11px;min-height:158px">
           <div style="font-size:16.5px;font-weight:400">模型可抽換，不被綁定</div>
-          <div style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.85">建構於業界標準開源技術與相容介面。若採購規範要求非紅色供應鏈，可評估替換為其他來源的開放權重模型。</div>
+          <p style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.85">建構於業界標準開源技術與相容介面。若採購規範要求非紅色供應鏈，可評估替換為其他來源的開放權重模型。</p>
         </div>
         <div style="background:#0F0F0E;padding:32px 30px;display:flex;flex-direction:column;gap:11px;min-height:158px">
           <div style="font-size:16.5px;font-weight:400">用量控管</div>
-          <div style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.85">瀏覽器使用者以額度管理、程式化呼叫以點數管理，兩者分開計算，管理員可調整並留下紀錄。</div>
+          <p style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.85">瀏覽器使用者以額度管理、程式化呼叫以點數管理，兩者分開計算，管理員可調整並留下紀錄。</p>
         </div>
       </div>
       <div style="border:1px solid #26251f;border-radius:8px;padding:32px 34px;display:flex;flex-direction:column;gap:14px;background:#0F0F0E">
@@ -289,19 +365,19 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div style="background:#F4F3F0;color:#141413">
+  <section style="background:#F4F3F0;color:#141413">
     <div class="r-mw-1280px r-gap-40px r-pad-104px-56px-112px" style="max-width:1280px;margin:0 auto;padding:104px 56px 112px;display:flex;flex-direction:column;gap:40px">
       <div style="display:flex;flex-direction:column;gap:16px">
         <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
-          <div class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">讓紀錄自己走到該去的地方</div>
+          <h2 class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">讓紀錄自己走到該去的地方</h2>
           <div style="border:1px solid #c9c5bb;color:#8c8a84;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:5px 11px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">開發規劃中</div>
         </div>
         <div style="font-size:15px;font-weight:300;color:#6b6960;line-height:1.9;max-width:680px">以下為下一階段的發展方向，仍在開發規劃中，非現有可交付功能。</div>
       </div>
       <div class="r-gtc-1fr-1fr r-display-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
-        <div style="border:1px solid #dedbd4;border-radius:6px;background:#fbfaf8;padding:26px 28px;display:flex;flex-direction:column;gap:9px"><div style="font-size:15.5px;font-weight:400">會議紀錄自動送達</div><div style="font-size:13px;font-weight:300;color:#6b6960;line-height:1.85">完成後自動寄 Email、推送 Teams／Mattermost／LINE，或以 Webhook 通知內部系統</div></div>
+        <div style="border:1px solid #dedbd4;border-radius:6px;background:#fbfaf8;padding:26px 28px;display:flex;flex-direction:column;gap:9px"><div style="font-size:15.5px;font-weight:400">會議紀錄自動送達</div><p style="font-size:13px;font-weight:300;color:#6b6960;line-height:1.85">完成後自動寄 Email、推送 Teams／Mattermost／LINE，或以 Webhook 通知內部系統</p></div>
         <div style="border:1px solid #dedbd4;border-radius:6px;background:#fbfaf8;padding:26px 28px;display:flex;flex-direction:column;gap:9px"><div style="font-size:15.5px;font-weight:400">敏感資料自動遮罩</div><div style="font-size:13px;font-weight:300;color:#6b6960;line-height:1.85">姓名、身分證號、病歷號、金額自動偵測遮罩，並記錄誰檢視了原始內容</div></div>
         <div style="border:1px solid #dedbd4;border-radius:6px;background:#fbfaf8;padding:26px 28px;display:flex;flex-direction:column;gap:9px"><div style="font-size:15.5px;font-weight:400">專有名詞辨識強化</div><div style="font-size:13px;font-weight:300;color:#6b6960;line-height:1.85">由貴單位維護人名、單位、產品與術語對照表，產出時自動修正為正確寫法</div></div>
         <div style="border:1px solid #dedbd4;border-radius:6px;background:#fbfaf8;padding:26px 28px;display:flex;flex-direction:column;gap:9px"><div style="font-size:15.5px;font-weight:400">線上會議直接擷取</div><div style="font-size:13px;font-weight:300;color:#6b6960;line-height:1.85">直接擷取電腦上正在進行的線上會議音訊，不需要外部帳號加入會議</div></div>
@@ -309,25 +385,25 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
         <div style="border:1px solid #dedbd4;border-radius:6px;background:#fbfaf8;padding:26px 28px;display:flex;flex-direction:column;gap:9px"><div style="font-size:15.5px;font-weight:400">跨會議 AI 問答</div><div style="font-size:13px;font-weight:300;color:#6b6960;line-height:1.85">「上次談到預算是怎麼決定的？」附上出處會議與時間點，地端運行不出網</div></div>
         <div style="border:1px solid #dedbd4;border-radius:6px;background:#fbfaf8;padding:26px 28px;display:flex;flex-direction:column;gap:9px"><div style="font-size:15.5px;font-weight:400">企業級管理規則</div><div style="font-size:13px;font-weight:300;color:#6b6960;line-height:1.85">依群組或會議類型自動套用處理規則與不同的保存年限</div></div>
         <div style="border:1px solid #dedbd4;border-radius:6px;background:#fbfaf8;padding:26px 28px;display:flex;flex-direction:column;gap:9px"><div style="font-size:15.5px;font-weight:400">團隊共享與協作</div><div style="font-size:13px;font-weight:300;color:#6b6960;line-height:1.85">分享給同事、部門層級可見性、共同校對，以及發言時間統計</div></div>
-        <div style="grid-column:1/-1;border:1px solid #dedbd4;border-radius:6px;background:#fbfaf8;padding:26px 28px;display:flex;flex-direction:column;gap:9px"><div style="font-size:15.5px;font-weight:400">可疑段落自動標示</div><div style="font-size:13px;font-weight:300;color:#6b6960;line-height:1.85">辨識引擎對每一段輸出的信心已被記錄，將據此在校對畫面主動標出「這段最可能有問題，請優先檢查」——把注意力放在真正需要的地方，而不是從頭聽到尾</div></div>
+        <div style="grid-column:1/-1;border:1px solid #dedbd4;border-radius:6px;background:#fbfaf8;padding:26px 28px;display:flex;flex-direction:column;gap:9px"><div style="font-size:15.5px;font-weight:400">可疑段落自動標示</div><p style="font-size:13px;font-weight:300;color:#6b6960;line-height:1.85">辨識引擎對每一段輸出的信心已被記錄，將據此在校對畫面主動標出「這段最可能有問題，請優先檢查」——把注意力放在真正需要的地方，而不是從頭聽到尾</p></div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div class="r-mw-1280px r-pad-104px-56px" style="max-width:1280px;margin:0 auto;padding:104px 56px">
+  <section class="r-mw-1280px r-pad-104px-56px" style="max-width:1280px;margin:0 auto;padding:104px 56px">
     <div class="r-gap-40px" style="display:flex;flex-direction:column;gap:40px">
       <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
-        <div class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">系統需求</div>
+        <h2 class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">系統需求</h2>
         <div style="border:1px solid #3a3833;color:#7a776e;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:5px 11px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">摘要</div>
       </div>
       <div style="display:flex;flex-direction:column;gap:1px;background:#26251f;border:1px solid #26251f;border-radius:8px;overflow:hidden">
         <div class="r-gtc-180px-1fr r-display-grid" style="display:grid;grid-template-columns:180px 1fr;gap:1px;background:#26251f">
           <div style="background:#0F0F0E;padding:22px 26px;font-size:13.5px;font-weight:400;color:#8c8a84">伺服器</div>
-          <div style="background:#0F0F0E;padding:22px 26px;font-size:13.5px;font-weight:300;color:#cfccc4;line-height:1.8">一台 NVIDIA DGX Spark GB10（GB10 Grace Blackwell 超級晶片，128 GB 統一記憶體，原廠 DGX OS 為 Ubuntu 基礎）</div>
+          <p style="background:#0F0F0E;padding:22px 26px;font-size:13.5px;font-weight:300;color:#cfccc4;line-height:1.8">一台 NVIDIA DGX Spark GB10（GB10 Grace Blackwell 超級晶片，128 GB 統一記憶體，原廠 DGX OS 為 Ubuntu 基礎）</p>
         </div>
         <div class="r-gtc-180px-1fr r-display-grid" style="display:grid;grid-template-columns:180px 1fr;gap:1px;background:#26251f">
           <div style="background:#0F0F0E;padding:22px 26px;font-size:13.5px;font-weight:400;color:#8c8a84">處理容量</div>
-          <div style="background:#0F0F0E;padding:22px 26px;font-size:13.5px;font-weight:300;color:#cfccc4;line-height:1.8">單台 NVIDIA DGX Spark GB10 可支援即時 10 線同時轉錄；離線上傳以批次佇列處理，不受線數限制</div>
+          <p style="background:#0F0F0E;padding:22px 26px;font-size:13.5px;font-weight:300;color:#cfccc4;line-height:1.8">單台 NVIDIA DGX Spark GB10 可支援即時 10 線同時轉錄；離線上傳以批次佇列處理，不受線數限制</p>
         </div>
         <div class="r-gtc-180px-1fr r-display-grid" style="display:grid;grid-template-columns:180px 1fr;gap:1px;background:#26251f">
           <div style="background:#0F0F0E;padding:22px 26px;font-size:13.5px;font-weight:400;color:#8c8a84">部署形態</div>
@@ -338,42 +414,44 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
           <div style="background:#0F0F0E;padding:22px 26px;font-size:13.5px;font-weight:300;color:#cfccc4;line-height:1.8">任何現代瀏覽器，無需安裝軟體；電腦與行動裝置皆可</div>
         </div>
       </div>
-      <div style="font-size:14px;font-weight:300;color:#6f6c64;line-height:1.9;max-width:800px">若需求超出單機容量，可規模化為多機配置。實際併發量與硬體配置建議，我們會依貴單位的會議量與使用型態評估後提供，並可供應完整主機硬體與到場安裝部署。</div>
+      <p style="font-size:14px;font-weight:300;color:#6f6c64;line-height:1.9;max-width:800px">若需求超出單機容量，可規模化為多機配置。實際併發量與硬體配置建議，我們會依貴單位的會議量與使用型態評估後提供，並可供應完整主機硬體與到場安裝部署。</p>
     </div>
-  </div>
+  </section>
 
-  <div style="border-top:1px solid #26251f">
+  <section style="border-top:1px solid #26251f">
     <div class="r-mw-1280px r-gap-40px r-pad-104px-56px" style="max-width:1280px;margin:0 auto;padding:104px 56px;display:flex;flex-direction:column;gap:40px">
       <div style="display:flex;flex-direction:column;gap:16px">
         <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
-          <div class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">不只是一套軟體</div>
+          <h2 class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">不只是一套軟體</h2>
           <div style="border:1px solid #3a3833;color:#7a776e;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:5px 11px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">導入與維運</div>
         </div>
-        <div style="font-size:15px;font-weight:300;color:#8c8a84;line-height:1.9;max-width:680px">地端 AI 最實際的門檻往往不在軟體，而在硬體選型、環境建置與後續維護。這些我們一起承擔。</div>
+        <p style="font-size:15px;font-weight:300;color:#8c8a84;line-height:1.9;max-width:680px">地端 AI 最實際的門檻往往不在軟體，而在硬體選型、環境建置與後續維護。這些我們一起承擔。</p>
       </div>
       <div class="r-gtc-1fr-1fr r-display-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#26251f;border:1px solid #26251f;border-radius:8px;overflow:hidden">
-        <div style="background:#0F0F0E;padding:30px 32px;display:flex;flex-direction:column;gap:10px"><div style="font-size:16px;font-weight:400">主機供應與到場安裝</div><div style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.85">可提供完整主機硬體，經測試驗證後協助完成安裝部署，貴單位不需自行摸索硬體選型與環境建置。</div></div>
-        <div style="background:#0F0F0E;padding:30px 32px;display:flex;flex-direction:column;gap:10px"><div style="font-size:16px;font-weight:400">辨識模型持續改進</div><div style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.85">模型由團隊自行訓練，可依貴單位的實際語音情境與領域用語持續優化——採用通用雲端服務時做不到。</div></div>
-        <div style="background:#0F0F0E;padding:30px 32px;display:flex;flex-direction:column;gap:10px"><div style="font-size:16px;font-weight:400">可重現的評測報告</div><div style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.85">以貴單位指定的公開基準或自備的實際會議音檔評測，提供方法論明確、可重現的正式報告，而不是行銷數字。</div></div>
-        <div style="background:#0F0F0E;padding:30px 32px;display:flex;flex-direction:column;gap:10px"><div style="font-size:16px;font-weight:400">產業合規與供應鏈客製</div><div style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.85">依政府、金融、醫療、法律的法規與內控要求客製存取控制與稽核；採購規範指定模型來源時可替換後重新驗證。</div></div>
+        <div style="background:#0F0F0E;padding:30px 32px;display:flex;flex-direction:column;gap:10px"><div style="font-size:16px;font-weight:400">主機供應與到場安裝</div><p style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.85">可提供完整主機硬體，經測試驗證後協助完成安裝部署，貴單位不需自行摸索硬體選型與環境建置。</p></div>
+        <div style="background:#0F0F0E;padding:30px 32px;display:flex;flex-direction:column;gap:10px"><div style="font-size:16px;font-weight:400">辨識模型持續改進</div><p style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.85">模型由團隊自行訓練，可依貴單位的實際語音情境與領域用語持續優化——採用通用雲端服務時做不到。</p></div>
+        <div style="background:#0F0F0E;padding:30px 32px;display:flex;flex-direction:column;gap:10px"><div style="font-size:16px;font-weight:400">可重現的評測報告</div><p style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.85">以貴單位指定的公開基準或自備的實際會議音檔評測，提供方法論明確、可重現的正式報告，而不是行銷數字。</p></div>
+        <div style="background:#0F0F0E;padding:30px 32px;display:flex;flex-direction:column;gap:10px"><div style="font-size:16px;font-weight:400">產業合規與供應鏈客製</div><p style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.85">依政府、金融、醫療、法律的法規與內控要求客製存取控制與稽核；採購規範指定模型來源時可替換後重新驗證。</p></div>
         <div style="background:#0F0F0E;padding:30px 32px;display:flex;flex-direction:column;gap:10px"><div style="font-size:16px;font-weight:400">場景客製化</div><div style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.85">協助將既有的會議紀錄格式、專有名詞表與摘要需求整理成系統設定。</div></div>
-        <div style="background:#0F0F0E;padding:30px 32px;display:flex;flex-direction:column;gap:10px"><div style="font-size:16px;font-weight:400">維護、更新與教育訓練</div><div style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.85">模型升級、效能調校與安全性更新由團隊持續維護，貴單位不需自建 AI／MLOps 團隊。</div></div>
+        <div style="background:#0F0F0E;padding:30px 32px;display:flex;flex-direction:column;gap:10px"><div style="font-size:16px;font-weight:400">維護、更新與教育訓練</div><p style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.85">模型升級、效能調校與安全性更新由團隊持續維護，貴單位不需自建 AI／MLOps 團隊。</p></div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div id="contact" style="background:#ED9A4A;color:#141413">
+  <section id="contact" style="background:#ED9A4A;color:#141413">
     <div class="r-mw-1280px r-pad-96px-56px-100px" style="max-width:1280px;margin:0 auto;padding:96px 56px 100px;display:flex;flex-direction:column;gap:32px;align-items:flex-start">
-      <div class="r-fs-40px" style="font-size:40px;font-weight:200;line-height:1.35;letter-spacing:-0.015em;max-width:760px;text-wrap:pretty">用你自己的會議錄音，驗證一次。</div>
-      <div style="font-size:15.5px;font-weight:300;color:#5c3f16;line-height:1.95;max-width:560px;text-wrap:pretty">我們可以用貴單位實際的會議音檔做一次概念驗證，並提供方法論明確、可重現的評測報告，作為採購與技術審查的技術佐證。</div>
+      <h2 class="r-fs-40px" style="font-size:40px;font-weight:200;line-height:1.35;letter-spacing:-0.015em;max-width:760px;text-wrap:pretty">用你自己的會議錄音，驗證一次。</h2>
+      <p style="font-size:15.5px;font-weight:300;color:#5c3f16;line-height:1.95;max-width:560px;text-wrap:pretty">我們可以用貴單位實際的會議音檔做一次概念驗證，並提供方法論明確、可重現的評測報告，作為採購與技術審查的技術佐證。</p>
       <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
         <a href="mailto:hazel@voxmosa.com" style="background:#141413;color:#ED9A4A;padding:15px 30px;border-radius:4px;font-size:15px;font-weight:500">申請 PoC</a>
         <a href="mailto:hazel@voxmosa.com" style="font-family:'IBM Plex Mono',monospace;font-size:13.5px;color:#141413;font-weight:500">hazel@voxmosa.com</a>
       </div>
     </div>
-  </div>
+  </section>
+  </main>
 
-  <div style="border-top:1px solid #26251f">
+
+  <footer style="border-top:1px solid #26251f">
     <div class="r-mw-1280px r-pad-44px-56px r-gap-40px" style="max-width:1280px;margin:0 auto;padding:44px 56px;display:flex;justify-content:space-between;align-items:center;gap:40px;flex-wrap:wrap">
       <a href="index.html" style="display:flex;align-items:baseline;font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:300;letter-spacing:0.05em;line-height:1;color:#6f6c64">
         <span>V</span>
@@ -392,7 +470,7 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
         <span>© 2026 Voxmosa</span>
       </div>
     </div>
-  </div>
+  </footer>
 
 </div>
 </div></div>

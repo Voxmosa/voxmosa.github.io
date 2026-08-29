@@ -19,9 +19,14 @@
   <meta name="twitter:title" content="MosaTalk | 即時語音 AI 對話系統">
   <meta name="twitter:description" content="從「答得正確」到「應對得體」。低延遲的即時語音對話系統，可完整部署在地端。">
   <meta name="twitter:image" content="https://voxmosa.com/og.png">
+  <meta name="theme-color" content="#141413">
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
 <link href="./vendor/fonts/fonts.css" rel="stylesheet" />
 <style>
 body { margin:0; background:#141413; }
+h1,h2,h3,h4,h5,h6{margin:0;font-size:inherit;font-weight:inherit}
+p{margin:0}
+
 a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
 
 @media (max-width:1080px){.r-gtc-repeat-4-1fr{grid-template-columns:1fr 1fr!important}.r-gap-72px{gap:44px!important}
@@ -57,13 +62,82 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
 }
 </style>
 <style>html,body{height:100%;margin:0}#dc-root,#dc-root>.sc-host{height:100%}</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://voxmosa.com/mosatalk.html#software",
+      "name": "MosaTalk",
+      "applicationCategory": "BusinessApplication",
+      "applicationSubCategory": "即時語音 AI 對話系統",
+      "operatingSystem": "Linux（地端 GPU 伺服器）",
+      "description": "從「答得正確」到「應對得體」。低延遲的即時語音對話系統，可完整部署在地端。",
+      "featureList": [
+        "網頁免安裝即通話，也可接入既有電話系統",
+        "問答格式文件即可換知識庫，不需寫程式",
+        "一段參考錄音即可複製專屬品牌聲音",
+        "資料未涵蓋時不編造，引導留下聯絡方式"
+      ],
+      "inLanguage": "zh-Hant",
+      "publisher": {
+        "@id": "https://voxmosa.com/#organization"
+      },
+      "provider": {
+        "@id": "https://voxmosa.com/#organization"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://voxmosa.com/#website",
+      "url": "https://voxmosa.com/",
+      "name": "Voxmosa",
+      "inLanguage": "zh-Hant",
+      "publisher": {
+        "@id": "https://voxmosa.com/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://voxmosa.com/mosatalk.html#webpage",
+      "url": "https://voxmosa.com/mosatalk.html",
+      "name": "MosaTalk | 即時語音 AI 對話系統",
+      "isPartOf": {
+        "@id": "https://voxmosa.com/#website"
+      },
+      "inLanguage": "zh-Hant",
+      "about": {
+        "@id": "https://voxmosa.com/#organization"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Voxmosa",
+          "item": "https://voxmosa.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "MosaTalk",
+          "item": "https://voxmosa.com/mosatalk.html"
+        }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <div id="dc-root"><div class="sc-host">
 
 <div style="width:100%;background:#141413;color:#f4f3f0;font-family:'Noto Sans TC','Space Grotesk',sans-serif;overflow-x:hidden">
 
-  <div style="position:sticky;top:0;z-index:20;background:rgba(20,20,19,0.92);backdrop-filter:blur(14px);border-bottom:1px solid #26251f">
+  <header style="position:sticky;top:0;z-index:20;background:rgba(20,20,19,0.92);backdrop-filter:blur(14px);border-bottom:1px solid #26251f">
     <div class="r-mw-1280px r-gap-40px" style="max-width:1280px;margin:0 auto;padding:20px 56px;display:flex;align-items:center;justify-content:space-between;gap:40px">
       <a href="index.html" class="r-fs-25px" style="display:flex;align-items:baseline;font-family:'Space Grotesk',sans-serif;font-size:25px;font-weight:400;letter-spacing:0.05em;line-height:1;color:#f4f3f0;flex:none">
         <span>V</span>
@@ -74,7 +148,7 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
         </svg>
         <span>x</span><span style="display:inline-block;width:0.06em;flex:none"></span><span>mosa</span>
       </a>
-      <div class="r-gap-30px" style="display:flex;align-items:center;gap:30px;font-size:14px;font-weight:300;color:#b5b2aa">
+      <nav class="r-gap-30px" style="display:flex;align-items:center;gap:30px;font-size:14px;font-weight:300;color:#b5b2aa">
         <a href="mosatalk.html" style="color:#ED9A4A">MosaTalk</a>
         <a href="mosaminutes.html">MosaMinutes</a>
         <a href="mosascore.html">MosaScore</a>
@@ -82,19 +156,21 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
         <a href="index.html#onprem">為什麼地端</a>
         <a href="index.html#team">團隊</a>
         <a href="#contact" style="background:#ED9A4A;color:#141413;padding:10px 19px;border-radius:4px;font-size:13.5px;font-weight:500">申請 PoC</a>
-      </div>
+      </nav>
     </div>
-  </div>
+  </header>
 
-  <div class="r-gap-72px r-mw-1280px r-gtc-1-1fr-1fr r-pad-96px-56px-100px r-display-grid" style="max-width:1280px;margin:0 auto;padding:96px 56px 100px;display:grid;grid-template-columns:1.1fr 1fr;gap:72px;align-items:center">
+  <main>
+
+  <section class="r-gap-72px r-mw-1280px r-gtc-1-1fr-1fr r-pad-96px-56px-100px r-display-grid" style="max-width:1280px;margin:0 auto;padding:96px 56px 100px;display:grid;grid-template-columns:1.1fr 1fr;gap:72px;align-items:center">
     <div class="r-gap-28px" style="display:flex;flex-direction:column;gap:28px">
       <div style="display:flex;align-items:center;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#ED9A4A">
         <span style="width:22px;height:1px;background:#ED9A4A;display:block"></span>
         <span>Product 01 · On-Premise</span>
       </div>
-      <div class="r-fs-52px" style="font-family:'Space Grotesk',sans-serif;font-size:52px;font-weight:400;color:#ED9A4A;letter-spacing:0.01em;line-height:1.1">MosaTalk</div>
+      <h1 class="r-fs-52px" style="font-family:'Space Grotesk',sans-serif;font-size:52px;font-weight:400;color:#ED9A4A;letter-spacing:0.01em;line-height:1.1">MosaTalk</h1>
       <div class="r-fs-34px" style="font-size:34px;font-weight:200;line-height:1.42;letter-spacing:-0.01em;text-wrap:pretty">客戶打電話進來，<br />AI 聽得懂，也答得出來。</div>
-      <div style="font-size:16px;font-weight:300;color:#a8a59d;line-height:1.95;max-width:540px;text-wrap:pretty">一套可完全部署在貴單位機房的即時語音 AI 對話系統。客戶開網頁按下通話、或直接撥打貴單位既有的客服專線，就能和 AI 自然對談——聽得懂臺灣口音、講得一口流利中文、答得出你的業務問題。</div>
+      <p style="font-size:16px;font-weight:300;color:#a8a59d;line-height:1.95;max-width:540px;text-wrap:pretty">一套可完全部署在貴單位機房的即時語音 AI 對話系統。客戶開網頁按下通話、或直接撥打貴單位既有的客服專線，就能和 AI 自然對談——聽得懂臺灣口音、講得一口流利中文、答得出你的業務問題。</p>
       <div style="display:flex;gap:12px;flex-wrap:wrap">
         <a href="#contact" style="background:#ED9A4A;color:#141413;padding:15px 30px;border-radius:4px;font-size:15px;font-weight:500">申請 PoC</a>
         <a href="#problems" style="border:1px solid #3a3833;color:#f4f3f0;padding:15px 30px;border-radius:4px;font-size:15px;font-weight:300">它解決什麼問題</a>
@@ -126,13 +202,13 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
       </div>
       <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#4f4d47;letter-spacing:0.06em;line-height:1.7">四個環節各自最佳化的結果，而非單點加速</div>
     </div>
-  </div>
+  </section>
 
-  <div id="problems" style="background:#F4F3F0;color:#141413">
+  <section id="problems" style="background:#F4F3F0;color:#141413">
     <div class="r-mw-1280px r-pad-104px-56px-112px" style="max-width:1280px;margin:0 auto;padding:104px 56px 112px;display:flex;flex-direction:column;gap:48px">
       <div style="display:flex;flex-direction:column;gap:16px">
         <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
-          <div class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">你遇到的麻煩，我們怎麼解</div>
+          <h2 class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">你遇到的麻煩，我們怎麼解</h2>
           <div style="border:1px solid #ED9A4A;color:#c47a20;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:5px 11px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">On-Premise</div>
         </div>
         <div style="font-size:15px;font-weight:300;color:#6b6960;line-height:1.9;max-width:660px">功能清單很容易寫，但真正該問的是：現在卡在哪裡。</div>
@@ -143,7 +219,7 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
         <div class="r-gtc-1fr-1-25fr r-display-grid" style="border:1px solid #dedbd4;border-radius:8px;background:#fbfaf8;overflow:hidden;display:grid;grid-template-columns:1fr 1.25fr">
           <div class="r-brr-1px-solid-rgb-234-231-224 r-pad-38px-40px" style="padding:38px 40px;display:flex;flex-direction:column;gap:14px;border-right:1px solid #eae7e0">
             <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:#c47a20">麻煩 01</div>
-            <div style="font-size:22px;font-weight:400;line-height:1.5;text-wrap:pretty">客服專線接不完，重複問題佔掉大半人力</div>
+            <h3 style="font-size:22px;font-weight:400;line-height:1.5;text-wrap:pretty">客服專線接不完，重複問題佔掉大半人力</h3>
             <div style="font-size:13.5px;font-weight:300;color:#6b6960;line-height:1.9">營業時間、產品規格、價格方案、常見問題——同樣的問題每天被問幾十次。</div>
           </div>
           <div class="r-pad-38px-40px" style="padding:38px 40px;display:flex;flex-direction:column;gap:16px;background:#f4f3f0">
@@ -160,7 +236,7 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
         <div class="r-gtc-1fr-1-25fr r-display-grid" style="border:1px solid #dedbd4;border-radius:8px;background:#fbfaf8;overflow:hidden;display:grid;grid-template-columns:1fr 1.25fr">
           <div class="r-brr-1px-solid-rgb-234-231-224 r-pad-38px-40px" style="padding:38px 40px;display:flex;flex-direction:column;gap:14px;border-right:1px solid #eae7e0">
             <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:#c47a20">麻煩 02</div>
-            <div style="font-size:22px;font-weight:400;line-height:1.5;text-wrap:pretty">現成的語音客服聽不懂客戶怎麼講話</div>
+            <h3 style="font-size:22px;font-weight:400;line-height:1.5;text-wrap:pretty">現成的語音客服聽不懂客戶怎麼講話</h3>
             <div style="font-size:13.5px;font-weight:300;color:#6b6960;line-height:1.9">國際服務不懂台語、不懂臺灣口音，客戶講一句就得換真人。</div>
           </div>
           <div class="r-pad-38px-40px" style="padding:38px 40px;display:flex;flex-direction:column;gap:16px;background:#f4f3f0">
@@ -177,7 +253,7 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
         <div class="r-gtc-1fr-1-25fr r-display-grid" style="border:1px solid #dedbd4;border-radius:8px;background:#fbfaf8;overflow:hidden;display:grid;grid-template-columns:1fr 1.25fr">
           <div class="r-brr-1px-solid-rgb-234-231-224 r-pad-38px-40px" style="padding:38px 40px;display:flex;flex-direction:column;gap:14px;border-right:1px solid #eae7e0">
             <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:#c47a20">麻煩 03</div>
-            <div style="font-size:22px;font-weight:400;line-height:1.5;text-wrap:pretty">AI 亂講話，客訴風險比省下的人力更貴</div>
+            <h3 style="font-size:22px;font-weight:400;line-height:1.5;text-wrap:pretty">AI 亂講話，客訴風險比省下的人力更貴</h3>
             <div style="font-size:13.5px;font-weight:300;color:#6b6960;line-height:1.9">通用模型會編造答案。金融商品條款、醫療衛教資訊講錯，後果不是道歉能解決的。</div>
           </div>
           <div class="r-pad-38px-40px" style="padding:38px 40px;display:flex;flex-direction:column;gap:16px;background:#f4f3f0">
@@ -194,12 +270,12 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
         <div class="r-gtc-1fr-1-25fr r-display-grid" style="border:1px solid #dedbd4;border-radius:8px;background:#fbfaf8;overflow:hidden;display:grid;grid-template-columns:1fr 1.25fr">
           <div class="r-brr-1px-solid-rgb-234-231-224 r-pad-38px-40px" style="padding:38px 40px;display:flex;flex-direction:column;gap:14px;border-right:1px solid #eae7e0">
             <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:#c47a20">麻煩 04</div>
-            <div style="font-size:22px;font-weight:400;line-height:1.5;text-wrap:pretty">客戶語音與機密文件不能上傳到別人的伺服器</div>
+            <h3 style="font-size:22px;font-weight:400;line-height:1.5;text-wrap:pretty">客戶語音與機密文件不能上傳到別人的伺服器</h3>
             <div style="font-size:13.5px;font-weight:300;color:#6b6960;line-height:1.9">金融、醫療、長照的法規讓雲端方案在評估第一關就出局。</div>
           </div>
           <div class="r-pad-38px-40px" style="padding:38px 40px;display:flex;flex-direction:column;gap:16px;background:#f4f3f0">
             <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:#8c8a84">我們的解法</div>
-            <div style="font-size:16px;font-weight:400;line-height:1.7">辨識、對話、合成三個模型全部運行在你自有的伺服器上，不呼叫任何雲端 AI 服務。</div>
+            <p style="font-size:16px;font-weight:400;line-height:1.7">辨識、對話、合成三個模型全部運行在你自有的伺服器上，不呼叫任何雲端 AI 服務。</p>
             <div style="display:flex;flex-direction:column;gap:9px">
               <div style="display:flex;gap:11px;align-items:baseline"><span style="color:#c47a20;font-size:12px;flex:none">—</span><span style="font-size:13.5px;font-weight:300;color:#54524b;line-height:1.85">單機模式：一台 GPU 伺服器就是完整系統</span></div>
               <div style="display:flex;gap:11px;align-items:baseline"><span style="color:#c47a20;font-size:12px;flex:none">—</span><span style="font-size:13.5px;font-weight:300;color:#54524b;line-height:1.85">邊緣分離模式：GPU 主機留在內網，不需固定 IP、不開任何連接埠</span></div>
@@ -210,12 +286,12 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
 
       </div>
     </div>
-  </div>
+  </section>
 
-  <div class="r-mw-1280px r-pad-104px-56px" style="max-width:1280px;margin:0 auto;padding:104px 56px">
+  <section class="r-mw-1280px r-pad-104px-56px" style="max-width:1280px;margin:0 auto;padding:104px 56px">
     <div style="display:flex;flex-direction:column;gap:44px">
       <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
-        <div class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">還有這些</div>
+        <h2 class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">還有這些</h2>
         <div style="border:1px solid #3a3833;color:#7a776e;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:5px 11px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">現有功能</div>
       </div>
       <div class="r-gtc-repeat-3-1fr r-display-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#26251f;border:1px solid #26251f;border-radius:8px;overflow:hidden">
@@ -233,11 +309,11 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
         </div>
         <div style="background:#0F0F0E;padding:32px 30px;display:flex;flex-direction:column;gap:11px;min-height:150px">
           <div style="font-size:16.5px;font-weight:400">網頁與電話兩種接入</div>
-          <div style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.85">標準 WebRTC，瀏覽器直接通話免安裝；也可接上貴單位既有的電話系統，讓客戶直撥門號。電話介接已與電話系統商合作完成實際部署。</div>
+          <p style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.85">標準 WebRTC，瀏覽器直接通話免安裝；也可接上貴單位既有的電話系統，讓客戶直撥門號。電話介接已與電話系統商合作完成實際部署。</p>
         </div>
         <div style="background:#0F0F0E;padding:32px 30px;display:flex;flex-direction:column;gap:11px;min-height:150px">
           <div style="font-size:16.5px;font-weight:400">標準開放技術</div>
-          <div style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.85">WebRTC 與 OpenAI 相容介面，模型可抽換升級，並可依採購規範指定來源。</div>
+          <p style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.85">WebRTC 與 OpenAI 相容介面，模型可抽換升級，並可依採購規範指定來源。</p>
         </div>
         <div style="background:#0F0F0E;padding:32px 30px;display:flex;flex-direction:column;gap:11px;min-height:150px">
           <div style="font-size:16.5px;font-weight:400">單張 GPU</div>
@@ -245,13 +321,13 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div style="background:#F4F3F0;color:#141413">
+  <section style="background:#F4F3F0;color:#141413">
     <div class="r-mw-1280px r-gap-40px r-pad-104px-56px-112px" style="max-width:1280px;margin:0 auto;padding:104px 56px 112px;display:flex;flex-direction:column;gap:40px">
       <div style="display:flex;flex-direction:column;gap:16px">
         <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
-          <div class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">從答得正確，到應對得體</div>
+          <h2 class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">從答得正確，到應對得體</h2>
           <div style="border:1px solid #c9c5bb;color:#8c8a84;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:5px 11px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">開發規劃中</div>
         </div>
         <div style="font-size:15px;font-weight:300;color:#6b6960;line-height:1.9;max-width:680px">以下為下一階段的發展方向，仍在開發規劃中，非現有可交付功能。</div>
@@ -266,44 +342,46 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
         <div style="grid-column:1/-1;border:1px solid #dedbd4;border-radius:6px;background:#fbfaf8;padding:26px 28px;display:flex;flex-direction:column;gap:9px"><div style="font-size:15.5px;font-weight:400">通話分析儀表板</div><div style="font-size:13px;font-weight:300;color:#6b6960;line-height:1.85">熱門問題排行、知識庫未涵蓋清單、情緒事件記錄</div></div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div class="r-mw-1280px r-pad-104px-56px" style="max-width:1280px;margin:0 auto;padding:104px 56px">
+  <section class="r-mw-1280px r-pad-104px-56px" style="max-width:1280px;margin:0 auto;padding:104px 56px">
     <div class="r-gap-40px" style="display:flex;flex-direction:column;gap:40px">
       <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
-        <div class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">系統需求</div>
+        <h2 class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">系統需求</h2>
         <div style="border:1px solid #3a3833;color:#7a776e;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:5px 11px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">摘要</div>
       </div>
       <div style="display:flex;flex-direction:column;gap:1px;background:#26251f;border:1px solid #26251f;border-radius:8px;overflow:hidden">
         <div class="r-gtc-180px-1fr r-display-grid" style="display:grid;grid-template-columns:180px 1fr;gap:1px;background:#26251f">
           <div style="background:#0F0F0E;padding:22px 26px;font-size:13.5px;font-weight:400;color:#8c8a84">伺服器</div>
-          <div style="background:#0F0F0E;padding:22px 26px;font-size:13.5px;font-weight:300;color:#cfccc4;line-height:1.8">Ubuntu Linux x86_64，一張大顯存 NVIDIA GPU（已於 46 GB 顯存單卡環境驗證）</div>
+          <p style="background:#0F0F0E;padding:22px 26px;font-size:13.5px;font-weight:300;color:#cfccc4;line-height:1.8">Ubuntu Linux x86_64，一張大顯存 NVIDIA GPU（已於 46 GB 顯存單卡環境驗證）</p>
         </div>
         <div class="r-gtc-180px-1fr r-display-grid" style="display:grid;grid-template-columns:180px 1fr;gap:1px;background:#26251f">
           <div style="background:#0F0F0E;padding:22px 26px;font-size:13.5px;font-weight:400;color:#8c8a84">使用者端</div>
-          <div style="background:#0F0F0E;padding:22px 26px;font-size:13.5px;font-weight:300;color:#cfccc4;line-height:1.8">任何支援 WebRTC 的現代瀏覽器，無需安裝軟體；或經電話系統商介接後，以一般市話／手機直撥</div>
+          <p style="background:#0F0F0E;padding:22px 26px;font-size:13.5px;font-weight:300;color:#cfccc4;line-height:1.8">任何支援 WebRTC 的現代瀏覽器，無需安裝軟體；或經電話系統商介接後，以一般市話／手機直撥</p>
         </div>
         <div class="r-gtc-180px-1fr r-display-grid" style="display:grid;grid-template-columns:180px 1fr;gap:1px;background:#26251f">
           <div style="background:#0F0F0E;padding:22px 26px;font-size:13.5px;font-weight:400;color:#8c8a84">網路</div>
           <div style="background:#0F0F0E;padding:22px 26px;font-size:13.5px;font-weight:300;color:#cfccc4;line-height:1.8">單機模式僅需內網；邊緣分離模式另需一台小型雲端主機</div>
         </div>
       </div>
-      <div style="font-size:14px;font-weight:300;color:#6f6c64;line-height:1.9;max-width:760px">導入不只是交付軟體：我們提供場景客製化、產業合規調整、地端主機供應與到場安裝、系統維護與版本更新，以及合乎學術規範的評估測試報告。</div>
+      <p style="font-size:14px;font-weight:300;color:#6f6c64;line-height:1.9;max-width:760px">導入不只是交付軟體：我們提供場景客製化、產業合規調整、地端主機供應與到場安裝、系統維護與版本更新，以及合乎學術規範的評估測試報告。</p>
     </div>
-  </div>
+  </section>
 
-  <div id="contact" style="background:#ED9A4A;color:#141413">
+  <section id="contact" style="background:#ED9A4A;color:#141413">
     <div class="r-mw-1280px r-pad-96px-56px-100px" style="max-width:1280px;margin:0 auto;padding:96px 56px 100px;display:flex;flex-direction:column;gap:32px;align-items:flex-start">
-      <div class="r-fs-40px" style="font-size:40px;font-weight:200;line-height:1.35;letter-spacing:-0.015em;max-width:760px;text-wrap:pretty">用你自己的知識庫與客戶對話，驗證一次。</div>
-      <div style="font-size:15.5px;font-weight:300;color:#5c3f16;line-height:1.95;max-width:560px;text-wrap:pretty">我們可以用貴單位實際的業務文件與客服情境做一次概念驗證，並提供延遲、辨識率與合成品質的正式評估報告。</div>
+      <h2 class="r-fs-40px" style="font-size:40px;font-weight:200;line-height:1.35;letter-spacing:-0.015em;max-width:760px;text-wrap:pretty">用你自己的知識庫與客戶對話，驗證一次。</h2>
+      <p style="font-size:15.5px;font-weight:300;color:#5c3f16;line-height:1.95;max-width:560px;text-wrap:pretty">我們可以用貴單位實際的業務文件與客服情境做一次概念驗證，並提供延遲、辨識率與合成品質的正式評估報告。</p>
       <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
         <a href="mailto:hazel@voxmosa.com" style="background:#141413;color:#ED9A4A;padding:15px 30px;border-radius:4px;font-size:15px;font-weight:500">申請 PoC</a>
         <a href="mailto:hazel@voxmosa.com" style="font-family:'IBM Plex Mono',monospace;font-size:13.5px;color:#141413;font-weight:500">hazel@voxmosa.com</a>
       </div>
     </div>
-  </div>
+  </section>
+  </main>
 
-  <div style="border-top:1px solid #26251f">
+
+  <footer style="border-top:1px solid #26251f">
     <div class="r-mw-1280px r-pad-44px-56px r-gap-40px" style="max-width:1280px;margin:0 auto;padding:44px 56px;display:flex;justify-content:space-between;align-items:center;gap:40px;flex-wrap:wrap">
       <a href="index.html" style="display:flex;align-items:baseline;font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:300;letter-spacing:0.05em;line-height:1;color:#6f6c64">
         <span>V</span>
@@ -322,7 +400,7 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
         <span>© 2026 Voxmosa</span>
       </div>
     </div>
-  </div>
+  </footer>
 
 </div>
 </div></div>

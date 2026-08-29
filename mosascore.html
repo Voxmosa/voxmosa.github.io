@@ -19,9 +19,14 @@
   <meta name="twitter:title" content="MosaScore | 通話品質分析系統">
   <meta name="twitter:description" content="把只能抽查 1~3% 的客服與電銷錄音，變成每一通都被完整聽過、逐句轉寫與評分。">
   <meta name="twitter:image" content="https://voxmosa.com/og.png">
+  <meta name="theme-color" content="#141413">
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
 <link href="./vendor/fonts/fonts.css" rel="stylesheet" />
 <style>
 body { margin:0; background:#141413; }
+h1,h2,h3,h4,h5,h6{margin:0;font-size:inherit;font-weight:inherit}
+p{margin:0}
+
 a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
 
 @media (max-width:1080px){.r-gtc-repeat-4-1fr{grid-template-columns:1fr 1fr!important}.r-gap-72px{gap:44px!important}
@@ -57,13 +62,82 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
 }
 </style>
 <style>html,body{height:100%;margin:0}#dc-root,#dc-root>.sc-host{height:100%}</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://voxmosa.com/mosascore.html#software",
+      "name": "MosaScore",
+      "applicationCategory": "BusinessApplication",
+      "applicationSubCategory": "地端通話質檢與購買意圖分析",
+      "operatingSystem": "Linux（地端 GPU 伺服器）",
+      "description": "把只能抽查 1~3% 的客服與電銷錄音，變成每一通都被完整聽過、逐句轉寫與評分。",
+      "featureList": [
+        "雙軌分離，語者標籤天然 100% 正確",
+        "每個產業一份領域字典，不需要改程式",
+        "逐句情緒與 0–100 購買傾向分數，附變動原因",
+        "逐句回放 ＋ 逐軌字幕，每個判讀都能當場核對"
+      ],
+      "inLanguage": "zh-Hant",
+      "publisher": {
+        "@id": "https://voxmosa.com/#organization"
+      },
+      "provider": {
+        "@id": "https://voxmosa.com/#organization"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://voxmosa.com/#website",
+      "url": "https://voxmosa.com/",
+      "name": "Voxmosa",
+      "inLanguage": "zh-Hant",
+      "publisher": {
+        "@id": "https://voxmosa.com/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://voxmosa.com/mosascore.html#webpage",
+      "url": "https://voxmosa.com/mosascore.html",
+      "name": "MosaScore | 地端通話質檢與購買意圖分析",
+      "isPartOf": {
+        "@id": "https://voxmosa.com/#website"
+      },
+      "inLanguage": "zh-Hant",
+      "about": {
+        "@id": "https://voxmosa.com/#organization"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Voxmosa",
+          "item": "https://voxmosa.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "MosaScore",
+          "item": "https://voxmosa.com/mosascore.html"
+        }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <div id="dc-root"><div class="sc-host">
 
 <div style="width:100%;background:#141413;color:#f4f3f0;font-family:'Noto Sans TC','Space Grotesk',sans-serif;overflow-x:hidden">
 
-  <div style="position:sticky;top:0;z-index:20;background:rgba(20,20,19,0.92);backdrop-filter:blur(14px);border-bottom:1px solid #26251f">
+  <header style="position:sticky;top:0;z-index:20;background:rgba(20,20,19,0.92);backdrop-filter:blur(14px);border-bottom:1px solid #26251f">
     <div class="r-mw-1280px r-gap-40px" style="max-width:1280px;margin:0 auto;padding:20px 56px;display:flex;align-items:center;justify-content:space-between;gap:40px">
       <a href="index.html" class="r-fs-25px" style="display:flex;align-items:baseline;font-family:'Space Grotesk',sans-serif;font-size:25px;font-weight:400;letter-spacing:0.05em;line-height:1;color:#f4f3f0;flex:none">
         <span>V</span>
@@ -74,7 +148,7 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
         </svg>
         <span>x</span><span style="display:inline-block;width:0.06em;flex:none"></span><span>mosa</span>
       </a>
-      <div class="r-gap-28px" style="display:flex;align-items:center;gap:28px;font-size:14px;font-weight:300;color:#b5b2aa">
+      <nav class="r-gap-28px" style="display:flex;align-items:center;gap:28px;font-size:14px;font-weight:300;color:#b5b2aa">
         <a href="mosatalk.html">MosaTalk</a>
         <a href="mosaminutes.html">MosaMinutes</a>
         <a href="mosascore.html" style="color:#ED9A4A">MosaScore</a>
@@ -82,19 +156,21 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
         <a href="index.html#onprem">為什麼地端</a>
         <a href="index.html#team">團隊</a>
         <a href="#contact" style="background:#ED9A4A;color:#141413;padding:10px 19px;border-radius:4px;font-size:13.5px;font-weight:500">申請 PoC</a>
-      </div>
+      </nav>
     </div>
-  </div>
+  </header>
 
-  <div class="r-gap-72px r-mw-1280px r-gtc-1-05fr-1fr r-pad-96px-56px-88px r-display-grid" style="max-width:1280px;margin:0 auto;padding:96px 56px 88px;display:grid;grid-template-columns:1.05fr 1fr;gap:72px;align-items:center">
+  <main>
+
+  <section class="r-gap-72px r-mw-1280px r-gtc-1-05fr-1fr r-pad-96px-56px-88px r-display-grid" style="max-width:1280px;margin:0 auto;padding:96px 56px 88px;display:grid;grid-template-columns:1.05fr 1fr;gap:72px;align-items:center">
     <div class="r-gap-28px" style="display:flex;flex-direction:column;gap:28px">
       <div style="display:flex;align-items:center;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#ED9A4A">
         <span style="width:22px;height:1px;background:#ED9A4A;display:block"></span>
         <span>Product 03 · On-Premise</span>
       </div>
-      <div class="r-fs-52px" style="font-family:'Space Grotesk',sans-serif;font-size:52px;font-weight:400;color:#ED9A4A;letter-spacing:0.01em;line-height:1.1">MosaScore</div>
+      <h1 class="r-fs-52px" style="font-family:'Space Grotesk',sans-serif;font-size:52px;font-weight:400;color:#ED9A4A;letter-spacing:0.01em;line-height:1.1">MosaScore</h1>
       <div class="r-fs-34px" style="font-size:34px;font-weight:200;line-height:1.42;letter-spacing:-0.01em;text-wrap:pretty">通話錄音一直都在，<br />只是沒有人有時間聽。</div>
-      <div style="font-size:16px;font-weight:300;color:#a8a59d;line-height:1.95;max-width:540px;text-wrap:pretty">地端通話質檢與購買意圖分析。把過去只能抽查 1~3% 的客服與電銷錄音，變成每一通都被完整聽過、逐句轉成文字、標上情緒與意圖分數的可查資料——錄音、逐字稿、分析結果全程不離開貴單位的網路。</div>
+      <p style="font-size:16px;font-weight:300;color:#a8a59d;line-height:1.95;max-width:540px;text-wrap:pretty">地端通話質檢與購買意圖分析。把過去只能抽查 1~3% 的客服與電銷錄音，變成每一通都被完整聽過、逐句轉成文字、標上情緒與意圖分數的可查資料——錄音、逐字稿、分析結果全程不離開貴單位的網路。</p>
       <div style="display:flex;gap:12px;flex-wrap:wrap">
         <a href="#contact" style="background:#ED9A4A;color:#141413;padding:15px 30px;border-radius:4px;font-size:15px;font-weight:500">申請 PoC</a>
         <a href="#validity" style="border:1px solid #3a3833;color:#f4f3f0;padding:15px 30px;border-radius:4px;font-size:15px;font-weight:300">關於分數的效度</a>
@@ -171,20 +247,20 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
         <div style="font-size:11.5px;font-weight:300;color:#7a776e;line-height:1.7" data-live-reason>詢問付款方式，命中最高級距錨點</div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div style="border-top:1px solid #26251f;border-bottom:1px solid #26251f;background:#0F0F0E">
+  <section style="border-top:1px solid #26251f;border-bottom:1px solid #26251f;background:#0F0F0E">
     <div class="r-mw-1280px" style="max-width:1280px;margin:0 auto;padding:34px 56px;display:flex;gap:22px;align-items:flex-start">
       <div style="border:1px solid #4a3a24;color:#ED9A4A;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:6px 12px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">現況說明</div>
-      <div style="font-size:14px;font-weight:300;color:#a8a59d;line-height:1.9;max-width:900px;text-wrap:pretty">MosaScore 已可部署於<span style="color:#f4f3f0">標準 Linux GPU 伺服器</span>（亦支援 Apple Silicon 單機展示），但<span style="color:#f4f3f0">尚未於客戶環境正式上線</span>；購買傾向分數<span style="color:#f4f3f0">尚未經真實成交資料驗證</span>。本頁不提供任何準確率數字——原因與我們的驗證做法寫在<a href="#validity" style="color:#ED9A4A">「關於分數的效度」</a>。</div>
+      <p style="font-size:14px;font-weight:300;color:#a8a59d;line-height:1.9;max-width:900px;text-wrap:pretty">MosaScore 已可部署於<span style="color:#f4f3f0">標準 Linux GPU 伺服器</span>（亦支援 Apple Silicon 單機展示），但<span style="color:#f4f3f0">尚未於客戶環境正式上線</span>；購買傾向分數<span style="color:#f4f3f0">尚未經真實成交資料驗證</span>。本頁不提供任何準確率數字——原因與我們的驗證做法寫在<a href="#validity" style="color:#ED9A4A">「關於分數的效度」</a>。</p>
     </div>
-  </div>
+  </section>
 
-  <div class="r-mw-1280px r-pad-104px-56px" style="max-width:1280px;margin:0 auto;padding:104px 56px">
+  <section class="r-mw-1280px r-pad-104px-56px" style="max-width:1280px;margin:0 auto;padding:104px 56px">
     <div class="r-gtc-1fr-1fr r-gap-64px r-display-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center">
       <div style="display:flex;flex-direction:column;gap:22px">
-        <div class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em;line-height:1.4;text-wrap:pretty">從抽查 1~3%<br />到全部聽過</div>
-        <div style="font-size:15px;font-weight:300;color:#8c8a84;line-height:1.95;max-width:520px;text-wrap:pretty">人工品質檢核的覆蓋率受限於人力，實務上通常只能抽查個位數百分比。真正出問題的那一通、以及成交關鍵在哪一句的那一通，出現在樣本裡是機率問題。自動化分析改變的不是「聽得多仔細」，而是「聽了幾通」——這是覆蓋率的量級差異，不是效率的百分比改善。</div>
+        <h2 class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em;line-height:1.4;text-wrap:pretty">從抽查 1~3%<br />到全部聽過</h2>
+        <p style="font-size:15px;font-weight:300;color:#8c8a84;line-height:1.95;max-width:520px;text-wrap:pretty">人工品質檢核的覆蓋率受限於人力，實務上通常只能抽查個位數百分比。真正出問題的那一通、以及成交關鍵在哪一句的那一通，出現在樣本裡是機率問題。自動化分析改變的不是「聽得多仔細」，而是「聽了幾通」——這是覆蓋率的量級差異，不是效率的百分比改善。</p>
       </div>
       <div style="display:flex;flex-direction:column;gap:1px;background:#26251f;border:1px solid #26251f;border-radius:8px;overflow:hidden">
         <div style="background:#0F0F0E;padding:30px 34px;display:flex;flex-direction:column;gap:8px">
@@ -199,13 +275,13 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div id="features" style="border-top:1px solid #26251f">
+  <section id="features" style="border-top:1px solid #26251f">
     <div class="r-mw-1280px r-gap-40px r-pad-104px-56px" style="max-width:1280px;margin:0 auto;padding:104px 56px;display:flex;flex-direction:column;gap:40px">
       <div style="display:flex;flex-direction:column;gap:16px">
         <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
-          <div class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">現有核心功能</div>
+          <h2 class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">現有核心功能</h2>
           <div style="border:1px solid #3a3833;color:#7a776e;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:5px 11px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">已可展示</div>
         </div>
         <div style="font-size:15px;font-weight:300;color:#8c8a84;line-height:1.9;max-width:700px">以下皆為系統現已具備、可當場操作的能力。</div>
@@ -215,50 +291,50 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
         <div style="background:#0F0F0E;padding:34px 32px;display:flex;flex-direction:column;gap:12px">
           <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#ED9A4A;letter-spacing:0.12em">01</div>
           <div style="font-size:16.5px;font-weight:400;line-height:1.5">雙軌分離，客戶與客服各自成篇</div>
-          <div style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.85">雙聲道錄音兩軌各自獨立斷句，語者標籤天然 100% 正確——這是混音檔做不到的。可在畫面上指定客戶在左或右聲道，錄音反了不必重剪。</div>
+          <p style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.85">雙聲道錄音兩軌各自獨立斷句，語者標籤天然 100% 正確——這是混音檔做不到的。可在畫面上指定客戶在左或右聲道，錄音反了不必重剪。</p>
         </div>
         <div style="background:#0F0F0E;padding:34px 32px;display:flex;flex-direction:column;gap:12px">
           <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#ED9A4A;letter-spacing:0.12em">02</div>
           <div style="font-size:16.5px;font-weight:400;line-height:1.5">為臺灣客服情境調校的辨識</div>
-          <div style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.85">品牌名、產品名與專業術語作為熱詞提示辨識引擎。實測可把「體驗只」修正為「體驗組」、「吃麻明」修正為「芝麻明」——這類錯誤事後文字校正救不回來，只能在辨識階段解決。</div>
+          <p style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.85">品牌名、產品名與專業術語作為熱詞提示辨識引擎。實測可把「體驗只」修正為「體驗組」、「吃麻明」修正為「芝麻明」——這類錯誤事後文字校正救不回來，只能在辨識階段解決。</p>
         </div>
         <div style="background:#0F0F0E;padding:34px 32px;display:flex;flex-direction:column;gap:12px">
           <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#ED9A4A;letter-spacing:0.12em">03</div>
           <div style="font-size:16.5px;font-weight:400;line-height:1.5">十道文本後處理防護網</div>
-          <div style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.85">簡轉繁、幻覺過濾、跳針消除、贅字過濾、標點正規化、中文數字轉阿拉伯數字、同音錯字替換與拼音相似度模糊比對，逐層清洗辨識輸出。</div>
+          <p style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.85">簡轉繁、幻覺過濾、跳針消除、贅字過濾、標點正規化、中文數字轉阿拉伯數字、同音錯字替換與拼音相似度模糊比對，逐層清洗辨識輸出。</p>
         </div>
         <div style="background:#0F0F0E;padding:34px 32px;display:flex;flex-direction:column;gap:12px">
           <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#ED9A4A;letter-spacing:0.12em">04</div>
           <div style="font-size:16.5px;font-weight:400;line-height:1.5">每個產業一份領域字典</div>
-          <div style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.85">熱詞、同音字對照、量詞校正與情境規則集中於一份設定檔，新增一個客戶就是新增一份字典，不需要改任何程式碼。已內建保健食品、醫療、科技等情境。</div>
+          <p style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.85">熱詞、同音字對照、量詞校正與情境規則集中於一份設定檔，新增一個客戶就是新增一份字典，不需要改任何程式碼。已內建保健食品、醫療、科技等情境。</p>
         </div>
         <div style="background:#0F0F0E;padding:34px 32px;display:flex;flex-direction:column;gap:12px">
           <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#ED9A4A;letter-spacing:0.12em">05</div>
           <div style="font-size:16.5px;font-weight:400;line-height:1.5">逐句情緒與購買傾向分數</div>
-          <div style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.85">本地大型語言模型結合逐字稿、對話脈絡與聲學情緒，在客戶每說完一句話時輸出情緒、意圖、0–100 分數與變動原因。評分有五段級距錨點與範例句校準；分數僅隨客戶發言波動，不被客服話術干擾。</div>
+          <p style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.85">本地大型語言模型結合逐字稿、對話脈絡與聲學情緒，在客戶每說完一句話時輸出情緒、意圖、0–100 分數與變動原因。評分有五段級距錨點與範例句校準；分數僅隨客戶發言波動，不被客服話術干擾。</p>
         </div>
         <div style="background:#0F0F0E;padding:34px 32px;display:flex;flex-direction:column;gap:12px">
           <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#ED9A4A;letter-spacing:0.12em">06</div>
           <div style="font-size:16.5px;font-weight:400;line-height:1.5">每一句都能當場核對</div>
-          <div style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.85">逐句音訊回放、逐軌 SRT 字幕輸出、完整分析記錄落地存檔，畫面上的狀態燈直接顯示目前實際載入的引擎——不會發生「以為在跑真實模型、其實跑的是示範資料」。</div>
+          <p style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.85">逐句音訊回放、逐軌 SRT 字幕輸出、完整分析記錄落地存檔，畫面上的狀態燈直接顯示目前實際載入的引擎——不會發生「以為在跑真實模型、其實跑的是示範資料」。</p>
         </div>
       </div>
 
       <div class="r-gtc-auto-1fr r-pad-38px-40px r-display-grid" style="border:1px solid #26251f;border-radius:8px;background:#0F0F0E;padding:38px 40px;display:grid;grid-template-columns:auto 1fr;gap:34px;align-items:center">
         <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#ED9A4A;letter-spacing:0.12em;flex:none">07</div>
         <div style="display:flex;flex-direction:column;gap:11px">
-          <div style="font-size:18px;font-weight:400">完全地端，且真的可以離線展示</div>
-          <div style="font-size:14px;font-weight:300;color:#8c8a84;line-height:1.9;max-width:860px;text-wrap:pretty">辨識、情緒、評分三個模型全部在貴單位的伺服器上執行，不呼叫任何雲端服務。同一套系統可跑在 Linux GPU 機房主機，也可裝進一台 Apple Silicon 筆電帶去現場。前端也移除了所有外部資源依賴（圖表函式庫內嵌、字型改用系統原生），因此在完全沒有網路的會議室裡也能完整展示，包含折線圖。也因為沒有按次計費的 API，錄音量再大都不增加費用。</div>
+          <h4 style="font-size:18px;font-weight:400">完全地端，且真的可以離線展示</h4>
+          <p style="font-size:14px;font-weight:300;color:#8c8a84;line-height:1.9;max-width:860px;text-wrap:pretty">辨識、情緒、評分三個模型全部在貴單位的伺服器上執行，不呼叫任何雲端服務。同一套系統可跑在 Linux GPU 機房主機，也可裝進一台 Apple Silicon 筆電帶去現場。前端也移除了所有外部資源依賴（圖表函式庫內嵌、字型改用系統原生），因此在完全沒有網路的會議室裡也能完整展示，包含折線圖。也因為沒有按次計費的 API，錄音量再大都不增加費用。</p>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div id="validity" style="border-top:1px solid #26251f;background:#0F0F0E">
+  <section id="validity" style="border-top:1px solid #26251f;background:#0F0F0E">
     <div class="r-mw-1280px r-gap-40px r-pad-104px-56px" style="max-width:1280px;margin:0 auto;padding:104px 56px;display:flex;flex-direction:column;gap:40px">
       <div style="display:flex;flex-direction:column;gap:18px">
         <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
-          <div class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">關於分數的效度</div>
+          <h2 class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">關於分數的效度</h2>
           <div style="border:1px solid #4a3a24;color:#ED9A4A;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:5px 11px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">把話講清楚</div>
         </div>
         <div class="r-fs-26px" style="font-size:26px;font-weight:200;line-height:1.65;max-width:820px;text-wrap:pretty">目前這套系統證明的是<span style="color:#ED9A4A">「流程跑得通」</span>，還沒有證明<span style="color:#ED9A4A">「分數預測得準」</span>。</div>
@@ -273,23 +349,23 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
         </div>
         <div class="r-pad-34px-36px" style="border:1px solid #4a3a24;border-radius:8px;padding:34px 36px;display:flex;flex-direction:column;gap:16px;background:#141413">
           <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#ED9A4A;letter-spacing:0.12em;text-transform:uppercase">我們的做法：把驗證變成導入的第一階段</div>
-          <div style="font-size:14px;font-weight:300;color:#a8a59d;line-height:1.9;text-wrap:pretty">以貴單位自己的歷史錄音與<span style="color:#f4f3f0">真實成交結果</span>做一次封閉驗證，產出方法論明確、可重現的評測報告——包含分數的排序能力、校準程度，以及<span style="color:#f4f3f0">提前量</span>（系統平均在通話進行到幾成時就穩定判斷正確）。</div>
-          <div style="font-size:14px;font-weight:300;color:#a8a59d;line-height:1.9;text-wrap:pretty">這份報告的結論若是正面的，它比任何行銷數字都有說服力；若是負面的，貴單位也在投入前就知道了。</div>
+          <p style="font-size:14px;font-weight:300;color:#a8a59d;line-height:1.9;text-wrap:pretty">以貴單位自己的歷史錄音與<span style="color:#f4f3f0">真實成交結果</span>做一次封閉驗證，產出方法論明確、可重現的評測報告——包含分數的排序能力、校準程度，以及<span style="color:#f4f3f0">提前量</span>（系統平均在通話進行到幾成時就穩定判斷正確）。</p>
+          <p style="font-size:14px;font-weight:300;color:#a8a59d;line-height:1.9;text-wrap:pretty">這份報告的結論若是正面的，它比任何行銷數字都有說服力；若是負面的，貴單位也在投入前就知道了。</p>
         </div>
       </div>
 
-      <div style="border-left:2px solid #ED9A4A;padding:6px 0 6px 26px;font-size:15px;font-weight:300;color:#a8a59d;line-height:1.95;max-width:880px;text-wrap:pretty">即使不看分數，這套系統仍有明確價值：全量的逐字稿、逐句情緒標記、可回放的證據鏈——這些是確定性的產出，不依賴任何預測是否準確。規劃中的法遵稽核記分卡走的正是這條不依賴預測效度的路線。</div>
+      <p style="border-left:2px solid #ED9A4A;padding:6px 0 6px 26px;font-size:15px;font-weight:300;color:#a8a59d;line-height:1.95;max-width:880px;text-wrap:pretty">即使不看分數，這套系統仍有明確價值：全量的逐字稿、逐句情緒標記、可回放的證據鏈——這些是確定性的產出，不依賴任何預測是否準確。規劃中的法遵稽核記分卡走的正是這條不依賴預測效度的路線。</p>
     </div>
-  </div>
+  </section>
 
-  <div style="border-top:1px solid #26251f">
+  <section style="border-top:1px solid #26251f">
     <div class="r-mw-1280px r-pad-104px-56px" style="max-width:1280px;margin:0 auto;padding:104px 56px;display:flex;flex-direction:column;gap:38px">
       <div style="display:flex;flex-direction:column;gap:16px">
         <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
-          <div class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">每一個預設值都有實測依據</div>
+          <h2 class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">每一個預設值都有實測依據</h2>
           <div style="border:1px solid #3a3833;color:#7a776e;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:5px 11px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">含被推翻的假設</div>
         </div>
-        <div style="font-size:15px;font-weight:300;color:#8c8a84;line-height:1.9;max-width:760px;text-wrap:pretty">多數設計決定都來自實測後的修正，而非規格書上的想像。一套質檢系統的可信度，來自於它自己的開發過程也經得起質檢。</div>
+        <p style="font-size:15px;font-weight:300;color:#8c8a84;line-height:1.9;max-width:760px;text-wrap:pretty">多數設計決定都來自實測後的修正，而非規格書上的想像。一套質檢系統的可信度，來自於它自己的開發過程也經得起質檢。</p>
       </div>
       <div class="r-gtc-1fr-1-35fr r-display-grid" style="display:grid;grid-template-columns:1fr 1.35fr;gap:1px;background:#26251f;border:1px solid #26251f;border-radius:8px;overflow:hidden">
         <div style="background:#1c1b18;padding:15px 26px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#7a776e;letter-spacing:0.1em;text-transform:uppercase">決定</div>
@@ -306,13 +382,13 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
         <div style="background:#0F0F0E;padding:20px 26px;font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.8">實測 6 通電話中，61% 的評分運算花在前端根本不顯示的內容上</div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div id="onprem" style="border-top:1px solid #26251f;background:#0F0F0E">
+  <section id="onprem" style="border-top:1px solid #26251f;background:#0F0F0E">
     <div class="r-mw-1280px r-pad-104px-56px" style="max-width:1280px;margin:0 auto;padding:104px 56px;display:flex;flex-direction:column;gap:38px">
       <div style="display:flex;flex-direction:column;gap:16px">
-        <div class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">與雲端通話分析服務的差異</div>
-        <div style="font-size:15px;font-weight:300;color:#8c8a84;line-height:1.9;max-width:760px;text-wrap:pretty">我們不主張 MosaScore 適合所有人。若貴單位對錄音外流沒有顧慮、也沒有法規限制，雲端訂閱服務的導入門檻確實更低，功能完整度目前也領先。MosaScore 是為<span style="color:#f4f3f0">不能把錄音交出去</span>、且需要<span style="color:#f4f3f0">針對自己的領域用語調整</span>的單位而設計的。</div>
+        <h2 class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">與雲端通話分析服務的差異</h2>
+        <p style="font-size:15px;font-weight:300;color:#8c8a84;line-height:1.9;max-width:760px;text-wrap:pretty">我們不主張 MosaScore 適合所有人。若貴單位對錄音外流沒有顧慮、也沒有法規限制，雲端訂閱服務的導入門檻確實更低，功能完整度目前也領先。MosaScore 是為<span style="color:#f4f3f0">不能把錄音交出去</span>、且需要<span style="color:#f4f3f0">針對自己的領域用語調整</span>的單位而設計的。</p>
       </div>
       <div class="r-gtc-1-2fr-1fr-1fr r-display-grid" style="display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:1px;background:#26251f;border:1px solid #26251f;border-radius:8px;overflow:hidden">
         <div style="background:#1c1b18;padding:16px 24px"></div>
@@ -352,12 +428,12 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
         <div class="r-pad-17px-24px" style="background:#0F0F0E;padding:17px 24px;font-size:13.5px;font-weight:300;color:#a8a59d">核心分析流程已完備，企業管理功能見「即將推出」</div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div style="border-top:1px solid #26251f">
+  <section style="border-top:1px solid #26251f">
     <div class="r-mw-1280px r-pad-104px-56px" style="max-width:1280px;margin:0 auto;padding:104px 56px;display:flex;flex-direction:column;gap:38px">
       <div style="display:flex;flex-direction:column;gap:16px">
-        <div class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">適用場景</div>
+        <h2 class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">適用場景</h2>
         <div style="font-size:15px;font-weight:300;color:#8c8a84;line-height:1.9;max-width:700px">有大量通話錄音、且因法規或內部規範無法使用雲端分析服務的單位。</div>
       </div>
       <div class="r-gtc-1fr-1fr r-display-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#26251f;border:1px solid #26251f;border-radius:8px;overflow:hidden">
@@ -365,54 +441,54 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
         <div style="background:#0F0F0E;padding:32px 34px;display:flex;flex-direction:column;gap:10px"><div style="font-size:16px;font-weight:400">金融與保險電話招攬</div><div style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.85">本來就被要求全程錄音並長期保存，法遵稽核的需求最明確。</div></div>
         <div style="background:#0F0F0E;padding:32px 34px;display:flex;flex-direction:column;gap:10px"><div style="font-size:16px;font-weight:400">客服中心品質檢核</div><div style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.85">從抽查改為全量，同時成為客訴預防與教育訓練素材的來源。</div></div>
         <div style="background:#0F0F0E;padding:32px 34px;display:flex;flex-direction:column;gap:10px"><div style="font-size:16px;font-weight:400">醫療與長照諮詢專線</div><div style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.85">資料全程留在院內伺服器，且需要明確的回答邊界檢核。</div></div>
-        <div style="grid-column:1/-1;background:#141413;padding:26px 34px;display:flex;gap:18px;align-items:baseline"><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#7a776e;letter-spacing:0.1em;text-transform:uppercase;flex:none">需另行評估</div><div style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.85">B2B 銷售：成交週期以月計，單通電話的「購買機率」框架不適用，需重新定義評分維度。</div></div>
+        <div style="grid-column:1/-1;background:#141413;padding:26px 34px;display:flex;gap:18px;align-items:baseline"><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#7a776e;letter-spacing:0.1em;text-transform:uppercase;flex:none">需另行評估</div><p style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.85">B2B 銷售：成交週期以月計，單通電話的「購買機率」框架不適用，需重新定義評分維度。</p></div>
       </div>
     </div>
-  </div>
+  </section>
 
   
-  <div style="border-top:1px solid #26251f;background:#0F0F0E">
+  <section style="border-top:1px solid #26251f;background:#0F0F0E">
     <div class="r-mw-1280px r-pad-104px-56px" style="max-width:1280px;margin:0 auto;padding:104px 56px;display:flex;flex-direction:column;gap:38px">
       <div style="display:flex;flex-direction:column;gap:16px">
         <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
-          <div class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">即將推出</div>
+          <h2 class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">即將推出</h2>
           <div style="border:1px solid #3a3833;color:#7a776e;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:5px 11px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">開發規劃中</div>
         </div>
-        <div style="font-size:15px;font-weight:300;color:#8c8a84;line-height:1.9;max-width:760px">系統本身已可部署於客戶機房的 Linux GPU 伺服器，下一階段聚焦在把它變成完整的產品。以下項目尚未可交付。</div>
+        <p style="font-size:15px;font-weight:300;color:#8c8a84;line-height:1.9;max-width:760px">系統本身已可部署於客戶機房的 Linux GPU 伺服器，下一階段聚焦在把它變成完整的產品。以下項目尚未可交付。</p>
       </div>
       <div class="r-gtc-1fr-1fr r-display-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#26251f;border:1px solid #26251f;border-radius:8px;overflow:hidden">
-        <div style="grid-column:1/-1;background:#141413;padding:32px 34px;display:flex;flex-direction:column;gap:10px"><div style="font-size:17px;font-weight:400;color:#ED9A4A">法遵稽核記分卡</div><div style="font-size:13.5px;font-weight:300;color:#a8a59d;line-height:1.85;max-width:900px">以規則檢核每一通電話有沒有講到該講的、有沒有踩到不該講的——七日解除權告知、誇大療效用語、必說事項與禁語清單，命中時附上逐字稿位置與可回放的音訊片段作為證據。對於本來就被強制全程錄音的產業，這是可稽核的證據鏈與抽樣僥倖之間的差別。</div></div>
+        <div style="grid-column:1/-1;background:#141413;padding:32px 34px;display:flex;flex-direction:column;gap:10px"><div style="font-size:17px;font-weight:400;color:#ED9A4A">法遵稽核記分卡</div><p style="font-size:13.5px;font-weight:300;color:#a8a59d;line-height:1.85;max-width:900px">以規則檢核每一通電話有沒有講到該講的、有沒有踩到不該講的——七日解除權告知、誇大療效用語、必說事項與禁語清單，命中時附上逐字稿位置與可回放的音訊片段作為證據。對於本來就被強制全程錄音的產業，這是可稽核的證據鏈與抽樣僥倖之間的差別。</p></div>
         <div style="background:#0F0F0E;padding:28px 32px;display:flex;flex-direction:column;gap:9px"><div style="font-size:15.5px;font-weight:400">單聲道／混音錄音支援</div><div style="font-size:13px;font-weight:300;color:#8c8a84;line-height:1.85">導入語者分離技術，讓一般錄音系統輸出的混音檔也能使用</div></div>
         <div style="background:#0F0F0E;padding:28px 32px;display:flex;flex-direction:column;gap:9px"><div style="font-size:15.5px;font-weight:400">批次全量質檢</div><div style="font-size:13px;font-weight:300;color:#8c8a84;line-height:1.85">歷史錄音一次性大批回填，含佇列管理、進度回報與彙總報表</div></div>
         <div style="background:#0F0F0E;padding:28px 32px;display:flex;flex-direction:column;gap:9px"><div style="font-size:15.5px;font-weight:400">企業帳號、權限與稽核</div><div style="font-size:13px;font-weight:300;color:#8c8a84;line-height:1.85">單一登入、分層權限，以及「誰在何時聽了哪一通客戶錄音」的完整存取軌跡</div></div>
         <div style="background:#0F0F0E;padding:28px 32px;display:flex;flex-direction:column;gap:9px"><div style="font-size:15.5px;font-weight:400">敏感資料自動遮罩</div><div style="font-size:13px;font-weight:300;color:#8c8a84;line-height:1.85">姓名、電話、地址、付款資訊自動偵測並遮罩，提供遮罩與原始兩種檢視</div></div>
-        <div style="background:#0F0F0E;padding:28px 32px;display:flex;flex-direction:column;gap:9px"><div style="font-size:15.5px;font-weight:400">分數的事件錨點</div><div style="font-size:13px;font-weight:300;color:#8c8a84;line-height:1.85">把曲線的轉折點錨定到具體語句——「這通是在報價那一句崩掉的」——並統計跨通話的常見流失原因</div></div>
-        <div style="background:#0F0F0E;padding:28px 32px;display:flex;flex-direction:column;gap:9px"><div style="font-size:15.5px;font-weight:400">客服端的話術與專業度評分</div><div style="font-size:13px;font-weight:300;color:#8c8a84;line-height:1.85">以可稽核的客觀行為為依據（必說事項、禁語、靜音與插話等），而非對員工進行情緒推斷</div></div>
+        <div style="background:#0F0F0E;padding:28px 32px;display:flex;flex-direction:column;gap:9px"><div style="font-size:15.5px;font-weight:400">分數的事件錨點</div><p style="font-size:13px;font-weight:300;color:#8c8a84;line-height:1.85">把曲線的轉折點錨定到具體語句——「這通是在報價那一句崩掉的」——並統計跨通話的常見流失原因</p></div>
+        <div style="background:#0F0F0E;padding:28px 32px;display:flex;flex-direction:column;gap:9px"><div style="font-size:15.5px;font-weight:400">客服端的話術與專業度評分</div><p style="font-size:13px;font-weight:300;color:#8c8a84;line-height:1.85">以可稽核的客觀行為為依據（必說事項、禁語、靜音與插話等），而非對員工進行情緒推斷</p></div>
         <div style="background:#0F0F0E;padding:28px 32px;display:flex;flex-direction:column;gap:9px"><div style="font-size:15.5px;font-weight:400">台語辨識能力</div><div style="font-size:13px;font-weight:300;color:#8c8a84;line-height:1.85">臺灣電銷現場國台語夾雜是常態；團隊已有在生產環境服役的國台語模型，將評估導入</div></div>
         <div style="background:#0F0F0E;padding:28px 32px;display:flex;flex-direction:column;gap:9px"><div style="font-size:15.5px;font-weight:400">主管監控牆與即時警示</div><div style="font-size:13px;font-weight:300;color:#8c8a84;line-height:1.85">分數跌破門檻或命中禁語時主動通知</div></div>
-        <div style="grid-column:1/-1;background:#0F0F0E;padding:28px 32px;display:flex;flex-direction:column;gap:9px"><div style="font-size:15.5px;font-weight:400">通話中的即時話術輔助<span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:#5e5b54;letter-spacing:0.08em;margin-left:8px">長期方向</span></div><div style="font-size:13px;font-weight:300;color:#8c8a84;line-height:1.85">從「事後告訴主管客戶想不想買」到「當下告訴業務該說什麼」，需要與現行不同的串流架構</div></div>
+        <div style="grid-column:1/-1;background:#0F0F0E;padding:28px 32px;display:flex;flex-direction:column;gap:9px"><div style="font-size:15.5px;font-weight:400">通話中的即時話術輔助<span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:#5e5b54;letter-spacing:0.08em;margin-left:8px">長期方向</span></div><p style="font-size:13px;font-weight:300;color:#8c8a84;line-height:1.85">從「事後告訴主管客戶想不想買」到「當下告訴業務該說什麼」，需要與現行不同的串流架構</p></div>
       </div>
     </div>
-  </div>
+  </section>
   
 
-  <div style="border-top:1px solid #26251f">
+  <section style="border-top:1px solid #26251f">
     <div class="r-mw-1280px r-gtc-1fr-1fr r-gap-64px r-pad-104px-56px r-display-grid" style="max-width:1280px;margin:0 auto;padding:104px 56px;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start">
 
       <div class="r-gap-30px" style="display:flex;flex-direction:column;gap:30px">
         <div style="display:flex;flex-direction:column;gap:14px">
-          <div class="r-fs-27px" style="font-size:27px;font-weight:300;letter-spacing:-0.01em">一條我們主動劃下的界線</div>
-          <div style="font-size:14px;font-weight:300;color:#8c8a84;line-height:1.95;text-wrap:pretty">對客服人員的評分屬於勞動監控，其中又以「情緒推斷」的爭議最大（歐盟已將工作場所的情緒推斷列為禁止用途）。我們的產品原則是：<span style="color:#f4f3f0">情緒推斷只用於客戶端；對客服的評分以可稽核的客觀行為為準，且不作為員工考核的單一依據。</span>這條線我們在設計階段就劃好，不等客戶問起才補。</div>
+          <h3 class="r-fs-27px" style="font-size:27px;font-weight:300;letter-spacing:-0.01em">一條我們主動劃下的界線</h3>
+          <p style="font-size:14px;font-weight:300;color:#8c8a84;line-height:1.95;text-wrap:pretty">對客服人員的評分屬於勞動監控，其中又以「情緒推斷」的爭議最大（歐盟已將工作場所的情緒推斷列為禁止用途）。我們的產品原則是：<span style="color:#f4f3f0">情緒推斷只用於客戶端；對客服的評分以可稽核的客觀行為為準，且不作為員工考核的單一依據。</span>這條線我們在設計階段就劃好，不等客戶問起才補。</p>
         </div>
         <div style="display:flex;flex-direction:column;gap:14px">
-          <div class="r-fs-27px" style="font-size:27px;font-weight:300;letter-spacing:-0.01em">標準開放技術，不被綁定</div>
-          <div style="font-size:14px;font-weight:300;color:#8c8a84;line-height:1.95;text-wrap:pretty">系統建構於開源模型與標準相容介面，模型可依需求抽換升級。若貴單位（尤其是政府機關與金融業）需要符合非紅色供應鏈規範的模型組合，我們可依規範評估並替換為其他來源的開放權重模型後重新驗證品質。</div>
+          <h3 class="r-fs-27px" style="font-size:27px;font-weight:300;letter-spacing:-0.01em">標準開放技術，不被綁定</h3>
+          <p style="font-size:14px;font-weight:300;color:#8c8a84;line-height:1.95;text-wrap:pretty">系統建構於開源模型與標準相容介面，模型可依需求抽換升級。若貴單位（尤其是政府機關與金融業）需要符合非紅色供應鏈規範的模型組合，我們可依規範評估並替換為其他來源的開放權重模型後重新驗證品質。</p>
         </div>
       </div>
 
       <div style="display:flex;flex-direction:column;gap:22px">
         <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
-          <div class="r-fs-27px" style="font-size:27px;font-weight:300;letter-spacing:-0.01em">系統需求</div>
+          <h3 class="r-fs-27px" style="font-size:27px;font-weight:300;letter-spacing:-0.01em">系統需求</h3>
           <div style="border:1px solid #3a3833;color:#7a776e;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:5px 11px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">摘要</div>
         </div>
         <div class="r-gtc-0-7fr-1fr-1fr r-display-grid" style="display:grid;grid-template-columns:0.7fr 1fr 1fr;gap:1px;background:#26251f;border:1px solid #26251f;border-radius:8px;overflow:hidden">
@@ -421,7 +497,7 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
           <div style="background:#1c1b18;padding:14px 20px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#7a776e;letter-spacing:0.1em;text-transform:uppercase">單機展示</div>
           <div class="r-pad-18px-20px" style="background:#0F0F0E;padding:18px 20px;font-size:13px;font-weight:400">伺服器</div>
           <div class="r-pad-18px-20px" style="background:#0F0F0E;padding:18px 20px;font-size:12.5px;font-weight:300;color:#8c8a84;line-height:1.8">Ubuntu Linux x86_64 ＋ NVIDIA GPU</div>
-          <div class="r-pad-18px-20px" style="background:#0F0F0E;padding:18px 20px;font-size:12.5px;font-weight:300;color:#8c8a84;line-height:1.8">Apple Silicon M 系列，統一記憶體 16GB 以上，建議 24GB</div>
+          <p class="r-pad-18px-20px" style="background:#0F0F0E;padding:18px 20px;font-size:12.5px;font-weight:300;color:#8c8a84;line-height:1.8">Apple Silicon M 系列，統一記憶體 16GB 以上，建議 24GB</p>
           <div class="r-pad-18px-20px" style="background:#0F0F0E;padding:18px 20px;font-size:13px;font-weight:400">使用者端</div>
           <div class="r-pad-18px-20px" style="background:#0F0F0E;padding:18px 20px;font-size:12.5px;font-weight:300;color:#8c8a84;line-height:1.8">任何現代瀏覽器，無需安裝軟體</div>
           <div class="r-pad-18px-20px" style="background:#0F0F0E;padding:18px 20px;font-size:12.5px;font-weight:300;color:#8c8a84;line-height:1.8">同左</div>
@@ -432,22 +508,22 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
           <div class="r-pad-18px-20px" style="background:#0F0F0E;padding:18px 20px;font-size:12.5px;font-weight:300;color:#8c8a84;line-height:1.8">雙聲道 .mp3 / .wav（單聲道／混音支援見「即將推出」）</div>
           <div class="r-pad-18px-20px" style="background:#0F0F0E;padding:18px 20px;font-size:12.5px;font-weight:300;color:#8c8a84;line-height:1.8">同左</div>
         </div>
-        <div style="border-left:2px solid #3a3833;padding:4px 0 4px 20px;font-size:12.5px;font-weight:300;color:#7a776e;line-height:1.85;text-wrap:pretty">關於處理速度：目前每一句發言都完整執行一次辨識、情緒與評分推理，因此長通話的處理時間會超過音檔本身長度。這對批次質檢沒有影響（掃描是背景作業），但通話中的即時輔助需要不同的架構。實際處理量與硬體配置建議，依貴單位的通話量評估後提供。</div>
+        <p style="border-left:2px solid #3a3833;padding:4px 0 4px 20px;font-size:12.5px;font-weight:300;color:#7a776e;line-height:1.85;text-wrap:pretty">關於處理速度：目前每一句發言都完整執行一次辨識、情緒與評分推理，因此長通話的處理時間會超過音檔本身長度。這對批次質檢沒有影響（掃描是背景作業），但通話中的即時輔助需要不同的架構。實際處理量與硬體配置建議，依貴單位的通話量評估後提供。</p>
       </div>
 
     </div>
-  </div>
+  </section>
 
-  <div style="border-top:1px solid #26251f;background:#0F0F0E">
+  <section style="border-top:1px solid #26251f;background:#0F0F0E">
     <div class="r-mw-1280px r-gap-40px r-pad-104px-56px" style="max-width:1280px;margin:0 auto;padding:104px 56px;display:flex;flex-direction:column;gap:40px">
       <div style="display:flex;flex-direction:column;gap:16px">
         <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
-          <div class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">客製化導入與維運服務</div>
+          <h2 class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">客製化導入與維運服務</h2>
           <div style="border:1px solid #3a3833;color:#7a776e;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:5px 11px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">導入</div>
         </div>
       </div>
       <div class="r-gtc-1fr-1fr r-display-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#26251f;border:1px solid #26251f;border-radius:8px;overflow:hidden">
-        <div style="grid-column:1/-1;background:#141413;padding:32px 34px;display:flex;flex-direction:column;gap:10px"><div style="font-size:17px;font-weight:400;color:#ED9A4A">效度驗證作為導入第一階段</div><div style="font-size:13.5px;font-weight:300;color:#a8a59d;line-height:1.85;max-width:900px">以貴單位自己的錄音與真實成交結果做封閉驗證，產出方法論明確、可重現的評測報告，作為採購與技術審查的技術佐證——在擴大投入之前，先確認它對貴單位有效。</div></div>
+        <div style="grid-column:1/-1;background:#141413;padding:32px 34px;display:flex;flex-direction:column;gap:10px"><div style="font-size:17px;font-weight:400;color:#ED9A4A">效度驗證作為導入第一階段</div><p style="font-size:13.5px;font-weight:300;color:#a8a59d;line-height:1.85;max-width:900px">以貴單位自己的錄音與真實成交結果做封閉驗證，產出方法論明確、可重現的評測報告，作為採購與技術審查的技術佐證——在擴大投入之前，先確認它對貴單位有效。</p></div>
         <div style="background:#0F0F0E;padding:28px 32px;display:flex;flex-direction:column;gap:9px"><div style="font-size:15.5px;font-weight:400">領域字典建置</div><div style="font-size:13px;font-weight:300;color:#8c8a84;line-height:1.85">協助整理品牌名、產品名、常見同音錯字與量詞習慣——這是辨識品質的關鍵資產</div></div>
         <div style="background:#0F0F0E;padding:28px 32px;display:flex;flex-direction:column;gap:9px"><div style="font-size:15.5px;font-weight:400">稽核規則設計</div><div style="font-size:13px;font-weight:300;color:#8c8a84;line-height:1.85">依貴單位的話術規範與適用法規，訂出必說事項、禁語與檢核順序</div></div>
         <div style="background:#0F0F0E;padding:28px 32px;display:flex;flex-direction:column;gap:9px"><div style="font-size:15.5px;font-weight:400">產業合規調整</div><div style="font-size:13px;font-weight:300;color:#8c8a84;line-height:1.85">依金融、保險、醫療的法規與內控要求，客製存取控制、稽核紀錄與保存機制</div></div>
@@ -455,20 +531,22 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
         <div style="grid-column:1/-1;background:#0F0F0E;padding:28px 32px;display:flex;flex-direction:column;gap:9px"><div style="font-size:15.5px;font-weight:400">系統維護與版本更新</div><div style="font-size:13px;font-weight:300;color:#8c8a84;line-height:1.85">模型升級與效能調校由團隊持續維護，貴單位不需自建 AI／MLOps 團隊</div></div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div id="contact" style="background:#ED9A4A;color:#141413">
+  <section id="contact" style="background:#ED9A4A;color:#141413">
     <div class="r-mw-1280px r-pad-96px-56px-100px" style="max-width:1280px;margin:0 auto;padding:96px 56px 100px;display:flex;flex-direction:column;gap:32px;align-items:flex-start">
-      <div class="r-fs-40px" style="font-size:40px;font-weight:200;line-height:1.35;letter-spacing:-0.015em;max-width:760px;text-wrap:pretty">先用你自己的錄音與成交結果，驗證一次。</div>
-      <div style="font-size:15.5px;font-weight:300;color:#5c3f16;line-height:1.95;max-width:560px;text-wrap:pretty">導入的第一階段就是效度驗證：以貴單位的歷史通話與真實成交資料做一次封閉評測，報告的結論若是負面的，貴單位也在投入前就知道了。</div>
+      <h2 class="r-fs-40px" style="font-size:40px;font-weight:200;line-height:1.35;letter-spacing:-0.015em;max-width:760px;text-wrap:pretty">先用你自己的錄音與成交結果，驗證一次。</h2>
+      <p style="font-size:15.5px;font-weight:300;color:#5c3f16;line-height:1.95;max-width:560px;text-wrap:pretty">導入的第一階段就是效度驗證：以貴單位的歷史通話與真實成交資料做一次封閉評測，報告的結論若是負面的，貴單位也在投入前就知道了。</p>
       <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
         <a href="mailto:hazel@voxmosa.com" style="background:#141413;color:#ED9A4A;padding:15px 30px;border-radius:4px;font-size:15px;font-weight:500">申請 PoC</a>
         <a href="mailto:hazel@voxmosa.com" style="font-family:'IBM Plex Mono',monospace;font-size:13.5px;color:#141413;font-weight:500">hazel@voxmosa.com</a>
       </div>
     </div>
-  </div>
+  </section>
+  </main>
 
-  <div style="border-top:1px solid #26251f">
+
+  <footer style="border-top:1px solid #26251f">
     <div class="r-mw-1280px r-pad-44px-56px r-gap-40px" style="max-width:1280px;margin:0 auto;padding:44px 56px;display:flex;justify-content:space-between;align-items:center;gap:40px;flex-wrap:wrap">
       <a href="index.html" style="display:flex;align-items:baseline;font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:300;letter-spacing:0.05em;line-height:1;color:#6f6c64">
         <span>V</span>
@@ -487,7 +565,7 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
         <span>© 2026 Voxmosa</span>
       </div>
     </div>
-  </div>
+  </footer>
 
 </div>
 </div></div>

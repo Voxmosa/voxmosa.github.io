@@ -19,9 +19,14 @@
   <meta name="twitter:title" content="Voxmosa | 語音 AI 專家">
   <meta name="twitter:description" content="專注語音 AI 的團隊。MosaTalk 即時語音對話、MosaMinutes 會議記錄、MosaScore 通話品質分析，把每一通對話變成可用的資料，全部可部署在自己的機房。">
   <meta name="twitter:image" content="https://voxmosa.com/og.png">
+  <meta name="theme-color" content="#141413">
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
 <link href="./vendor/fonts/fonts.css" rel="stylesheet" />
 <style>
 body { margin:0; background:#141413; }
+h1,h2,h3,h4,h5,h6{margin:0;font-size:inherit;font-weight:inherit}
+p{margin:0}
+
 a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
 /* 原本由 runtime 依 style-hover 屬性動態產生，烘焙後寫成靜態規則 */
 .hover-panel:hover { background:#16150F !important; }
@@ -60,13 +65,131 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
 }
 </style>
 <style>html,body{height:100%;margin:0}#dc-root,#dc-root>.sc-host{height:100%}</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://voxmosa.com/#organization",
+      "name": "Voxmosa",
+      "alternateName": "牧仁資訊有限公司",
+      "url": "https://voxmosa.com/",
+      "logo": "https://voxmosa.com/og.png",
+      "image": "https://voxmosa.com/og.png",
+      "email": "hazel@voxmosa.com",
+      "description": "專注臺灣多語言語音 AI 的團隊。國語、台語、客語、原住民族語、英語的語音辨識、語者分離、對話生成與語音合成，全部可部署於客戶自有機房，不呼叫任何雲端 AI 服務。",
+      "areaServed": {
+        "@type": "Country",
+        "name": "臺灣"
+      },
+      "knowsLanguage": [
+        "zh-Hant",
+        "nan-Hant-TW",
+        "hak-Hant-TW",
+        "en"
+      ],
+      "knowsAbout": [
+        "語音辨識",
+        "語者分離",
+        "語音合成",
+        "地端部署 AI",
+        "臺灣台語語音辨識",
+        "客語語音辨識",
+        "原住民族語語音技術",
+        "會議記錄自動化",
+        "通話品質分析"
+      ],
+      "sameAs": [
+        "https://huggingface.co/formospeech",
+        "https://huggingface.co/ILRDF"
+      ],
+      "award": [
+        "2025 O-COCOSDA 技術類最佳論文獎",
+        "2022 臺灣客語語音辨識競賽 FSR 2022 一般組第一名",
+        "2020 臺灣台語語音辨識競賽 FSR 2020 產業組第一名",
+        "2018 國語語音辨識競賽 FSR 2018 產業組第二名",
+        "2008 ISCSLP 最佳學生論文獎"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "sales",
+        "email": "hazel@voxmosa.com",
+        "availableLanguage": [
+          "zh-Hant",
+          "en"
+        ]
+      }
+    },
+    {
+      "@type": "ItemList",
+      "name": "Voxmosa 產品",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "item": {
+            "@type": "SoftwareApplication",
+            "@id": "https://voxmosa.com/mosatalk.html#software",
+            "name": "MosaTalk",
+            "url": "https://voxmosa.com/mosatalk.html"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "item": {
+            "@type": "SoftwareApplication",
+            "@id": "https://voxmosa.com/mosaminutes.html#software",
+            "name": "MosaMinutes",
+            "url": "https://voxmosa.com/mosaminutes.html"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "item": {
+            "@type": "SoftwareApplication",
+            "@id": "https://voxmosa.com/mosascore.html#software",
+            "name": "MosaScore",
+            "url": "https://voxmosa.com/mosascore.html"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://voxmosa.com/#website",
+      "url": "https://voxmosa.com/",
+      "name": "Voxmosa",
+      "inLanguage": "zh-Hant",
+      "publisher": {
+        "@id": "https://voxmosa.com/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://voxmosa.com/#webpage",
+      "url": "https://voxmosa.com/",
+      "name": "Voxmosa | 語音 AI 專家",
+      "isPartOf": {
+        "@id": "https://voxmosa.com/#website"
+      },
+      "inLanguage": "zh-Hant",
+      "about": {
+        "@id": "https://voxmosa.com/#organization"
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <div id="dc-root"><div class="sc-host">
 
 <div style="width:100%;background:#141413;color:#f4f3f0;font-family:'Noto Sans TC','Space Grotesk',sans-serif;overflow-x:hidden">
 
-  <div style="position:sticky;top:0;z-index:20;background:rgba(20,20,19,0.92);backdrop-filter:blur(14px);border-bottom:1px solid #26251f">
+  <header style="position:sticky;top:0;z-index:20;background:rgba(20,20,19,0.92);backdrop-filter:blur(14px);border-bottom:1px solid #26251f">
     <div class="r-mw-1280px r-gap-40px" style="max-width:1280px;margin:0 auto;padding:20px 56px;display:flex;align-items:center;justify-content:space-between;gap:40px">
       <a href="#top" class="r-fs-25px" style="display:flex;align-items:baseline;font-family:'Space Grotesk',sans-serif;font-size:25px;font-weight:400;letter-spacing:0.05em;line-height:1;color:#f4f3f0;flex:none">
         <span>V</span>
@@ -77,7 +200,7 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
         </svg>
         <span>x</span><span style="display:inline-block;width:0.06em;flex:none"></span><span>mosa</span>
       </a>
-      <div class="r-gap-30px" style="display:flex;align-items:center;gap:30px;font-size:14px;font-weight:300;color:#b5b2aa">
+      <nav class="r-gap-30px" style="display:flex;align-items:center;gap:30px;font-size:14px;font-weight:300;color:#b5b2aa">
         <a href="mosatalk.html">MosaTalk</a>
         <a href="mosaminutes.html">MosaMinutes</a>
         <a href="mosascore.html">MosaScore</a>
@@ -85,18 +208,20 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
         <a href="#onprem">為什麼地端</a>
         <a href="#team">團隊</a>
         <a href="#contact" style="background:#ED9A4A;color:#141413;padding:10px 19px;border-radius:4px;font-size:13.5px;font-weight:500">申請 PoC</a>
-      </div>
+      </nav>
     </div>
-  </div>
+  </header>
 
-  <div id="top" class="r-gap-72px r-mw-1280px r-gtc-1-05fr-1fr r-pad-104px-56px-116px r-display-grid" style="max-width:1280px;margin:0 auto;padding:104px 56px 116px;display:grid;grid-template-columns:1.05fr 1fr;gap:72px;align-items:center">
+  <main>
+
+  <section id="top" class="r-gap-72px r-mw-1280px r-gtc-1-05fr-1fr r-pad-104px-56px-116px r-display-grid" style="max-width:1280px;margin:0 auto;padding:104px 56px 116px;display:grid;grid-template-columns:1.05fr 1fr;gap:72px;align-items:center">
     <div class="r-gap-30px" style="display:flex;flex-direction:column;gap:30px">
       <div style="display:flex;align-items:center;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#ED9A4A">
         <span style="width:22px;height:1px;background:#ED9A4A;display:block"></span>
         <span>On-Premise Voice AI</span>
       </div>
-      <div style="font-size:56px;font-weight:200;line-height:1.28;letter-spacing:-0.015em;text-wrap:pretty">聽得懂臺灣的語音 AI，<br />跑在你自己的機房裡。</div>
-      <div style="font-size:17px;font-weight:300;color:#a8a59d;line-height:1.95;max-width:520px;text-wrap:pretty">國語、台語、客語、原住民族語、英語，全部轉為繁體中文。語音辨識、語者分離、對話生成、語音合成——所有模型運行在貴單位自有的伺服器上，不呼叫任何雲端 AI 服務。</div>
+      <h1 style="font-size:56px;font-weight:200;line-height:1.28;letter-spacing:-0.015em;text-wrap:pretty">聽得懂臺灣的語音 AI，<br />跑在你自己的機房裡。</h1>
+      <p style="font-size:17px;font-weight:300;color:#a8a59d;line-height:1.95;max-width:520px;text-wrap:pretty">國語、台語、客語、原住民族語、英語，全部轉為繁體中文。語音辨識、語者分離、對話生成、語音合成——所有模型運行在貴單位自有的伺服器上，不呼叫任何雲端 AI 服務。</p>
       <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
         <a href="#contact" style="background:#ED9A4A;color:#141413;padding:15px 30px;border-radius:4px;font-size:15px;font-weight:500">申請 PoC</a>
         <a href="#products" style="border:1px solid #3a3833;color:#f4f3f0;padding:15px 30px;border-radius:4px;font-size:15px;font-weight:300">看三項產品</a>
@@ -193,17 +318,17 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
       </div>
       <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#4f4d47;letter-spacing:0.06em;line-height:1.7">示意畫面 · 實際語音樣本即將上線</div>
     </div>
-  </div>
+  </section>
 
-  <div id="products" style="background:#F4F3F0;color:#141413">
+  <section id="products" style="background:#F4F3F0;color:#141413">
     <div class="r-mw-1280px r-pad-104px-56px-112px" style="max-width:1280px;margin:0 auto;padding:104px 56px 112px;display:flex;flex-direction:column;gap:44px">
       <div style="display:flex;align-items:baseline;justify-content:space-between;gap:32px;flex-wrap:wrap">
         <div style="display:flex;flex-direction:column;gap:14px">
           <div style="display:flex;align-items:center;gap:11px">
-            <div class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">三項產品，同一個原則</div>
+            <h2 class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">三項產品，同一個原則</h2>
             <div style="border:1px solid #ED9A4A;color:#c47a20;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:5px 11px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">On-Premise</div>
           </div>
-          <div style="font-size:15px;font-weight:300;color:#6b6960;line-height:1.9;max-width:620px">一個負責「即時對話」，一個負責「事後記錄」，一個負責「把錄音變成可查的資料」。三者都在你的機房裡跑完整條流程。</div>
+          <p style="font-size:15px;font-weight:300;color:#6b6960;line-height:1.9;max-width:620px">一個負責「即時對話」，一個負責「事後記錄」，一個負責「把錄音變成可查的資料」。三者都在你的機房裡跑完整條流程。</p>
         </div>
       </div>
 
@@ -211,12 +336,12 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
         <a href="mosatalk.html" class="r-pad-40px" style="background:#141413;color:#f4f3f0;border-radius:10px;padding:40px;display:flex;flex-direction:column;gap:22px;min-height:420px">
           <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:20px">
             <div style="display:flex;flex-direction:column;gap:9px">
-              <div class="r-fs-28px" style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:400;color:#ED9A4A;letter-spacing:0.01em">MosaTalk</div>
+              <h3 class="r-fs-28px" style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:400;color:#ED9A4A;letter-spacing:0.01em">MosaTalk</h3>
               <div style="font-size:17px;font-weight:300">即時語音 AI 對話系統</div>
             </div>
             <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#5e5b54;letter-spacing:0.1em;text-transform:uppercase;flex:none;padding-top:8px">01</div>
           </div>
-          <div style="font-size:14px;font-weight:300;color:#a8a59d;line-height:1.95">客戶打開網頁按下通話、或直撥既有客服專線，就能和 AI 自然對談——聽得懂臺灣口音、答得出你的業務問題，說完話到 AI 開口約一秒，而且可以隨時插話。</div>
+          <p style="font-size:14px;font-weight:300;color:#a8a59d;line-height:1.95">客戶打開網頁按下通話、或直撥既有客服專線，就能和 AI 自然對談——聽得懂臺灣口音、答得出你的業務問題，說完話到 AI 開口約一秒，而且可以隨時插話。</p>
           <div style="display:flex;flex-direction:column;gap:11px;border-top:1px solid #26251f;padding-top:22px">
             <div style="display:flex;gap:12px;align-items:baseline"><span style="color:#ED9A4A;font-family:'IBM Plex Mono',monospace;font-size:10px;flex:none;width:16px">01</span><span style="font-size:13.5px;font-weight:300;color:#cfccc4">網頁免安裝即通話，也可接入既有電話系統</span></div>
             <div style="display:flex;gap:12px;align-items:baseline"><span style="color:#ED9A4A;font-family:'IBM Plex Mono',monospace;font-size:10px;flex:none;width:16px">02</span><span style="font-size:13.5px;font-weight:300;color:#cfccc4">問答格式文件即可換知識庫，不需寫程式</span></div>
@@ -232,12 +357,12 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
         <a href="mosaminutes.html" class="r-pad-40px" style="background:#141413;color:#f4f3f0;border-radius:10px;padding:40px;display:flex;flex-direction:column;gap:22px;min-height:420px">
           <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:20px">
             <div style="display:flex;flex-direction:column;gap:9px">
-              <div class="r-fs-28px" style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:400;color:#ED9A4A;letter-spacing:0.01em">MosaMinutes</div>
+              <h3 class="r-fs-28px" style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:400;color:#ED9A4A;letter-spacing:0.01em">MosaMinutes</h3>
               <div style="font-size:17px;font-weight:300">地端 AI 會議記錄平台</div>
             </div>
             <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#5e5b54;letter-spacing:0.1em;text-transform:uppercase;flex:none;padding-top:8px">02</div>
           </div>
-          <div style="font-size:14px;font-weight:300;color:#a8a59d;line-height:1.95">錄音或上傳檔案，系統自動產出逐字稿、分辨誰在說話、寫出摘要與待辦，並讓你在同一個畫面裡邊聽邊改到能直接發出去。</div>
+          <p style="font-size:14px;font-weight:300;color:#a8a59d;line-height:1.95">錄音或上傳檔案，系統自動產出逐字稿、分辨誰在說話、寫出摘要與待辦，並讓你在同一個畫面裡邊聽邊改到能直接發出去。</p>
           <div style="display:flex;flex-direction:column;gap:11px;border-top:1px solid #26251f;padding-top:22px">
             <div style="display:flex;gap:12px;align-items:baseline"><span style="color:#ED9A4A;font-family:'IBM Plex Mono',monospace;font-size:10px;flex:none;width:16px">01</span><span style="font-size:13.5px;font-weight:300;color:#cfccc4">五種語言全轉繁體中文，自動標點分段</span></div>
             <div style="display:flex;gap:12px;align-items:baseline"><span style="color:#ED9A4A;font-family:'IBM Plex Mono',monospace;font-size:10px;flex:none;width:16px">02</span><span style="font-size:13.5px;font-weight:300;color:#cfccc4">聲紋註冊一次，之後自動認出同一個人</span></div>
@@ -255,14 +380,14 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
             <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:20px">
               <div style="display:flex;flex-direction:column;gap:9px">
                 <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
-                  <div class="r-fs-28px" style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:400;color:#ED9A4A;letter-spacing:0.01em">MosaScore</div>
+                  <h3 class="r-fs-28px" style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:400;color:#ED9A4A;letter-spacing:0.01em">MosaScore</h3>
                   <div style="border:1px solid #4a3a24;color:#ED9A4A;font-family:'IBM Plex Mono',monospace;font-size:9.5px;padding:4px 10px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase">效度驗證中</div>
                 </div>
                 <div style="font-size:17px;font-weight:300">地端通話質檢與購買意圖分析</div>
               </div>
               <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#5e5b54;letter-spacing:0.1em;text-transform:uppercase;flex:none;padding-top:8px">03</div>
             </div>
-            <div style="font-size:14px;font-weight:300;color:#a8a59d;line-height:1.95">把過去只能抽查 1~3% 的客服與電銷錄音，變成每一通都被完整聽過、逐句轉成文字、標上情緒與意圖分數的可查資料。</div>
+            <p style="font-size:14px;font-weight:300;color:#a8a59d;line-height:1.95">把過去只能抽查 1~3% 的客服與電銷錄音，變成每一通都被完整聽過、逐句轉成文字、標上情緒與意圖分數的可查資料。</p>
             <div style="margin-top:auto;display:flex;align-items:center;gap:9px;font-size:13.5px;font-weight:400;color:#ED9A4A;font-family:'IBM Plex Mono',monospace;letter-spacing:0.04em">
               <span>了解 MosaScore</span>
               <svg viewBox="0 0 24 24" style="width:14px;flex:none" fill="none" stroke="#ED9A4A" stroke-width="2" stroke-linecap="round"><path d="M5 12 H18 M13 7 L18 12 L13 17" /></svg>
@@ -278,12 +403,12 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
         </a>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div id="tech" class="r-mw-1280px r-pad-112px-56px" style="max-width:1280px;margin:0 auto;padding:112px 56px">
+  <section id="tech" class="r-mw-1280px r-pad-112px-56px" style="max-width:1280px;margin:0 auto;padding:112px 56px">
     <div style="display:flex;flex-direction:column;gap:44px">
       <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
-        <div class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">技術實力</div>
+        <h2 class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">技術實力</h2>
         <div style="border:1px solid #3a3833;color:#7a776e;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:5px 11px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">Single GPU</div>
       </div>
 
@@ -309,10 +434,10 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
       <div class="r-pad-38px-40px r-gap-40px" style="border:1px dashed #3a3833;border-radius:8px;padding:38px 40px;display:flex;justify-content:space-between;align-items:center;gap:40px;flex-wrap:wrap">
         <div style="display:flex;flex-direction:column;gap:13px;flex:1;min-width:min(420px,100%)">
           <div style="display:flex;align-items:center;gap:11px">
-            <div style="font-size:21px;font-weight:400">可重現的評測報告</div>
+            <h3 style="font-size:21px;font-weight:400">可重現的評測報告</h3>
             <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#ED9A4A;letter-spacing:0.1em;text-transform:uppercase;border:1px solid #4a3a24;padding:4px 10px;border-radius:3px">即將公開</div>
           </div>
-          <div style="font-size:14.5px;font-weight:300;color:#a8a59d;line-height:1.95;max-width:660px;text-wrap:pretty">我們的立場是：行銷數字沒有意義，可重現的數字才有。字元錯誤率、競品對照、測試方法論與原始音檔，將以符合學術規範的方式完整公開，並可依貴單位指定的公開基準或自備音檔另行評測。</div>
+          <p style="font-size:14.5px;font-weight:300;color:#a8a59d;line-height:1.95;max-width:660px;text-wrap:pretty">我們的立場是：行銷數字沒有意義，可重現的數字才有。字元錯誤率、競品對照、測試方法論與原始音檔，將以符合學術規範的方式完整公開，並可依貴單位指定的公開基準或自備音檔另行評測。</p>
         </div>
         <div style="display:flex;flex-direction:column;gap:9px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#6f6c64;letter-spacing:0.04em;line-height:1.9;flex:none">
           <div>CER 對照表</div>
@@ -322,16 +447,16 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div id="onprem" style="background:#F4F3F0;color:#141413">
+  <section id="onprem" style="background:#F4F3F0;color:#141413">
     <div class="r-mw-1280px r-pad-104px-56px-112px" style="max-width:1280px;margin:0 auto;padding:104px 56px 112px;display:flex;flex-direction:column;gap:44px">
       <div style="display:flex;flex-direction:column;gap:16px">
         <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
-          <div class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">為什麼一定要地端</div>
+          <h2 class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">為什麼一定要地端</h2>
           <div style="border:1px solid #ED9A4A;color:#c47a20;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:5px 11px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">資料不出網</div>
         </div>
-        <div style="font-size:15px;font-weight:300;color:#6b6960;line-height:1.9;max-width:700px;text-wrap:pretty">臺灣已經有能處理台語的語音服務，但它們全是雲端形態。能把臺灣的語言做好、又能整套跑在你自己機房裡的，這才是我們的位置。</div>
+        <p style="font-size:15px;font-weight:300;color:#6b6960;line-height:1.9;max-width:700px;text-wrap:pretty">臺灣已經有能處理台語的語音服務，但它們全是雲端形態。能把臺灣的語言做好、又能整套跑在你自己機房裡的，這才是我們的位置。</p>
       </div>
 
       <div style="display:flex;flex-direction:column;gap:1px;background:#dedbd4;border:1px solid #dedbd4;border-radius:8px;overflow:hidden">
@@ -378,49 +503,49 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
       </div>
 
       <div style="border-left:2px solid #ED9A4A;padding:6px 0 6px 28px;max-width:820px">
-        <div style="font-size:19px;font-weight:300;line-height:1.85;color:#141413;text-wrap:pretty">我們不追求適用於所有場景，而是專注於滿足最高規格的資安需求。對於沒有數據合規壓力或資安顧慮的單位，雲端訂閱服務無疑是更為經濟彈性的選擇。但若您的會議內容與核心數據<span style="font-weight:500">絕不能離廠</span>，我們便是為此而設計的私有化解決方案——這是一項專為資安合規所做的明確定位，而非盲目的全面優勢。</div>
+        <p style="font-size:19px;font-weight:300;line-height:1.85;color:#141413;text-wrap:pretty">我們不追求適用於所有場景，而是專注於滿足最高規格的資安需求。對於沒有數據合規壓力或資安顧慮的單位，雲端訂閱服務無疑是更為經濟彈性的選擇。但若您的會議內容與核心數據<span style="font-weight:500">絕不能離廠</span>，我們便是為此而設計的私有化解決方案——這是一項專為資安合規所做的明確定位，而非盲目的全面優勢。</p>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div id="industries" class="r-mw-1280px r-pad-112px-56px" style="max-width:1280px;margin:0 auto;padding:112px 56px">
+  <section id="industries" class="r-mw-1280px r-pad-112px-56px" style="max-width:1280px;margin:0 auto;padding:112px 56px">
     <div style="display:flex;flex-direction:column;gap:44px">
       <div style="display:flex;flex-direction:column;gap:16px">
         <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
-          <div class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">產業情境與合規</div>
+          <h2 class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">產業情境與合規</h2>
           <div style="border:1px solid #3a3833;color:#7a776e;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:5px 11px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">Compliance</div>
         </div>
-        <div style="font-size:15px;font-weight:300;color:#8c8a84;line-height:1.9;max-width:700px;text-wrap:pretty">對這些單位而言，情境就是合規。我們依產業的實際法規與內控要求，客製化存取控制、稽核紀錄與資料保存機制，而不是套用單一制式方案。</div>
+        <p style="font-size:15px;font-weight:300;color:#8c8a84;line-height:1.9;max-width:700px;text-wrap:pretty">對這些單位而言，情境就是合規。我們依產業的實際法規與內控要求，客製化存取控制、稽核紀錄與資料保存機制，而不是套用單一制式方案。</p>
       </div>
 
       <div class="r-gtc-repeat-3-1fr r-display-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#26251f;border:1px solid #26251f;border-radius:8px;overflow:hidden">
         <div style="background:#0F0F0E;padding:32px 30px;display:flex;flex-direction:column;gap:12px;min-height:170px">
-          <div style="font-size:17px;font-weight:400;color:#f4f3f0">政府機關</div>
+          <h3 style="font-size:17px;font-weight:400;color:#f4f3f0">政府機關</h3>
           <div style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.85">公務會議、公聽會、委員會記錄。地端運行同時滿足資安規範與資料落地要求。</div>
           <div style="margin-top:auto;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#ED9A4A;letter-spacing:0.08em">公文格式匯出 · 非紅供應鏈</div>
         </div>
         <div style="background:#0F0F0E;padding:32px 30px;display:flex;flex-direction:column;gap:12px;min-height:170px">
-          <div style="font-size:17px;font-weight:400;color:#f4f3f0">金融業</div>
+          <h3 style="font-size:17px;font-weight:400;color:#f4f3f0">金融業</h3>
           <div style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.85">董事會、法遵與風控會議，以及商品諮詢類的高重複性問答。</div>
           <div style="margin-top:auto;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#ED9A4A;letter-spacing:0.08em">內控 · 稽核軌跡</div>
         </div>
         <div style="background:#0F0F0E;padding:32px 30px;display:flex;flex-direction:column;gap:12px;min-height:170px">
-          <div style="font-size:17px;font-weight:400;color:#f4f3f0">醫療機構</div>
+          <h3 style="font-size:17px;font-weight:400;color:#f4f3f0">醫療機構</h3>
           <div style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.85">院內會議、個案討論、衛教與掛號諮詢，資料全程留在院內伺服器。</div>
           <div style="margin-top:auto;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#ED9A4A;letter-spacing:0.08em">病歷個資 · 敏感欄位遮罩</div>
         </div>
         <div style="background:#0F0F0E;padding:32px 30px;display:flex;flex-direction:column;gap:12px;min-height:170px">
-          <div style="font-size:17px;font-weight:400;color:#f4f3f0">法律事務所</div>
+          <h3 style="font-size:17px;font-weight:400;color:#f4f3f0">法律事務所</h3>
           <div style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.85">當事人會談、案件討論。保密義務使地端架構成為必要條件而非選項。</div>
           <div style="margin-top:auto;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#ED9A4A;letter-spacing:0.08em">保密義務 · 記錄證據性</div>
         </div>
         <div style="background:#0F0F0E;padding:32px 30px;display:flex;flex-direction:column;gap:12px;min-height:170px">
-          <div style="font-size:17px;font-weight:400;color:#f4f3f0">長照與教育研究</div>
+          <h3 style="font-size:17px;font-weight:400;color:#f4f3f0">長照與教育研究</h3>
           <div style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.85">家屬諮詢、服務說明、訪談與教學記錄，以及地方語言的語音資料保存。</div>
           <div style="margin-top:auto;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#ED9A4A;letter-spacing:0.08em">族語保存 · 訪談逐字稿</div>
         </div>
         <div style="background:#0F0F0E;padding:32px 30px;display:flex;flex-direction:column;gap:12px;min-height:170px">
-          <div style="font-size:17px;font-weight:400;color:#f4f3f0">一般企業</div>
+          <h3 style="font-size:17px;font-weight:400;color:#f4f3f0">一般企業</h3>
           <div style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.85">例會、專案進度、客戶會議、客服專線分流——重視內容不外流的任何單位。</div>
           <div style="margin-top:auto;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#ED9A4A;letter-spacing:0.08em">SSO · 保留期限設定</div>
         </div>
@@ -437,23 +562,23 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
         <div style="border:1px solid #3a3833;border-radius:100px;padding:10px 20px;font-size:13px;font-weight:300;color:#cfccc4">重複請求保護</div>
       </div>
     </div>
-  </div>
+  </section>
 
   
-  <div id="roadmap" style="background:#F4F3F0;color:#141413">
+  <section id="roadmap" style="background:#F4F3F0;color:#141413">
     <div class="r-mw-1280px r-pad-104px-56px-112px" style="max-width:1280px;margin:0 auto;padding:104px 56px 112px;display:flex;flex-direction:column;gap:44px">
       <div style="display:flex;flex-direction:column;gap:16px">
         <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
-          <div class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">發展路線</div>
+          <h2 class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">發展路線</h2>
           <div style="border:1px solid #c9c5bb;color:#8c8a84;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:5px 11px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">開發規劃中</div>
         </div>
-        <div style="font-size:15px;font-weight:300;color:#6b6960;line-height:1.9;max-width:700px">以下項目仍在開發規劃中，非現有可交付功能。我們選擇公開，因為方向本身就是說明我們在想什麼。</div>
+        <p style="font-size:15px;font-weight:300;color:#6b6960;line-height:1.9;max-width:700px">以下項目仍在開發規劃中，非現有可交付功能。我們選擇公開，因為方向本身就是說明我們在想什麼。</p>
       </div>
 
       <div class="r-gtc-1fr-1fr r-display-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
         <div style="border:1px solid #dedbd4;border-radius:8px;background:#fbfaf8;padding:36px;display:flex;flex-direction:column;gap:24px">
           <div style="display:flex;flex-direction:column;gap:8px">
-            <div style="font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:400;color:#141413">MosaTalk</div>
+            <h3 style="font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:400;color:#141413">MosaTalk</h3>
             <div style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.8">從「答得正確」到「應對得體」</div>
           </div>
           <div style="display:flex;flex-direction:column;gap:16px">
@@ -468,7 +593,7 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
 
         <div style="border:1px solid #dedbd4;border-radius:8px;background:#fbfaf8;padding:36px;display:flex;flex-direction:column;gap:24px">
           <div style="display:flex;flex-direction:column;gap:8px">
-            <div style="font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:400;color:#141413">MosaMinutes</div>
+            <h3 style="font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:400;color:#141413">MosaMinutes</h3>
             <div style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.8">讓會議紀錄自己走到該去的地方</div>
           </div>
           <div style="display:flex;flex-direction:column;gap:16px">
@@ -482,21 +607,21 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
   
 
-  <div id="team" class="r-mw-1280px r-pad-112px-56px" style="max-width:1280px;margin:0 auto;padding:112px 56px">
+  <section id="team" class="r-mw-1280px r-pad-112px-56px" style="max-width:1280px;margin:0 auto;padding:112px 56px">
     <div style="display:flex;flex-direction:column;gap:44px">
       <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
-        <div class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">團隊與研究</div>
+        <h2 class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">團隊與研究</h2>
         <div style="border:1px solid #3a3833;color:#7a776e;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:5px 11px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">Research-led</div>
       </div>
 
       <div class="r-gtc-1-35fr-1fr r-display-grid" style="display:grid;grid-template-columns:1.35fr 1fr;gap:20px">
         <div class="r-pad-44px" style="background:#0F0F0E;border:1px solid #26251f;border-radius:8px;padding:44px;display:flex;flex-direction:column;gap:26px">
-          <div class="r-fs-25px" style="font-size:25px;font-weight:200;line-height:1.7;text-wrap:pretty;max-width:640px">核心研發團隊具有深厚的學術與開源社群血統，長期專注於臺灣多語言（台語、客語、族語、中英混合等）語音辨識技術。</div>
-          <div style="font-size:14.5px;font-weight:300;color:#8c8a84;line-height:1.95;max-width:640px;text-wrap:pretty">團隊主導之開源語音專案 FormoSpeech（公開於 Hugging Face）已累積豐富的社群調用與技術驗證實績。我們的語音辨識模型採全自主架構訓練，非僅調整市面通用模型之參數——這代表我們能針對貴單位的特定領域用語、特殊收音環境與專業聲學情境進行深度客製與持續優化，是採用標準通用雲端 API 所無法達到的精準度與資料安全性。</div>
+          <p class="r-fs-25px" style="font-size:25px;font-weight:200;line-height:1.7;text-wrap:pretty;max-width:640px">核心研發團隊具有深厚的學術與開源社群血統，長期專注於臺灣多語言（台語、客語、族語、中英混合等）語音辨識技術。</p>
+          <p style="font-size:14.5px;font-weight:300;color:#8c8a84;line-height:1.95;max-width:640px;text-wrap:pretty">團隊主導之開源語音專案 FormoSpeech（公開於 Hugging Face）已累積豐富的社群調用與技術驗證實績。我們的語音辨識模型採全自主架構訓練，非僅調整市面通用模型之參數——這代表我們能針對貴單位的特定領域用語、特殊收音環境與專業聲學情境進行深度客製與持續優化，是採用標準通用雲端 API 所無法達到的精準度與資料安全性。</p>
           <div style="display:flex;gap:10px;flex-wrap:wrap;padding-top:4px">
             <a href="https://huggingface.co/formospeech" style="border:1px solid #3a3833;border-radius:4px;padding:11px 18px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#cfccc4;letter-spacing:0.04em">Hugging Face / formospeech</a>
             <a href="#publications" style="border:1px solid #3a3833;border-radius:4px;padding:11px 18px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#cfccc4;letter-spacing:0.04em">研究發表列表</a>
@@ -505,10 +630,10 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
 
         <div style="border:1px dashed #3a3833;border-radius:8px;padding:36px;display:flex;flex-direction:column;gap:20px">
           <div style="display:flex;align-items:center;gap:11px">
-            <div style="font-size:19px;font-weight:400">研究筆記</div>
+            <h3 style="font-size:19px;font-weight:400">研究筆記</h3>
             <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#6f6c64;letter-spacing:0.1em;text-transform:uppercase">籌備中</div>
           </div>
-          <div style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.9">技術文章、評測方法論、臺灣語音資料的觀察。這一區會是我們把「學術精神」講清楚的地方。</div>
+          <p style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.9">技術文章、評測方法論、臺灣語音資料的觀察。這一區會是我們把「學術精神」講清楚的地方。</p>
           <div style="display:flex;flex-direction:column;gap:1px;background:#26251f;border-radius:5px;overflow:hidden;margin-top:auto">
             <div style="background:#0F0F0E;padding:17px 19px;display:flex;flex-direction:column;gap:6px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#5e5b54;letter-spacing:0.08em">即將發布</div><div style="font-size:13.5px;font-weight:300;color:#a8a59d">如何公正評測台語語音辨識</div></div>
             <div style="background:#0F0F0E;padding:17px 19px;display:flex;flex-direction:column;gap:6px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#5e5b54;letter-spacing:0.08em">即將發布</div><div style="font-size:13.5px;font-weight:300;color:#a8a59d">單張 GPU 上的三模型顯存配置</div></div>
@@ -519,43 +644,43 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
 
       <div style="display:flex;flex-direction:column;gap:20px">
         <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
-          <div style="font-size:21px;font-weight:400">研究網絡</div>
+          <h3 style="font-size:21px;font-weight:400">研究網絡</h3>
           <div style="border:1px solid #3a3833;color:#7a776e;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:5px 11px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">Research Network</div>
         </div>
-        <div style="font-size:14.5px;font-weight:300;color:#8c8a84;line-height:1.95;max-width:760px;text-wrap:pretty">臺灣的本土語言不是一個模型就能涵蓋的題目。族語與客語的語料整理與模型開發由本團隊負責，透過長期合作的單位落地與公開。</div>
+        <p style="font-size:14.5px;font-weight:300;color:#8c8a84;line-height:1.95;max-width:760px;text-wrap:pretty">臺灣的本土語言不是一個模型就能涵蓋的題目。族語與客語的語料整理與模型開發由本團隊負責，透過長期合作的單位落地與公開。</p>
         <div class="r-gtc-1fr-1fr r-display-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#26251f;border:1px solid #26251f;border-radius:8px;overflow:hidden">
           <div class="r-pad-34px-36px" style="background:#0F0F0E;padding:34px 36px;display:flex;flex-direction:column;gap:14px">
             <div style="display:flex;align-items:baseline;gap:11px;flex-wrap:wrap">
-              <div style="font-size:18px;font-weight:400">原住民族語</div>
+              <h4 style="font-size:18px;font-weight:400">原住民族語</h4>
               <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#6f6c64;letter-spacing:0.08em">16 族 · 42 語</div>
             </div>
-            <div style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.9;text-wrap:pretty"><span style="color:#f4f3f0">16 族、42 種語言</span>的語料整理與語音辨識、語音合成、機器翻譯模型，由本團隊開發，與<a href="https://ithuan.tw/" style="color:#f4f3f0;border-bottom:1px solid #3a3833">意傳科技</a>長期合作。模型與資料集公開於 Hugging Face，任何人都可以下載檢驗。</div>
+            <p style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.9;text-wrap:pretty"><span style="color:#f4f3f0">16 族、42 種語言</span>的語料整理與語音辨識、語音合成、機器翻譯模型，由本團隊開發，與<a href="https://ithuan.tw/" style="color:#f4f3f0;border-bottom:1px solid #3a3833">意傳科技</a>長期合作。模型與資料集公開於 Hugging Face，任何人都可以下載檢驗。</p>
             <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:auto;padding-top:6px">
               <a href="https://huggingface.co/ILRDF" style="border:1px solid #3a3833;border-radius:4px;padding:10px 16px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#cfccc4;letter-spacing:0.04em">Hugging Face / ILRDF</a>
             </div>
           </div>
           <div class="r-pad-34px-36px" style="background:#0F0F0E;padding:34px 36px;display:flex;flex-direction:column;gap:14px">
             <div style="display:flex;align-items:baseline;gap:11px;flex-wrap:wrap">
-              <div style="font-size:18px;font-weight:400">客語</div>
+              <h4 style="font-size:18px;font-weight:400">客語</h4>
               <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#6f6c64;letter-spacing:0.08em">六腔</div>
             </div>
-            <div style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.9;text-wrap:pretty">客語<span style="color:#f4f3f0">四縣、海陸、大埔、饒平、詔安、南四縣六腔全數涵蓋</span>的語音辨識與語音合成，並支援客語與繁體中文雙向翻譯，公開展示於 Gohakka。</div>
+            <p style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.9;text-wrap:pretty">客語<span style="color:#f4f3f0">四縣、海陸、大埔、饒平、詔安、南四縣六腔全數涵蓋</span>的語音辨識與語音合成，並支援客語與繁體中文雙向翻譯，公開展示於 Gohakka。</p>
             <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:auto;padding-top:6px">
               <a href="https://gohakka.org/" style="border:1px solid #3a3833;border-radius:4px;padding:10px 16px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#cfccc4;letter-spacing:0.04em">gohakka.org</a>
             </div>
           </div>
         </div>
-        <div style="font-size:12.5px;font-weight:300;color:#6f6c64;line-height:1.85;max-width:760px;text-wrap:pretty">族群與語言數依原住民族委員會的族語分類，客語腔調依客家委員會的六腔分類——兩者都可以逐項查證。</div>
+        <p style="font-size:12.5px;font-weight:300;color:#6f6c64;line-height:1.85;max-width:760px;text-wrap:pretty">族群與語言數依原住民族委員會的族語分類，客語腔調依客家委員會的六腔分類——兩者都可以逐項查證。</p>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div style="border-top:1px solid #26251f">
+  <section style="border-top:1px solid #26251f">
     <div class="r-mw-1280px r-gtc-1fr-1fr r-gap-64px r-pad-104px-56px r-display-grid" style="max-width:1280px;margin:0 auto;padding:104px 56px;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start">
 
       <div class="r-gap-30px" style="display:flex;flex-direction:column;gap:30px">
         <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
-          <div class="r-fs-27px" style="font-size:27px;font-weight:300;letter-spacing:-0.01em">獲獎與榮譽</div>
+          <h3 class="r-fs-27px" style="font-size:27px;font-weight:300;letter-spacing:-0.01em">獲獎與榮譽</h3>
           <div style="border:1px solid #3a3833;color:#7a776e;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:5px 11px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">Awards</div>
         </div>
         <div style="display:flex;flex-direction:column;gap:1px;background:#26251f;border:1px solid #26251f;border-radius:8px;overflow:hidden">
@@ -569,7 +694,7 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
 
       <div class="r-gap-30px" style="display:flex;flex-direction:column;gap:30px">
         <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
-          <div class="r-fs-27px" style="font-size:27px;font-weight:300;letter-spacing:-0.01em">媒體報導</div>
+          <h3 class="r-fs-27px" style="font-size:27px;font-weight:300;letter-spacing:-0.01em">媒體報導</h3>
           <div style="border:1px solid #3a3833;color:#7a776e;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:5px 11px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">Press</div>
         </div>
         <div style="display:flex;flex-direction:column;gap:1px;background:#26251f;border:1px solid #26251f;border-radius:8px;overflow:hidden">
@@ -583,16 +708,16 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
       </div>
 
     </div>
-  </div>
+  </section>
 
-  <div id="publications" style="border-top:1px solid #26251f">
+  <section id="publications" style="border-top:1px solid #26251f">
     <div class="r-mw-1280px r-pad-104px-56px-112px" style="max-width:1280px;margin:0 auto;padding:104px 56px 112px;display:flex;flex-direction:column;gap:36px">
       <div style="display:flex;flex-direction:column;gap:16px">
         <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
-          <div class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">研究發表</div>
+          <h2 class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">研究發表</h2>
           <div style="border:1px solid #3a3833;color:#7a776e;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:5px 11px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">Publications</div>
         </div>
-        <div style="font-size:15px;font-weight:300;color:#8c8a84;line-height:1.9;max-width:720px;text-wrap:pretty">核心團隊成員與語音相關之同儕審查發表，涵蓋 Interspeech、ICASSP、IEEE ASRU、SLT、TASLP 等領域主要會議與期刊。這裡列出的是與語音技術直接相關的部分。</div>
+        <p style="font-size:15px;font-weight:300;color:#8c8a84;line-height:1.9;max-width:720px;text-wrap:pretty">核心團隊成員與語音相關之同儕審查發表，涵蓋 Interspeech、ICASSP、IEEE ASRU、SLT、TASLP 等領域主要會議與期刊。這裡列出的是與語音技術直接相關的部分。</p>
       </div>
 
       <div style="display:flex;gap:9px;flex-wrap:wrap">
@@ -657,7 +782,7 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
           <div data-paper data-topic="臺灣多語言" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
             <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2020</div>
             <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">O-COCOSDA</div>
-            <div style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">Using Taigi dramas with Mandarin Chinese subtitles to improve Taigi speech recognition</div>
+            <p style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">Using Taigi dramas with Mandarin Chinese subtitles to improve Taigi speech recognition</p>
           </div>
           <div data-paper data-topic="強健辨識與增強" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
             <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2026</div>
@@ -734,32 +859,32 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
           <div data-paper data-topic="強健辨識與增強" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
             <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2021</div>
             <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">CSRC</div>
-            <div style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">The Academia Sinica system for the SLT 2021 children speech recognition challenge</div>
+            <p style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">The Academia Sinica system for the SLT 2021 children speech recognition challenge</p>
           </div>
           <div data-paper data-topic="強健辨識與增強" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
             <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2020</div>
             <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">CHiME</div>
-            <div style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">The Academia Sinica systems of speech recognition and speaker diarization for the CHiME-6 challenge</div>
+            <p style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">The Academia Sinica systems of speech recognition and speaker diarization for the CHiME-6 challenge</p>
           </div>
           <div data-paper data-topic="強健辨識與增強" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
             <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2019</div>
             <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">Interspeech</div>
-            <div style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">Exploring the encoder layers of discriminative autoencoders for LVCSR</div>
+            <p style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">Exploring the encoder layers of discriminative autoencoders for LVCSR</p>
           </div>
           <div data-paper data-topic="強健辨識與增強" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
             <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2017</div>
             <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">Interspeech</div>
-            <div style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">Discriminative autoencoders for acoustic modeling</div>
+            <p style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">Discriminative autoencoders for acoustic modeling</p>
           </div>
           <div data-paper data-topic="強健辨識與增強" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
             <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2009</div>
             <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">IEEE ASRU</div>
-            <div style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">Generalized likelihood ratio discriminant analysis</div>
+            <p style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">Generalized likelihood ratio discriminant analysis</p>
           </div>
           <div data-paper data-topic="強健辨識與增強" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
             <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2007</div>
             <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">IEEE ASRU</div>
-            <div style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">Training data selection for improving discriminative training of acoustic models</div>
+            <p style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">Training data selection for improving discriminative training of acoustic models</p>
           </div>
           <div data-paper data-topic="語者與語言辨識" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
             <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2026</div>
@@ -812,37 +937,37 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
           <div data-paper data-topic="語者與語言辨識" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
             <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2017</div>
             <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">IJCLCLP</div>
-            <div style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">A replay spoofing detection system based on discriminative autoencoders</div>
+            <p style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">A replay spoofing detection system based on discriminative autoencoders</p>
           </div>
           <div data-paper data-topic="語者與語言辨識" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
             <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2017</div>
             <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">ICASSP</div>
-            <div style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">Discriminative autoencoders for speaker verification</div>
+            <p style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">Discriminative autoencoders for speaker verification</p>
           </div>
           <div data-paper data-topic="語者與語言辨識" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
             <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2017</div>
             <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">ROCLING</div>
-            <div style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">Speaker diarization based on i-vector PLDA scoring and using GMM-HMM forced alignment</div>
+            <p style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">Speaker diarization based on i-vector PLDA scoring and using GMM-HMM forced alignment</p>
           </div>
           <div data-paper data-topic="語者與語言辨識" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
             <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2014</div>
             <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">Interspeech</div>
-            <div style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">Clustering-based i-vector formulation for speaker recognition</div>
+            <p style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">Clustering-based i-vector formulation for speaker recognition</p>
           </div>
           <div data-paper data-topic="語者與語言辨識" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
             <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2014</div>
             <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">ICASSP</div>
-            <div style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">Speaker verification using kernel-based binary classifiers with binary operation derived features</div>
+            <p style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">Speaker verification using kernel-based binary classifiers with binary operation derived features</p>
           </div>
           <div data-paper data-topic="語者與語言辨識" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
             <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2013</div>
             <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">ICASSP</div>
-            <div style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">Subspace-based phonotactic language recognition using multivariate dynamic linear models</div>
+            <p style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">Subspace-based phonotactic language recognition using multivariate dynamic linear models</p>
           </div>
           <div data-paper data-topic="語者與語言辨識" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
             <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2012</div>
             <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">Interspeech</div>
-            <div style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">Subspace-based feature representation and learning for language recognition</div>
+            <p style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">Subspace-based feature representation and learning for language recognition</p>
           </div>
           <div data-paper data-topic="語音品質與評測" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
             <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2026</div>
@@ -871,32 +996,32 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
           <div data-paper data-topic="語音品質與評測" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
             <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2019</div>
             <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">O-COCOSDA</div>
-            <div style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">Mandarin mispronunciation detection and diagnosis feedback using articulatory attributes based multi-task learning</div>
+            <p style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">Mandarin mispronunciation detection and diagnosis feedback using articulatory attributes based multi-task learning</p>
           </div>
           <div data-paper data-topic="語音品質與評測" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
             <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2019</div>
             <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">APSIPA ASC</div>
-            <div style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">Multi-task learning for acoustic modeling using articulatory attributes</div>
+            <p style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">Multi-task learning for acoustic modeling using articulatory attributes</p>
           </div>
           <div data-paper data-topic="語音品質與評測" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
             <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2016</div>
             <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">Interspeech</div>
-            <div style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">Minimization of regression and ranking losses with shallow neural networks on automatic sincerity evaluation</div>
+            <p style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">Minimization of regression and ranking losses with shallow neural networks on automatic sincerity evaluation</p>
           </div>
           <div data-paper data-topic="語音品質與評測" class="r-gtc-58px-108px-1fr r-display-grid" style="background:#0F0F0E;padding:20px 26px;display:grid;grid-template-columns:58px 108px 1fr;gap:20px;align-items:baseline">
             <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ED9A4A">2014</div>
             <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a776e;letter-spacing:0.02em">Interspeech</div>
-            <div style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">Ensemble of machine learning algorithms for cognitive and physical speaker load detection</div>
+            <p style="font-size:13.5px;font-weight:300;line-height:1.7;color:#cfccc4;text-wrap:pretty">Ensemble of machine learning algorithms for cognitive and physical speaker load detection</p>
           </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div id="contact" style="background:#ED9A4A;color:#141413">
+  <section id="contact" style="background:#ED9A4A;color:#141413">
     <div class="r-gap-72px r-mw-1280px r-gtc-1fr-1fr r-pad-104px-56px-112px r-display-grid" style="max-width:1280px;margin:0 auto;padding:104px 56px 112px;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start">
       <div style="display:flex;flex-direction:column;gap:24px">
-        <div class="r-fs-42px" style="font-size:42px;font-weight:200;line-height:1.32;letter-spacing:-0.015em;text-wrap:pretty">先用你自己的音檔<br />驗證一次，再談導入。</div>
-        <div style="font-size:15.5px;font-weight:300;color:#5c3f16;line-height:1.95;max-width:480px;text-wrap:pretty">我們可以用貴單位實際的會議錄音或客服對話做一次概念驗證，並提供方法論明確、可重現的評測報告，作為採購與技術審查的佐證。</div>
+        <h2 class="r-fs-42px" style="font-size:42px;font-weight:200;line-height:1.32;letter-spacing:-0.015em;text-wrap:pretty">先用你自己的音檔<br />驗證一次，再談導入。</h2>
+        <p style="font-size:15.5px;font-weight:300;color:#5c3f16;line-height:1.95;max-width:480px;text-wrap:pretty">我們可以用貴單位實際的會議錄音或客服對話做一次概念驗證，並提供方法論明確、可重現的評測報告，作為採購與技術審查的佐證。</p>
         <div style="display:flex;flex-direction:column;gap:11px;font-family:'IBM Plex Mono',monospace;font-size:13.5px;letter-spacing:0.02em;padding-top:8px">
           <a href="mailto:hazel@voxmosa.com" style="color:#141413;font-weight:500">hazel@voxmosa.com</a>
           <span style="color:#5c3f16">voxmosa.com</span>
@@ -926,11 +1051,13 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
         <div style="background:#ED9A4A;color:#141413;border-radius:4px;padding:15px;text-align:center;font-size:15px;font-weight:500;margin-top:4px">送出申請</div>
       </div>
     </div>
-  </div>
+  </section>
+  </main>
 
-  <div style="border-top:1px solid #26251f">
+
+  <footer style="border-top:1px solid #26251f">
     <div class="r-mw-1280px r-pad-44px-56px r-gap-40px" style="max-width:1280px;margin:0 auto;padding:44px 56px;display:flex;justify-content:space-between;align-items:center;gap:40px;flex-wrap:wrap">
-      <div style="display:flex;align-items:baseline;font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:300;letter-spacing:0.05em;line-height:1;color:#6f6c64">
+      <p style="display:flex;align-items:baseline;font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:300;letter-spacing:0.05em;line-height:1;color:#6f6c64">
         <span>V</span>
         <svg viewBox="0 0 200 120" preserveAspectRatio="xMinYMid slice" style="height:0.53em;width:0.8em;transform:translateY(0.0205em);overflow:visible;display:block;flex:none" fill="none" stroke="currentColor" stroke-linecap="round">
           <circle cx="60" cy="60" r="51" stroke-width="18" />
@@ -938,7 +1065,7 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
           <path d="M150.1 8 A104 104 0 0 1 150.1 112" stroke-width="14" opacity="0.3" />
         </svg>
         <span>x</span><span style="display:inline-block;width:0.06em;flex:none"></span><span>mosa</span>
-      </div>
+      </p>
       <div style="display:flex;gap:26px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5e5b54;letter-spacing:0.06em;flex-wrap:wrap">
         <a href="mosatalk.html" style="color:#5e5b54">MosaTalk</a>
         <a href="mosaminutes.html" style="color:#5e5b54">MosaMinutes</a>
@@ -947,7 +1074,7 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
         <span>© 2026 Voxmosa 牧仁資訊有限公司</span>
       </div>
     </div>
-  </div>
+  </footer>
 
 </div>
 </div></div>
