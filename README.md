@@ -267,15 +267,52 @@ python3 -m venv .venv && .venv/bin/pip install fonttools brotli
 .venv/bin/python tools/build-fonts.py
 ```
 
-腳本會抓 Google Fonts 的原始 TTF，子集化成站上實際用到的字元，輸出
+> 若系統沒有 `python3-venv`（Debian/Ubuntu 要另外裝套件），可以改成裝到
+> 獨立目錄，不動到系統的 Python：
+>
+> ```sh
+> python3 -m pip install --target .pylibs fonttools brotli
+> PYTHONPATH=.pylibs PATH=.pylibs/bin:$PATH python3 tools/build-fonts.py
+> ```
+
+腳本會抓字型原始 TTF，子集化成站上實際用到的字元，輸出
 `vendor/fonts/*.woff2` 與 `vendor/fonts/fonts.css`，頁面只 link 後者。
+沒有被 `fonts.css` 引用到的舊產物會在每次執行時自動刪掉。
 
 必須子集化的理由是 Noto Sans TC：完整檔每個字重好幾 MB，直接自架會比
-Google Fonts 慢。取站上實際用到的字元之後，九個字重合計 628KB
-（Noto Sans TC 四個字重各約 150KB，其餘五個都在 10KB 以下）。
+Google Fonts 慢。目前六個檔案合計 340KB，其中 Noto Sans TC 一個檔就佔 307KB，
+其餘五個都在 10KB 以下。
 
-字元集會隨文案增減，目前是 1053 個字元、其中 951 個中日韓與全形符號。
+字元集會隨文案增減，目前是 1068 個字元、其中 965 個中日韓與全形符號。
 這兩個數字不必手動維護 —— 執行 `tools/build-fonts.py` 時會印出當下的值。
+
+### Noto Sans TC 用可變字型
+
+站上的中文用到 200/300/400/500 四個字重。以前是四個靜態檔，各約 150KB，
+**合計 595KB —— 佔首頁下載量的 92%**。現在改成一個可變字型檔涵蓋整段
+200–500，307KB，省下 288KB。
+
+這是這個網站唯一值得壓的東西。相較之下，把兩段 JavaScript 壓縮過只省
+1.2KB（gzip 後），佔總量 0.19%，而代價是拿掉註解、外加一層建置流程 ——
+所以沒有做，也不建議做。
+
+有幾件事踩過才知道：
+
+- 可變字型的原始檔要抓 **google/fonts 上游的完整檔**（11MB），不能走
+  Google Fonts 的 CSS API —— API 送的已經照 `unicode-range` 切成上百個分片，
+  而我們要自己重新子集化，需要的是未分割的完整檔。
+- 先用 `fonttools varLib.instancer` 把 `wght` 軸砍到 200–500 再子集化字元。
+  用不到的字重端點連帶內插資料一起省掉。
+- `@font-face` 的 `format()` 要寫 **`woff2`**，不是 `woff2-variations`。
+  後者是過渡期寫法，部分瀏覽器不認得，會整條規則跳過 —— 字型直接不生效，
+  而且不會報錯。
+- 換字型讓 **16 個元素的文字寬度差了 1px**（總量測數約 2800 個元素）。
+  這是可變字型內插出來的字寬與 Google 另外建置的靜態檔本來就有的微小落差，
+  不是 bug。已反映在 `test/baseline/`。
+
+> 量測這件事本身有個陷阱：換過字型後的**第一次**執行會受瀏覽器字型快取影響，
+> 可能量到舊字型的結果而假性通過。判斷字型改動的版面影響時，要新舊交替各跑
+> 兩次，先確認「同字型兩次為 0 筆差異」再看跨字型的數字。
 
 > ⚠️ **改過頁面文案後要重跑這支腳本**，否則新增的字會變成豆腐格。
 
