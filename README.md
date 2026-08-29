@@ -14,9 +14,9 @@ Voxmosa 官方網站。**純靜態 HTML，沒有建置流程** —— 改完直�
 | `tools/build-fonts.py` | 重新產生字型子集 |
 | `tools/bake.js` | 把 `<x-dc>` 模板頁烘焙成靜態 HTML（已無頁面需要，保留備查）|
 | `og.png` | 社群分享縮圖，四頁共用 |
-| `favicon.svg` | 分頁圖示，取自 logo 的圓環標記 |
-| `robots.txt` / `sitemap.xml` | 爬蟲規則與網站地圖；`robots.txt` 明確放行生成式搜尋的爬蟲 |
-| `llms.txt` | 給 LLM 讀的網站摘要，內容全部取自站上既有文案 |
+| `favicon.svg` / `favicon.png` | 分頁圖示。Google 不吃 SVG，所以兩種都要 |
+| `logo.png` | `Organization.logo` 用的方形識別標誌 |
+| `robots.txt` / `sitemap.xml` | 爬蟲規則與網站地圖；兩者都刻意極簡，理由見 [SEO 與 AEO](#seo-與-aeo) |
 | `CNAME` / `.nojekyll` | GitHub Pages 的自訂網域與停用 Jekyll |
 
 改動之後有兩件事要記得，兩者都有測試把關（見[測試](#測試)）：
@@ -136,27 +136,94 @@ EOF
 
 四個頁面原本是**完全沒有語意標籤**的 div 湯 —— 零個 `<h1>`、零個 `<p>`、
 零個地標元素。那是視覺編輯器的產物，烘焙成靜態 HTML 時沒有一併處理。
-搜尋引擎與 LLM 抓取器看不出哪句是標題、哪句是版權宣告。
 
 現在四頁都有 `header` / `nav` / `main` / `section` / `footer` 地標，
 每頁**恰好一個 `<h1>`**，內文段落是 `<p>`。置換是 block→block，
 配上 `<head>` 裡的 `h1,h2,h3,h4,h5,h6{margin:0}` 與 `p{margin:0}` 重置，
 版面零變化 —— 所有標題與段落的 `font-size`、`font-weight` 本來就寫在 inline style 上。
 
-結構化資料以 JSON-LD 放在每頁的 `<head>`：
+> 別誤會這件事的效益。Google 的 SEO Starter Guide 寫得很直白：
+> 「Google rarely relies on semantic HTML structure」，而且標題階層順序錯了
+> **不會**傷害排名。語意標籤真正換到的是無障礙與可維護性 ——
+> 下面那個把公司名讀成 `Vxmosa` 的 bug，就是靠這個方向找出來的。
+
+### 結構化資料：留下來的都是會被消費的
 
 | 頁面 | `@graph` 內容 |
 | --- | --- |
-| `index.html` | `Organization`（含獲獎、`knowsAbout`、`sameAs`）、`ItemList`、`FAQPage`、`WebSite`、`WebPage` |
-| 三個子頁 | `SoftwareApplication`（含 `featureList`）、`WebSite`、`WebPage`、`BreadcrumbList` |
+| `index.html` | `Organization`、`WebSite` |
+| 三個子頁 | `SoftwareApplication`、一個最小的 `Organization` 節點 |
 
-`Organization` 的 `@id` 是全站共用的 `https://voxmosa.com/#organization`，
-子頁的產品節點用 `publisher` / `provider` 指回去，四頁因此串成同一張圖。
+`Organization` 只放首頁（Google 的建議），`@id` 是全站共用的
+`https://voxmosa.com/#organization`。子頁的 `publisher` 曾經是**裸的 `@id` 存根**，
+指向一個只存在於首頁 graph 裡的節點 —— 單獨解析子頁的爬蟲會看到懸空參照，
+所以現在每個子頁自己內嵌一個帶 `@type` 與 `name` 的最小節點。
 
-`robots.txt` 除了一般規則，另外逐一列出生成式搜尋的爬蟲（GPTBot、ClaudeBot、
-PerplexityBot、Google-Extended 等）並明確 `Allow` —— 這個網站的內容就是要讓人
-和模型都查得到、引用得到。`llms.txt` 是給 LLM 讀的摘要，**內容全部取自站上既有文案**，
-沒有另外寫行銷詞；改文案時它要跟著改。
+對照 Google 文件逐項核過之後，以下四種**全部移除**了，它們沒有任何東西會消費：
+
+| 移除的型別 | 原因 |
+| --- | --- |
+| `FAQPage` | **2026-05-07 起 Google 不再顯示 FAQ 複合式結果**，同年 6 月連文件與 Rich Results Test 支援都撤掉了 |
+| `ItemList` | Carousel 只支援 Course list / Movie / Recipe / Restaurant，`SoftwareApplication` 不在其中 |
+| `WebPage` | Search Gallery 裡沒有這個功能，Google 沒有對應的複合式結果 |
+| `BreadcrumbList` | 標的是「首頁 → 自己」，但頁面上根本沒有可見的麵包屑。政策原文：**「Don't mark up content that is not visible to readers of the page.」** |
+
+`SoftwareApplication` 留著，但要知道它**現在拿不到複合式結果**：必要屬性是
+`name`、`offers.price`，加上 `aggregateRating` 或 `review` 二選一，我們只有第一個。
+這沒有誠實的補法 —— 沒有公開價格、沒有評價，而**把 `price` 填 0 是謊話不是漏洞**，
+產品不是免費的。留它是當作對非 Google 消費者的機器可讀產品描述，別期待更多。
+`award`、`knowsAbout`、`knowsLanguage`、`areaServed` 同理：不在 Google 的支援屬性表裡，
+留著是同一個押注。
+
+### favicon 要有 PNG，SVG 不算
+
+**Google Search 不支援 SVG favicon。** 支援清單是 BMP、GIF、ICO、PNG、JPEG、
+PPM、TIFF，而且必須是正方形、至少 8×8、建議大於 48×48。只掛 `favicon.svg`
+的話搜尋結果顯示的是通用地球圖示。
+
+所以 `favicon.svg` 留給瀏覽器，另外附一張 `favicon.png`（144×144）給 Google。
+`logo.png`（512×512）則是 `Organization.logo` 用的 —— 那個欄位原本指向
+`og.png`，一張 1200×630 的深色社群分享圖，而文件要求的是
+「在純白背景上看起來符合預期」的方形識別標誌。
+
+兩張 PNG 都是從 `favicon.svg` 的同一組座標重畫的（見 git 紀錄裡的產生腳本），
+不是另外畫一份，所以形狀不會漂移。
+
+### robots.txt 為什麼只有三行
+
+它曾經逐一列出 GPTBot、ClaudeBot、PerplexityBot、Google-Extended 等十二個爬蟲，
+各給一段 `Allow: /`。那些區塊**沒有任何作用，而且是個陷阱**：
+
+- `Allow` 不授予任何權限。爬取本來就是預設允許的，所以一份沒有 `Disallow`
+  的 robots.txt 等同於沒有 robots.txt。整份檔案唯一有作用的是 `Sitemap:`。
+- 更糟的是，規格寫明「User agent specific groups and global groups (`*`) are
+  not combined」—— 具名群組**取代** `*` 群組而不是疊加。哪天有人在 `*` 底下
+  加一條 `Disallow`，那十二個爬蟲一個都不會繼承。
+
+順帶一提 `Google-Extended` 也不是多數人以為的那樣：它管的是 Gemini 的訓練資料，
+原文寫「does not impact a site's inclusion in Google Search」，跟
+AI Overviews / AI Mode 無關。
+
+### sitemap 只保留 lastmod
+
+`<changefreq>` 與 `<priority>` 都拿掉了 —— 文件原文：
+「Google ignores `<priority>` and `<changefreq>` values.」
+
+`<lastmod>` 會被採用，但有條件：「if it's consistently and verifiably accurate」。
+所以它必須跟著實際的內容改動走，**不能變成每次部署就全部蓋掉的時間戳** ——
+一旦不可信，Google 會整個欄位不再採信。
+
+### 移除了 llms.txt
+
+站上曾經有一份 `llms.txt`。Google 在 2026-06-15 把這句話寫進 AI 優化指南：
+
+> "You don't need to create new machine readable files, AI text files, markup,
+> or Markdown to appear in Google Search... Doing so will neither harm nor help
+> your site's visibility or rankings in Google Search, as Google Search ignores them."
+
+不傷害也沒幫助，但它重複了一整批會漂移的事實（42 語、DGX Spark GB10、≈1 秒、
+MosaScore 的效度保留），每次改文案都要手動同步。這個 repo 移除 React 時的理由
+是「為一個不存在的工作流程付的成本」，這裡是同一件事。
 
 ### 標誌的無障礙名稱
 
@@ -164,25 +231,19 @@ PerplexityBot、Google-Extended 等）並明確 `Allow` —— 這個網站的�
 純文字擷取之下，每一頁的頁首與頁尾都把公司名稱讀成 **`Vxmosa`** —— 少一個 o。
 
 修法是在外層元素放 `aria-label="Voxmosa"`，並把站上全部 13 個 SVG 標成
-`aria-hidden="true"`（logo 的字標、箭頭、播放鍵、分數折線都是裝飾性的，
-旁邊都已經有文字說明）。零視覺變化。
-
-站上沒有任何 `<img>`，所以 Google 指南的 alt 屬性那節看似不適用 ——
-但它背後的原則（讓非文字內容有文字說明）在這裡是有東西可修的，
-只是要往 SVG 找。
+`aria-hidden="true"`（字標、箭頭、播放鍵、分數折線都是裝飾性的，旁邊都已經有文字）。
 
 ### 常見問題區塊
 
-首頁的 `#faq` 有八則問答。它同時服務兩件事：AEO 的引用率很吃「一個問句配一段
-短答」的結構，而使用者實際會打進搜尋框的整串字（「AI 語音會議記錄」「AI 語音客服」
-「地端語音 AI」）在原本的文案裡一個都沒出現過 —— 站上講的是「會議記錄」
-「客服專線」「語音 AI 對話系統」，概念對，但不是查詢字串。
+首頁的 `#faq` 有八則問答。起因是關鍵字盤點：使用者實際會打進搜尋框的整串字
+（「AI 語音會議記錄」「AI 語音客服」「地端語音 AI」）在原本的文案裡一個都沒出現過 ——
+站上講的是「會議記錄」「客服專線」「語音 AI 對話系統」，概念對，但不是查詢字串。
 
-`FAQPage` 結構化資料照 Google 的規範必須與可見內容一致。
-兩者因此**由同一份資料產生**（見 git 紀錄裡的產生腳本），不是各寫一份 ——
-可見文案改了而結構化資料忘了跟著改，是這類標記最典型的腐壞方式。
 問答內容全部取自站上既有的事實，沒有新增任何未經驗證的規格或數字；
 「準確率是多少」那題維持站上一貫的回答方式：不給行銷數字。
+
+`FAQPage` 標記已經移除（見上表），但**可見的問答保留** —— 它是真的在回答買家的
+問題，那本身就是 Google 指南推薦的事，跟有沒有標記無關。
 
 ## 測試
 
@@ -414,9 +475,29 @@ python3 -m http.server 8000
   也可以改成四項。要動之前先做幾版截圖比對再決定。
 - **客語卡片的合作單位名稱待補**。目前該卡片只寫能力與 Gohakka 連結，
   單位名稱與對方的正式連結、用字，等對方提供後再補上。
+- **加圖片**。全站零張 `<img>`，這是 Google 的 AI features 七項要求裡唯一失守的一項
+  （「Supporting your textual content with high-quality images and videos」）。
+  Google Images **支援 SVG**，所以站上現有的 inline SVG 只要抽成 `.svg` 檔、
+  用 `<img src alt>` 引用就變成可索引資產，不必重畫。三張產品截圖加兩張圖解就夠。
+- **`Organization` 補齊可查證的公司身分**：`address`、`telephone`、`foundingDate`、
+  統一編號。這些**都在** Google 的支援屬性表裡、會餵知識面板，而且對一個要求客戶
+  把模型放進自家機房的廠商，可查證的實體資訊本身就是說服力。要等對方提供資料。
+- **團隊要具名**。Google 的 helpful content 指南問「Is it self-evident to your
+  visitors who authored your content?」目前團隊區沒有指名任何人。
+- **字型 swap 的版面位移**。56px 的 `<h1>` 先用系統中文字型畫、再換成 Noto Sans TC 200，
+  換行可能改變並讓底下全部位移。站上沒有圖片沒有廣告，所以**字型 swap 幾乎就是
+  全部的 CLS 預算**。用 `size-adjust` / `ascent-override` 給 fallback 字型做度量校正，
+  大約六行 CSS。
+- **9px 的字**。全站有 272 個元素小於 12px，其中 52 個小於 10px，mosascore 有 17 個是 9px。
+  Google 這邊**不是問題**（Mobile Usability 報表與 Mobile-Friendly Test 已於
+  2023-12-01 退役，現行文件沒有字級門檻），但 9px 的中文在手機上就是看不清楚。
 - **`#contact` 的表單是假的** —— 整段是 `<div>` 排出來的樣子，
   「送出申請」按鈕沒有任何行為，真正能點的只有 mailto。
-  SEO 把人帶進來之後會卡在這一步。要嘛接一個不需要後端的表單服務，
+  SEO 把人帶進來之後會卡在這一步。而且它逐字符合垃圾政策裡的一條定義：
+  「**Misleading functionality** refers to the practice of intentionally creating
+  sites that trick users into thinking they would be able to access some content
+  or services but in reality can't.」不太可能吃到人工處罰（沒有操縱意圖、
+  mailto 是真的），但留著沒有任何好處。要嘛接一個不需要後端的表單服務，
   要嘛把它改成誠實的 mailto 區塊。
 
 技術面：

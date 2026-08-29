@@ -3,42 +3,20 @@
 User-agent: *
 Allow: /
 
-# 生成式搜尋與 AI 助理的爬蟲：明確放行。
-# 這個網站的內容就是要讓人（和模型）查得到、引用得到的。
-User-agent: GPTBot
-Allow: /
-
-User-agent: OAI-SearchBot
-Allow: /
-
-User-agent: ChatGPT-User
-Allow: /
-
-User-agent: ClaudeBot
-Allow: /
-
-User-agent: Claude-User
-Allow: /
-
-User-agent: Claude-SearchBot
-Allow: /
-
-User-agent: PerplexityBot
-Allow: /
-
-User-agent: Perplexity-User
-Allow: /
-
-User-agent: Google-Extended
-Allow: /
-
-User-agent: Applebot-Extended
-Allow: /
-
-User-agent: meta-externalagent
-Allow: /
-
-User-agent: Bytespider
-Allow: /
-
 Sitemap: https://voxmosa.com/sitemap.xml
+
+# Nothing here is disallowed, and that is deliberate: the content is meant to be
+# found and quoted, by people and by models alike.
+#
+# This file used to list GPTBot, ClaudeBot, PerplexityBot, Google-Extended and
+# nine others with their own `Allow: /`. Those blocks did nothing, and worse,
+# they were a trap. Per the robots.txt spec a crawler obeys exactly one group --
+# "User agent specific groups and global groups (*) are not combined" -- so a
+# named group replaces the `*` group rather than adding to it. The day someone
+# adds a Disallow above, not one of those twelve crawlers would have inherited
+# it. `Allow` grants nothing either; crawling is permitted by default, so a
+# robots.txt with no Disallow is equivalent to having no robots.txt at all.
+#
+# If you ever need to block something, put it under `User-agent: *` and stop.
+# Only add a named group when that crawler genuinely needs *different* rules,
+# and then repeat every shared rule inside it.

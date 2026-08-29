@@ -21,6 +21,7 @@
   <meta name="twitter:image" content="https://voxmosa.com/og.png">
   <meta name="theme-color" content="#141413">
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="./favicon.png" type="image/png" sizes="144x144">
   <link rel="preload" href="./vendor/fonts/noto-sans-tc-200-500-var.woff2" as="font" type="font/woff2" crossorigin>
 <link href="./vendor/fonts/fonts.css" rel="stylesheet" />
 <style>
@@ -74,10 +75,8 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
       "@type": "Organization",
       "@id": "https://voxmosa.com/#organization",
       "name": "Voxmosa",
-      "alternateName": "牧仁資訊有限公司",
       "url": "https://voxmosa.com/",
-      "logo": "https://voxmosa.com/og.png",
-      "image": "https://voxmosa.com/og.png",
+      "logo": "https://voxmosa.com/logo.png",
       "email": "hazel@voxmosa.com",
       "description": "專注臺灣多語言語音 AI 的團隊。國語、台語、客語、原住民族語、英語的語音辨識、語者分離、對話生成與語音合成，全部可部署於客戶自有機房，不呼叫任何雲端 AI 服務。",
       "areaServed": {
@@ -120,43 +119,8 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
           "zh-Hant",
           "en"
         ]
-      }
-    },
-    {
-      "@type": "ItemList",
-      "name": "Voxmosa 產品",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "item": {
-            "@type": "SoftwareApplication",
-            "@id": "https://voxmosa.com/mosatalk.html#software",
-            "name": "MosaTalk",
-            "url": "https://voxmosa.com/mosatalk.html"
-          }
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "item": {
-            "@type": "SoftwareApplication",
-            "@id": "https://voxmosa.com/mosaminutes.html#software",
-            "name": "MosaMinutes",
-            "url": "https://voxmosa.com/mosaminutes.html"
-          }
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "item": {
-            "@type": "SoftwareApplication",
-            "@id": "https://voxmosa.com/mosascore.html#software",
-            "name": "MosaScore",
-            "url": "https://voxmosa.com/mosascore.html"
-          }
-        }
-      ]
+      },
+      "legalName": "牧仁資訊有限公司"
     },
     {
       "@type": "WebSite",
@@ -167,89 +131,6 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
       "publisher": {
         "@id": "https://voxmosa.com/#organization"
       }
-    },
-    {
-      "@type": "WebPage",
-      "@id": "https://voxmosa.com/#webpage",
-      "url": "https://voxmosa.com/",
-      "name": "Voxmosa | 語音 AI 專家",
-      "isPartOf": {
-        "@id": "https://voxmosa.com/#website"
-      },
-      "inLanguage": "zh-Hant",
-      "about": {
-        "@id": "https://voxmosa.com/#organization"
-      }
-    },
-    {
-      "@type": "FAQPage",
-      "@id": "https://voxmosa.com/#faq",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "AI 語音會議記錄可以完全在自己的機房裡跑嗎？",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "可以，而且這是 MosaMinutes 的預設形態，不是附加選項。錄音、逐字稿、語者分離、摘要與待辦全部在貴單位自己的伺服器上完成，不呼叫任何雲端 AI 服務。系統為容器化部署、單機即可運行，封閉網路不需連外也能使用。"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "地端的 AI 語音客服，聽得懂臺灣的口音和台語嗎？",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "MosaTalk 產品內建支援國語、台語、客語、原住民族語、英語五種語言，一律轉為繁體中文，國台語夾雜的對話也在設計範圍內。客戶可以在網頁上按下通話，也可以直撥貴單位既有的客服專線，經電話系統商介接後由 AI 接聽。"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "一套地端語音 AI 要準備什麼硬體？",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "一張大顯存的 NVIDIA GPU 就能跑完整系統，含辨識與摘要。MosaMinutes 以一台 NVIDIA DGX Spark GB10 可支援 10 線即時轉錄，離線上傳走批次佇列、不受線數限制；MosaTalk 已在 46 GB 顯存的單卡環境驗證過。需求超出單機容量時可以擴充為多機配置。硬體我們可以一併供應並到場安裝。"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "AI 語音客服的回應有多快？",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "使用者說完話到 AI 開口回答約一秒，而且可以隨時插話打斷。"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "語音辨識的準確率是多少？",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "這一題我們不給行銷數字。字元錯誤率、競品對照、測試方法論與原始音檔，將以符合學術規範的方式完整公開，並可依貴單位指定的公開基準或自備音檔另行評測。在那之前，對貴單位最有意義的數字，是拿自己的錄音做一次概念驗證測出來的那一個。"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "跟雲端的語音會議或客服服務差在哪？",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "最直接的差別是錄音與逐字稿的存放位置：雲端服務會上傳到服務商的伺服器，我們的方案完全留在貴單位機房，封閉網路可用，也沒有按次的 API 費用。但我們不主張全面優勢 —— 沒有數據合規壓力或資安顧慮的單位，雲端訂閱通常是更經濟彈性的選擇。"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "支援哪些臺灣本土語言？",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "產品內建五種語言。本土語言的完整涵蓋由團隊自行開發：原住民族語為 16 族、42 種語言，客語為四縣、海陸、大埔、饒平、詔安、南四縣六腔全數涵蓋。模型與資料集公開於 Hugging Face，任何人都可以下載檢驗。"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "導入要怎麼開始？",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "用貴單位實際的會議錄音或客服對話做一次概念驗證，我們會提供方法論明確、可重現的評測報告，作為採購與技術審查的佐證。來信後兩個工作日內回覆。"
-          }
-        }
-      ]
     }
   ]
 }
