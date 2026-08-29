@@ -39,8 +39,21 @@ Voxmosa 官方網站。**純靜態 HTML，沒有建置流程** —— 改完直�
 因此關掉 JavaScript 時看到的是完整內容，而不是空殼 ——
 `test/render-check.js` 會斷言有無 JavaScript 的可見文字量完全相同。
 
+hero 的聲波是 `requestAnimationFrame` 驅動的**連續相位**動畫。
+它曾經是 `setInterval(tick, 340)` ——一輪 40 格、每格跳一次，等於 3 fps，
+所以看起來一格一格卡。現在一輪的長度仍是 13.6 秒，但相位是實數，
+柱高與掃描邊界都會補間。
+
+柱高走 `transform:scaleY()` 而不是 `height`，掃描邊界的顏色也預先算成 21 階字串：
+前者讓每幀只碰合成器、不必為 44 個 flex 子元素重排版，後者省掉每幀 44 次字串組裝。
+**切換到 transform 只在動畫啟動時做一次**，所以沒有 JavaScript 或
+`prefers-reduced-motion` 時，畫面用的仍是標記裡原本的 `height` ——
+`test/layout-check.js` 的基準因此完全不受這次改動影響。
+
 兩段動畫都遵守 `prefers-reduced-motion`（停在完整狀態不播放），
-並在分頁切到背景時暫停。
+並在分頁切到背景時暫停；hero 的聲波另外在捲出畫面時也停
+（`IntersectionObserver`）。兩個暫停來源各自記狀態、兩者都放行才播 ——
+否則其一的 resume 會蓋掉另一的 pause。
 
 ### 這些頁面的來歷
 

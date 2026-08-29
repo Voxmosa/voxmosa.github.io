@@ -1088,31 +1088,97 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
   var prog = document.querySelector("[data-live-progress]");
   var clock = document.querySelector("[data-live-clock]");
 
-  function paint(t) {
-    var n = bars.length;
+  // 一輪 13.6 秒 —— 與舊版「每 340ms 跳一格、共 40 格」的節奏相同。
+  // 差別在相位現在是連續的實數，由 requestAnimationFrame 依實際時間推進，
+  // 不再是每秒 3 次的跳格。舊版的不流暢來自取樣率，不是瀏覽器畫不動。
+  var CYCLE = 13600;
+
+  // 柱高改用 transform:scaleY 而非 height —— 前者只走合成器，
+  // 後者每幀都會讓這排 44 個 flex 子元素重新排版。
+  // 切換只在動畫啟動時做一次，所以「沒有 JavaScript」與「減少動態效果」
+  // 兩種情況下看到的仍然是標記裡原本的 height，版面基準不受影響。
+  var full = 0;
+
+  // 掃描邊界做了羽化，顏色只有 21 階，字串先算好，
+  // 免得每幀組 44 次 "rgb(...)" 字串。
+  var LIT = [237, 154, 74], DIM = [42, 41, 36], RAMP = [];
+  for (var s = 0; s <= 20; s++) {
+    var k = s / 20, c = [];
+    for (var j = 0; j < 3; j++) c.push(Math.round(DIM[j] + (LIT[j] - DIM[j]) * k));
+    RAMP.push("rgb(" + c[0] + "," + c[1] + "," + c[2] + ")");
+  }
+
+  var lastStep = -1, lastClock = "";
+
+  function paint(phase) {                    // phase ∈ [0,1)
+    var n = bars.length, t = phase * 40, lead = phase * n;
     for (var i = 0; i < n; i++) {
+      // 柱高的公式與舊版相同，只是 t 現在是連續值，所以柱子是「長高」不是「跳高」。
       var seed = Math.sin(i * 1.9) * Math.cos(i * 0.7 + 1.3);
       var env = 0.35 + 0.65 * Math.abs(Math.sin(i * 0.21 + t * 0.16));
-      bars[i].style.height = Math.max(3, Math.round((8 + Math.abs(seed) * 44) * env)) + "px";
-      bars[i].style.background = i / n <= t / 40 ? "#ED9A4A" : "#2a2924";
+      var h = Math.max(3, (8 + Math.abs(seed) * 44) * env);
+      bars[i].style.transform = "scaleY(" + (h / full).toFixed(4) + ")";
+      var mix = (lead - i + 1.5) / 3;        // 邊界羽化約三根柱寬
+      bars[i].style.background = RAMP[Math.round(Math.min(1, Math.max(0, mix)) * 20)];
     }
+
+    // 逐字稿是「揭露」不是「漸變」，維持四段離散，交給 CSS 的 opacity transition 補間。
     var step = Math.min(4, Math.floor(t / 6));
-    steps.forEach(function (el) {
-      el.style.opacity = step >= Number(el.getAttribute("data-step")) ? 1 : 0.12;
-    });
-    prog.style.width = Math.round((t / 40) * 100) + "%";
-    clock.textContent = "0:" + String(Math.floor((t / 40) * 18)).padStart(2, "0");
+    if (step !== lastStep) {
+      lastStep = step;
+      steps.forEach(function (el) {
+        el.style.opacity = step >= Number(el.getAttribute("data-step")) ? 1 : 0.12;
+      });
+    }
+
+    prog.style.transform = "scaleX(" + phase.toFixed(4) + ")";
+    var text = "0:" + String(Math.floor(phase * 18)).padStart(2, "0");
+    if (text !== lastClock) { lastClock = text; clock.textContent = text; }
   }
 
   if (bars.length && !(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches)) {
-    var t = 39, timer = null;
-    function tick() { t = (t + 1) % 40; paint(t); }
-    function start() { if (!timer) timer = setInterval(tick, 340); }
-    function stop() { clearInterval(timer); timer = null; }
-    document.addEventListener("visibilitychange", function () {
-      if (document.hidden) { stop(); } else { start(); }   // 背景分頁不空轉
-    });
-    start();
+    full = bars[0].parentNode.getBoundingClientRect().height;
+    if (full > 0) {
+      bars.forEach(function (b) {
+        b.style.height = full + "px";
+        b.style.transformOrigin = "bottom";
+      });
+      prog.style.width = "100%";
+      prog.style.transformOrigin = "left";
+
+      // 從標記所呈現的「跑完」狀態接著往下播，而不是倒帶回 0。
+      var elapsed = CYCLE * 0.975, t0 = 0, raf = null;
+      paint(elapsed / CYCLE);
+
+      function frame(now) {
+        elapsed = (now - t0) % CYCLE;
+        paint(elapsed / CYCLE);
+        raf = requestAnimationFrame(frame);
+      }
+
+      // 兩個暫停來源（分頁在背景、hero 捲出畫面）各自記狀態，
+      // 兩者都放行才播 —— 否則其中一個的 resume 會蓋掉另一個的 pause。
+      var onScreen = true, awake = true;
+      function sync() {
+        if (onScreen && awake) {
+          if (raf === null) { t0 = performance.now() - elapsed; raf = requestAnimationFrame(frame); }
+        } else if (raf !== null) {
+          cancelAnimationFrame(raf); raf = null;
+        }
+      }
+
+      document.addEventListener("visibilitychange", function () {
+        awake = !document.hidden; sync();                    // 背景分頁不空轉
+      });
+
+      // 捲出畫面之後也停 —— hero 在最頂端，讀者往下看時它就不必再畫了。
+      if (window.IntersectionObserver) {
+        new IntersectionObserver(function (entries) {
+          onScreen = entries[0].isIntersecting; sync();
+        }).observe(bars[0].parentNode);
+      }
+      sync();
+    }
   }
 
   // 研究發表的分類篩選。沒有 JavaScript 時全部顯示，是合理的預設。
