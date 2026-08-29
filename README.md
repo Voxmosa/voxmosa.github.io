@@ -189,6 +189,11 @@ node test/link-check.js
 檢查每個站內連結的目標檔案與錨點 id 是否真的存在，並確認四頁的導覽列項目一致。
 站外連結只計數、不連線驗證，以免測試依賴外部網路。
 
+`<a href>` 之外，`<link href>`（字型 CSS、favicon、字型 preload）也一併檢查。
+這層是後來補的：preload 的檔名跟 `tools/build-fonts.py` 的產出耦合 ——
+字重範圍一改檔名就變，而 preload 失效時瀏覽器不會報錯，只是白抓一個 404，
+畫面照常顯示。沒有這個檢查就只能靠人眼發現。
+
 導覽列的預期項目是**從 `index.html` 推導**的，不是寫死清單。這點是踩過坑才改的：
 第一版拿四頁的共同項目當清單，等於把當下的不一致固化進測試 ——「團隊」
 四頁中三頁沒有，所以它從沒進過清單，它的缺席也就永遠不可能被判為失敗。
@@ -205,8 +210,8 @@ node test/render-check.js         # 全部情境
 node test/render-check.js nojs    # 只跑單一情境
 ```
 
-零依賴，需 Node 22+ 與本機的 Chrome。它會自己起 HTTP server 並以
-Chrome DevTools Protocol 驅動 headless Chrome，對四個頁面各跑三個情境：
+零依賴，需 Node 22+ 與本機的 Chrome 或 Chromium。它會自己起 HTTP server 並以
+Chrome DevTools Protocol 驅動 headless 瀏覽器，對四個頁面各跑三個情境：
 
 | 情境 | 驗證的事 |
 | --- | --- |
@@ -240,6 +245,25 @@ node test/layout-check.js --save   # 重新產生基準
 
 - `--save` 寫入 `test/baseline/*.png` —— 基準當下的樣子
 - 比對模式寫入 `test/current/*.png` —— **不會覆寫基準**，前後才能並排比對
+
+#### 基準是綁平台的
+
+`test/baseline/` 只在**產生它的那個作業系統 + 瀏覽器**底下有意義。
+macOS 與 Linux 對文字行框高度的取整不同，同一份 HTML 在兩邊量到的
+文字元素高度會差 1–2px，而且沿著頁面往下累積成大量 y 位移 ——
+實測拿 macOS 產生的基準在 Linux 上跑未改動的 HEAD，5046 個元素裡 4046 個對不上。
+
+那 4046 筆全部是垂直方向的：**x 與寬度是 0 差異，三個寬度都一樣**，
+87% 的元素連高度都相同，只有小字級（9–13.5px）的文字行矮了 1–2px。
+換句話說那個數字不是「版面壞了」，是「基準換平台就不能用」。
+
+螢幕解析度**不影響**這件事 —— 量測用 `Emulation.setDeviceMetricsOverride`
+把視窗強制成 375/768/1440 × 900、`deviceScaleFactor: 1`，而且跑在
+headless、根本沒有實體顯示器。1080p 或 Retina 量到的完全一樣。
+
+所以 `--save` 會把瀏覽器版本與平台寫進 `test/baseline/.env.txt`，
+比對時若對不上會先印一段警告，說明底下的差異多半不是真的跑版。
+沒有這個戳記，換台機器跑就會看到幾千筆假差異，然後花很久才發現不是自己改壞的。
 
 量測前會用 `prefers-reduced-motion: reduce` 把兩段動畫凍結在完整狀態，
 所以每次量到的都是同一幀。這也是動畫本身支援的行為，不是測試專用的後門。
@@ -378,6 +402,13 @@ python3 -m http.server 8000
 
 技術面：
 
+- **`render-check.js` 的 mosascore 有一項固定失敗**（有 JS 4608 字 / 無 JS 4627 字）。
+  這不是新問題 —— 未改動的 HEAD 以完全相同的字數差失敗。原因是
+  `normal` 情境等 4 秒才量測，而 mosascore 的動畫每 1.5 秒一步、已經倒帶重播，
+  此時腳本把尚未揭露的分數欄 `textContent` 清成空字串，可見文字自然比靜態少。
+  首頁的動畫沒這個問題，因為它用 opacity 揭露、文字一直留在 DOM 裡。
+  兩個修法：把 mosascore 改成同樣用 opacity 揭露（視覺幾乎不變，欄位本來就佔位），
+  或讓這項斷言在動畫凍結的前提下量測。前者比較對，也讓兩支動畫的做法一致。
 - **清掉 `#dc-root` / `.sc-host` 兩層包裝**與對應的 `html,body{height:100%}` 規則。
   它們是 runtime 的殘留物，現在沒有作用。清掉會改變 DOM 結構，
   所以要一併重新產生版面基準，並用截圖比對確認外觀未變。
