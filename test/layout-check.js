@@ -24,9 +24,11 @@ const { spawn } = require("child_process");
 
 const ROOT = path.resolve(__dirname, "..");
 const BASELINE = path.join(__dirname, "baseline");
-// 基準是綁平台的：macOS 與 Linux 的文字排版對行框高度取整的方式不同，
-// 同一份 HTML 在兩邊量到的高度會差 1–2px，並沿著頁面往下累積成大量 y 位移。
-// 不記下產生環境的話，換平台跑會看到「幾千個元素跑版」，那個數字毫無意義。
+// The baseline is tied to the platform that produced it: macOS and Linux round
+// line-box heights differently, so the same HTML measures 1-2px shorter per text
+// element and those shifts accumulate into large y offsets down the page.
+// Without recording the environment, running on another platform reports
+// "thousands of elements moved" -- a number that means nothing.
 const ENV_FILE = path.join(__dirname, "baseline", ".env.txt");
 const CURRENT = path.join(__dirname, "current");
 const PAGES = ["index.html", "mosatalk.html", "mosaminutes.html", "mosascore.html"];
@@ -60,7 +62,7 @@ const CHROME_CANDIDATES = [
   "/Applications/Chromium.app/Contents/MacOS/Chromium",
   "/usr/bin/google-chrome",
   "/usr/bin/chromium",
-  "/usr/bin/chromium-browser",   // Debian/Ubuntu 的套件名，snap 版也是走這支
+  "/usr/bin/chromium-browser",   // Debian/Ubuntu package name; the snap build goes through here too
   "/snap/bin/chromium",
 ];
 const MIME = { ".html": "text/html", ".js": "text/javascript", ".css": "text/css",

@@ -59,9 +59,10 @@ for (const [page, { src }] of pages) {
     }
   }
 
-  // <link> 的 href（字型 CSS、favicon、preload）以前完全沒驗證過。
-  // 這些檔名跟 tools/build-fonts.py 的產出耦合 —— 字重範圍一改檔名就變，
-  // preload 會靜默失效（瀏覽器不報錯，只是白抓一個 404）。
+  // <link> hrefs (the font CSS, the favicon, the font preload) were never
+  // checked. These filenames are coupled to what tools/build-fonts.py emits --
+  // change the weight range and the name changes with it -- and a broken preload
+  // fails silently: the browser reports nothing, it just fetches a 404.
   for (const m of src.matchAll(/<link\s[^>]*href="([^"]*)"/g)) {
     const href = m[1];
     if (!href || /^https?:\/\//.test(href)) continue;

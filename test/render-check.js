@@ -31,7 +31,7 @@ const CHROME_CANDIDATES = [
   "/Applications/Chromium.app/Contents/MacOS/Chromium",
   "/usr/bin/google-chrome",
   "/usr/bin/chromium",
-  "/usr/bin/chromium-browser",   // Debian/Ubuntu 的套件名，snap 版也是走這支
+  "/usr/bin/chromium-browser",   // Debian/Ubuntu package name; the snap build goes through here too
   "/snap/bin/chromium",
 ];
 
