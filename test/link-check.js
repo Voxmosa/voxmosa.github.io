@@ -17,7 +17,7 @@ const path = require("path");
 
 const ROOT = path.resolve(__dirname, "..");
 const PAGES = ["index.html", "mosatalk.html", "mosaminutes.html", "mosascore.html",
-               "on-premise.html"];
+               "on-premise.html", "languages.html"];
 
 const idsOf = (src) => new Set([...src.matchAll(/\bid="([^"]+)"/g)].map((m) => m[1]));
 

@@ -10,6 +10,7 @@ Voxmosa 官方網站。**純靜態 HTML，沒有建置流程** —— 改完直�
 | `mosaminutes.html` | MosaMinutes：地端 AI 會議記錄平台 |
 | `mosascore.html` | MosaScore：地端通話質檢與購買意圖分析（含通話分析動畫）|
 | `on-premise.html` | 地端 AI：兩個產品共用的部署論述，導覽列「為什麼地端」指向這裡 |
+| `languages.html` | 臺灣本土語言：客語六腔、台語、原住民族語的能力與依據 |
 | `vendor/fonts/` | 子集化後自架的字型（含授權說明）|
 | `test/` | 回歸測試，`test/baseline/` 為版面基準 |
 | `tools/build-fonts.py` | 重新產生字型子集 |
@@ -38,6 +39,11 @@ Voxmosa 官方網站。**純靜態 HTML，沒有建置流程** —— 改完直�
 客語為六腔全覆蓋（四縣、海陸、大埔、饒平、詔安、南四縣），可以明講，
 市面上多數同業只做三腔或兩腔。原住民族語 16 族 42 語是真的，但使用人口少、
 搜尋量極低，定位是**能力證明而非流量來源**，提到即可，不要當主打。
+
+> 新增頁面時記得四個地方都要加：`test/link-check.js`、`test/render-check.js`、
+> `test/layout-check.js` 的 `PAGES`，以及 `tools/build-fonts.py` 的 `PAGES`。
+> 這四份清單都是寫死的，漏掉不會有任何東西失敗 —— 頁面只是安靜地沒有測試覆蓋、
+> 也沒有字型子集。
 
 ### 本土語言專案裡，哪些是我們做的
 
@@ -195,7 +201,7 @@ EOF
 | --- | --- |
 | `index.html` | `Organization`、`WebSite` |
 | 三個產品頁 | `SoftwareApplication`、一個最小的 `Organization` 節點 |
-| `on-premise.html` | 只有最小的 `Organization` 節點 —— 它不是軟體產品頁 |
+| `on-premise.html` / `languages.html` | 只有最小的 `Organization` 節點 —— 兩者都不是軟體產品頁 |
 
 `Organization` 只放首頁（Google 的建議），`@id` 是全站共用的
 `https://voxmosa.com/#organization`。子頁的 `publisher` 曾經是**裸的 `@id` 存根**，
