@@ -14,6 +14,7 @@ Voxmosa 官方網站。**純靜態 HTML，沒有建置流程** —— 改完直�
 | `vendor/fonts/` | 子集化後自架的字型（含授權說明）|
 | `test/` | 回歸測試，`test/baseline/` 為版面基準 |
 | `tools/build-fonts.py` | 重新產生字型子集 |
+| `tools/build-sitemap.py` | 重新產生 `sitemap.xml`，`lastmod` 由 git 推導 |
 | `tools/bake.js` | 把 `<x-dc>` 模板頁烘焙成靜態 HTML（已無頁面需要，保留備查）|
 | `og.png` | 社群分享縮圖，四頁共用 |
 | `favicon.svg` / `favicon.png` | 分頁圖示。Google 不吃 SVG，所以兩種都要 |
@@ -70,6 +71,7 @@ Voxmosa 官方網站。**純靜態 HTML，沒有建置流程** —— 改完直�
 改動之後有兩件事要記得，兩者都有測試把關（見[測試](#測試)）：
 
 - **改過文案** → 重跑 `tools/build-fonts.py`，否則新字缺字
+- **改過任何頁面** → 重跑 `tools/build-sitemap.py`，否則 `lastmod` 過期
 - **改過 inline style 的值** → 一併更新對應的 `r-*` class 名稱
 
 ## 頁面結構
@@ -259,8 +261,12 @@ AI Overviews / AI Mode 無關。
 「Google ignores `<priority>` and `<changefreq>` values.」
 
 `<lastmod>` 會被採用，但有條件：「if it's consistently and verifiably accurate」。
-所以它必須跟著實際的內容改動走，**不能變成每次部署就全部蓋掉的時間戳** ——
-一旦不可信，Google 會整個欄位不再採信。
+一旦不可信，Google 會整個欄位不再採信 —— 所以這個日期**不由人手寫**。
+
+`tools/build-sitemap.py` 從 git 推導：有未提交改動的檔案取今天，其餘取最後一次
+commit 的日期。`test/link-check.js` 會驗證檔案裡的值仍然對得上，對不上就失敗並提示
+重跑。手寫的日期一定會過期 —— 這件事發生過一次：六個網址全部停在
+`2026-08-29`，其中兩個網址的頁面根本是那天之後才建立的。
 
 ### 移除了 llms.txt
 

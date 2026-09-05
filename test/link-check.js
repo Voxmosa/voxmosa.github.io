@@ -14,6 +14,7 @@
 
 const fs = require("fs");
 const path = require("path");
+const { execSync } = require("child_process");
 
 const ROOT = path.resolve(__dirname, "..");
 const PAGES = ["index.html", "mosatalk.html", "mosaminutes.html", "mosascore.html",
@@ -108,6 +109,41 @@ for (const [page, { src }] of pages) {
     console.log(`❌ ${page.padEnd(18)} 缺少：${missing.join("、")}`);
   } else {
     console.log(`✅ ${page.padEnd(18)} 齊全`);
+  }
+}
+
+// sitemap.xml：頁面清單要齊、lastmod 要跟 git 對得上。
+// lastmod 是 sitemap 裡唯一 Google 會採用的欄位，而且只在「持續且可驗證地正確」
+// 時才採信 —— 手寫的日期一定會過期，過期之後 Google 會整個欄位不再信任。
+// 所以這裡檢查的不是「有沒有寫」，而是「寫的是不是真的」。
+{
+  const xml = fs.readFileSync(path.join(ROOT, "sitemap.xml"), "utf8");
+  const listed = [...xml.matchAll(/<loc>https:\/\/voxmosa\.com\/([^<]*)<\/loc>/g)]
+    .map((m) => m[1] || "index.html");
+  const lastmods = [...xml.matchAll(/<lastmod>([^<]+)<\/lastmod>/g)].map((m) => m[1]);
+  const problems = [];
+
+  for (const page of PAGES) if (!listed.includes(page)) problems.push(`少了 ${page}`);
+  for (const loc of listed) if (!PAGES.includes(loc)) problems.push(`多了 ${loc}`);
+
+  listed.forEach((page, i) => {
+    if (!PAGES.includes(page)) return;
+    const dirty = execSync(`git status --porcelain -- ${page}`, { cwd: ROOT }).toString().trim();
+    const expectedDate = dirty
+      ? new Date().toISOString().slice(0, 10)
+      : execSync(`git log -1 --format=%cs -- ${page}`, { cwd: ROOT }).toString().trim();
+    if (lastmods[i] !== expectedDate) {
+      problems.push(`${page} 的 lastmod 寫 ${lastmods[i]}，實際最後修改是 ${expectedDate}`);
+    }
+  });
+
+  if (problems.length) {
+    failures += problems.length;
+    console.log("\n❌ sitemap.xml");
+    for (const pb of problems) console.log(`     ${pb}`);
+    console.log("     跑 python3 tools/build-sitemap.py 重新產生");
+  } else {
+    console.log(`\n✅ sitemap.xml       ${listed.length} 個網址，lastmod 與 git 一致`);
   }
 }
 
