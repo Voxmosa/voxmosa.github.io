@@ -16,7 +16,8 @@ const path = require("path");
 const { spawn } = require("child_process");
 
 const ROOT = path.resolve(__dirname, "..");
-const PAGES = ["index.html", "mosatalk.html", "mosaminutes.html", "mosascore.html"];
+const PAGES = ["index.html", "mosatalk.html", "mosaminutes.html", "mosascore.html",
+               "on-premise.html"];
 
 // 靜態頁不該留下任何 <x-dc> 模板殘跡
 const isBaked = (page) =>
