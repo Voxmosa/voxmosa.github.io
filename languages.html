@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>臺灣本土語言語音 AI | 台語、客語六腔與原住民族語辨識 - Voxmosa</title>
+  <meta name="description" content="台語、客語與原住民族語的語音辨識與語音合成。客語四縣、海陸、大埔、饒平、詔安、南四縣六腔全數涵蓋，原住民族語 16 族 42 語，模型由團隊自主架構訓練並公開於 Hugging Face。">
+  <link rel="canonical" href="https://voxmosa.com/languages.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Voxmosa">
+  <meta property="og:locale" content="zh_TW">
+  <meta property="og:title" content="臺灣本土語言語音 AI | 台語、客語六腔與原住民族語辨識">
+  <meta property="og:description" content="台語、客語與原住民族語的語音辨識與語音合成。客語四縣、海陸、大埔、饒平、詔安、南四縣六腔全數涵蓋，原住民族語 16 族 42 語，模型由團隊自主架構訓練並公開於 Hugging Face。">
+  <meta property="og:url" content="https://voxmosa.com/languages.html">
+  <meta property="og:image" content="https://voxmosa.com/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="臺灣本土語言語音 AI | 台語、客語六腔與原住民族語辨識">
+  <meta name="twitter:description" content="台語、客語與原住民族語的語音辨識與語音合成。客語四縣、海陸、大埔、饒平、詔安、南四縣六腔全數涵蓋，原住民族語 16 族 42 語，模型由團隊自主架構訓練並公開於 Hugging Face。">
+  <meta name="twitter:image" content="https://voxmosa.com/og.png">
+  <meta name="theme-color" content="#141413">
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="./favicon.png" type="image/png" sizes="144x144">
+  <link rel="preload" href="./vendor/fonts/noto-sans-tc-200-500-var.woff2" as="font" type="font/woff2" crossorigin>
+<link href="./vendor/fonts/fonts.css" rel="stylesheet" />
+<style>
+body { margin:0; background:#141413; }
+h1,h2,h3,h4,h5,h6{margin:0;font-size:inherit;font-weight:inherit}
+p{margin:0}
+
+a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
+
+@media (max-width:1080px){.r-gtc-repeat-4-1fr{grid-template-columns:1fr 1fr!important}.r-gap-72px{gap:44px!important}
+}
+@media (max-width:900px){.r-mw-1280px{padding-left:24px!important;padding-right:24px!important}.r-gtc-1fr-1fr-1fr,
+  .r-gtc-1fr-1fr,
+  .r-gtc-repeat-3-1fr,
+  .r-gtc-repeat-4-1fr,
+  .r-gtc-1-35fr-1fr,
+  .r-gtc-1-1fr-1fr,
+  .r-gtc-1-05fr-1fr,
+  .r-gtc-1fr-1-25fr,
+  .r-gtc-1fr-1-35fr,
+  .r-gtc-auto-1fr,
+  .r-gtc-180px-1fr{grid-template-columns:1fr!important}.r-brr-1px-solid-rgb-234-231-224{border-right:none!important;border-bottom:1px solid #eae7e0!important}.r-brl-1px-solid-rgb-38-37-31{border-left:none!important;padding-left:0!important;border-top:1px solid #26251f!important;padding-top:24px!important}.r-gap-64px{gap:40px!important}.r-fs-52px{font-size:36px!important}.r-fs-46px{font-size:34px!important}.r-fs-42px{font-size:31px!important}.r-fs-40px{font-size:30px!important}.r-fs-34px{font-size:26px!important}.r-fs-28px{font-size:24px!important}.r-fs-27px{font-size:23px!important}.r-fs-26px{font-size:22px!important}.r-fs-25px{font-size:21px!important}.r-pad-17px-24px{padding:14px 14px!important}.r-pad-18px-20px{padding:13px 13px!important}.r-pad-44px{padding:30px!important}/* 只調垂直，水平交給 .r-mw-1280px 的容器慣例決定；
+     用 shorthand 會連水平一起蓋掉，那不是本意。 */
+  .r-pad-44px-56px{padding-top:30px!important;padding-bottom:30px!important}.r-pad-40px{padding:28px!important}.r-pad-38px-40px{padding:26px 24px!important}.r-pad-34px-36px{padding:26px 24px!important}.r-gap-30px,
+  .r-gap-28px{gap:14px!important;flex-wrap:wrap!important}.r-gap-40px{gap:20px!important;flex-wrap:wrap!important}
+}
+@media (max-width:620px){.r-mw-1280px{padding-left:18px!important;padding-right:18px!important}.r-gtc-1-4fr-1fr-1fr,
+  .r-gtc-1-2fr-1fr-1fr,
+  .r-gtc-0-7fr-1fr-1fr{grid-template-columns:1fr!important}.r-gtc-56px-1fr,
+  .r-gtc-76px-1fr,
+  .r-gtc-58px-108px-1fr{grid-template-columns:1fr!important;gap:6px!important}.r-fs-52px{font-size:30px!important}.r-fs-42px{font-size:26px!important}.r-fs-40px{font-size:26px!important}.r-fs-34px{font-size:23px!important}.r-pad-112px-56px,
+  .r-pad-104px-56px-112px,
+  .r-pad-104px-56px-116px,
+  .r-pad-104px-56px,
+  .r-pad-96px-56px-100px,
+  .r-pad-96px-56px-88px{padding-top:64px!important;padding-bottom:64px!important}
+}
+
+@media (max-width:900px){.r-display-grid > *{min-width:0!important}
+}
+</style>
+<style>html,body{height:100%;margin:0}#dc-root,#dc-root>.sc-host{height:100%}</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://voxmosa.com/#organization",
+      "name": "Voxmosa",
+      "url": "https://voxmosa.com/"
+    }
+  ]
+}
+</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S6MJZMYPVH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag("js", new Date());
+    gtag("config", "G-S6MJZMYPVH");
+  </script>
+</head>
+<body>
+<div id="dc-root"><div class="sc-host">
+
+<div style="width:100%;background:#141413;color:#f4f3f0;font-family:'Noto Sans TC','Space Grotesk',sans-serif;overflow-x:hidden">
+
+  <header style="position:sticky;top:0;z-index:20;background:rgba(20,20,19,0.92);backdrop-filter:blur(14px);border-bottom:1px solid #26251f">
+    <div class="r-mw-1280px r-gap-40px" style="max-width:1280px;margin:0 auto;padding:20px 56px;display:flex;align-items:center;justify-content:space-between;gap:40px">
+      <a aria-label="Voxmosa"href="index.html" class="r-fs-25px" style="display:flex;align-items:baseline;font-family:'Space Grotesk',sans-serif;font-size:25px;font-weight:400;letter-spacing:0.05em;line-height:1;color:#f4f3f0;flex:none">
+        <span>V</span>
+        <svg aria-hidden="true" viewBox="0 0 200 120" preserveAspectRatio="xMinYMid slice" style="height:0.53em;width:0.8em;transform:translateY(0.0205em);overflow:visible;display:block;flex:none" fill="none" stroke="currentColor" stroke-linecap="round">
+          <circle cx="60" cy="60" r="51" stroke-width="18" />
+          <path d="M118.1 8 A78 78 0 0 1 118.1 112" stroke-width="14" opacity="0.6" />
+          <path d="M150.1 8 A104 104 0 0 1 150.1 112" stroke-width="14" opacity="0.3" />
+        </svg>
+        <span>x</span><span style="display:inline-block;width:0.06em;flex:none"></span><span>mosa</span>
+      </a>
+      <nav class="r-gap-30px" style="display:flex;align-items:center;gap:30px;font-size:14px;font-weight:300;color:#b5b2aa">
+        <a href="mosatalk.html" style="color:#ED9A4A">MosaTalk</a>
+        <a href="mosaminutes.html">MosaMinutes</a>
+        <a href="mosascore.html">MosaScore</a>
+        <a href="index.html#tech">技術實力</a>
+        <a href="on-premise.html">為什麼地端</a>
+        <a href="languages.html">臺灣語言</a>
+        <a href="index.html#team">團隊</a>
+        <a href="#contact" style="background:#ED9A4A;color:#141413;padding:10px 19px;border-radius:4px;font-size:13.5px;font-weight:500">申請 PoC</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+  <section class="r-gap-72px r-mw-1280px r-gtc-1-1fr-1fr r-pad-96px-56px-100px r-display-grid" style="max-width:1280px;margin:0 auto;padding:96px 56px 100px;display:grid;grid-template-columns:1.1fr 1fr;gap:72px;align-items:center">
+    <div class="r-gap-28px" style="display:flex;flex-direction:column;gap:28px">
+      <div style="display:flex;align-items:center;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#ED9A4A">
+        <span style="width:22px;height:1px;background:#ED9A4A;display:block"></span>
+        <span>Taiwan Languages</span>
+      </div>
+      <h1 class="r-fs-52px" style="display:flex;flex-direction:column;gap:10px"><span style="font-family:'Space Grotesk',sans-serif;font-size:52px;font-weight:400;color:#ED9A4A;letter-spacing:0.01em;line-height:1.1">臺灣本土語言</span><span style="font-size:19px;font-weight:300;color:#a8a59d;letter-spacing:0.01em">台語、客語六腔與原住民族語的語音辨識與語音合成</span></h1>
+      <div class="r-fs-34px" style="font-size:34px;font-weight:200;line-height:1.42;letter-spacing:-0.01em;text-wrap:pretty">不是把中文模型<br />調一調就能聽懂的。</div>
+      <p style="font-size:16px;font-weight:300;color:#a8a59d;line-height:1.95;max-width:540px;text-wrap:pretty">臺灣的本土語言不是一個模型就能涵蓋的題目。我們的語音辨識模型採全自主架構訓練，不是調整市面通用模型的參數——這是能不能真的聽懂客語詔安腔或某一族族語的差別。</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <a href="#coverage" style="background:#ED9A4A;color:#141413;padding:15px 30px;border-radius:4px;font-size:15px;font-weight:500">看涵蓋範圍</a>
+        <a href="#evidence" style="border:1px solid #3a3833;color:#f4f3f0;padding:15px 30px;border-radius:4px;font-size:15px;font-weight:300">可查證的依據</a>
+      </div>
+    </div>
+
+    <div class="r-pad-40px" style="background:#0F0F0E;border:1px solid #26251f;border-radius:10px;padding:40px;display:flex;flex-direction:column;gap:22px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#5e5b54;letter-spacing:0.1em;text-transform:uppercase">Coverage</div>
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <div style="display:flex;align-items:baseline;gap:14px">
+          <div class="r-fs-46px" style="font-family:'Space Grotesk',sans-serif;font-size:46px;font-weight:200;color:#ED9A4A;line-height:1;flex:none">6</div>
+          <div style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.75">客語腔調全數涵蓋<br />四縣、海陸、大埔、饒平、詔安、南四縣</div>
+        </div>
+        <div style="display:flex;align-items:baseline;gap:14px">
+          <div class="r-fs-46px" style="font-family:'Space Grotesk',sans-serif;font-size:46px;font-weight:200;color:#ED9A4A;line-height:1;flex:none">42</div>
+          <div style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.75">原住民族語言<br />涵蓋 16 族</div>
+        </div>
+        <div style="display:flex;align-items:baseline;gap:14px">
+          <div class="r-fs-46px" style="font-family:'Space Grotesk',sans-serif;font-size:46px;font-weight:200;color:#ED9A4A;line-height:1;flex:none">5</div>
+          <div style="font-size:13.5px;font-weight:300;color:#8c8a84;line-height:1.75">會議轉錄內建語言<br />一律轉為繁體中文</div>
+        </div>
+      </div>
+      <p style="font-size:12px;font-weight:300;color:#6f6c64;line-height:1.85;border-top:1px solid #26251f;padding-top:16px">族群與語言數依原住民族委員會的族語分類，客語腔調依客家委員會的六腔分類——兩者都可以逐項查證。</p>
+    </div>
+  </section>
+
+  <section id="coverage" style="background:#F4F3F0;color:#141413">
+    <div class="r-mw-1280px r-pad-104px-56px-112px" style="max-width:1280px;margin:0 auto;padding:104px 56px 112px;display:flex;flex-direction:column;gap:44px">
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
+          <h2 class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">哪個產品支援哪些語言</h2>
+          <div style="border:1px solid #c9c5bb;color:#8c8a84;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:5px 11px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">Coverage</div>
+        </div>
+        <p style="font-size:15px;font-weight:300;color:#6b6960;line-height:1.9;max-width:700px;text-wrap:pretty">兩個產品的語言範圍不一樣，而且辨識與合成也不是同一件事。這張表把還沒推出的部分也標出來。</p>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:1px;background:#dedbd4;border:1px solid #dedbd4;border-radius:8px;overflow:hidden">
+        <div class="r-gtc-1-4fr-1fr-1fr r-display-grid" style="display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:1px;background:#dedbd4">
+          <div class="r-pad-17px-24px" style="background:#e9e7e2;padding:17px 24px;font-size:13px;font-weight:400;color:#6b6960">語言</div>
+          <div class="r-pad-17px-24px" style="background:#e9e7e2;padding:17px 24px;font-size:13px;font-weight:400;color:#6b6960">會議轉錄 MosaMinutes</div>
+          <div class="r-pad-17px-24px" style="background:#e9e7e2;padding:17px 24px;font-size:13px;font-weight:400;color:#6b6960">語音客服 MosaTalk</div>
+        </div>
+        <div class="r-gtc-1-4fr-1fr-1fr r-display-grid" style="display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:1px;background:#dedbd4">
+          <div class="r-pad-17px-24px" style="background:#fbfaf8;padding:17px 24px;font-size:13.5px;font-weight:400">國語</div>
+          <div class="r-pad-17px-24px" style="background:#fbfaf8;padding:17px 24px;font-size:13.5px;font-weight:300;color:#6b6960">支援</div>
+          <div class="r-pad-17px-24px" style="background:#fbfaf8;padding:17px 24px;font-size:13.5px;font-weight:300;color:#6b6960">聽與說皆支援</div>
+        </div>
+        <div class="r-gtc-1-4fr-1fr-1fr r-display-grid" style="display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:1px;background:#dedbd4">
+          <div class="r-pad-17px-24px" style="background:#fbfaf8;padding:17px 24px;font-size:13.5px;font-weight:400">台語</div>
+          <div class="r-pad-17px-24px" style="background:#fbfaf8;padding:17px 24px;font-size:13.5px;font-weight:300;color:#6b6960">支援，國台語夾雜亦可</div>
+          <div class="r-pad-17px-24px" style="background:#fbfaf8;padding:17px 24px;font-size:13.5px;font-weight:300;color:#6b6960">聽得懂；台語合成開發規劃中</div>
+        </div>
+        <div class="r-gtc-1-4fr-1fr-1fr r-display-grid" style="display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:1px;background:#dedbd4">
+          <div class="r-pad-17px-24px" style="background:#fbfaf8;padding:17px 24px;font-size:13.5px;font-weight:400">客語（六腔）</div>
+          <div class="r-pad-17px-24px" style="background:#fbfaf8;padding:17px 24px;font-size:13.5px;font-weight:300;color:#6b6960">支援</div>
+          <div class="r-pad-17px-24px" style="background:#fbfaf8;padding:17px 24px;font-size:13.5px;font-weight:300;color:#8c8a84">開發規劃中</div>
+        </div>
+        <div class="r-gtc-1-4fr-1fr-1fr r-display-grid" style="display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:1px;background:#dedbd4">
+          <div class="r-pad-17px-24px" style="background:#fbfaf8;padding:17px 24px;font-size:13.5px;font-weight:400">原住民族語（16 族 42 語）</div>
+          <div class="r-pad-17px-24px" style="background:#fbfaf8;padding:17px 24px;font-size:13.5px;font-weight:300;color:#6b6960">支援</div>
+          <div class="r-pad-17px-24px" style="background:#fbfaf8;padding:17px 24px;font-size:13.5px;font-weight:300;color:#8c8a84">尚未進入語音客服</div>
+        </div>
+        <div class="r-gtc-1-4fr-1fr-1fr r-display-grid" style="display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:1px;background:#dedbd4">
+          <div class="r-pad-17px-24px" style="background:#fbfaf8;padding:17px 24px;font-size:13.5px;font-weight:400">英語</div>
+          <div class="r-pad-17px-24px" style="background:#fbfaf8;padding:17px 24px;font-size:13.5px;font-weight:300;color:#6b6960">支援</div>
+          <div class="r-pad-17px-24px" style="background:#fbfaf8;padding:17px 24px;font-size:13.5px;font-weight:300;color:#6b6960">聽與說皆支援</div>
+        </div>
+      </div>
+      <p style="font-size:12.5px;font-weight:300;color:#6b6960;line-height:1.85;max-width:820px">會議轉錄的五種語言一律轉為繁體中文逐字稿，並自動標點分段。標示為開發規劃中的項目不是現有可交付功能。</p>
+    </div>
+  </section>
+
+  <section id="hakka" class="r-mw-1280px r-pad-112px-56px" style="max-width:1280px;margin:0 auto;padding:112px 56px">
+    <div style="display:flex;flex-direction:column;gap:44px">
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
+          <h2 class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">客語：六腔全數涵蓋</h2>
+          <div style="border:1px solid #ED9A4A;color:#ED9A4A;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:5px 11px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">Hakka</div>
+        </div>
+        <p style="font-size:15px;font-weight:300;color:#8c8a84;line-height:1.9;max-width:700px;text-wrap:pretty">客語不是一種腔調。六腔之間的差異大到「用四縣腔訓練的模型去聽詔安腔」這件事並不成立，所以涵蓋幾腔是個要逐項確認的問題，不是一句「支援客語」可以帶過的。</p>
+      </div>
+
+      <div class="r-gtc-repeat-3-1fr r-display-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#26251f;border:1px solid #26251f;border-radius:8px;overflow:hidden">
+        <div style="background:#0F0F0E;padding:28px 30px;display:flex;flex-direction:column;gap:8px"><div style="font-size:16px;font-weight:400;color:#f4f3f0">四縣腔</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#6f6c64;letter-spacing:0.06em">辨識 · 合成</div></div>
+        <div style="background:#0F0F0E;padding:28px 30px;display:flex;flex-direction:column;gap:8px"><div style="font-size:16px;font-weight:400;color:#f4f3f0">海陸腔</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#6f6c64;letter-spacing:0.06em">辨識 · 合成</div></div>
+        <div style="background:#0F0F0E;padding:28px 30px;display:flex;flex-direction:column;gap:8px"><div style="font-size:16px;font-weight:400;color:#f4f3f0">大埔腔</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#6f6c64;letter-spacing:0.06em">辨識 · 合成</div></div>
+        <div style="background:#0F0F0E;padding:28px 30px;display:flex;flex-direction:column;gap:8px"><div style="font-size:16px;font-weight:400;color:#f4f3f0">饒平腔</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#6f6c64;letter-spacing:0.06em">辨識 · 合成</div></div>
+        <div style="background:#0F0F0E;padding:28px 30px;display:flex;flex-direction:column;gap:8px"><div style="font-size:16px;font-weight:400;color:#f4f3f0">詔安腔</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#6f6c64;letter-spacing:0.06em">辨識 · 合成</div></div>
+        <div style="background:#0F0F0E;padding:28px 30px;display:flex;flex-direction:column;gap:8px"><div style="font-size:16px;font-weight:400;color:#f4f3f0">南四縣腔</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#6f6c64;letter-spacing:0.06em">辨識 · 合成</div></div>
+      </div>
+
+      <div class="r-pad-34px-36px" style="background:#0F0F0E;border:1px solid #26251f;border-radius:8px;padding:34px 36px;display:flex;flex-direction:column;gap:14px">
+        <h3 style="font-size:17px;font-weight:400;color:#f4f3f0">這件事可以查證</h3>
+        <p style="font-size:14px;font-weight:300;color:#8c8a84;line-height:1.95;text-wrap:pretty">客語的語音辨識與語音合成模型由本團隊研發，公開展示於 Gohakka —— 該平台的版權宣言載明「客語語音合成、語音識別技術由牧仁資訊研發」。你不需要相信我們自己說的，去那裡看就知道。</p>
+        <p style="font-size:13px;font-weight:300;color:#6f6c64;line-height:1.9;text-wrap:pretty">Gohakka 平台的機器翻譯與語言模型由平台方瞬息科技提供，不是我們的部分。客語的語料屬於客家委員會，其中一部分的整理工作由本團隊承擔。</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;padding-top:6px">
+          <a href="https://gohakka.org/" style="border:1px solid #3a3833;border-radius:4px;padding:10px 16px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#cfccc4;letter-spacing:0.04em">gohakka.org</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="taigi" style="background:#F4F3F0;color:#141413">
+    <div class="r-mw-1280px r-pad-104px-56px-112px" style="max-width:1280px;margin:0 auto;padding:104px 56px 112px;display:flex;flex-direction:column;gap:44px">
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
+          <h2 class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">台語：國台語夾雜才是真實情況</h2>
+          <div style="border:1px solid #c9c5bb;color:#8c8a84;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:5px 11px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">Taigi</div>
+        </div>
+        <p style="font-size:15px;font-weight:300;color:#6b6960;line-height:1.9;max-width:700px;text-wrap:pretty">臺灣的會議與客服現場很少有人整段講純台語。實際的樣子是一句國語一句台語，中間夾幾個英文詞。針對「純台語音檔」調出來的模型，遇到這種講法就會掉。</p>
+      </div>
+
+      <div class="r-gtc-1fr-1fr r-display-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#dedbd4;border:1px solid #dedbd4;border-radius:8px;overflow:hidden">
+        <div class="r-pad-34px-36px" style="background:#fbfaf8;padding:34px 36px;display:flex;flex-direction:column;gap:12px">
+          <h3 style="font-size:17px;font-weight:400">會議轉錄</h3>
+          <p style="font-size:13.5px;font-weight:300;color:#6b6960;line-height:1.9;text-wrap:pretty">台語與國台語夾雜的內容一律轉為繁體中文逐字稿，自動標點分段，並分辨誰在說話。</p>
+        </div>
+        <div class="r-pad-34px-36px" style="background:#fbfaf8;padding:34px 36px;display:flex;flex-direction:column;gap:12px">
+          <h3 style="font-size:17px;font-weight:400">語音客服</h3>
+          <p style="font-size:13.5px;font-weight:300;color:#6b6960;line-height:1.9;text-wrap:pretty">辨識模型針對臺灣口音與台語最佳化，聽得懂客戶用台語講話。台語的語音合成還在開發規劃中，所以目前是聽得懂台語、以國語回答。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="formosan" class="r-mw-1280px r-pad-112px-56px" style="max-width:1280px;margin:0 auto;padding:112px 56px">
+    <div style="display:flex;flex-direction:column;gap:32px">
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
+          <h2 class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">原住民族語：16 族、42 種語言</h2>
+          <div style="border:1px solid #3a3833;color:#7a776e;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:5px 11px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">Formosan</div>
+        </div>
+        <p style="font-size:15px;font-weight:300;color:#8c8a84;line-height:1.9;max-width:760px;text-wrap:pretty">42 種語言的語音辨識、語音合成與機器翻譯模型由本團隊研發，與意傳科技長期合作，落地於原住民族語言研究發展基金會的族語 AI 系統。語料屬於原住民族委員會，其中一部分的整理工作由本團隊承擔。模型公開於 Hugging Face，任何人都可以下載檢驗。</p>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a href="https://huggingface.co/ILRDF" style="border:1px solid #3a3833;border-radius:4px;padding:10px 16px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#cfccc4;letter-spacing:0.04em">Hugging Face / ILRDF</a>
+        <a href="https://huggingface.co/formospeech" style="border:1px solid #3a3833;border-radius:4px;padding:10px 16px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#cfccc4;letter-spacing:0.04em">Hugging Face / formospeech</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="evidence" style="background:#F4F3F0;color:#141413">
+    <div class="r-mw-1280px r-pad-104px-56px-112px" style="max-width:1280px;margin:0 auto;padding:104px 56px 112px;display:flex;flex-direction:column;gap:44px">
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
+          <h2 class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">憑什麼相信這些</h2>
+          <div style="border:1px solid #c9c5bb;color:#8c8a84;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:5px 11px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">Evidence</div>
+        </div>
+        <p style="font-size:15px;font-weight:300;color:#6b6960;line-height:1.9;max-width:700px;text-wrap:pretty">本土語言的能力很難從產品畫面上看出來，所以這裡列的是可以逐項查證的東西：競賽名次、同儕審查發表、以及公開下載得到的模型。</p>
+      </div>
+
+      <div class="r-gtc-1fr-1fr r-display-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+        <div class="r-pad-34px-36px" style="background:#fbfaf8;border:1px solid #dedbd4;border-radius:8px;padding:34px 36px;display:flex;flex-direction:column;gap:18px">
+          <h3 style="font-size:17px;font-weight:400">本土語言競賽名次</h3>
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div style="display:flex;gap:16px;align-items:baseline"><div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#c47a20;flex:none;width:44px">2022</div><div style="font-size:13.5px;font-weight:300;color:#6b6960;line-height:1.8">臺灣<span style="color:#141413;font-weight:400">客語</span>語音辨識競賽 FSR 2022　一般組第一名</div></div>
+            <div style="display:flex;gap:16px;align-items:baseline"><div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#c47a20;flex:none;width:44px">2020</div><div style="font-size:13.5px;font-weight:300;color:#6b6960;line-height:1.8">臺灣<span style="color:#141413;font-weight:400">台語</span>語音辨識競賽 FSR 2020　產業組第一名</div></div>
+            <div style="display:flex;gap:16px;align-items:baseline"><div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#c47a20;flex:none;width:44px">2018</div><div style="font-size:13.5px;font-weight:300;color:#6b6960;line-height:1.8">國語語音辨識競賽 FSR 2018　產業組第二名</div></div>
+          </div>
+        </div>
+        <div class="r-pad-34px-36px" style="background:#fbfaf8;border:1px solid #dedbd4;border-radius:8px;padding:34px 36px;display:flex;flex-direction:column;gap:18px">
+          <h3 style="font-size:17px;font-weight:400">相關的同儕審查發表</h3>
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div style="display:flex;gap:16px;align-items:baseline"><div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#c47a20;flex:none;width:44px">2026</div><div style="font-size:13.5px;font-weight:300;color:#6b6960;line-height:1.8">低資源客語語音處理的方言感知與條件化方法（LREC）</div></div>
+            <div style="display:flex;gap:16px;align-items:baseline"><div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#c47a20;flex:none;width:44px">2025</div><div style="font-size:13.5px;font-weight:300;color:#6b6960;line-height:1.8">極低資源語言中資料量對辨識的影響（O-COCOSDA，技術類最佳論文獎）</div></div>
+            <div style="display:flex;gap:16px;align-items:baseline"><div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#c47a20;flex:none;width:44px">2024</div><div style="font-size:13.5px;font-weight:300;color:#6b6960;line-height:1.8">VoxHakka：多腔多語者的客語語音合成系統（O-COCOSDA）</div></div>
+            <div style="display:flex;gap:16px;align-items:baseline"><div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#c47a20;flex:none;width:44px">2020</div><div style="font-size:13.5px;font-weight:300;color:#6b6960;line-height:1.8">以台語劇集與中文字幕改善台語語音辨識（O-COCOSDA）</div></div>
+          </div>
+          <a href="index.html#publications" style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#c47a20;letter-spacing:0.04em;margin-top:auto">研究發表列表</a>
+        </div>
+      </div>
+
+      <div style="border-left:2px solid #ED9A4A;padding:6px 0 6px 28px;max-width:820px">
+        <p style="font-size:19px;font-weight:300;line-height:1.85;color:#141413;text-wrap:pretty">我們的立場是：<span style="font-weight:500">行銷數字沒有意義，可重現的數字才有</span>。字元錯誤率、競品對照、測試方法論與原始音檔，將以符合學術規範的方式完整公開，並可依貴單位指定的公開基準或自備音檔另行評測。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="r-mw-1280px r-pad-112px-56px" style="max-width:1280px;margin:0 auto;padding:112px 56px">
+    <div style="display:flex;flex-direction:column;gap:44px">
+      <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
+        <h2 class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">常見問題</h2>
+        <div style="border:1px solid #3a3833;color:#7a776e;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:5px 11px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">FAQ</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:1px;background:#26251f;border:1px solid #26251f;border-radius:8px;overflow:hidden">
+        <div class="r-pad-34px-36px" style="background:#0F0F0E;padding:34px 36px;display:flex;flex-direction:column;gap:12px">
+          <h3 style="font-size:18px;font-weight:400;line-height:1.6;text-wrap:pretty;color:#f4f3f0">台語錄音可以轉成文字嗎？</h3>
+          <p style="font-size:14.5px;font-weight:300;color:#8c8a84;line-height:1.95;text-wrap:pretty">可以，而且國台語夾雜的錄音也可以。MosaMinutes 會把台語內容轉成繁體中文逐字稿、自動標點分段，並分辨誰在說話。整段處理都在貴單位自己的機器上完成。</p>
+        </div>
+        <div class="r-pad-34px-36px" style="background:#0F0F0E;padding:34px 36px;display:flex;flex-direction:column;gap:12px">
+          <h3 style="font-size:18px;font-weight:400;line-height:1.6;text-wrap:pretty;color:#f4f3f0">客語逐字稿支援哪幾種腔？</h3>
+          <p style="font-size:14.5px;font-weight:300;color:#8c8a84;line-height:1.95;text-wrap:pretty">四縣、海陸、大埔、饒平、詔安、南四縣，六腔全數涵蓋，辨識與合成都是。腔調分類依客家委員會的六腔分類，可以逐項查證。</p>
+        </div>
+        <div class="r-pad-34px-36px" style="background:#0F0F0E;padding:34px 36px;display:flex;flex-direction:column;gap:12px">
+          <h3 style="font-size:18px;font-weight:400;line-height:1.6;text-wrap:pretty;color:#f4f3f0">原住民族語的逐字稿呢？</h3>
+          <p style="font-size:14.5px;font-weight:300;color:#8c8a84;line-height:1.95;text-wrap:pretty">MosaMinutes 支援 16 族、42 種語言。這些模型由本團隊研發，與意傳科技長期合作，並公開在 Hugging Face 上讓任何人下載檢驗。語音客服目前還沒有族語。</p>
+        </div>
+        <div class="r-pad-34px-36px" style="background:#0F0F0E;padding:34px 36px;display:flex;flex-direction:column;gap:12px">
+          <h3 style="font-size:18px;font-weight:400;line-height:1.6;text-wrap:pretty;color:#f4f3f0">跟直接用通用的語音辨識服務差在哪？</h3>
+          <p style="font-size:14.5px;font-weight:300;color:#8c8a84;line-height:1.95;text-wrap:pretty">通用服務的本土語言能力通常是在既有模型上微調出來的，腔調與夾雜講法一多就會掉。我們的模型採全自主架構訓練，可以針對特定腔調、領域用語與收音環境做深度客製。另一個差別是部署形態：本土語言的錄音往往同時是最敏感的內容，而通用服務都在雲端。</p>
+        </div>
+        <div class="r-pad-34px-36px" style="background:#0F0F0E;padding:34px 36px;display:flex;flex-direction:column;gap:12px">
+          <h3 style="font-size:18px;font-weight:400;line-height:1.6;text-wrap:pretty;color:#f4f3f0">辨識率有多少？</h3>
+          <p style="font-size:14.5px;font-weight:300;color:#8c8a84;line-height:1.95;text-wrap:pretty">這一題我們不給行銷數字。本土語言的辨識率跟腔調、收音環境與夾雜程度高度相關，脫離測試集談一個百分比沒有意義。字元錯誤率、競品對照、測試方法論與原始音檔會完整公開；在那之前，最有意義的數字是拿貴單位自己的錄音實測出來的那一個。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" style="background:#ED9A4A;color:#141413">
+    <div class="r-mw-1280px r-pad-104px-56px-112px" style="max-width:1280px;margin:0 auto;padding:104px 56px 112px;display:flex;flex-direction:column;gap:24px">
+      <h2 class="r-fs-40px" style="font-size:40px;font-weight:200;line-height:1.35;letter-spacing:-0.015em;max-width:760px;text-wrap:pretty">拿一段真正難聽懂的錄音給我們。</h2>
+      <p style="font-size:15.5px;font-weight:300;color:#5c3f16;line-height:1.95;max-width:620px;text-wrap:pretty">口音重、國台語夾雜、收音環境差的那一段最有參考價值。我們會提供方法論明確、可重現的評測報告，作為採購與技術審查的佐證。</p>
+      <div style="display:flex;flex-direction:column;gap:11px;font-family:'IBM Plex Mono',monospace;font-size:13.5px;letter-spacing:0.02em;padding-top:8px">
+        <a href="mailto:hazel@voxmosa.com" style="color:#141413;font-weight:500">hazel@voxmosa.com</a>
+        <span style="color:#5c3f16">兩個工作日內回覆</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+
+  <footer style="border-top:1px solid #26251f">
+    <div class="r-mw-1280px r-pad-44px-56px r-gap-40px" style="max-width:1280px;margin:0 auto;padding:44px 56px;display:flex;justify-content:space-between;align-items:center;gap:40px;flex-wrap:wrap">
+      <a aria-label="Voxmosa"href="index.html" style="display:flex;align-items:baseline;font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:300;letter-spacing:0.05em;line-height:1;color:#6f6c64">
+        <span>V</span>
+        <svg aria-hidden="true" viewBox="0 0 200 120" preserveAspectRatio="xMinYMid slice" style="height:0.53em;width:0.8em;transform:translateY(0.0205em);overflow:visible;display:block;flex:none" fill="none" stroke="currentColor" stroke-linecap="round">
+          <circle cx="60" cy="60" r="51" stroke-width="18" />
+          <path d="M118.1 8 A78 78 0 0 1 118.1 112" stroke-width="14" opacity="0.6" />
+          <path d="M150.1 8 A104 104 0 0 1 150.1 112" stroke-width="14" opacity="0.3" />
+        </svg>
+        <span>x</span><span style="display:inline-block;width:0.06em;flex:none"></span><span>mosa</span>
+      </a>
+      <div style="display:flex;gap:26px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5e5b54;letter-spacing:0.06em;flex-wrap:wrap">
+        <a href="mosatalk.html" style="color:#5e5b54">MosaTalk</a>
+        <a href="mosaminutes.html" style="color:#5e5b54">MosaMinutes</a>
+        <a href="mosascore.html" style="color:#5e5b54">MosaScore</a>
+        <a href="mailto:hazel@voxmosa.com" style="color:#5e5b54">hazel@voxmosa.com</a>
+        <span>© 2026 Voxmosa</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</div></div>
+</body>
+</html>

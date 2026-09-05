@@ -20,7 +20,7 @@ import pathlib, re, subprocess, sys, urllib.request
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 OUT = ROOT / "vendor" / "fonts"
 PAGES = ["index.html", "mosatalk.html", "mosaminutes.html", "mosascore.html",
-         "on-premise.html"]
+         "on-premise.html", "languages.html"]
 
 # Space Grotesk and IBM Plex Mono stay on static weights: together they are only
 # 33KB, and IBM Plex Mono has no variable version on Google Fonts anyway.
