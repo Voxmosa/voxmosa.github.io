@@ -410,6 +410,45 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
     </div>
   </section>
 
+  <section id="faq" style="background:#F4F3F0;color:#141413">
+    <div class="r-mw-1280px r-pad-104px-56px-112px" style="max-width:1280px;margin:0 auto;padding:104px 56px 112px;display:flex;flex-direction:column;gap:44px">
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
+          <h2 class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">常見問題</h2>
+          <div style="border:1px solid #c9c5bb;color:#8c8a84;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:5px 11px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">FAQ</div>
+        </div>
+        <p style="font-size:15px;font-weight:300;color:#6b6960;line-height:1.9;max-width:700px;text-wrap:pretty">還在開發規劃中的功能，答案裡會直說。</p>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:1px;background:#dedbd4;border:1px solid #dedbd4;border-radius:8px;overflow:hidden">
+      <div class="r-pad-34px-36px" style="background:#fbfaf8;padding:34px 36px;display:flex;flex-direction:column;gap:12px">
+        <h3 style="font-size:18px;font-weight:400;line-height:1.6;text-wrap:pretty">AI 會議轉錄是什麼？</h3>
+        <p style="font-size:14.5px;font-weight:300;color:#6b6960;line-height:1.95;text-wrap:pretty">把會議錄音自動轉成逐字稿，同時分辨誰在說話、寫出摘要與待辦事項。MosaMinutes 讓你在同一個畫面裡邊聽邊改，改到能直接發出去為止。</p>
+      </div>
+      <div class="r-pad-34px-36px" style="background:#fbfaf8;padding:34px 36px;display:flex;flex-direction:column;gap:12px">
+        <h3 style="font-size:18px;font-weight:400;line-height:1.6;text-wrap:pretty">會議錄音可以完全不上雲嗎？</h3>
+        <p style="font-size:14.5px;font-weight:300;color:#6b6960;line-height:1.95;text-wrap:pretty">可以，而且這是預設形態、不是附加選項。錄音、逐字稿、摘要與待辦全程在貴單位自己的伺服器上完成，容器化部署、單機即可運行，封閉網路不需連外也能使用。</p>
+      </div>
+      <div class="r-pad-34px-36px" style="background:#fbfaf8;padding:34px 36px;display:flex;flex-direction:column;gap:12px">
+        <h3 style="font-size:18px;font-weight:400;line-height:1.6;text-wrap:pretty">聽得懂台語和客語的會議嗎？</h3>
+        <p style="font-size:14.5px;font-weight:300;color:#6b6960;line-height:1.95;text-wrap:pretty">國語、台語、客語、原住民族語、英語五種語言一律轉為繁體中文逐字稿，並自動標點分段。客語涵蓋四縣、海陸、大埔、饒平、詔安、南四縣六腔。</p>
+      </div>
+      <div class="r-pad-34px-36px" style="background:#fbfaf8;padding:34px 36px;display:flex;flex-direction:column;gap:12px">
+        <h3 style="font-size:18px;font-weight:400;line-height:1.6;text-wrap:pretty">可以直接接 Google Meet、Microsoft Teams 或 Zoom 嗎？</h3>
+        <p style="font-size:14.5px;font-weight:300;color:#6b6960;line-height:1.95;text-wrap:pretty">目前不行。 現在的做法是錄音或上傳音檔。直接擷取電腦上正在進行的線上會議音訊（不需要外部帳號加入會議）列在下一階段的開發方向，還不是現有可交付功能。</p>
+      </div>
+      <div class="r-pad-34px-36px" style="background:#fbfaf8;padding:34px 36px;display:flex;flex-direction:column;gap:12px">
+        <h3 style="font-size:18px;font-weight:400;line-height:1.6;text-wrap:pretty">一台機器可以同時轉錄幾場會議？</h3>
+        <p style="font-size:14.5px;font-weight:300;color:#6b6960;line-height:1.95;text-wrap:pretty">一台 NVIDIA DGX Spark GB10 可支援 10 線即時轉錄；離線上傳走批次佇列處理，不受線數限制。需求超出單機容量時可以規模化為多機配置。</p>
+      </div>
+      <div class="r-pad-34px-36px" style="background:#fbfaf8;padding:34px 36px;display:flex;flex-direction:column;gap:12px">
+        <h3 style="font-size:18px;font-weight:400;line-height:1.6;text-wrap:pretty">多人同時校對，改的東西會不會被蓋掉？</h3>
+        <p style="font-size:14.5px;font-weight:300;color:#6b6960;line-height:1.95;text-wrap:pretty">不會。校對走四條獨立通道，彼此互不覆蓋，所以不會發生後改的蓋掉先改的。</p>
+      </div>
+      </div>
+    </div>
+  </section>
+
   <section id="contact" style="background:#ED9A4A;color:#141413">
     <div class="r-mw-1280px r-pad-96px-56px-100px" style="max-width:1280px;margin:0 auto;padding:96px 56px 100px;display:flex;flex-direction:column;gap:32px;align-items:flex-start">
       <h2 class="r-fs-40px" style="font-size:40px;font-weight:200;line-height:1.35;letter-spacing:-0.015em;max-width:760px;text-wrap:pretty">用你自己的會議錄音，驗證一次。</h2>

@@ -340,6 +340,45 @@ a { color:#f4f3f0; text-decoration:none; } a:hover { color:#ED9A4A; }
     </div>
   </section>
 
+  <section id="faq" style="background:#F4F3F0;color:#141413">
+    <div class="r-mw-1280px r-pad-104px-56px-112px" style="max-width:1280px;margin:0 auto;padding:104px 56px 112px;display:flex;flex-direction:column;gap:44px">
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
+          <h2 class="r-fs-34px" style="font-size:34px;font-weight:300;letter-spacing:-0.01em">常見問題</h2>
+          <div style="border:1px solid #c9c5bb;color:#8c8a84;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:5px 11px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase;flex:none">FAQ</div>
+        </div>
+        <p style="font-size:15px;font-weight:300;color:#6b6960;line-height:1.9;max-width:700px;text-wrap:pretty">還在開發規劃中的功能，答案裡會直說。</p>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:1px;background:#dedbd4;border:1px solid #dedbd4;border-radius:8px;overflow:hidden">
+      <div class="r-pad-34px-36px" style="background:#fbfaf8;padding:34px 36px;display:flex;flex-direction:column;gap:12px">
+        <h3 style="font-size:18px;font-weight:400;line-height:1.6;text-wrap:pretty">AI 語音客服跟按鍵式 IVR 差在哪？</h3>
+        <p style="font-size:14.5px;font-weight:300;color:#6b6960;line-height:1.95;text-wrap:pretty">IVR 要客戶照著選單按 1 按 2，按錯一層就得重來。MosaTalk 是直接聽客戶講話、用自然語言回答，客戶說完話到 AI 開口約一秒，而且可以隨時插話打斷。</p>
+      </div>
+      <div class="r-pad-34px-36px" style="background:#fbfaf8;padding:34px 36px;display:flex;flex-direction:column;gap:12px">
+        <h3 style="font-size:18px;font-weight:400;line-height:1.6;text-wrap:pretty">AI 可以幫忙接電話嗎？可以接現有的客服專線嗎？</h3>
+        <p style="font-size:14.5px;font-weight:300;color:#6b6960;line-height:1.95;text-wrap:pretty">可以。客戶在網頁上按下通話即可交談，任何支援 WebRTC 的現代瀏覽器都能用、不需要安裝軟體；也可以經電話系統商介接後，讓客戶以一般市話或手機直撥既有的客服專線，由 AI 自動接聽。</p>
+      </div>
+      <div class="r-pad-34px-36px" style="background:#fbfaf8;padding:34px 36px;display:flex;flex-direction:column;gap:12px">
+        <h3 style="font-size:18px;font-weight:400;line-height:1.6;text-wrap:pretty">AI 語音客服聽得懂台語嗎？可以用台語回答嗎？</h3>
+        <p style="font-size:14.5px;font-weight:300;color:#6b6960;line-height:1.95;text-wrap:pretty">辨識已經聽得懂台語，也聽得懂國台語夾雜的自然講話方式——模型是針對臺灣口音與台語最佳化的。但台語的語音合成還沒推出，所以目前是聽得懂台語、以國語回答；台語合成與客語能力都還在開發規劃中，不是現有可交付功能。</p>
+      </div>
+      <div class="r-pad-34px-36px" style="background:#fbfaf8;padding:34px 36px;display:flex;flex-direction:column;gap:12px">
+        <h3 style="font-size:18px;font-weight:400;line-height:1.6;text-wrap:pretty">客戶的通話錄音會上傳到雲端嗎？</h3>
+        <p style="font-size:14.5px;font-weight:300;color:#6b6960;line-height:1.95;text-wrap:pretty">不會。辨識、對話生成與語音合成三個模型全部運行在貴單位自己的伺服器上，不呼叫任何雲端 AI 服務。單機模式僅需內網即可運作；若採邊緣分離模式，另需一台小型雲端主機。</p>
+      </div>
+      <div class="r-pad-34px-36px" style="background:#fbfaf8;padding:34px 36px;display:flex;flex-direction:column;gap:12px">
+        <h3 style="font-size:18px;font-weight:400;line-height:1.6;text-wrap:pretty">要準備什麼硬體？</h3>
+        <p style="font-size:14.5px;font-weight:300;color:#6b6960;line-height:1.95;text-wrap:pretty">Ubuntu Linux x86_64，搭配一張大顯存的 NVIDIA GPU，已於 46 GB 顯存的單卡環境驗證。硬體我們可以一併供應並到場安裝。</p>
+      </div>
+      <div class="r-pad-34px-36px" style="background:#fbfaf8;padding:34px 36px;display:flex;flex-direction:column;gap:12px">
+        <h3 style="font-size:18px;font-weight:400;line-height:1.6;text-wrap:pretty">換知識庫需要寫程式嗎？</h3>
+        <p style="font-size:14.5px;font-weight:300;color:#6b6960;line-height:1.95;text-wrap:pretty">不需要，問答格式的文件即可更換知識庫。遇到資料未涵蓋的問題時 AI 不會編造答案，而是引導客戶留下聯絡方式。</p>
+      </div>
+      </div>
+    </div>
+  </section>
+
   <section id="contact" style="background:#ED9A4A;color:#141413">
     <div class="r-mw-1280px r-pad-96px-56px-100px" style="max-width:1280px;margin:0 auto;padding:96px 56px 100px;display:flex;flex-direction:column;gap:32px;align-items:flex-start">
       <h2 class="r-fs-40px" style="font-size:40px;font-weight:200;line-height:1.35;letter-spacing:-0.015em;max-width:760px;text-wrap:pretty">用你自己的知識庫與客戶對話，驗證一次。</h2>
