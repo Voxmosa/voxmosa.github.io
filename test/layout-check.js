@@ -31,7 +31,8 @@ const BASELINE = path.join(__dirname, "baseline");
 // "thousands of elements moved" -- a number that means nothing.
 const ENV_FILE = path.join(__dirname, "baseline", ".env.txt");
 const CURRENT = path.join(__dirname, "current");
-const PAGES = ["index.html", "mosatalk.html", "mosaminutes.html", "mosascore.html"];
+const PAGES = ["index.html", "mosatalk.html", "mosaminutes.html", "mosascore.html",
+               "on-premise.html"];
 
 // 手機 / 平板 / 桌機 —— 對齊頁面 media query 的斷點（480/900/1080）
 const WIDTHS = [375, 768, 1440];

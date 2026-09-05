@@ -9,6 +9,7 @@ Voxmosa 官方網站。**純靜態 HTML，沒有建置流程** —— 改完直�
 | `mosatalk.html` | MosaTalk：即時語音 AI 對話系統 |
 | `mosaminutes.html` | MosaMinutes：地端 AI 會議記錄平台 |
 | `mosascore.html` | MosaScore：地端通話質檢與購買意圖分析（含通話分析動畫）|
+| `on-premise.html` | 地端 AI：兩個產品共用的部署論述，導覽列「為什麼地端」指向這裡 |
 | `vendor/fonts/` | 子集化後自架的字型（含授權說明）|
 | `test/` | 回歸測試，`test/baseline/` 為版面基準 |
 | `tools/build-fonts.py` | 重新產生字型子集 |
@@ -193,7 +194,8 @@ EOF
 | 頁面 | `@graph` 內容 |
 | --- | --- |
 | `index.html` | `Organization`、`WebSite` |
-| 三個子頁 | `SoftwareApplication`、一個最小的 `Organization` 節點 |
+| 三個產品頁 | `SoftwareApplication`、一個最小的 `Organization` 節點 |
+| `on-premise.html` | 只有最小的 `Organization` 節點 —— 它不是軟體產品頁 |
 
 `Organization` 只放首頁（Google 的建議），`@id` 是全站共用的
 `https://voxmosa.com/#organization`。子頁的 `publisher` 曾經是**裸的 `@id` 存根**，
